@@ -1,0 +1,24 @@
+DATA AUDIT REPORT
+============================================================
+
+Total rows: 1096
+Date range: 2022-01-01 → 2024-12-31
+Features for clustering: ['t_max', 't_med', 't_min', 'pm2.5_med', 'umidade_relativa', 'pressure']
+
+Missing values per feature:
+  t_max                    :    26 / 1096 (2.4%)
+  t_med                    :    54 / 1096 (4.9%)
+  t_min                    :    28 / 1096 (2.6%)
+  pm2.5_med                :   165 / 1096 (15.1%)
+  umidade_relativa         :   237 / 1096 (21.6%)
+  pressure                 :   166 / 1096 (15.1%)
+
+Complete cases (all 6 features): 773 / 1096 (70.5%)
+
+Descriptive statistics (raw, before scaling):
+  t_max                    : mean=24.53  sd=4.75  min=10.20  max=35.40
+  t_med                    : mean=18.74  sd=3.63  min=7.80  max=27.30
+  t_min                    : mean=14.75  sd=3.75  min=1.30  max=23.40
+  pm2.5_med                : mean=15.93  sd=13.78  min=1.32  max=100.15
+  umidade_relativa         : mean=79.98  sd=9.52  min=43.00  max=98.40
+  pressure                 : mean=913.27  sd=3.29  min=902.87  max=921.87
