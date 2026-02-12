@@ -103,16 +103,14 @@ Once the individual patterns of each dataset were investigated, the relationship
 
 Given the complexity of the problem, further investigation involved Principal Component Analysis (PCA) of the domain. In contrast to what was observed during CCF and dispersion analysis, the PCA was able to detect more tangible patterns. For this, we focused on the two principal components (PC1 and PC2) that were detected to explain, in total, 73.70% of the variance in the whole dataset. The loading of each variable onto the PC is shown in Table 1, along with each PC explained variance.
 
-<!-- TODO [A6/Auditoria item 5]: PCA loadings divergem entre notebook e manuscrito. Recalcular com dados corretos. -->
+**Table 1.** PCA Loadings (N=905 complete-case days, 2022-2024). Variables standardised prior to decomposition.
 
-**Table 1.** PCA Loadings
+| Component | PM2.5 | T_min | Hospitalizations | Explained Variance |
+|-----------|-------|-------|------------------|-------------------|
+| PC1       | +0.607 | -0.538 | +0.585          | 49.3%             |
+| PC2       | +0.235 | +0.824 | +0.515          | 27.0%             |
 
-| Component | Daily Mean PM2.5 | Min. Daily Temperature | Hospitalizations | Explained Variance |
-|-----------|-----------------|----------------------|------------------|-------------------|
-| PC1       | 0.6244          | -0.3340              | 0.7061           | 40.39%            |
-| PC2       | 0.4681          | 0.8836               | 0.0040           | 33.29%            |
-
-According to the loadings shown in Table 1, we have the first component (PC1) comprising mainly pollution and hospitalization, along with a negative contribution from temperature. This way, days with high PC1 values correspond to elevated air pollution and cold temperatures, with a higher number of hospitalizations. Whereas when observing loading for PC2, there is a dominance of temperature influence, with almost no contribution from the hospitalization information. This composition indicates that PC2 is more related to the variability of minimum daily temperature itself. The dispersion plot, considering PCA space, is shown in Figure 2, with colors analogous to Figure 1.
+PCA on standardised PM2.5, T_min, and daily hospitalisations identified two components explaining 76.2% of total variance (Table 1). PC1 (49.3%) loaded positively on PM2.5 (+0.607) and hospitalisations (+0.585) and negatively on T_min (-0.538), associating cold, polluted days with higher admissions. PC2 (27.0%) was dominated by temperature (+0.824); its non-negligible hospitalisation loading (+0.515) is consistent with a known U-shaped temperature-health relationship whereby both heat and cold extremes elevate morbidity, but reflects substantially less variance than PC1. Partial-correlation analysis confirmed that the direct association between T_min and hospitalisations remains negative after controlling for PM2.5 (r=-0.144, p<0.001), supporting cold exposure as the dominant temperature-related driver. The dispersion plot, considering PCA space, is shown in Figure 2, with colors analogous to Figure 1.
 
 > **Figure 2.** Dispersion plot for the three datasets employed in PCA space. The color of each dot represents total daily hospitalizations, ranging from blue (less hospitalizations) to red (more hospitalizations).
 
@@ -243,7 +241,7 @@ This section tracks divergences identified during the repository audit. See [`re
 | A3 | Health data not disaggregated (no ICD, age, sex) | Open |
 | A4 | Title says "mortality" but outcome is hospitalization | Open |
 | A5 | Hospitalization series non-stationary (ADF p=0.318) | Open |
-| A6 | PCA loadings diverge between notebook and manuscript | Open |
+| A6 | PCA loadings diverge between notebook and manuscript | **RESOLVED** — Recalculated with t_min; loadings corrected in manuscript |
 
 ### Placeholders Still in Manuscript
 

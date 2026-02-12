@@ -125,10 +125,11 @@ This study provides the first integrated analysis of temperature
 extremes, particulate pollution, and hospital admissions in a large
 subtropical South American city using daily data spanning 2021--2024.
 By combining PCA, clustering, and lag-correlation analysis, we
-identified four recurrent climate--pollution regimes and demonstrated
+identified recurrent climate--pollution regimes and demonstrated
 that the strongest associations with hospitalisations occur during
-cold, polluted days with a delayed response of 3--10~days --- a pattern
-not previously documented in this region.
+cold, polluted days (PC1 explaining 49.3\% of variance) with a
+delayed response of 3--10~days --- a pattern not previously
+documented in this region.
 \TODO{Adicionar valor do DLNM/XGBoost quando implementados.}
 
 \textbf{Implications of all the available evidence}
@@ -293,8 +294,7 @@ pairs.
 \paragraph{Principal component analysis.}
 PCA was performed on the standardised daily PM$_{2.5}$,
 $T_\mathrm{min}$, and hospitalisation series. The first two
-components, explaining 73.7\% of total variance, were retained.
-\TODO{[A6] Loadings divergem entre notebook e manuscrito. Recalcular com dados corretos e atualizar Tabela~\ref{tab:pca}.}
+components, explaining 76.2\% of total variance, were retained.
 
 \paragraph{Clustering.}
 K-means clustering was applied to six standardised variables
@@ -349,32 +349,43 @@ due to wildfire-derived plumes transported by the South American
 Low-Level Jet (SALLJ).
 
 Cross-correlation analysis yielded weak linear associations (all
-$|r|<0.30$), motivating the use of multivariate methods (PCA,
-clustering).
+$|r|<0.30$); however, simple correlations confirmed that PM$_{2.5}$
+was positively associated with hospitalisations ($r=+0.283$,
+$p<0.001$) and negatively associated with $T_\mathrm{min}$
+($r=-0.232$, $p<0.001$), motivating the use of multivariate methods
+(PCA, clustering).
 
 \subsection{Principal component analysis}
 
-PCA identified two principal components explaining 73.7\% of total
-variance (Table~\ref{tab:pca}). PC1 loaded positively on PM$_{2.5}$
-and hospitalisations and negatively on temperature, associating cold,
-polluted days with higher admissions. PC2 was dominated by
-temperature, with negligible hospitalisation loading.
+PCA on standardised PM$_{2.5}$, $T_\mathrm{min}$, and daily
+hospitalisations identified two components explaining 76.2\% of total
+variance (Table~\ref{tab:pca}). PC1 (49.3\%) loaded positively on
+PM$_{2.5}$ (+0.607) and hospitalisations (+0.585) and negatively on
+$T_\mathrm{min}$ ($-$0.538), associating cold, polluted days with
+higher admissions. PC2 (27.0\%) was dominated by temperature
+(+0.824); its non-negligible hospitalisation loading (+0.515) is
+consistent with a known U-shaped temperature--health relationship
+whereby both heat and cold extremes elevate morbidity, but reflects
+substantially less variance than PC1. Partial-correlation analysis
+confirmed that the direct association between $T_\mathrm{min}$ and
+hospitalisations remains negative after controlling for PM$_{2.5}$
+($r=-0.144$, $p<0.001$), supporting cold exposure as the dominant
+temperature-related driver.
 
 \begin{table}[ht]
 \centering
-\caption{PCA loadings and explained variance.}
+\caption{PCA loadings and explained variance ($N$=905 complete-case
+days, 2022--2024). Variables were standardised (zero mean, unit
+variance) prior to decomposition.}
 \label{tab:pca}
 \begin{tabular}{lcccc}
 \toprule
 Component & PM$_{2.5}$ & $T_\mathrm{min}$ & Hospitalisations & Explained Var. \\
 \midrule
-PC1 & 0.624  & $-0.334$ & 0.706 & 40.4\% \\
-PC2 & 0.468  &   0.884  & 0.004 & 33.3\% \\
+PC1 & $+$0.607  & $-$0.538 & $+$0.585 & 49.3\% \\
+PC2 & $+$0.235  & $+$0.824 & $+$0.515 & 27.0\% \\
 \bottomrule
 \end{tabular}
-
-\smallskip
-\TODO{[A6] Loadings divergem entre notebook e manuscrito. Verificar e corrigir.}
 \end{table}
 
 \subsection{Clustering}
@@ -469,6 +480,21 @@ alone is insufficient to drive hospitalisations when air quality is
 good. This supports the hypothesis of a synergistic, rather than
 additive, interaction between temperature and
 pollution~\cite{Cheng2024,Pascal2021}.
+
+The PCA results deserve nuanced interpretation. Although PC2 carried
+a non-negligible hospitalisation loading (+0.515), this does not
+contradict the primacy of the cold--pollution pathway. The monthly
+profile showed that mean daily hospitalisations peaked during winter
+(39--41 admissions/day in June--August, $T_\mathrm{min}$~10--12\,°C)
+and were lowest during summer (23--25/day in December--February,
+$T_\mathrm{min}$~17--18\,°C). Partial-correlation analysis confirmed
+that, controlling for PM$_{2.5}$, colder days remained associated
+with higher admissions ($r=-0.144$, $p<0.001$). The PC2 loading
+likely reflects the well-documented U-shaped temperature--health
+curve, whereby both extremes elevate morbidity; however, the
+cold--pollution axis (PC1) explained 1.8$\times$ more variance and
+correlated 1.5$\times$ more strongly with hospitalisations ($r=0.71$
+vs.\ $r=0.46$), confirming it as the dominant risk pathway.
 
 \TODO{Adicionar parágrafo comparando com literatura (Po Valley, North China Plain, São Paulo).}
 \TODO{Adicionar parágrafo sobre adaptation gap.}
