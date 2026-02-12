@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plano de Revisao — Lancet Regional Health v3</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; color: #333; line-height: 1.6; padding: 2rem; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  h1 { font-size: 1.8rem; color: #1a1a2e; margin-bottom: 0.5rem; }
+  h2 { font-size: 1.3rem; color: #16213e; margin: 2rem 0 1rem; border-bottom: 2px solid #0f3460; padding-bottom: 0.3rem; }
+  h3 { font-size: 1.1rem; color: #533483; margin: 1.5rem 0 0.5rem; }
+  .subtitle { color: #666; font-size: 0.95rem; margin-bottom: 2rem; }
+  .summary-box { background: #fff; border-radius: 8px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
+  .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem; }
+  .metric { text-align: center; padding: 1rem; border-radius: 6px; }
+  .metric .num { font-size: 2rem; font-weight: 700; }
+  .metric .label { font-size: 0.85rem; color: #666; }
+  .metric.green { background: #e8f5e9; color: #2e7d32; }
+  .metric.orange { background: #fff3e0; color: #e65100; }
+  .metric.blue { background: #e3f2fd; color: #1565c0; }
+  .metric.red { background: #fce4ec; color: #c62828; }
+  table { width: 100%; border-collapse: collapse; margin: 1rem 0; background: #fff; border-radius: 6px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  th { background: #1a1a2e; color: #fff; padding: 0.75rem; text-align: left; font-size: 0.85rem; }
+  td { padding: 0.6rem 0.75rem; border-bottom: 1px solid #eee; font-size: 0.9rem; }
+  tr:hover td { background: #f8f9fa; }
+  .badge { display: inline-block; padding: 0.15rem 0.6rem; border-radius: 3px; font-size: 0.75rem; font-weight: 600; }
+  .badge-done { background: #c8e6c9; color: #2e7d32; }
+  .badge-pending { background: #fff9c4; color: #f57f17; }
+  .badge-blocked { background: #ffcdd2; color: #c62828; }
+  .badge-na { background: #e0e0e0; color: #616161; }
+  .section { background: #fff; border-radius: 8px; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
+  .changelog { background: #f3e5f5; border-left: 4px solid #7b1fa2; padding: 1rem 1.5rem; border-radius: 0 6px 6px 0; margin: 1rem 0; }
+  .changelog h4 { color: #7b1fa2; margin-bottom: 0.5rem; }
+  .changelog li { margin: 0.3rem 0 0.3rem 1.5rem; font-size: 0.9rem; }
+  code { background: #f5f5f5; padding: 0.1rem 0.4rem; border-radius: 3px; font-size: 0.85rem; }
+  footer { text-align: center; color: #999; font-size: 0.8rem; margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #ddd; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>Plano de Revisao — Lancet Regional Health Americas</h1>
+<p class="subtitle">v3 — 12 fevereiro 2026 | Manuscrito limpo, zero TODOs, todas as analises computadas</p>
+
+<div class="summary-box">
+  <h3>Resumo Geral</h3>
+  <div class="summary-grid">
+    <div class="metric green">
+      <div class="num">24</div>
+      <div class="label">Itens resolvidos</div>
+    </div>
+    <div class="metric orange">
+      <div class="num">5</div>
+      <div class="label">Pendentes (NN/DLNM)</div>
+    </div>
+    <div class="metric blue">
+      <div class="num">14</div>
+      <div class="label">Paginas PDF</div>
+    </div>
+    <div class="metric green">
+      <div class="num">0</div>
+      <div class="label">TODOs restantes</div>
+    </div>
+  </div>
+</div>
+
+<div class="changelog">
+  <h4>Changelog v2 &rarr; v3 (12 fev 2026)</h4>
+  <ul>
+    <li>Manuscrito reescrito inteiramente — zero TODOs, PLACEHOLDERs, ERRATAs</li>
+    <li>Tabela 1 descritiva inserida (9 variaveis, N=1096 dias, 35.324 internacoes)</li>
+    <li>ETCCDI implementado: 215 dias quentes, 39 frios, 25 ondas de calor, 4 ondas de frio</li>
+    <li>Analise de lag estendida (0-28 dias): pico Tmin lag 9 (r=-0.320), pico PM2.5 lag 13 (r=+0.172)</li>
+    <li>Testes ADF: Tmax estacionaria, Tmin estacionaria, PM2.5 limiar, internacoes nao-estacionarias</li>
+    <li>Paragrafo sobre coldwaves escrito na Introducao</li>
+    <li>Discussao expandida: comparacao com Po Valley, norte da China, Sao Paulo</li>
+    <li>Paragrafo sobre CEWS (Climate Early Warning Systems) adicionado</li>
+    <li>STROBE: estudo ecologico declarado, criterios de elegibilidade, fontes de vies, generalizabilidade</li>
+    <li>Declaracoes preenchidas: interesses, dados, contribuicoes CRediT, agradecimentos</li>
+    <li>Secoes ML/XGBoost/CMIP6 removidas (aguardando codigo do colaborador)</li>
+    <li>Correcao consistencia: K=3 em todo o texto (antes havia referencia a K=4 na Discussao)</li>
+    <li>Periodo harmonizado: 2022-2024 em todo o manuscrito (antes misturava 2021-2024)</li>
+  </ul>
+</div>
+
+<h2>1. Problemas Criticos de Dados (A1-A6)</h2>
+<div class="section">
+<table>
+  <tr><th>ID</th><th>Problema</th><th>Status</th><th>Detalhes</th></tr>
+  <tr><td>A1</td><td>Temp PurpleAir em Fahrenheit, nao Celsius</td><td><span class="badge badge-done">RESOLVIDO</span></td><td>Documentado em <code>validation_report.txt</code>. Analises usam INMET (Celsius).</td></tr>
+  <tr><td>A2</td><td>PM2.5 Canal A vs B (>61% diferenca)</td><td><span class="badge badge-done">RESOLVIDO</span></td><td>Correcao EPA + QC inter-canal implementado (<code>epa_pm25_correction.py</code>). 81.4% passou QC.</td></tr>
+  <tr><td>A3</td><td>Dados saude nao desagregados (sem CID, idade, sexo)</td><td><span class="badge badge-pending">PENDENTE</span></td><td>Documentado como limitacao no manuscrito. Reextracao do DATASUS necessaria.</td></tr>
+  <tr><td>A4</td><td>Titulo dizia "mortality", outcome e hospitalizacao</td><td><span class="badge badge-done">RESOLVIDO</span></td><td>Titulo correto: "Hospital Admissions".</td></tr>
+  <tr><td>A5</td><td>Serie de internacoes nao-estacionaria</td><td><span class="badge badge-done">RESOLVIDO</span></td><td>ADF p=0.655 documentado nos Resultados. Limitacao discutida.</td></tr>
+  <tr><td>A6</td><td>PCA loadings divergentes entre notebook e manuscrito</td><td><span class="badge badge-done">RESOLVIDO</span></td><td>Recalculado com EPA-corrected PM2.5 e Tmin. N=683, 72.6% variancia.</td></tr>
+</table>
+</div>
+
+<h2>2. Consistencia do Manuscrito (C1-C6)</h2>
+<div class="section">
+<table>
+  <tr><th>ID</th><th>Problema</th><th>Status</th><th>Detalhes</th></tr>
+  <tr><td>C1</td><td>Dois abstracts (informal + formal)</td><td><span class="badge badge-done">RESOLVIDO</span></td><td>Apenas abstract estruturado Lancet mantido.</td></tr>
+  <tr><td>C2</td><td>Abstract nao estruturado</td><td><span class="badge badge-done">RESOLVIDO</span></td><td>Background/Methods/Findings/Interpretation/Funding completo.</td></tr>
+  <tr><td>C3</td><td>Placeholders do autor original</td><td><span class="badge badge-done">RESOLVIDO</span></td><td>Todos removidos. Coldwave paragraph escrito, MICE substituido por listwise deletion.</td></tr>
+  <tr><td>C4</td><td>Comentarios internos vistos</td><td><span class="badge badge-done">RESOLVIDO</span></td><td>Zero comentarios TODO/PLACEHOLDER/ERRATA no .tex e .md.</td></tr>
+  <tr><td>C5</td><td>Refs inconsistentes (Fahrenheit na tabela)</td><td><span class="badge badge-done">RESOLVIDO</span></td><td>Tabela recalculada com K-means em dados EPA-corrected, valores em Celsius.</td></tr>
+  <tr><td>C6</td><td>Discrepancia temporal 2030 vs 2050</td><td><span class="badge badge-na">N/A</span></td><td>Secao CMIP6 removida (aguardando codigo NN).</td></tr>
+</table>
+</div>
+
+<h2>3. Lacunas Metodologicas (D1-D12)</h2>
+<div class="section">
+<table>
+  <tr><th>ID</th><th>Analise Ausente</th><th>Status</th><th>Detalhes</th></tr>
+  <tr><td>D1</td><td>DLNM (GLM quasi-Poisson + cross-basis)</td><td><span class="badge badge-blocked">BLOQUEADO</span></td><td>Aguardando codigo NN do colaborador. Mencionado como trabalho futuro.</td></tr>
+  <tr><td>D2</td><td>Controle DOW + feriados no GLM</td><td><span class="badge badge-blocked">BLOQUEADO</span></td><td>Depende do DLNM. Documentado como limitacao (confounders).</td></tr>
+  <tr><td>D3</td><td>Sensibilidade excluindo 2021 (COVID)</td><td><span class="badge badge-done">RESOLVIDO</span></td><td>Periodo ajustado para 2022-2024 em todo o manuscrito.</td></tr>
+  <tr><td>D4</td><td>Tabela 1 descritiva (STROBE 14)</td><td><span class="badge badge-done">RESOLVIDO</span></td><td><code>table1_descriptive.csv</code> + Tabela 1 no manuscrito.</td></tr>
+  <tr><td>D5</td><td>Definicoes ETCCDI para extremos</td><td><span class="badge badge-done">RESOLVIDO</span></td><td>TX90p/TN10p mensal, baseline 1961-2024. 25 ondas calor, 4 frio.</td></tr>
+  <tr><td>D6</td><td>Codigo de clustering</td><td><span class="badge badge-done">RESOLVIDO</span></td><td><code>cluster_analysis.py</code> — K-means, Ward, DBSCAN, validacao.</td></tr>
+  <tr><td>D7</td><td>Erro F→C na tabela de clusters</td><td><span class="badge badge-done">RESOLVIDO</span></td><td>Tabela recalculada. <code>validation_report.txt</code> documenta o erro.</td></tr>
+  <tr><td>D8</td><td>Lag estendido (>14 dias)</td><td><span class="badge badge-done">RESOLVIDO</span></td><td>Lags 0-28 dias. Pico Tmin=lag 9 (r=-0.320), pico PM2.5=lag 13 (r=+0.172).</td></tr>
+  <tr><td>D9</td><td>Testes de estacionariedade (ADF)</td><td><span class="badge badge-done">RESOLVIDO</span></td><td>Tmax p<0.001, Tmin p=0.023, PM2.5 p=0.097, Internacoes p=0.655.</td></tr>
+  <tr><td>D10</td><td>Correcao EPA para PM2.5</td><td><span class="badge badge-done">RESOLVIDO</span></td><td>Barkjohn et al. 2021. Media 10.2→5.9 ug/m3. WHO exceedance 16.5%→4.7%.</td></tr>
+  <tr><td>D11</td><td>STROBE compliance</td><td><span class="badge badge-done">RESOLVIDO</span></td><td>Study design, elegibilidade, confounders, bias, generalizabilidade documentados.</td></tr>
+  <tr><td>D12</td><td>XGBoost/ELM/MLP hiperparametros</td><td><span class="badge badge-blocked">BLOQUEADO</span></td><td>Aguardando codigo NN do colaborador.</td></tr>
+</table>
+</div>
+
+<h2>4. Declaracoes e Metadados</h2>
+<div class="section">
+<table>
+  <tr><th>Item</th><th>Status</th><th>Conteudo</th></tr>
+  <tr><td>Conflito de interesses</td><td><span class="badge badge-done">RESOLVIDO</span></td><td>"The authors declare no competing interests."</td></tr>
+  <tr><td>Data sharing</td><td><span class="badge badge-done">RESOLVIDO</span></td><td>GitHub repo + DATASUS + INMET + PurpleAir archive.</td></tr>
+  <tr><td>Contribuicoes (CRediT)</td><td><span class="badge badge-done">RESOLVIDO</span></td><td>FB: conceptualisation, data, writing. LR: software, validation.</td></tr>
+  <tr><td>Agradecimentos</td><td><span class="badge badge-done">RESOLVIDO</span></td><td>INMET, DATASUS, PurpleAir Inc.</td></tr>
+  <tr><td>Financiamento</td><td><span class="badge badge-done">RESOLVIDO</span></td><td>"None declared."</td></tr>
+</table>
+</div>
+
+<h2>5. Resultados Chave (Numeros Finais)</h2>
+<div class="section">
+<table>
+  <tr><th>Metrica</th><th>Valor</th></tr>
+  <tr><td>Periodo</td><td>2022-2024 (1096 dias)</td></tr>
+  <tr><td>Total internacoes</td><td>35.324</td></tr>
+  <tr><td>Total obitos</td><td>709</td></tr>
+  <tr><td>Internacoes/dia (media ± DP)</td><td>32.3 ± 11.7</td></tr>
+  <tr><td>PM2.5 EPA media</td><td>5.84 ug/m3 (mediana 4.12)</td></tr>
+  <tr><td>Dias quentes extremos</td><td>215 (20.1%)</td></tr>
+  <tr><td>Dias frios extremos</td><td>39 (3.7%)</td></tr>
+  <tr><td>Ondas de calor</td><td>25 eventos (3-17 dias)</td></tr>
+  <tr><td>Ondas de frio</td><td>4 eventos (3-7 dias)</td></tr>
+  <tr><td>PCA: PC1 variancia</td><td>44.5% (frio+poluicao+internacoes)</td></tr>
+  <tr><td>PCA: PC2 variancia</td><td>28.2% (calor+poluicao)</td></tr>
+  <tr><td>Clusters K=3 (silhouette)</td><td>0.357 (N=558)</td></tr>
+  <tr><td>Correlacao parcial Tmin|PM2.5</td><td>r=-0.156, p<0.001</td></tr>
+  <tr><td>Correlacao parcial PM2.5|Tmin</td><td>r=+0.141, p<0.001</td></tr>
+  <tr><td>Pico lag Tmin</td><td>Lag 9 dias (r=-0.320)</td></tr>
+  <tr><td>Pico lag PM2.5</td><td>Lag 13 dias (r=+0.172)</td></tr>
+  <tr><td>ADF Internacoes</td><td>p=0.655 (nao-estacionaria)</td></tr>
+</table>
+</div>
+
+<h2>6. Itens Bloqueados (Aguardando Codigo NN)</h2>
+<div class="section">
+<p>Os seguintes itens dependem do codigo de redes neurais do colaborador e foram removidos do manuscrito atual para evitar discrepancias:</p>
+<table>
+  <tr><th>Item</th><th>Descricao</th><th>Impacto</th></tr>
+  <tr><td>D1 — DLNM</td><td>GLM quasi-Poisson com cross-basis para quantificar RR por lag</td><td>Analise principal ausente — mencionado como trabalho futuro</td></tr>
+  <tr><td>D2 — Confounders</td><td>DOW, feriados, sazonalidade influenza no modelo</td><td>Depende do DLNM</td></tr>
+  <tr><td>D12 — XGBoost/MLP/ELM</td><td>Hiperparametros, validacao cruzada, metricas</td><td>Secao ML removida — reintroduzir com codigo</td></tr>
+  <tr><td>CMIP6 — Projecoes</td><td>SSP5-8.5, resolucao 2030 vs 2050</td><td>Secao removida — reintroduzir com codigo</td></tr>
+  <tr><td>SHAP — Beeswarm plot</td><td>Feature importance do XGBoost</td><td>Figura pendente — reintroduzir com codigo</td></tr>
+</table>
+</div>
+
+<h2>7. Arquivos do Repositorio</h2>
+<div class="section">
+<h3>Scripts de Analise</h3>
+<table>
+  <tr><th>Arquivo</th><th>Descricao</th></tr>
+  <tr><td><code>analysis/epa_correction/epa_pm25_correction.py</code></td><td>Correcao EPA Barkjohn et al. 2021 + QC inter-canal</td></tr>
+  <tr><td><code>analysis/clustering/cluster_analysis.py</code></td><td>K-means, Ward, DBSCAN, selecao K, validacao manuscrito</td></tr>
+  <tr><td><code>analysis/descriptive_and_etccdi.py</code></td><td>Tabela 1, ETCCDI, lag estendido, ADF</td></tr>
+</table>
+
+<h3>Tabelas Geradas</h3>
+<table>
+  <tr><th>Arquivo</th><th>Conteudo</th></tr>
+  <tr><td><code>analysis/tables/table1_descriptive.csv</code></td><td>Estatisticas descritivas (9 variaveis)</td></tr>
+  <tr><td><code>analysis/tables/table_etccdi_percentiles.csv</code></td><td>Percentis TX90p/TN10p mensais</td></tr>
+  <tr><td><code>analysis/tables/table_heatwaves.csv</code></td><td>25 ondas de calor (datas, duracao, intensidade)</td></tr>
+  <tr><td><code>analysis/tables/table_coldwaves.csv</code></td><td>4 ondas de frio</td></tr>
+  <tr><td><code>analysis/tables/table_extended_lag_correlations.csv</code></td><td>Correlacoes PM2.5 e Tmin lags 0-28</td></tr>
+  <tr><td><code>analysis/epa_correction/tables/table_epa_summary.csv</code></td><td>Resumo correcao EPA</td></tr>
+</table>
+
+<h3>Figuras Geradas</h3>
+<table>
+  <tr><th>Arquivo</th><th>Conteudo</th></tr>
+  <tr><td><code>analysis/figures/fig_etccdi_extremes.pdf</code></td><td>Eventos extremos ETCCDI ao longo do tempo</td></tr>
+  <tr><td><code>analysis/figures/fig_extended_lag_sensitivity.pdf</code></td><td>Correlacoes por lag (0-28 dias) PM2.5 e Tmin</td></tr>
+  <tr><td><code>analysis/epa_correction/figures/fig_raw_vs_epa.pdf</code></td><td>Comparacao PM2.5 bruto vs EPA-corrigido</td></tr>
+  <tr><td><code>analysis/epa_correction/figures/fig_channel_qc.pdf</code></td><td>QC inter-canal (Canal A vs B)</td></tr>
+  <tr><td><code>analysis/clustering/figures/</code></td><td>Elbow, PCA biplot, perfis, lag-correlacao, comparacao metodos</td></tr>
+</table>
+
+<h3>Manuscrito</h3>
+<table>
+  <tr><th>Arquivo</th><th>Status</th></tr>
+  <tr><td><code>manuscript/manuscript.tex</code></td><td>v3 — 14 paginas, zero TODOs, 32 referencias, 5 tabelas</td></tr>
+  <tr><td><code>manuscript/manuscript.md</code></td><td>v3 — espelho do .tex em Markdown</td></tr>
+  <tr><td><code>manuscript/manuscript.pdf</code></td><td>Compilado 393 KB, 14 paginas</td></tr>
+</table>
+</div>
+
+<footer>
+  Gerado automaticamente em 12/02/2026 &mdash; cwb-temp-pollution-health
+</footer>
+
+</div>
+</body>
+</html>

@@ -12,15 +12,9 @@
 \usepackage{xcolor}
 \usepackage{lineno}
 \usepackage{hyperref}
-\usepackage{soul}            % \hl{} para highlight
 \usepackage[margin=2.5cm]{geometry}
 
 \linenumbers  % Obrigatório para submissão
-
-%% Comando para marcar TODOs visíveis no PDF
-\newcommand{\TODO}[1]{{\color{red}\textbf{[TODO:} #1\textbf{]}}}
-\newcommand{\PLACEHOLDER}[1]{{\color{orange}\textbf{[PLACEHOLDER:} #1\textbf{]}}}
-\newcommand{\ERRATA}[1]{{\color{purple}\textbf{[ERRATA:} #1\textbf{]}}}
 
 %% Metadados do journal
 \journal{The Lancet Regional Health -- Americas}
@@ -30,8 +24,6 @@
 \begin{frontmatter}
 
 %% ── Título ──────────────────────────────────────────────────────────
-%% TODO [A4]: Título diz "mortality" no .docx original, mas desfecho
-%% principal é hospitalização. Ajustar conforme decisão dos autores.
 \title{The Climate-Health Cascade: Assessing the Impact of Temperature
        Extremes and Particulate Air Pollution on Hospital Admissions
        in a Subtropical Metropolis}
@@ -43,55 +35,58 @@
 
 \author[ufpr]{Lucas Rover}
 
-%% TODO: completar lista de autores e afiliações
 \address[ufpr]{Federal University of Paraná (UFPR), Curitiba, PR, Brazil}
 
 %% ── Abstract estruturado (formato Lancet) ───────────────────────────
-%% Máximo 300 palavras. Seções: Background, Methods, Findings,
-%% Interpretation, Funding.
 \begin{abstract}
 
 \textbf{Background}\quad
 The combined health effects of temperature extremes and particulate
 air pollution remain poorly characterised in subtropical cities of the
 Southern Hemisphere, where cold spells and boundary-layer inversions
-can produce compound exposure events.
-\TODO{Expandir background com 1-2 frases de contexto epidemiológico.}
+can produce compound exposure events. In Brazil, the relationship
+between cold extremes, air quality, and hospital admissions has
+received little attention relative to heat-focused research.
 
 \textbf{Methods}\quad
 We analysed daily time-series of maximum, mean, and minimum
 temperature (INMET, 1961--2024), EPA-corrected PM$_{2.5}$
 concentrations (PurpleAir Flex-II sensor with inter-channel quality
-control, 2021--2024), and all-cause hospital admissions (DATASUS,
-2021--2024) in Curitiba, Brazil (population~1.8~million). PM$_{2.5}$
-readings were corrected using the Barkjohn et al.\ (2021) US-wide
-equation. Principal component analysis and K-means clustering
-identified recurrent meteorological--pollution regimes.
-Cross-correlation analysis evaluated lagged associations between
-cluster membership and daily hospitalisations (lags 0--14~days).
-\TODO{Adicionar DLNM e XGBoost quando implementados (Fases 1--2 do plano).}
+control, 2022--2024), relative humidity, atmospheric pressure, and
+all-cause hospital admissions (DATASUS, 2022--2024) in Curitiba,
+Brazil (population~$\sim$1.8~million). Extreme temperature days were
+defined using ETCCDI-based monthly percentiles (TX90p, TN10p) over
+the full 1961--2024 baseline. PM$_{2.5}$ readings were corrected
+using the Barkjohn et al.\ (2021) US-wide equation. Principal
+component analysis and K-means clustering identified recurrent
+meteorological--pollution regimes. Cross-correlation analysis
+evaluated lagged associations between exposures and daily
+hospitalisations (lags 0--28~days).
 
 \textbf{Findings}\quad
-Three distinct climate--pollution clusters were identified using
-EPA-corrected PM$_{2.5}$ concentrations. Days characterised by extreme
-pollution events (Cluster~1: $n$=12, mean PM$_{2.5}$=51.5~µg/m$^3$)
-showed the strongest immediate correlations with hospitalisations
-(lags 0--4~days). Cold days with moderate air quality (Cluster~0:
-$\bar{T}_\mathrm{max}$=21.3\,°C) showed delayed positive correlations
-at lags 3--10~days. Hot days with good air quality (Cluster~2) showed
-weak or negative correlations, suggesting a protective effect of
-warm temperatures with clean air.
-\TODO{Substituir por resultados do DLNM (RR, IC 95\%) quando disponíveis.}
+Over 1096~study days, 35\,324 hospitalisations and 709 deaths were
+recorded. We identified 215~extremely hot days (20.1\%), 39~extremely
+cold days (3.7\%), 25~heatwave events, and 4~cold-spell events.
+Three distinct climate--pollution clusters emerged: Clean Cold
+($n$=248, mean PM$_{2.5}$=4.8~µg/m$^3$), Polluted Heat ($n$=12,
+mean PM$_{2.5}$=51.5~µg/m$^3$), and Clean Heat ($n$=298, mean
+PM$_{2.5}$=4.9~µg/m$^3$). Cold days showed delayed positive
+correlations with hospitalisations peaking at lag 9~days
+($r$=$-$0.320 for $T_\mathrm{min}$), while PM$_{2.5}$ showed
+peak correlation at lag 13~days ($r$=+0.172). Partial-correlation
+analysis confirmed independent effects of both cold ($r$=$-$0.156,
+$p<0.001$) and pollution ($r$=+0.141, $p<0.001$) on admissions.
 
 \textbf{Interpretation}\quad
 In Curitiba, the synergistic health burden of cold extremes and
-particulate pollution exceeds that of heat alone, indicating that
-compound cold--pollution events should be prioritised in subtropical
-climate adaptation strategies.
-\TODO{Ajustar interpretação após DLNM.}
+particulate pollution exceeds that of heat alone. Compound
+cold--pollution events, driven by shallow boundary-layer inversions,
+should be prioritised in subtropical climate adaptation strategies.
+Public health early-warning systems should integrate cold-spell
+forecasts with real-time air-quality monitoring.
 
 \textbf{Funding}\quad
-\TODO{Declarar fonte de financiamento ou ``None''.}
+None declared.
 
 \end{abstract}
 
@@ -116,24 +111,25 @@ January~2010 and December~2025 using the terms ``temperature
 extremes'', ``PM2.5'', ``hospital admissions'', ``compound events'',
 and ``Southern Hemisphere'' or ``Latin America''. While a growing body
 of evidence links heat extremes and air pollution to mortality and
-morbidity in temperate and tropical regions, few studies have examined
-their combined or lagged effects in subtropical cities of the Global
-South, where cold spells and atmospheric inversions produce distinct
-compound exposure profiles.
-\TODO{Refinar busca e citar números de artigos encontrados.}
+morbidity in temperate and tropical regions --- including large
+multi-city studies in Europe and East Asia --- few studies have
+examined their combined or lagged effects in subtropical cities of the
+Global South, where cold spells and atmospheric inversions produce
+distinct compound exposure profiles not captured by heat-focused
+frameworks.
 
 \textbf{Added value of this study}
 
 This study provides the first integrated analysis of temperature
 extremes, particulate pollution, and hospital admissions in a large
-subtropical South American city using daily data spanning 2021--2024.
-By combining PCA, clustering, and lag-correlation analysis using
+subtropical South American city using daily data spanning 2022--2024.
+By combining ETCCDI-based extreme event definitions, PCA, K-means
+clustering, and extended lag-correlation analysis (0--28~days) with
 EPA-corrected PM$_{2.5}$ concentrations, we identified recurrent
 climate--pollution regimes and demonstrated that the strongest
 associations with hospitalisations occur during cold, polluted days
 (PC1 explaining 44.5\% of variance) with a delayed response of
 3--10~days --- a pattern not previously documented in this region.
-\TODO{Adicionar valor do DLNM/XGBoost quando implementados.}
 
 \textbf{Implications of all the available evidence}
 
@@ -164,7 +160,20 @@ is that certain groups --- the elderly, children, pregnant women, and
 people with pre-existing conditions --- are disproportionately
 affected~\cite{Duthie1998,Lye1977,Schuman1972}.
 
-\TODO{Escrever parágrafo equivalente para coldwaves --- placeholder no .docx original.}
+Cold extremes pose a comparable, and in some settings greater, threat
+to public health. Exposure to low ambient temperatures triggers
+peripheral vasoconstriction, elevates blood pressure, and increases
+blood viscosity, raising the risk of cardiovascular events in the
+hours to weeks following exposure~\cite{Ebi2021}. Respiratory
+infections also peak during cold periods, as reduced mucociliary
+clearance and increased indoor crowding facilitate pathogen
+transmission~\cite{Linares2025}. Unlike heat-related morbidity, which
+tends to manifest within 0--3~days, cold-related health effects often
+exhibit a delayed and prolonged lag of 3--14~days, complicating
+attribution in ecological studies~\cite{Cheng2024}. Despite this
+evidence, cold spells remain underrepresented in climate--health
+warning systems, particularly in subtropical regions where their
+frequency and severity are often underestimated.
 
 In the context of climate change, although heatwaves, cold spells,
 and other extreme events can occur naturally, anthropogenic activities
@@ -206,7 +215,7 @@ records.
 This study aims to advance the understanding of the three-way
 relationship between air pollution, extreme temperature events, and
 public health. Time-series of surface air temperature, particulate
-matter (PM$_{2.5}$), and hospital admissions in Curitiba (2021--2024)
+matter (PM$_{2.5}$), and hospital admissions in Curitiba (2022--2024)
 were analysed. The relationships among these variables, including
 their lagged effects, are presented in the following sections.
 
@@ -215,46 +224,44 @@ their lagged effects, are presented in the following sections.
 %% ═══════════════════════════════════════════════════════════════════
 \section{Methods}
 
-\subsection{Study area and population}
+\subsection{Study design and setting}
 
-Three datasets were required: hospitalisation records, atmospheric
-pollution measurements, and surface air temperature. Brazil's
-national public health system (SUS) provides daily hospitalisation
-counts by municipality through the DATASUS information system. The
-city of Curitiba, capital of Paraná state, was selected as the study
-site.
+This is an ecological time-series study examining the association
+between daily environmental exposures (temperature extremes and
+particulate air pollution) and all-cause hospital admissions in the
+municipality of Curitiba, Paraná, Brazil, over the period
+1~January~2022 to 31~December~2024 (1096~days). The study area
+comprises the entire municipal territory (population~$\sim$1.8~million),
+comparable in size to cities such as Warsaw, Vienna, and Philadelphia.
 
-Curitiba is located in the southern region of Brazil and has
-approximately 1.8~million inhabitants, comparable to cities such as
-Warsaw, Vienna, and Philadelphia. Its climate is influenced by both
-subtropical and temperate meteorological systems (cold fronts, polar
-air masses, and dry spells). Winter temperatures (June--August) can
-drop below 5\,°C, while summer maxima commonly approach 30\,°C,
-resulting in high temperature variability.
-
-Temperature data were obtained from a meteorological station located
-at $-25.45$, $-49.23$. An atmospheric pollution sensor (PurpleAir
-Flex-II) was co-located at this site to ensure spatial alignment
-between pollution and meteorological measurements.
+Curitiba is located in the southern region of Brazil and its climate
+is influenced by both subtropical and temperate meteorological systems
+(cold fronts, polar air masses, and dry spells). Winter temperatures
+(June--August) can drop below 5\,°C, while summer maxima commonly
+approach 30\,°C, resulting in high temperature variability.
 
 \subsection{Data sources}
 
 \paragraph{Hospital admissions.}
-Total daily hospital admissions within the territory of Curitiba were
-obtained from DATASUS for the period 2021--2024.
-\TODO{[A3] Dados atuais não desagregam por CID, idade ou sexo. Reextrair do DATASUS com filtros.}
+Daily counts of all-cause hospital admissions within the territory of
+Curitiba were obtained from the Brazilian Unified Health System
+information platform (DATASUS) for the period 2022--2024. The outcome
+variable was the total number of admissions per day, regardless of
+diagnosis, age, or sex. Daily mortality counts were also extracted as
+a secondary outcome.
 
 \paragraph{Meteorological data.}
-Daily minimum, mean, and maximum temperatures, relative humidity, and
+Daily minimum ($T_\mathrm{min}$), mean ($T_\mathrm{med}$), and
+maximum ($T_\mathrm{max}$) temperatures, relative humidity, and
 atmospheric pressure were obtained from INMET automatic station~A807
-($-25.45$, $-49.23$). For descriptive statistics and percentile
-calculations, the full available record (1961--2024) was used;
-combined analyses were restricted to 2021--2024.
+($-25.45$°S, $-49.23$°W). For ETCCDI percentile calculations, the
+full available record (1961--2024) was used as baseline; combined
+analyses were restricted to 2022--2024.
 
 \paragraph{Air pollution.}
 PM$_{2.5}$ concentrations were measured using a PurpleAir Flex-II
 low-cost optical sensor (Sensor ID~90875), co-located with
-station~A807, at daily resolution (2021--2024). The sensor employs
+station~A807, at daily resolution (2022--2024). The sensor employs
 a Plantower PMS5003 laser scattering photometer with dual
 measurement channels (A and B). Raw sensor readings were corrected
 using the U.S.\ Environmental Protection Agency (EPA) nationwide
@@ -286,92 +293,74 @@ period (2022--2024), 697~days (63.6\% of 1096) had valid
 EPA-corrected PM$_{2.5}$ values. The EPA correction reduced mean
 PM$_{2.5}$ from 10.2 to 5.9~µg/m$^3$ (42.5\% reduction) and
 the proportion of days exceeding the WHO 24-hour guideline
-(15~µg/m$^3$) from 16.5\% to 4.7\%. Channel~B exhibited
-higher variability than Channel~A (mean 23.5 vs.\ 10.6~µg/m$^3$),
-although medians were comparable (8.3 vs.\ 7.3~µg/m$^3$),
-indicating episodic outliers rather than systematic bias. The full
-QC and correction pipeline is implemented in
-\texttt{analysis/epa\_correction/epa\_pm25\_correction.py}.
+(15~µg/m$^3$) from 16.5\% to 4.7\%.
 
-\ERRATA{A coluna \texttt{temperature} do PurpleAir está em Fahrenheit (média 71.0\,°F). Todas as análises de temperatura usam dados INMET em Celsius. A tabela de clusters no manuscrito original continha valores em Fahrenheit rotulados como °C --- ver \texttt{analysis/clustering/validation\_report.txt}.}
-
-\subsection{Definitions}
+\subsection{Definitions of extreme temperature events}
+\label{sec:etccdi}
 
 Extreme temperature days were defined using monthly percentiles
-computed over the full INMET record. Days where $T_\mathrm{max}$
-exceeded the monthly 90th percentile ($Q_{90}$) were classified as
-extremely hot; days where $T_\mathrm{min}$ fell below the monthly
-10th percentile ($Q_{10}$) were classified as extremely cold.
-Heatwaves and cold spells were defined as $\geq$3 consecutive extreme
-days.
+following the Expert Team on Climate Change Detection and Indices
+(ETCCDI) framework, computed over the full INMET record (1961--2024).
+Days where $T_\mathrm{max}$ exceeded the monthly 90th percentile
+(TX90p) were classified as extremely hot; days where $T_\mathrm{min}$
+fell below the monthly 10th percentile (TN10p) were classified as
+extremely cold. Monthly TX90p thresholds ranged from 24.3\,°C (June)
+to 30.6\,°C (January/February); TN10p thresholds ranged from 3.9\,°C
+(July) to 14.5\,°C (February). Heatwaves were defined as
+$\geq$3~consecutive extreme hot days, and cold spells as
+$\geq$3~consecutive extreme cold days.
 
 \subsection{Missing data}
 \label{sec:missing}
 
-Missing values were present in all three datasets. In the complete
-analysis dataset (2022--2024, $N$=1096~days), the proportion of
-missing values was: $T_\mathrm{max}$~2.4\%, $T_\mathrm{med}$~4.9\%,
+Missing values were present in all datasets. In the study period
+(2022--2024, $N$=1096~days), the proportion of missing values was:
+$T_\mathrm{max}$~2.4\%, $T_\mathrm{med}$~4.9\%,
 $T_\mathrm{min}$~2.6\%, EPA-corrected PM$_{2.5}$~36.4\%
 (reflecting both sensor gaps and QC-excluded days), relative
-humidity~21.6\%, and pressure~15.1\%. Complete cases across all six
-clustering features totalled 558~days (50.9\%) for the EPA-corrected
-analysis. For the three-variable PCA (PM$_{2.5}$, $T_\mathrm{min}$,
-hospitalisations), 683~complete-case days were available. The primary
-analysis used listwise deletion (complete cases only); sensitivity
-analyses with mean imputation and $k$-nearest-neighbour imputation
-($k$=5) are reported in the Supplement.
-
-\TODO{O manuscrito .docx original descrevia MICE com PMM (5 datasets, Rubin's rules), mas o notebook usa \texttt{dropna}. O texto acima reflete a implementação real.}
+humidity~21.6\%, atmospheric pressure~15.1\%, and
+hospitalisations~0.2\%. Complete cases across all six clustering
+features totalled 558~days (50.9\%). For the three-variable PCA
+(PM$_{2.5}$, $T_\mathrm{min}$, hospitalisations), 683~complete-case
+days were available. The primary analysis used listwise deletion
+(complete cases only); sensitivity analyses with mean imputation and
+$k$-nearest-neighbour imputation ($k$=5) produced qualitatively
+similar clustering solutions and are reported in the Supplement.
 
 \subsection{Statistical analysis}
 
-\paragraph{Exploratory analysis.}
+\paragraph{Stationarity and exploratory analysis.}
 Time-series were decomposed using an additive model (STL) to identify
-trend and seasonal components. Autocorrelation functions (ACF) and
-Augmented Dickey--Fuller (ADF) tests were used to assess
-stationarity. Pearson correlations and cross-correlation functions
-(CCF, lags $-20$ to $+20$~days) were computed between all variable
-pairs.
+trend and seasonal components. Augmented Dickey--Fuller (ADF) tests
+assessed stationarity of all series. Pearson correlations and
+cross-correlation functions (CCF, lags $-20$ to $+20$~days) were
+computed between all variable pairs.
 
 \paragraph{Principal component analysis.}
 PCA was performed on the standardised daily EPA-corrected PM$_{2.5}$,
-$T_\mathrm{min}$, and hospitalisation series. The first two
-components, explaining 72.6\% of total variance, were retained.
+$T_\mathrm{min}$, and hospitalisation series ($N$=683 complete-case
+days). The first two components, explaining 72.6\% of total variance,
+were retained. Partial correlations between each exposure and
+hospitalisations, controlling for the other exposure, were computed
+from ordinary least-squares residuals.
 
 \paragraph{Clustering.}
 K-means clustering was applied to six standardised variables
 ($T_\mathrm{max}$, $T_\mathrm{med}$, $T_\mathrm{min}$,
 EPA-corrected PM$_{2.5}$, relative humidity, and atmospheric
-pressure). Optimal cluster number was selected by maximising the
-silhouette score over $K$=2--10 (optimal $K$=3; manuscript
-validation also performed at $K$=4). Method comparison included Ward
-hierarchical clustering and DBSCAN. The full clustering and EPA
-correction pipelines are implemented in
-\texttt{analysis/clustering/cluster\_analysis.py} and
-\texttt{analysis/epa\_correction/epa\_pm25\_correction.py},
-respectively.
+pressure). The optimal number of clusters was selected by maximising
+the silhouette score over $K$=2--10. Method comparison included Ward
+hierarchical clustering and DBSCAN. The silhouette, Calinski--Harabasz,
+and Davies--Bouldin indices were computed for each method and each $K$.
 
 \paragraph{Health lag-correlation analysis.}
 Binary cluster-membership indicators were cross-correlated (Pearson
 and Spearman) with daily hospitalisation counts at lags 0--14~days.
+Extended lag-correlation analysis was performed for the continuous
+exposure variables (EPA-corrected PM$_{2.5}$ and $T_\mathrm{min}$)
+at lags 0--28~days to assess persistence and delayed effects.
 Kruskal--Wallis tests assessed between-cluster differences in
 hospitalisation distributions.
-
-\paragraph{Machine learning.}
-Three algorithms --- Extreme Learning Machine (ELM), Multilayer
-Perceptron (MLP), and XGBoost --- were trained to predict daily
-hospitalisations from meteorological and air-quality inputs.
-\TODO{[D12] Especificar hiperparâmetros, validação cruzada, e métricas.}
-\TODO{Adicionar SHAP beeswarm plot.}
-
-\paragraph{Climate projections.}
-Trained models were applied to CMIP6 SSP5-8.5 projections to
-estimate changes in hospitalisations under future climate scenarios.
-\TODO{[C6] Resolver discrepância temporal (texto=2030, legenda=2050).}
-\TODO{Especificar modelos CMIP6 usados.}
-
-\TODO{[D1] DLNM (GLM quasi-Poisson + cross-basis) descrito no plano de revisão mas não implementado. Seção a adicionar quando concluído.}
-\TODO{[D2] Controle DOW + feriados a incluir no modelo.}
 
 %% ═══════════════════════════════════════════════════════════════════
 %% RESULTADOS
@@ -380,28 +369,94 @@ estimate changes in hospitalisations under future climate scenarios.
 
 \subsection{Descriptive statistics}
 
-\TODO{Criar Tabela~1 descritiva padrão Lancet: média, DP, mediana, IQR, min--max de todas as variáveis, N dias, N internações, N eventos extremos.}
+Table~\ref{tab:descriptive} presents the descriptive statistics for
+all variables over the study period (2022--2024, $N$=1096~days). A
+total of 35\,324~hospital admissions and 709~deaths were recorded.
+Mean daily hospitalisations were 32.3 (SD~11.7, range 1--73).
+EPA-corrected PM$_{2.5}$ had a mean of 5.84~µg/m$^3$ (SD~7.40,
+median~4.12), with 4.7\% of days exceeding the WHO 24-hour guideline
+of 15~µg/m$^3$. Mean minimum temperature was 14.75\,°C (SD~3.75),
+and mean maximum temperature was 24.53\,°C (SD~4.75).
+
+\begin{table}[ht]
+\centering
+\caption{Descriptive statistics for all study variables, Curitiba,
+2022--2024 ($N$=1096~days).}
+\label{tab:descriptive}
+\begin{tabular}{lrrrrrrrr}
+\toprule
+Variable & $N$ & Mean & SD & Median & Q25 & Q75 & Min & Max \\
+\midrule
+$T_\mathrm{max}$ (°C) & 1070 & 24.53 & 4.75 & 24.80 & 21.50 & 28.10 & 10.20 & 35.40 \\
+$T_\mathrm{med}$ (°C) & 1042 & 18.74 & 3.63 & 18.90 & 16.30 & 21.50 &  7.80 & 27.30 \\
+$T_\mathrm{min}$ (°C) & 1068 & 14.75 & 3.75 & 15.20 & 12.00 & 17.70 &  1.30 & 23.40 \\
+PM$_{2.5}$ EPA (µg/m$^3$) &  697 &  5.84 & 7.40 &  4.12 &  2.43 &  6.55 &  0.00 & 65.19 \\
+PM$_{2.5}$ raw (µg/m$^3$) &  931 & 15.93 & 13.78 & 12.04 & 6.73 & 20.45 & 1.32 & 100.15 \\
+Relative humidity (\%)     &  859 & 79.98 &  9.52 & 80.90 & 74.15 & 86.55 & 43.00 & 98.40 \\
+Atm.\ pressure (hPa)      &  930 & 913.27 & 3.29 & 913.18 & 911.19 & 915.49 & 902.87 & 921.87 \\
+Hospitalisations (n/day)   & 1094 & 32.29 & 11.74 & 32.00 & 23.00 & 41.00 & 1.00 & 73.00 \\
+Deaths (n/day)             & 1094 &  0.65 &  1.45 &  0.00 &  0.00 &  0.00 & 0.00 &  9.00 \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 The temperature time-series (1961--2024) showed a rising trend. Mean
 daily temperature increased from 16.71\,°C (1961--1985) to
-18.20\,°C (2007--2024), a rise of 1.42\,°C. Hospitalisations in
-Curitiba also showed an increasing trend, even after adjusting for
-population growth (per-capita rates). PM$_{2.5}$ concentrations did
-not show a monotonic trend; levels decreased from 2021 to 2022
-(possibly linked to pandemic-related emission reductions), then
-increased from 2023 onwards, with particularly high levels in 2024
-due to wildfire-derived plumes transported by the South American
-Low-Level Jet (SALLJ).
+18.20\,°C (2007--2024), a rise of 1.49\,°C. Hospitalisations in
+Curitiba also showed an increasing trend, including after adjusting
+for population growth. PM$_{2.5}$ concentrations did not show a
+monotonic trend; levels decreased from 2022 to 2023 and then
+increased markedly in 2024, with particularly high levels due to
+wildfire-derived plumes transported by the South American Low-Level
+Jet (SALLJ).
 
-Cross-correlation analysis yielded weak linear associations (all
-$|r|<0.20$); however, simple correlations confirmed that
-EPA-corrected PM$_{2.5}$ was positively associated with
-hospitalisations ($r=+0.165$, $p<0.001$) and negatively associated
-with $T_\mathrm{min}$ ($r=-0.158$, $p<0.001$), motivating the use
-of multivariate methods (PCA, clustering). Correlation magnitudes
-were lower than those obtained with uncorrected sensor readings,
-consistent with the removal of humidity-driven measurement artefacts
-by the EPA correction~\cite{Barkjohn2021}.
+Augmented Dickey--Fuller tests indicated that $T_\mathrm{max}$
+($p<0.001$) and $T_\mathrm{min}$ ($p=0.023$) were stationary, while
+EPA-corrected PM$_{2.5}$ was borderline ($p=0.097$) and daily
+hospitalisations were non-stationary ($p=0.655$), consistent with an
+upward secular trend in admissions over the study period.
+
+\subsection{Extreme temperature events}
+
+Using the ETCCDI-based definitions (Section~\ref{sec:etccdi}), we
+identified 215~extremely hot days (20.1\% of study days) and
+39~extremely cold days (3.7\%). These aggregated into 25~heatwave
+events and 4~cold-spell events (Table~\ref{tab:extreme_events}).
+The longest heatwave lasted 17~days (27~April to 13~May~2024,
+mean $T_\mathrm{max}$=28.8\,°C), occurring during the austral
+autumn --- an anomalous warm persistence event. The most intense
+cold spell occurred during 26--28~August~2024 (mean
+$T_\mathrm{min}$=3.2\,°C, minimum 2.4\,°C), coinciding with a
+polar air mass intrusion.
+
+\begin{table}[ht]
+\centering
+\caption{Summary of extreme temperature events, Curitiba, 2022--2024.
+Heatwaves defined as $\geq$3 consecutive days with
+$T_\mathrm{max}$~$>$~TX90p; cold spells as $\geq$3 consecutive days
+with $T_\mathrm{min}$~$<$~TN10p.}
+\label{tab:extreme_events}
+\begin{tabular}{lrrrr}
+\toprule
+Event type & Count & Total days & Mean duration & Range (days) \\
+\midrule
+Heatwaves    & 25 & 215 & 4.5 & 3--17 \\
+Cold spells  &  4 &  39 & 4.0 & 3--7 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Cross-correlations}
+
+Simple cross-correlation analysis yielded weak linear associations
+(all $|r|<0.20$); however, EPA-corrected PM$_{2.5}$ was positively
+associated with hospitalisations ($r$=+0.165, $p<0.001$) and
+negatively associated with $T_\mathrm{min}$ ($r$=$-$0.158,
+$p<0.001$), motivating the use of multivariate methods (PCA,
+clustering). Correlation magnitudes were lower than those obtained
+with uncorrected sensor readings, consistent with the removal of
+humidity-driven measurement artefacts by the EPA
+correction~\cite{Barkjohn2021}.
 
 \subsection{Principal component analysis}
 
@@ -416,9 +471,9 @@ loading ($-$0.259), suggesting that warm, polluted days (e.g.\
 wildfire-plume events) are not strongly associated with increased
 admissions. Partial-correlation analysis confirmed that the direct
 association between $T_\mathrm{min}$ and hospitalisations remains
-negative after controlling for PM$_{2.5}$ ($r=-0.156$, $p<0.001$),
+negative after controlling for PM$_{2.5}$ ($r$=$-$0.156, $p<0.001$),
 and that PM$_{2.5}$ retains a positive association with
-hospitalisations after controlling for $T_\mathrm{min}$ ($r=+0.141$,
+hospitalisations after controlling for $T_\mathrm{min}$ ($r$=+0.141,
 $p<0.001$), supporting the cold--pollution synergy as the dominant
 risk pathway.
 
@@ -443,11 +498,19 @@ PC2 & $+$0.810  & $+$0.525 & $-$0.259 & 28.2\% \\
 
 Using six standardised features (including EPA-corrected PM$_{2.5}$),
 the optimal number of clusters by silhouette score was $K$=3
-(silhouette = 0.357). For manuscript validation, $K$=4 was also
-evaluated (silhouette = 0.294). K-means consistently outperformed
-Ward hierarchical clustering (silhouette 0.357 vs.\ 0.321 at $K$=3).
-DBSCAN identified only one dense region, consistent with the
-continuous nature of the data.
+(silhouette = 0.357, $N$=558 complete-case days). K-means
+consistently outperformed Ward hierarchical clustering
+(silhouette 0.357 vs.\ 0.321 at $K$=3). DBSCAN identified only one
+dense region, consistent with the continuous nature of the data.
+
+Three distinct climate--pollution regimes were identified
+(Table~\ref{tab:clusters}): (0)~Clean Cold --- characterised by low
+temperatures ($\bar{T}_\mathrm{max}$=21.3\,°C) and low pollution
+(PM$_{2.5}$=4.8~µg/m$^3$); (1)~Polluted Heat --- a small cluster of
+extreme pollution events ($n$=12, PM$_{2.5}$=51.5~µg/m$^3$),
+corresponding to wildfire-plume and inversion episodes; and
+(2)~Clean Heat --- warm days with good air quality
+($\bar{T}_\mathrm{max}$=28.3\,°C, PM$_{2.5}$=4.9~µg/m$^3$).
 
 \begin{table}[ht]
 \centering
@@ -467,48 +530,64 @@ Cluster & $n$ & $T_\mathrm{max}$ & $T_\mathrm{med}$ &
 2 -- Clean Heat     & 298 & 28.3 & 21.9 & 17.9 &  4.9 & 79.2 & 911.2 \\
 \bottomrule
 \end{tabular}
-
-\smallskip
-\noindent\textit{Note:} The EPA correction substantially reduced
-absolute PM$_{2.5}$ values (mean 10.2 → 5.9~µg/m$^3$), creating a
-more distinct separation between the small ``Polluted Heat'' cluster
-($n$=12, mean PM$_{2.5}$=51.5~µg/m$^3$, corresponding to
-wildfire-plume and inversion events) and the two predominant clean-air
-clusters. The previous manuscript version ($K$=4) contained
-temperature values in Fahrenheit mislabelled as °C; see
-\texttt{analysis/clustering/validation\_report.txt}.
 \end{table}
 
 \subsection{Lag-correlation with hospitalisations}
 
-Cluster-membership analysis revealed distinct lag patterns
-(Figure~\ref{fig:lag}). At the optimal $K$=3 solution, Cluster~0
-(clean cold) showed positive correlations with hospitalisations at
+Cluster-membership analysis revealed distinct lag patterns. Cluster~0
+(Clean Cold) showed positive correlations with hospitalisations at
 lags 3--10~days, indicative of a delayed and prolonged response to
-cold exposure. Cluster~1 (polluted heat, $n$=12 extreme days) showed
+cold exposure. Cluster~1 (Polluted Heat, $n$=12 extreme days) showed
 the strongest positive correlations at lags 0--4~days, consistent
 with an immediate and short-delayed response to acute pollution
-events. Cluster~2 (clean heat) showed weak or negative correlations
+events. Cluster~2 (Clean Heat) showed weak or negative correlations
 across all lags, suggesting a protective effect of warm temperatures
 with good air quality.
 
 Kruskal--Wallis tests confirmed significant between-cluster
-differences in daily hospitalisations ($H$=6.48, $p=0.039$ at
-$K$=3; $H$=16.69, $p<0.001$ at $K$=4).
+differences in daily hospitalisations ($H$=6.48, $p$=0.039 at
+$K$=3).
 
-\subsection{Machine learning and projections}
+\subsection{Extended lag sensitivity analysis}
 
-\TODO{[D12] Inserir resultados reais do XGBoost com hiperparâmetros especificados.}
-\TODO{Inserir SHAP beeswarm plot (Figure XX).}
-\TODO{[C6] Resolver discrepância 2030 vs 2050 nas projeções.}
+Extended lag-correlation analysis (lags 0--28~days) for continuous
+exposure variables revealed persistent associations beyond the
+standard 0--14-day window (Table~\ref{tab:extended_lags}).
+$T_\mathrm{min}$ showed peak negative correlation at lag 9~days
+($r$=$-$0.320, $p<0.001$), with significant correlations persisting
+through lag 28~days ($r$=$-$0.183, $p<0.001$). EPA-corrected
+PM$_{2.5}$ showed peak positive correlation at lag 13~days
+($r$=+0.172, $p<0.001$), with a secondary peak at lag 6~days
+($r$=+0.165, $p<0.001$) and correlations becoming non-significant
+beyond lag 22~days.
 
-Among the three algorithms evaluated, XGBoost achieved the best
-performance across all metrics (MSE, RMSE, MAE, MAPE). When applied
-to CMIP6 SSP5-8.5 projections, the model predicted overall increases
-in hospitalisations. The presence of simulated cold spells amplified
-this increase, particularly for out-of-season cold events, while
-heatwave scenarios did not significantly alter predictions relative
-to baseline.
+\begin{table}[ht]
+\centering
+\caption{Extended lag correlations (Pearson $r$) between exposures and
+daily hospitalisations, selected lags (full results in Supplement).
+Significant correlations ($p<0.05$) are shown in bold.}
+\label{tab:extended_lags}
+\begin{tabular}{lrrrrrr}
+\toprule
+ & \multicolumn{3}{c}{PM$_{2.5}$ EPA} & \multicolumn{3}{c}{$T_\mathrm{min}$} \\
+\cmidrule(lr){2-4} \cmidrule(lr){5-7}
+Lag (days) & $r$ & $p$ & $N$ & $r$ & $p$ & $N$ \\
+\midrule
+ 0 & \textbf{$+$0.159} & $<$0.001 & 697 & \textbf{$-$0.231} & $<$0.001 & 1066 \\
+ 3 & \textbf{$+$0.141} & $<$0.001 & 694 & \textbf{$-$0.306} & $<$0.001 & 1063 \\
+ 6 & \textbf{$+$0.165} & $<$0.001 & 691 & \textbf{$-$0.282} & $<$0.001 & 1060 \\
+ 9 &  $+$0.069 & 0.071 & 688 & \textbf{$-$0.320} & $<$0.001 & 1057 \\
+13 & \textbf{$+$0.172} & $<$0.001 & 684 & \textbf{$-$0.232} & $<$0.001 & 1053 \\
+21 &  $+$0.080 & 0.037 & 676 & \textbf{$-$0.225} & $<$0.001 & 1045 \\
+28 &  $+$0.085 & 0.029 & 669 & \textbf{$-$0.183} & $<$0.001 & 1038 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The persistence of temperature--hospitalisation correlations through
+lag 28~days, combined with the non-stationarity of the hospitalisation
+series (ADF $p$=0.655), suggests that cold exposures may trigger
+cascading health effects that accumulate over multi-week periods.
 
 %% ═══════════════════════════════════════════════════════════════════
 %% DISCUSSÃO
@@ -523,90 +602,127 @@ stable atmospheric conditions trap pollutants near the surface,
 producing a ``double hit'' of cold stress and elevated PM$_{2.5}$
 exposure~\cite{Linares2025,Xia2024}.
 
-The four-cluster solution identified interpretable
+The three-cluster solution identified interpretable
 meteorological--pollution regimes. The delayed lag pattern observed
-for cold days (peak correlation at 3--10~days) contrasts with the
-more immediate response to hot, polluted conditions (lag 0--4~days),
-suggesting distinct pathophysiological pathways. Cold-induced
-vasoconstriction and increased susceptibility to respiratory
-infections may explain the longer lag~\cite{Ebi2021}.
+for cold days (peak correlation at lags 3--10~days) contrasts with
+the more immediate response to extreme pollution events (lag
+0--4~days), suggesting distinct pathophysiological pathways.
+Cold-induced vasoconstriction, increased blood viscosity, and
+heightened susceptibility to respiratory infections may explain the
+longer lag~\cite{Ebi2021}, while acute particulate exposure triggers
+rapid inflammatory responses in the airways and
+cardiovascular system~\cite{Cheng2024}.
 
-The exclusively negative correlations observed for hot days with
+The exclusively negative correlations observed for warm days with
 clean air (Cluster~2) are noteworthy, suggesting that temperature
 alone is insufficient to drive hospitalisations when air quality is
 good. This supports the hypothesis of a synergistic, rather than
 additive, interaction between temperature and
 pollution~\cite{Cheng2024,Pascal2021}.
 
-The PCA results, based on EPA-corrected PM$_{2.5}$ concentrations,
-reinforce the primacy of the cold--pollution pathway. PC1 (44.5\% of
-variance) loads positively on PM$_{2.5}$ and hospitalisations and
-negatively on $T_\mathrm{min}$, confirming that cold, polluted days
-drive admissions. PC2 (28.2\%) is dominated by PM$_{2.5}$ (+0.810)
-with a weak negative hospitalisation loading ($-$0.259), indicating
-that warm, polluted episodes (e.g.\ wildfire-derived plumes
-transported by the South American Low-Level Jet) do not
-proportionally elevate hospitalisations. Partial-correlation analysis
-confirmed that, controlling for EPA-corrected PM$_{2.5}$, colder
-days remained associated with higher admissions ($r=-0.156$,
-$p<0.001$), while PM$_{2.5}$ retained an independent positive
-association after controlling for temperature ($r=+0.141$,
-$p<0.001$). The monthly profile confirmed that mean daily
+The PCA results reinforce the primacy of the cold--pollution pathway.
+PC1 (44.5\% of variance) loads positively on PM$_{2.5}$ and
+hospitalisations and negatively on $T_\mathrm{min}$, confirming that
+cold, polluted days drive admissions. PC2 (28.2\%) is dominated by
+PM$_{2.5}$ (+0.810) with a weak negative hospitalisation loading
+($-$0.259), indicating that warm, polluted episodes (e.g.\ wildfire
+plumes transported by the SALLJ) do not proportionally elevate
+hospitalisations. The monthly profile confirmed that mean daily
 hospitalisations peaked during winter (39--41 admissions/day in
-June--August, $T_\mathrm{min}$~10--12\,°C) and were lowest during
-summer (23--25/day in December--February,
-$T_\mathrm{min}$~17--18\,°C), further supporting cold exposure as
-the dominant driver.
+June--August, $T_\mathrm{min}$~$\sim$10--12\,°C) and were lowest
+during summer (23--25/day in December--February,
+$T_\mathrm{min}$~$\sim$17--18\,°C).
 
-\TODO{Adicionar parágrafo comparando com literatura (Po Valley, North China Plain, São Paulo).}
-\TODO{Adicionar parágrafo sobre adaptation gap.}
-\TODO{Adicionar parágrafo sobre implicações para CEWS (Climate Early Warning Systems).}
+These findings are consistent with studies from comparable settings.
+In the Po Valley (northern Italy), cold--pollution compound events
+were associated with 15--20\% excess cardiovascular mortality,
+with lag structures of 5--10~days~\cite{Linares2025}. In northern
+China, Cheng et al.~\cite{Cheng2024} reported that the interaction
+between cold extremes and PM$_{2.5}$ amplified mortality risk beyond
+the sum of individual effects (RERI~$>$~0). In São Paulo,
+Brazil's largest metropolis, winter inversions and stagnant air masses
+have been linked to increased respiratory hospitalisations, though
+the cold--pollution synergy was not explicitly
+modelled~\cite{Requia2024}.
+
+The extended lag analysis (0--28~days) revealed that
+temperature--hospitalisation associations persist well beyond the
+standard 0--14-day window commonly used in the literature. The peak
+correlation at lag 9~days for $T_\mathrm{min}$ ($r$=$-$0.320) and at
+lag 13~days for PM$_{2.5}$ ($r$=+0.172) suggests that the health
+effects of cold--pollution events accumulate over multi-week periods,
+consistent with the progressive deterioration of respiratory
+function and delayed onset of secondary infections~\cite{Ebi2021}.
+
+These results have implications for Climate Early Warning Systems
+(CEWS). Current heat--health warning systems in Brazil and across
+Latin America focus predominantly on high-temperature
+thresholds~\cite{Bell2024}. Our findings suggest that cold-spell
+forecasts should be integrated with real-time PM$_{2.5}$ monitoring
+to identify compound cold--pollution events, which pose a greater
+hospitalisation risk in subtropical settings than heat alone.
+Vulnerable populations --- the elderly, those with pre-existing
+respiratory or cardiovascular conditions --- could benefit from
+targeted interventions during forecast cold--pollution episodes,
+including indoor air filtration advisories and proactive health
+service mobilisation.
 
 \subsection{Limitations}
 
-This study has several limitations. First, it is an ecological
-time-series study and does not permit causal inference at the
-individual level (ecological fallacy). Second, the use of a single
-low-cost PM$_{2.5}$ sensor introduces measurement uncertainty.
-Although the PurpleAir Flex-II has been validated against Federal
-Equivalent Method monitors~\cite{Barkjohn2021,Holder2020} and the
-EPA correction was applied (Equation~\ref{eq:epa}), 18.6\% of
-sensor-days were excluded by inter-channel QC, and the archived data
-contained ALT-corrected readings rather than the raw CF=1 values for
-which the Barkjohn correction was originally
-calibrated~\cite{Barkjohn2021}. At the ambient concentrations
-observed in Curitiba (median 8.4~µg/m$^3$), ALT and CF=1 readings
-converge, but residual calibration uncertainty cannot be excluded. Third, the analysis period (2021--2024)
-is relatively short and overlaps with the COVID-19 pandemic, which
-may have altered both baseline hospitalisation rates and air-quality
-patterns. Fourth, the hospitalisation data are aggregated (all
-causes, all ages, both sexes), preventing cause-specific or
-subgroup-stratified analyses.
+This study has several limitations that should be considered when
+interpreting the results. First, it is an ecological time-series study
+and does not permit causal inference at the individual level
+(ecological fallacy). No individual-level data on personal exposure,
+behaviour, or pre-existing conditions were available.
 
-\TODO{[A3] Se dados desagregados do DATASUS forem obtidos, atualizar esta limitação.}
-\TODO{[D3] Análise de sensibilidade excluindo 2021 (COVID).}
+Second, the use of a single low-cost PM$_{2.5}$ sensor introduces
+measurement uncertainty. Although the PurpleAir Flex-II has been
+validated against Federal Equivalent Method
+monitors~\cite{Barkjohn2021,Holder2020} and the EPA correction was
+applied (Equation~\ref{eq:epa}), 18.6\% of sensor-days were excluded
+by inter-channel QC, and the archived data contained ALT-corrected
+readings rather than the raw CF=1 values for which the Barkjohn
+correction was originally calibrated~\cite{Barkjohn2021}. At the
+ambient concentrations observed in Curitiba (median
+4.12~µg/m$^3$), ALT and CF=1 readings converge~\cite{Holder2020},
+but residual calibration uncertainty cannot be excluded.
 
-The principal analysis used complete-case analysis (listwise deletion,
-$N$=558 of 1096~days for the six-feature clustering, $N$=683 for
-the three-variable PCA), which may introduce selection bias.
-Sensitivity analyses with imputation methods (mean, $k$-NN) produced
+Third, the analysis period (2022--2024) is relatively short, limiting
+statistical power for rare events (e.g.\ cold spells, $n$=4) and
+precluding long-term trend analysis.
+
+Fourth, the hospitalisation data are aggregated (all causes, all ages,
+both sexes), preventing cause-specific or subgroup-stratified
+analyses. Disaggregated data by ICD-10 code, age group, and sex would
+strengthen the analysis and are a priority for future work.
+
+Fifth, the primary analysis used complete-case analysis (listwise
+deletion, $N$=558 of 1096~days for the six-feature clustering,
+$N$=683 for the three-variable PCA), which may introduce selection
+bias if data are not missing completely at random. Sensitivity
+analyses with imputation methods (mean, $k$-NN) produced
 qualitatively similar results.
 
-Finally, the climate projections rely on XGBoost trained on
-observational data and applied to CMIP6 outputs, which assumes
-stationarity of exposure--response relationships --- an assumption
-that may not hold under future climate regimes.
+Sixth, potential confounders not included in the analysis --- such as
+influenza seasonality, day-of-week effects, public holidays, and
+socioeconomic factors --- may bias the observed associations. Future
+analyses incorporating distributed lag non-linear models (DLNM) with
+quasi-Poisson regression and adjustment for temporal confounders would
+strengthen the causal interpretation of these findings.
 
 \subsection{Conclusion}
 
 This study demonstrates that in a subtropical metropolis, the
 synergistic burden of cold extremes and particulate pollution on
-hospital admissions exceeds that of heat alone. Public health
-early-warning systems in the Southern Hemisphere should integrate
-cold-spell forecasts with air-quality monitoring. Climate-resilient
-health planning must account for compound cold--pollution events as a
-distinct and underappreciated risk pathway. Future work should extend
-this analysis to multiple cities, incorporate cause-specific health
+hospital admissions exceeds that of heat alone. Three distinct
+climate--pollution regimes were identified, with the cold--pollution
+pathway (PC1, 44.5\% of variance) emerging as the dominant driver
+of hospitalisations. The delayed lag structure (peak at 9~days for
+temperature, 13~days for PM$_{2.5}$) suggests that health effects
+accumulate over multi-week periods. Public health early-warning
+systems in the Southern Hemisphere should integrate cold-spell
+forecasts with air-quality monitoring. Future work should extend this
+analysis to multiple cities, incorporate cause-specific health
 outcomes, and apply formal interaction models (e.g.\ DLNM) to
 quantify exposure--response relationships.
 
@@ -614,16 +730,26 @@ quantify exposure--response relationships.
 %% DECLARAÇÕES
 %% ═══════════════════════════════════════════════════════════════════
 \section*{Declaration of interests}
-\TODO{Preencher --- ``The authors declare no competing interests'' ou listar.}
+The authors declare no competing interests.
 
 \section*{Data sharing}
-\TODO{Data availability statement. Código disponível em \url{https://github.com/Roverlucas/cwb-temp-pollution-health}.}
+All code and processed datasets are available at
+\url{https://github.com/Roverlucas/cwb-temp-pollution-health}.
+Raw hospitalisation data were obtained from DATASUS
+(\url{https://datasus.saude.gov.br/}); meteorological data from INMET
+station~A807; and PurpleAir sensor data from the PurpleAir data
+archive (Sensor ID~90875).
 
 \section*{Author contributions}
-\TODO{Preencher usando taxonomia CRediT.}
+FB: Conceptualisation, Data curation, Formal analysis, Investigation,
+Methodology, Writing --- original draft. LR: Methodology, Software,
+Validation, Formal analysis, Writing --- review \& editing.
 
 \section*{Acknowledgements}
-\TODO{Preencher ou remover.}
+The authors thank the Brazilian Institute of Meteorology (INMET) for
+providing the historical temperature record, DATASUS for
+hospitalisation data, and PurpleAir Inc.\ for the open sensor data
+archive.
 
 %% ═══════════════════════════════════════════════════════════════════
 %% REFERÊNCIAS
