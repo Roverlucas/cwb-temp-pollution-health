@@ -145,8 +145,8 @@ def merge_datasets(verbose: bool = False) -> pd.DataFrame:
 # 2. DATA AUDIT & MISSING-DATA HANDLING
 # ══════════════════════════════════════════════════════════════════════════════
 
-FEATURES_6 = ["t_max", "t_med", "t_min", "pm2.5_med", "umidade_relativa", "pressure"]
-FEATURES_4 = ["t_max", "t_med", "t_min", "pm2.5_med"]
+FEATURES_6 = ["t_max", "t_med", "t_min", "pm2.5_epa", "umidade_relativa", "pressure"]
+FEATURES_4 = ["t_max", "t_med", "t_min", "pm2.5_epa"]
 
 
 def audit_data(df: pd.DataFrame, features: list[str]) -> str:
@@ -392,7 +392,7 @@ def assign_labels(profiles: pd.DataFrame) -> dict[int, str]:
     for i, (_, row) in enumerate(ranked.iterrows()):
         cl = int(row["cluster"])
         high_temp = i < n / 2
-        high_pm = row.get("pm2.5_med_mean", 0) > profiles["pm2.5_med_mean"].median()
+        high_pm = row.get("pm2.5_epa_mean", 0) > profiles["pm2.5_epa_mean"].median()
 
         if high_temp and high_pm:
             label_map[cl] = "Polluted Heat"
@@ -473,7 +473,7 @@ def validate_manuscript(profiles: pd.DataFrame, label_map: dict[int, str],
         lines.append(f"    Tmax  = {row['t_max_mean']:.1f} °C (sd={row['t_max_sd']:.1f})")
         lines.append(f"    Tmed  = {row['t_med_mean']:.1f} °C (sd={row['t_med_sd']:.1f})")
         lines.append(f"    Tmin  = {row['t_min_mean']:.1f} °C (sd={row['t_min_sd']:.1f})")
-        lines.append(f"    PM2.5 = {row['pm2.5_med_mean']:.1f} µg/m³ (sd={row['pm2.5_med_sd']:.1f})")
+        lines.append(f"    PM2.5 = {row['pm2.5_epa_mean']:.1f} µg/m³ (sd={row['pm2.5_epa_sd']:.1f})")
 
         # Find closest manuscript cluster
         best_match, best_dist = None, float("inf")
@@ -941,7 +941,7 @@ def main():
             "computed_tmax": row["t_max_mean"],
             "computed_tmed": row["t_med_mean"],
             "computed_tmin": row["t_min_mean"],
-            "computed_pm25": row["pm2.5_med_mean"],
+            "computed_pm25": row["pm2.5_epa_mean"],
             "computed_n": int(row["n"]),
             "manuscript_cluster": best_match,
             "manuscript_tmax_F": ms_vals_c.get("Tmax"),

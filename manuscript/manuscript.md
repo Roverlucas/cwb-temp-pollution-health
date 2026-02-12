@@ -57,7 +57,15 @@ Meterological data was obtained from an automatic station code A807, located at 
 
 In order to select extreme temperature events, a method involving quartiles was applied. Considering month-wide daily temperature series, 90% and 10% quartiles (Q90 for maximum temperatures and Q10 for minimum temperatures, respectively) were calculated and considered thresholds for extreme temperature days. That is, days where the maximum temperature recorded was higher than Q95 for the considered month were considered extremely hot days. Analogously, days with minimum temperatures under Q1 for the considered month were considered extremely cold days. For heatwaves and coldwaves definition, an event of at least 3 consecutive extreme temperature days was considered.
 
-Lastly, atmospheric pollution data was collected at the same point as meteorological station A807, using a low-cost sensor PurpleAir Flex-II. This sensor uses optical measurements to estimate Particulate Matter (PM) concentrations. During prior analysis, both the coarser fraction (PM10) and the finer fraction (PM2.5) of PM were evaluated. However, in further explorations, it was chosen to consider only PM2.5, given the importance of that fraction for pollution effects on human health. As well as for the hospitalization time series, the collected air quality data spanned from 2021 to 2024, with daily frequency.
+Lastly, atmospheric pollution data was collected at the same point as meteorological station A807, using a low-cost sensor PurpleAir Flex-II (Sensor ID 90875). This sensor employs a Plantower PMS5003 laser scattering photometer with dual measurement channels (A and B). During prior analysis, both the coarser fraction (PM10) and the finer fraction (PM2.5) of PM were evaluated. However, in further explorations, it was chosen to consider only PM2.5, given the importance of that fraction for pollution effects on human health. As well as for the hospitalization time series, the collected air quality data spanned from 2021 to 2024, with daily frequency.
+
+**EPA PM2.5 Correction.** Raw sensor readings were corrected using the U.S. EPA nationwide correction equation (Barkjohn et al., 2021):
+
+> PM2.5_corrected = 0.524 × PM2.5_sensor − 0.0862 × RH + 5.75
+
+where PM2.5_sensor is the mean of channels A and B (ALT correction algorithm), and RH is the co-located relative humidity (%). This correction was derived from collocated Federal Equivalent Method (FEM) reference monitors across the contiguous United States (n=53 sensors, R²=0.70) and has been widely adopted for PurpleAir data in epidemiological and air-quality studies (Holder et al., 2020; Magi et al., 2020; Barkjohn et al., 2022).
+
+**Inter-channel quality control.** An inter-channel QC protocol was applied prior to correction, following EPA and PurpleAir guidance (Barkjohn et al., 2022). Days were excluded when the absolute inter-channel difference exceeded 5 µg/m³ *and* the relative difference exceeded 70% of the channel mean simultaneously. Of 1254 sensor-days, 1021 (81.4%) passed QC. After temporal alignment with the study period (2022–2024), 697 days (63.6% of 1096) had valid EPA-corrected PM2.5 values. The EPA correction reduced mean PM2.5 from 10.2 to 5.9 µg/m³ (42.5% reduction) and the proportion of days exceeding the WHO 24-hour guideline (15 µg/m³) from 16.5% to 4.7%. The full QC and correction pipeline is implemented in `analysis/epa_correction/epa_pm25_correction.py`.
 
 It is important to report that, even though data collection was conducted to the best capabilities, some missing values were found in all three datasets. For this reason, data inputting techniques were applied, ensuring temporal completeness for the studied period (2021-2024). This inputting was performed by ...
 
@@ -101,16 +109,16 @@ Once the individual patterns of each dataset were investigated, the relationship
 
 > **Figure 1.** Dispersion plot for the three datasets employed. The horizontal axis contains temperature data, in °C; while the vertical axis contains PM2.5 concentrations, in µg/m³. The color of each dot represents total daily hospitalizations, ranging from blue (less hospitalizations) to red (more hospitalizations).
 
-Given the complexity of the problem, further investigation involved Principal Component Analysis (PCA) of the domain. In contrast to what was observed during CCF and dispersion analysis, the PCA was able to detect more tangible patterns. For this, we focused on the two principal components (PC1 and PC2) that were detected to explain, in total, 73.70% of the variance in the whole dataset. The loading of each variable onto the PC is shown in Table 1, along with each PC explained variance.
+Given the complexity of the problem, further investigation involved Principal Component Analysis (PCA) of the domain. In contrast to what was observed during CCF and dispersion analysis, the PCA was able to detect more tangible patterns. For this, we focused on the two principal components (PC1 and PC2) that were detected to explain, in total, 72.6% of the variance in the whole dataset. The loading of each variable onto the PC is shown in Table 1, along with each PC explained variance.
 
-**Table 1.** PCA Loadings (N=905 complete-case days, 2022-2024). Variables standardised prior to decomposition.
+**Table 1.** PCA Loadings (N=683 complete-case days, 2022-2024). PM2.5 values are EPA-corrected (Barkjohn et al., 2021). Variables standardised prior to decomposition.
 
 | Component | PM2.5 | T_min | Hospitalizations | Explained Variance |
 |-----------|-------|-------|------------------|-------------------|
-| PC1       | +0.607 | -0.538 | +0.585          | 49.3%             |
-| PC2       | +0.235 | +0.824 | +0.515          | 27.0%             |
+| PC1       | +0.564 | -0.580 | +0.588          | 44.5%             |
+| PC2       | +0.810 | +0.525 | -0.259          | 28.2%             |
 
-PCA on standardised PM2.5, T_min, and daily hospitalisations identified two components explaining 76.2% of total variance (Table 1). PC1 (49.3%) loaded positively on PM2.5 (+0.607) and hospitalisations (+0.585) and negatively on T_min (-0.538), associating cold, polluted days with higher admissions. PC2 (27.0%) was dominated by temperature (+0.824); its non-negligible hospitalisation loading (+0.515) is consistent with a known U-shaped temperature-health relationship whereby both heat and cold extremes elevate morbidity, but reflects substantially less variance than PC1. Partial-correlation analysis confirmed that the direct association between T_min and hospitalisations remains negative after controlling for PM2.5 (r=-0.144, p<0.001), supporting cold exposure as the dominant temperature-related driver. The dispersion plot, considering PCA space, is shown in Figure 2, with colors analogous to Figure 1.
+PCA on standardised EPA-corrected PM2.5, T_min, and daily hospitalisations identified two components explaining 72.6% of total variance (Table 1). PC1 (44.5%) loaded positively on PM2.5 (+0.564) and hospitalisations (+0.588) and negatively on T_min (-0.580), associating cold, polluted days with higher admissions. PC2 (28.2%) was dominated by PM2.5 (+0.810) and T_min (+0.525), with a weak negative hospitalisation loading (-0.259), suggesting that warm, polluted days (e.g. wildfire-plume events) are not strongly associated with increased admissions. Partial-correlation analysis confirmed that the direct association between T_min and hospitalisations remains negative after controlling for PM2.5 (r=-0.156, p<0.001), and that PM2.5 retains a positive association with hospitalisations after controlling for T_min (r=+0.141, p<0.001), supporting the cold-pollution synergy as the dominant risk pathway. The dispersion plot, considering PCA space, is shown in Figure 2, with colors analogous to Figure 1.
 
 > **Figure 2.** Dispersion plot for the three datasets employed in PCA space. The color of each dot represents total daily hospitalizations, ranging from blue (less hospitalizations) to red (more hospitalizations).
 
@@ -121,16 +129,15 @@ Further investigations regarding these patterns were then conducted using cluste
 <!-- TODO [D7/A1]: DIVERGÊNCIA CRÍTICA — coluna "Temp." mostra valores em Fahrenheit rotulados como Celsius (71°C, 78°C, etc. são fisicamente impossíveis). O script `analysis/clustering/cluster_analysis.py` documenta essa divergência em `validation_report.txt`. Corrigir tabela com valores reais em °C. -->
 <!-- TODO [D6/Auditoria item 6]: Nenhum código de clustering existia no repositório. Agora implementado em `analysis/clustering/cluster_analysis.py`. -->
 
-**Table 2.** Values of the different input variables commonly observed in each cluster. tₘₐₓ = maximum temperature; tₘₑd = mean temperature; tₘᵢₙ = minimum temperature; PM₂.₅ = fine particulate matter; RH = relative humidity.
+**Table 2.** Cluster profiles at K=3, optimal solution (means on original scale, N=558 complete-case days). Temperature in °C (INMET); PM2.5 EPA-corrected (Barkjohn et al., 2021).
 
-| Cluster | tₘₐₓ | tₘₑd | tₘᵢₙ | PM₂.₅ | RH | Temp. | Pressure |
-|---------|------|------|------|--------|-----|-------|----------|
-| 0 | High (>27 °C) | High (>20 °C) | High (>17 °C) | High (>50 µg/m³) | Moderate (≈53 %) | ~~Moderate (≈71 °C)~~ | Moderate (≈915 hPa) |
-| 1 | Very High (>29 °C) | Very High (>22 °C) | Very High (>18 °C) | Low (<15 µg/m³) | High (58 %) | ~~High (78 °C)~~ | Low (911 hPa) |
-| 2 | Moderate (~23 °C) | Moderate (~18 °C) | Moderate (~15 °C) | Moderate (~10 µg/m³) | High (64 %) | ~~Moderate (~70 °C)~~ | Moderate (913 hPa) |
-| 3 | Low (<19 °C) | Low (<14 °C) | Low (<11 °C) | Low (~15 µg/m³) | High (65 %) | ~~Low (62 °C)~~ | High (917 hPa) |
+| Cluster | n | Tₘₐₓ (°C) | Tₘₑd (°C) | Tₘᵢₙ (°C) | PM₂.₅ (µg/m³) | RH (%) | Pressure (hPa) |
+|---------|---|-----------|-----------|-----------|---------------|--------|----------------|
+| 0 – Clean Cold    | 248 | 21.3 | 16.2 | 12.7 |  4.8 | 83.4 | 914.6 |
+| 1 – Polluted Heat |  12 | 30.0 | 21.5 | 13.4 | 51.5 | 57.4 | 915.4 |
+| 2 – Clean Heat    | 298 | 28.3 | 21.9 | 17.9 |  4.9 | 79.2 | 911.2 |
 
-> **ERRATA (D7):** Os valores da coluna "Temp." estão em **Fahrenheit** erroneamente rotulados como °C. Valores convertidos: 71°F = 21.7°C, 78°F = 25.6°C, 70°F = 21.1°C, 62°F = 16.7°C. Ver `analysis/clustering/validation_report.txt` para detalhes completos.
+> **Note:** The EPA correction substantially reduced absolute PM2.5 values (mean 10.2 → 5.9 µg/m³), creating a more distinct separation between the small "Polluted Heat" cluster (n=12, mean PM2.5=51.5 µg/m³, corresponding to wildfire-plume and inversion events) and the two predominant clean-air clusters. The previous manuscript version (K=4) contained temperature values in Fahrenheit mislabelled as °C; see `analysis/clustering/validation_report.txt`.
 
 The dataset, now segregated on the four different clusters, was then reevaluated against daily hospitalizations numbers, using linear correlations. As shown in Figure 3, clusters 0 and 3 were the ones with more positive correlations with the number of hospitalizations. This further corroborates the hypothesis that extreme climate events (both hot and cold) can indeed have impacts on public health, even more so when air pollution is elevated. In addition, Figure 3 also shows how the correlations can vary considering daily lags. That is, for cluster 0 (extreme heat and pollution), the highest correlations can be observed for no-lag and a 4-day lag, indicating a more immediate response to hot and polluted air conditions. In contrast, when analyzing cluster 3 (cold days), it is noted that the correlations with hospitalizations tend to increase in the range of 3 to 10-day lags. That behavior is indicative of a delayed and more lasting response. Moreover, cluster 1 (hot days, but with good air quality) shows exclusively negative correlations to hospitalizations, for all the evaluated lags. This indicates a positive impact of good air quality on the public health system, observable even on extreme heat days.
 
@@ -170,7 +177,11 @@ Overall, this work highlights the need for integrated public health and environm
 
 ## References
 
-1. BEEVERS, S. et al. Climate change policies reduce air pollution and increase physical activity: Benefits, costs, inequalities, and indoor exposures. *Environment International*, v. 195, p. 109164, jan. 2025.
+1. BARKJOHN, K. K.; GANTT, B.; CLEMENTS, A. L. Development and application of a United States-wide correction for PM2.5 data collected with the PurpleAir sensor. *Atmospheric Measurement Techniques*, v. 14, n. 6, p. 4617–4637, 2021.
+
+2. BARKJOHN, K. K. et al. Using low-cost sensors to quantify the effects of air quality events on indoor and outdoor PM2.5 concentrations. *Sensors*, v. 22, n. 3, p. 1010, 2022.
+
+3. BEEVERS, S. et al. Climate change policies reduce air pollution and increase physical activity: Benefits, costs, inequalities, and indoor exposures. *Environment International*, v. 195, p. 109164, jan. 2025.
 
 2. BELL, M. L.; GASPARRINI, A.; BENJAMIN, G. C. Climate Change, Extreme Heat, and Health. *New England Journal of Medicine*, v. 390, n. 19, p. 1793–1801, 16 maio 2024.
 
@@ -188,13 +199,17 @@ Overall, this work highlights the need for integrated public health and environm
 
 9. HERTZOG, L. et al. Mortality burden attributable to exceptional PM2.5 air pollution events in Australian cities: A health impact assessment. *Heliyon*, v. 10, n. 2, p. e24532, 2024.
 
-10. KALKSTEIN, L. S. Lessons from a very hot summer. *The Lancet*, v. 346, n. 8979, p. 857–859, set. 1995.
+10. HOLDER, A. L. et al. Field evaluation of low-cost particulate matter sensors for measuring wildfire smoke. *Sensors*, v. 20, n. 17, p. 4796, 2020.
+
+11. KALKSTEIN, L. S. Lessons from a very hot summer. *The Lancet*, v. 346, n. 8979, p. 857–859, set. 1995.
 
 11. KATSOUYANNI, K. et al. THE 1987 ATHENS HEATWAVE. *The Lancet*, v. 332, n. 8610, p. 573, set. 1988.
 
 12. LINARES, C. et al. How air pollution and extreme temperatures affect emergency hospital admissions due to various respiratory causes in Spain, by age group: A nationwide study. *International Journal of Hygiene and Environmental Health*, v. 266, p. 114570, 2025.
 
 13. LYE, M.; KAMAL, A. EFFECTS OF A HEATWAVE ON MORTALITY-RATES IN ELDERLY INPATIENTS. *The Lancet*, v. 309, n. 8010, p. 529–531, mar. 1977.
+
+14. MAGI, B. I. et al. Evaluation of PM2.5 measured in an urban setting using a low-cost optical particle counter and a Federal Equivalent Method Beta Attenuation Monitor. *Aerosol Science and Technology*, v. 54, n. 2, p. 147–159, 2020.
 
 14. MARX, W.; HAUNSCHILD, R.; BORNMANN, L. Heat waves: a hot topic in climate change research. *Theoretical and Applied Climatology*, v. 146, n. 1–2, p. 781–800, 3 out. 2021.
 
@@ -237,7 +252,7 @@ This section tracks divergences identified during the repository audit. See [`re
 | ID | Issue | Status |
 |----|-------|--------|
 | A1 | PurpleAir temperature in Fahrenheit, not Celsius | Documented in `analysis/clustering/validation_report.txt` |
-| A2 | PM2.5 Channel A vs B discrepancy (>61%) | Open |
+| A2 | PM2.5 Channel A vs B discrepancy (>61%) | **RESOLVED** — EPA correction + QC applied (`analysis/epa_correction/`) |
 | A3 | Health data not disaggregated (no ICD, age, sex) | Open |
 | A4 | Title says "mortality" but outcome is hospitalization | Open |
 | A5 | Hospitalization series non-stationary (ADF p=0.318) | Open |

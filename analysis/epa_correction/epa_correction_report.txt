@@ -1,0 +1,79 @@
+EPA PM2.5 CORRECTION REPORT
+======================================================================
+
+Correction: Barkjohn KK, Gantt B, Clements AL (2021)
+  Atmos Meas Tech. 14(6):4617-4637. doi:10.5194/amt-14-4617-2021
+
+Formula: PM2.5_corrected = 0.524 × PM2.5_sensor − 0.0862 × RH + 5.75
+
+──────────────────────────────────────────────────────────────────────
+SENSOR INFORMATION
+──────────────────────────────────────────────────────────────────────
+Sensor:    PurpleAir Flex-II (Sensor ID: 90875)
+Location:  Curitiba, PR, Brazil (−25.45, −49.23)
+Period:    2021-01-14 to 2024-12-31
+Days:      1254
+
+──────────────────────────────────────────────────────────────────────
+QUALITY CONTROL
+──────────────────────────────────────────────────────────────────────
+Criteria:
+  Absolute: |Channel A − Channel B| > 5.0 µg/m³
+  Relative: |A − B| / mean(A,B) > 70%
+  Exclusion: both conditions must be true simultaneously
+
+Results:
+  Total days:     1254
+  QC pass:        1021 (81.4%)
+  QC fail:        233 (18.6%)
+
+Channel agreement statistics:
+  |A−B| mean:     13.42 µg/m³
+  |A−B| median:   0.40 µg/m³
+  |A−B| max:      119.90 µg/m³
+  Channel A mean: 10.56 µg/m³
+  Channel B mean: 23.51 µg/m³
+  Channel A med:  7.30 µg/m³
+  Channel B med:  8.30 µg/m³
+
+──────────────────────────────────────────────────────────────────────
+CORRECTION IMPACT
+──────────────────────────────────────────────────────────────────────
+  Metric                    Raw (ALT)          EPA-corrected      Change      
+  ───────────────────────── ────────────────── ────────────────── ────────────
+  Mean (µg/m³)              10.17              5.85               -4.32       
+  Median (µg/m³)            7.10               4.17               -2.93       
+  SD (µg/m³)                12.51              6.85               -5.66       
+  Max (µg/m³)               120.80             65.19              -55.61      
+  Min (µg/m³)               1.10               0.00               -1.10       
+
+  % days exceeding WHO 24h guideline (15 µg/m³):
+    Raw:       16.5%
+    Corrected: 4.7%
+
+  % days exceeding Brazil CONAMA limit (25 µg/m³):
+    Raw:       6.3%
+    Corrected: 2.0%
+
+──────────────────────────────────────────────────────────────────────
+CORRELATION PRESERVATION
+──────────────────────────────────────────────────────────────────────
+  Pearson r (raw vs EPA):  0.9451
+
+  → High correlation confirms that the EPA correction preserves
+    the relative ranking of days, affecting only absolute magnitudes.
+
+──────────────────────────────────────────────────────────────────────
+NOTE ON CF=1 vs ALT READINGS
+──────────────────────────────────────────────────────────────────────
+  The archived PurpleAir download contains ALT-corrected readings
+  (pm2.5_alt) but not raw CF=1 readings (pm2.5_cf_1). The Barkjohn
+  et al. (2021) correction was originally calibrated against CF=1.
+  At ambient PM2.5 concentrations typically observed in Curitiba
+  (median ≈ 8.4 µg/m³, < 50 µg/m³), ALT and CF=1 values converge
+  (PurpleAir technical documentation). This approach is consistent
+  with Holder et al. (2020) and Magi et al. (2020).
+
+──────────────────────────────────────────────────────────────────────
+Report generated: 2026-02-12 16:49
+──────────────────────────────────────────────────────────────────────

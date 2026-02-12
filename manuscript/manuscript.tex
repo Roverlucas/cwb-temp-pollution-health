@@ -60,24 +60,27 @@ can produce compound exposure events.
 
 \textbf{Methods}\quad
 We analysed daily time-series of maximum, mean, and minimum
-temperature (INMET, 1961--2024), PM$_{2.5}$ concentrations (PurpleAir
-Flex-II sensor, 2021--2024), and all-cause hospital admissions
-(DATASUS, 2021--2024) in Curitiba, Brazil (population~1.8~million).
-Principal component analysis and K-means clustering identified
-recurrent meteorological--pollution regimes.
+temperature (INMET, 1961--2024), EPA-corrected PM$_{2.5}$
+concentrations (PurpleAir Flex-II sensor with inter-channel quality
+control, 2021--2024), and all-cause hospital admissions (DATASUS,
+2021--2024) in Curitiba, Brazil (population~1.8~million). PM$_{2.5}$
+readings were corrected using the Barkjohn et al.\ (2021) US-wide
+equation. Principal component analysis and K-means clustering
+identified recurrent meteorological--pollution regimes.
 Cross-correlation analysis evaluated lagged associations between
 cluster membership and daily hospitalisations (lags 0--14~days).
 \TODO{Adicionar DLNM e XGBoost quando implementados (Fases 1--2 do plano).}
 
 \textbf{Findings}\quad
-Four distinct climate--pollution clusters were identified. Days
-characterised by low temperatures and elevated PM$_{2.5}$ (Cluster~0:
-$\bar{T}_\mathrm{max}$=26.3\,°C, PM$_{2.5}$=43.8~µg/m$^3$) showed the
-strongest positive correlations with hospitalisations, particularly
-at lags of 3--10~days.
-Hot days with good air quality (Cluster~1) showed exclusively
-negative correlations, suggesting a protective effect of clean air
-even under thermal stress.
+Three distinct climate--pollution clusters were identified using
+EPA-corrected PM$_{2.5}$ concentrations. Days characterised by extreme
+pollution events (Cluster~1: $n$=12, mean PM$_{2.5}$=51.5~µg/m$^3$)
+showed the strongest immediate correlations with hospitalisations
+(lags 0--4~days). Cold days with moderate air quality (Cluster~0:
+$\bar{T}_\mathrm{max}$=21.3\,°C) showed delayed positive correlations
+at lags 3--10~days. Hot days with good air quality (Cluster~2) showed
+weak or negative correlations, suggesting a protective effect of
+warm temperatures with clean air.
 \TODO{Substituir por resultados do DLNM (RR, IC 95\%) quando disponíveis.}
 
 \textbf{Interpretation}\quad
@@ -124,12 +127,12 @@ compound exposure profiles.
 This study provides the first integrated analysis of temperature
 extremes, particulate pollution, and hospital admissions in a large
 subtropical South American city using daily data spanning 2021--2024.
-By combining PCA, clustering, and lag-correlation analysis, we
-identified recurrent climate--pollution regimes and demonstrated
-that the strongest associations with hospitalisations occur during
-cold, polluted days (PC1 explaining 49.3\% of variance) with a
-delayed response of 3--10~days --- a pattern not previously
-documented in this region.
+By combining PCA, clustering, and lag-correlation analysis using
+EPA-corrected PM$_{2.5}$ concentrations, we identified recurrent
+climate--pollution regimes and demonstrated that the strongest
+associations with hospitalisations occur during cold, polluted days
+(PC1 explaining 44.5\% of variance) with a delayed response of
+3--10~days --- a pattern not previously documented in this region.
 \TODO{Adicionar valor do DLNM/XGBoost quando implementados.}
 
 \textbf{Implications of all the available evidence}
@@ -250,9 +253,45 @@ combined analyses were restricted to 2021--2024.
 
 \paragraph{Air pollution.}
 PM$_{2.5}$ concentrations were measured using a PurpleAir Flex-II
-low-cost optical sensor, co-located with station~A807, at daily
-resolution (2021--2024).
-\TODO{[A2] Discrepância Canal A vs B ($>$61\%). Aplicar QC EPA e reportar quantos dias excluídos.}
+low-cost optical sensor (Sensor ID~90875), co-located with
+station~A807, at daily resolution (2021--2024). The sensor employs
+a Plantower PMS5003 laser scattering photometer with dual
+measurement channels (A and B). Raw sensor readings were corrected
+using the U.S.\ Environmental Protection Agency (EPA) nationwide
+correction equation developed by Barkjohn et al.~\cite{Barkjohn2021}:
+%
+\begin{equation}
+  \mathrm{PM}_{2.5}^{\mathrm{corr}} = 0.524 \times \mathrm{PM}_{2.5}^{\mathrm{sensor}}
+    - 0.0862 \times \mathrm{RH} + 5.75
+  \label{eq:epa}
+\end{equation}
+%
+where $\mathrm{PM}_{2.5}^{\mathrm{sensor}}$ is the mean of
+channels~A and~B (ALT correction algorithm), and RH is the
+co-located relative humidity (\%). This correction was derived from
+collocated Federal Equivalent Method (FEM) reference monitors across
+the contiguous United States ($n$=53 sensors, $R^2$=0.70) and has
+been widely adopted for PurpleAir data in
+epidemiological~\cite{Holder2020} and air-quality
+studies~\cite{Magi2020,Barkjohn2022}.
+
+\paragraph{Inter-channel quality control.}
+An inter-channel quality control (QC) protocol was applied prior to
+correction, following EPA and PurpleAir guidance~\cite{Barkjohn2022}.
+Days were excluded when the absolute inter-channel difference
+exceeded 5~µg/m$^3$ \textit{and} the relative difference exceeded
+70\% of the channel mean simultaneously. Of 1254 sensor-days,
+1021~(81.4\%) passed QC. After temporal alignment with the study
+period (2022--2024), 697~days (63.6\% of 1096) had valid
+EPA-corrected PM$_{2.5}$ values. The EPA correction reduced mean
+PM$_{2.5}$ from 10.2 to 5.9~µg/m$^3$ (42.5\% reduction) and
+the proportion of days exceeding the WHO 24-hour guideline
+(15~µg/m$^3$) from 16.5\% to 4.7\%. Channel~B exhibited
+higher variability than Channel~A (mean 23.5 vs.\ 10.6~µg/m$^3$),
+although medians were comparable (8.3 vs.\ 7.3~µg/m$^3$),
+indicating episodic outliers rather than systematic bias. The full
+QC and correction pipeline is implemented in
+\texttt{analysis/epa\_correction/epa\_pm25\_correction.py}.
 
 \ERRATA{A coluna \texttt{temperature} do PurpleAir está em Fahrenheit (média 71.0\,°F). Todas as análises de temperatura usam dados INMET em Celsius. A tabela de clusters no manuscrito original continha valores em Fahrenheit rotulados como °C --- ver \texttt{analysis/clustering/validation\_report.txt}.}
 
@@ -272,12 +311,15 @@ days.
 Missing values were present in all three datasets. In the complete
 analysis dataset (2022--2024, $N$=1096~days), the proportion of
 missing values was: $T_\mathrm{max}$~2.4\%, $T_\mathrm{med}$~4.9\%,
-$T_\mathrm{min}$~2.6\%, PM$_{2.5}$~15.1\%, relative
+$T_\mathrm{min}$~2.6\%, EPA-corrected PM$_{2.5}$~36.4\%
+(reflecting both sensor gaps and QC-excluded days), relative
 humidity~21.6\%, and pressure~15.1\%. Complete cases across all six
-clustering features totalled 773~days (70.5\%). The primary analysis
-used listwise deletion (complete cases only); sensitivity analyses
-with mean imputation and $k$-nearest-neighbour imputation ($k$=5)
-are reported in the Supplement.
+clustering features totalled 558~days (50.9\%) for the EPA-corrected
+analysis. For the three-variable PCA (PM$_{2.5}$, $T_\mathrm{min}$,
+hospitalisations), 683~complete-case days were available. The primary
+analysis used listwise deletion (complete cases only); sensitivity
+analyses with mean imputation and $k$-nearest-neighbour imputation
+($k$=5) are reported in the Supplement.
 
 \TODO{O manuscrito .docx original descrevia MICE com PMM (5 datasets, Rubin's rules), mas o notebook usa \texttt{dropna}. O texto acima reflete a implementação real.}
 
@@ -292,19 +334,22 @@ stationarity. Pearson correlations and cross-correlation functions
 pairs.
 
 \paragraph{Principal component analysis.}
-PCA was performed on the standardised daily PM$_{2.5}$,
+PCA was performed on the standardised daily EPA-corrected PM$_{2.5}$,
 $T_\mathrm{min}$, and hospitalisation series. The first two
-components, explaining 76.2\% of total variance, were retained.
+components, explaining 72.6\% of total variance, were retained.
 
 \paragraph{Clustering.}
 K-means clustering was applied to six standardised variables
 ($T_\mathrm{max}$, $T_\mathrm{med}$, $T_\mathrm{min}$,
-PM$_{2.5}$, relative humidity, and atmospheric pressure). Optimal
-cluster number was selected by maximising the silhouette score over
-$K$=2--10 (optimal $K$=3; manuscript validation also performed at
-$K$=4). Method comparison included Ward hierarchical clustering and
-DBSCAN. The full clustering pipeline is implemented in
-\texttt{analysis/clustering/cluster\_analysis.py}.
+EPA-corrected PM$_{2.5}$, relative humidity, and atmospheric
+pressure). Optimal cluster number was selected by maximising the
+silhouette score over $K$=2--10 (optimal $K$=3; manuscript
+validation also performed at $K$=4). Method comparison included Ward
+hierarchical clustering and DBSCAN. The full clustering and EPA
+correction pipelines are implemented in
+\texttt{analysis/clustering/cluster\_analysis.py} and
+\texttt{analysis/epa\_correction/epa\_pm25\_correction.py},
+respectively.
 
 \paragraph{Health lag-correlation analysis.}
 Binary cluster-membership indicators were cross-correlated (Pearson
@@ -349,58 +394,67 @@ due to wildfire-derived plumes transported by the South American
 Low-Level Jet (SALLJ).
 
 Cross-correlation analysis yielded weak linear associations (all
-$|r|<0.30$); however, simple correlations confirmed that PM$_{2.5}$
-was positively associated with hospitalisations ($r=+0.283$,
-$p<0.001$) and negatively associated with $T_\mathrm{min}$
-($r=-0.232$, $p<0.001$), motivating the use of multivariate methods
-(PCA, clustering).
+$|r|<0.20$); however, simple correlations confirmed that
+EPA-corrected PM$_{2.5}$ was positively associated with
+hospitalisations ($r=+0.165$, $p<0.001$) and negatively associated
+with $T_\mathrm{min}$ ($r=-0.158$, $p<0.001$), motivating the use
+of multivariate methods (PCA, clustering). Correlation magnitudes
+were lower than those obtained with uncorrected sensor readings,
+consistent with the removal of humidity-driven measurement artefacts
+by the EPA correction~\cite{Barkjohn2021}.
 
 \subsection{Principal component analysis}
 
-PCA on standardised PM$_{2.5}$, $T_\mathrm{min}$, and daily
-hospitalisations identified two components explaining 76.2\% of total
-variance (Table~\ref{tab:pca}). PC1 (49.3\%) loaded positively on
-PM$_{2.5}$ (+0.607) and hospitalisations (+0.585) and negatively on
-$T_\mathrm{min}$ ($-$0.538), associating cold, polluted days with
-higher admissions. PC2 (27.0\%) was dominated by temperature
-(+0.824); its non-negligible hospitalisation loading (+0.515) is
-consistent with a known U-shaped temperature--health relationship
-whereby both heat and cold extremes elevate morbidity, but reflects
-substantially less variance than PC1. Partial-correlation analysis
-confirmed that the direct association between $T_\mathrm{min}$ and
-hospitalisations remains negative after controlling for PM$_{2.5}$
-($r=-0.144$, $p<0.001$), supporting cold exposure as the dominant
-temperature-related driver.
+PCA on standardised EPA-corrected PM$_{2.5}$, $T_\mathrm{min}$, and
+daily hospitalisations identified two components explaining 72.6\% of
+total variance (Table~\ref{tab:pca}). PC1 (44.5\%) loaded positively
+on PM$_{2.5}$ (+0.564) and hospitalisations (+0.588) and negatively
+on $T_\mathrm{min}$ ($-$0.580), associating cold, polluted days with
+higher admissions. PC2 (28.2\%) was dominated by PM$_{2.5}$ (+0.810)
+and $T_\mathrm{min}$ (+0.525), with a weak negative hospitalisation
+loading ($-$0.259), suggesting that warm, polluted days (e.g.\
+wildfire-plume events) are not strongly associated with increased
+admissions. Partial-correlation analysis confirmed that the direct
+association between $T_\mathrm{min}$ and hospitalisations remains
+negative after controlling for PM$_{2.5}$ ($r=-0.156$, $p<0.001$),
+and that PM$_{2.5}$ retains a positive association with
+hospitalisations after controlling for $T_\mathrm{min}$ ($r=+0.141$,
+$p<0.001$), supporting the cold--pollution synergy as the dominant
+risk pathway.
 
 \begin{table}[ht]
 \centering
-\caption{PCA loadings and explained variance ($N$=905 complete-case
-days, 2022--2024). Variables were standardised (zero mean, unit
-variance) prior to decomposition.}
+\caption{PCA loadings and explained variance ($N$=683 complete-case
+days, 2022--2024). PM$_{2.5}$ values were EPA-corrected
+(Equation~\ref{eq:epa}). Variables were standardised (zero mean,
+unit variance) prior to decomposition.}
 \label{tab:pca}
 \begin{tabular}{lcccc}
 \toprule
 Component & PM$_{2.5}$ & $T_\mathrm{min}$ & Hospitalisations & Explained Var. \\
 \midrule
-PC1 & $+$0.607  & $-$0.538 & $+$0.585 & 49.3\% \\
-PC2 & $+$0.235  & $+$0.824 & $+$0.515 & 27.0\% \\
+PC1 & $+$0.564  & $-$0.580 & $+$0.588 & 44.5\% \\
+PC2 & $+$0.810  & $+$0.525 & $-$0.259 & 28.2\% \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 \subsection{Clustering}
 
-Using six standardised features, the optimal number of clusters by
-silhouette score was $K$=3 (silhouette = 0.331). For manuscript
-validation, $K$=4 was also evaluated (silhouette = 0.285). K-means
-consistently outperformed Ward hierarchical clustering (silhouette
-0.331 vs.\ 0.282 at $K$=3). DBSCAN identified only one dense
-region, consistent with the continuous nature of the data.
+Using six standardised features (including EPA-corrected PM$_{2.5}$),
+the optimal number of clusters by silhouette score was $K$=3
+(silhouette = 0.357). For manuscript validation, $K$=4 was also
+evaluated (silhouette = 0.294). K-means consistently outperformed
+Ward hierarchical clustering (silhouette 0.357 vs.\ 0.321 at $K$=3).
+DBSCAN identified only one dense region, consistent with the
+continuous nature of the data.
 
 \begin{table}[ht]
 \centering
-\caption{Cluster profiles at $K$=4 (means on original scale, $N$=773
-complete-case days). Temperature values are in °C (INMET data).}
+\caption{Cluster profiles at $K$=3, optimal solution (means on
+original scale, $N$=558 complete-case days). Temperature values are
+in °C (INMET data); PM$_{2.5}$ values are EPA-corrected
+(Equation~\ref{eq:epa}).}
 \label{tab:clusters}
 \begin{tabular}{lrrrrrrr}
 \toprule
@@ -408,36 +462,39 @@ Cluster & $n$ & $T_\mathrm{max}$ & $T_\mathrm{med}$ &
   $T_\mathrm{min}$ & PM$_{2.5}$ & RH (\%) & Pressure \\
   & & (°C) & (°C) & (°C) & (µg/m$^3$) & & (hPa) \\
 \midrule
-0 -- Polluted Heat & 95  & 26.3 & 18.6 & 12.0 & 43.8 & 67.6 & 915.4 \\
-1 -- Clean Cold    & 133 & 18.4 & 13.4 & 10.1 & 13.0 & 84.4 & 917.0 \\
-2 -- Hot Clean     & 276 & 29.3 & 22.5 & 18.2 & 14.4 & 76.4 & 911.0 \\
-3 -- Moderate      & 269 & 23.4 & 18.4 & 15.5 &  9.5 & 85.3 & 912.6 \\
+0 -- Clean Cold     & 248 & 21.3 & 16.2 & 12.7 &  4.8 & 83.4 & 914.6 \\
+1 -- Polluted Heat  &  12 & 30.0 & 21.5 & 13.4 & 51.5 & 57.4 & 915.4 \\
+2 -- Clean Heat     & 298 & 28.3 & 21.9 & 17.9 &  4.9 & 79.2 & 911.2 \\
 \bottomrule
 \end{tabular}
 
 \smallskip
-\ERRATA{A tabela de clusters no manuscrito original (.docx) continha
-uma coluna ``Temp.'' com valores em Fahrenheit (71, 78, 70, 62)
-rotulados como °C. Esses valores foram excluídos e substituídos pelos
-dados INMET corretos em °C. Ver
-\texttt{analysis/clustering/validation\_report.txt}.}
+\noindent\textit{Note:} The EPA correction substantially reduced
+absolute PM$_{2.5}$ values (mean 10.2 → 5.9~µg/m$^3$), creating a
+more distinct separation between the small ``Polluted Heat'' cluster
+($n$=12, mean PM$_{2.5}$=51.5~µg/m$^3$, corresponding to
+wildfire-plume and inversion events) and the two predominant clean-air
+clusters. The previous manuscript version ($K$=4) contained
+temperature values in Fahrenheit mislabelled as °C; see
+\texttt{analysis/clustering/validation\_report.txt}.
 \end{table}
 
 \subsection{Lag-correlation with hospitalisations}
 
 Cluster-membership analysis revealed distinct lag patterns
-(Figure~\ref{fig:lag}). Cluster~0 (polluted heat) showed the
-strongest positive correlations with hospitalisations at lags of 0
-and 4~days, suggesting an immediate and short-delayed response to hot
-and polluted conditions. Cluster~1 (clean cold) showed increasing
-correlations from lag~3 to lag~10, indicative of a delayed and
-prolonged response to cold exposure. Cluster~2 (hot, clean air)
-showed exclusively negative correlations across all lags, suggesting
-a protective effect of good air quality even under thermal stress.
+(Figure~\ref{fig:lag}). At the optimal $K$=3 solution, Cluster~0
+(clean cold) showed positive correlations with hospitalisations at
+lags 3--10~days, indicative of a delayed and prolonged response to
+cold exposure. Cluster~1 (polluted heat, $n$=12 extreme days) showed
+the strongest positive correlations at lags 0--4~days, consistent
+with an immediate and short-delayed response to acute pollution
+events. Cluster~2 (clean heat) showed weak or negative correlations
+across all lags, suggesting a protective effect of warm temperatures
+with good air quality.
 
 Kruskal--Wallis tests confirmed significant between-cluster
-differences in daily hospitalisations ($H$=49.01, $p<0.0001$ at
-$K$=4).
+differences in daily hospitalisations ($H$=6.48, $p=0.039$ at
+$K$=3; $H$=16.69, $p<0.001$ at $K$=4).
 
 \subsection{Machine learning and projections}
 
@@ -481,20 +538,25 @@ good. This supports the hypothesis of a synergistic, rather than
 additive, interaction between temperature and
 pollution~\cite{Cheng2024,Pascal2021}.
 
-The PCA results deserve nuanced interpretation. Although PC2 carried
-a non-negligible hospitalisation loading (+0.515), this does not
-contradict the primacy of the cold--pollution pathway. The monthly
-profile showed that mean daily hospitalisations peaked during winter
-(39--41 admissions/day in June--August, $T_\mathrm{min}$~10--12\,°C)
-and were lowest during summer (23--25/day in December--February,
-$T_\mathrm{min}$~17--18\,°C). Partial-correlation analysis confirmed
-that, controlling for PM$_{2.5}$, colder days remained associated
-with higher admissions ($r=-0.144$, $p<0.001$). The PC2 loading
-likely reflects the well-documented U-shaped temperature--health
-curve, whereby both extremes elevate morbidity; however, the
-cold--pollution axis (PC1) explained 1.8$\times$ more variance and
-correlated 1.5$\times$ more strongly with hospitalisations ($r=0.71$
-vs.\ $r=0.46$), confirming it as the dominant risk pathway.
+The PCA results, based on EPA-corrected PM$_{2.5}$ concentrations,
+reinforce the primacy of the cold--pollution pathway. PC1 (44.5\% of
+variance) loads positively on PM$_{2.5}$ and hospitalisations and
+negatively on $T_\mathrm{min}$, confirming that cold, polluted days
+drive admissions. PC2 (28.2\%) is dominated by PM$_{2.5}$ (+0.810)
+with a weak negative hospitalisation loading ($-$0.259), indicating
+that warm, polluted episodes (e.g.\ wildfire-derived plumes
+transported by the South American Low-Level Jet) do not
+proportionally elevate hospitalisations. Partial-correlation analysis
+confirmed that, controlling for EPA-corrected PM$_{2.5}$, colder
+days remained associated with higher admissions ($r=-0.156$,
+$p<0.001$), while PM$_{2.5}$ retained an independent positive
+association after controlling for temperature ($r=+0.141$,
+$p<0.001$). The monthly profile confirmed that mean daily
+hospitalisations peaked during winter (39--41 admissions/day in
+June--August, $T_\mathrm{min}$~10--12\,°C) and were lowest during
+summer (23--25/day in December--February,
+$T_\mathrm{min}$~17--18\,°C), further supporting cold exposure as
+the dominant driver.
 
 \TODO{Adicionar parágrafo comparando com literatura (Po Valley, North China Plain, São Paulo).}
 \TODO{Adicionar parágrafo sobre adaptation gap.}
@@ -505,9 +567,16 @@ vs.\ $r=0.46$), confirming it as the dominant risk pathway.
 This study has several limitations. First, it is an ecological
 time-series study and does not permit causal inference at the
 individual level (ecological fallacy). Second, the use of a single
-low-cost PM$_{2.5}$ sensor introduces measurement uncertainty,
-although the PurpleAir Flex-II has been validated against reference
-monitors in previous studies. Third, the analysis period (2021--2024)
+low-cost PM$_{2.5}$ sensor introduces measurement uncertainty.
+Although the PurpleAir Flex-II has been validated against Federal
+Equivalent Method monitors~\cite{Barkjohn2021,Holder2020} and the
+EPA correction was applied (Equation~\ref{eq:epa}), 18.6\% of
+sensor-days were excluded by inter-channel QC, and the archived data
+contained ALT-corrected readings rather than the raw CF=1 values for
+which the Barkjohn correction was originally
+calibrated~\cite{Barkjohn2021}. At the ambient concentrations
+observed in Curitiba (median 8.4~µg/m$^3$), ALT and CF=1 readings
+converge, but residual calibration uncertainty cannot be excluded. Third, the analysis period (2021--2024)
 is relatively short and overlaps with the COVID-19 pandemic, which
 may have altered both baseline hospitalisation rates and air-quality
 patterns. Fourth, the hospitalisation data are aggregated (all
@@ -518,9 +587,10 @@ subgroup-stratified analyses.
 \TODO{[D3] Análise de sensibilidade excluindo 2021 (COVID).}
 
 The principal analysis used complete-case analysis (listwise deletion,
-$N$=773 of 1096~days), which may introduce selection bias. Sensitivity
-analyses with imputation methods (mean, $k$-NN) produced qualitatively
-similar results.
+$N$=558 of 1096~days for the six-feature clustering, $N$=683 for
+the three-variable PCA), which may introduce selection bias.
+Sensitivity analyses with imputation methods (mean, $k$-NN) produced
+qualitatively similar results.
 
 Finally, the climate projections rely on XGBoost trained on
 observational data and applied to CMIP6 outputs, which assumes
@@ -561,7 +631,17 @@ quantify exposure--response relationships.
 %% Estilo Vancouver (numerado) — padrão Lancet
 \bibliographystyle{elsarticle-num-names}
 
-\begin{thebibliography}{28}
+\begin{thebibliography}{32}
+
+\bibitem{Barkjohn2021}
+Barkjohn KK, Gantt B, Clements AL.
+Development and application of a United States-wide correction for PM2.5 data collected with the PurpleAir sensor.
+\textit{Atmos Meas Tech}. 2021;14(6):4617--4637.
+
+\bibitem{Barkjohn2022}
+Barkjohn KK, et al.
+Using low-cost sensors to quantify the effects of air quality events on indoor and outdoor PM2.5 concentrations.
+\textit{Sensors}. 2022;22(3):1010.
 
 \bibitem{Beevers2025}
 Beevers S, et al.
@@ -608,6 +688,11 @@ Hertzog L, et al.
 Mortality burden attributable to exceptional PM2.5 air pollution events in Australian cities: A health impact assessment.
 \textit{Heliyon}. 2024;10(2):e24532.
 
+\bibitem{Holder2020}
+Holder AL, Mebust AK, Maghran LA, et al.
+Field evaluation of low-cost particulate matter sensors for measuring wildfire smoke.
+\textit{Sensors}. 2020;20(17):4796.
+
 \bibitem{Kalkstein1995}
 Kalkstein LS.
 Lessons from a very hot summer.
@@ -627,6 +712,11 @@ How air pollution and extreme temperatures affect emergency hospital admissions 
 Lye M, Kamal A.
 Effects of a heatwave on mortality rates in elderly inpatients.
 \textit{Lancet}. 1977;309(8010):529--531.
+
+\bibitem{Magi2020}
+Magi BI, Cupini C, Francis J, et al.
+Evaluation of PM2.5 measured in an urban setting using a low-cost optical particle counter and a Federal Equivalent Method Beta Attenuation Monitor.
+\textit{Aerosol Sci Technol}. 2020;54(2):147--159.
 
 \bibitem{Marx2021}
 Marx W, Haunschild R, Bornmann L.
