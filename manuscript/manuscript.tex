@@ -1,0 +1,682 @@
+%% manuscript.tex — Lancet Regional Health – Americas format
+%% Compilar com: pdflatex → bibtex → pdflatex × 2
+%% ===================================================================
+\documentclass[review,number]{elsarticle}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{lineno}
+\usepackage{hyperref}
+\usepackage{soul}            % \hl{} para highlight
+\usepackage[margin=2.5cm]{geometry}
+
+\linenumbers  % Obrigatório para submissão
+
+%% Comando para marcar TODOs visíveis no PDF
+\newcommand{\TODO}[1]{{\color{red}\textbf{[TODO:} #1\textbf{]}}}
+\newcommand{\PLACEHOLDER}[1]{{\color{orange}\textbf{[PLACEHOLDER:} #1\textbf{]}}}
+\newcommand{\ERRATA}[1]{{\color{purple}\textbf{[ERRATA:} #1\textbf{]}}}
+
+%% Metadados do journal
+\journal{The Lancet Regional Health -- Americas}
+
+\begin{document}
+
+\begin{frontmatter}
+
+%% ── Título ──────────────────────────────────────────────────────────
+%% TODO [A4]: Título diz "mortality" no .docx original, mas desfecho
+%% principal é hospitalização. Ajustar conforme decisão dos autores.
+\title{The Climate-Health Cascade: Assessing the Impact of Temperature
+       Extremes and Particulate Air Pollution on Hospital Admissions
+       in a Subtropical Metropolis}
+
+%% ── Autores ─────────────────────────────────────────────────────────
+\author[ufpr]{Felipe Baglioli\corref{cor1}}
+\ead{felipe.baglioli@ufpr.br}
+\cortext[cor1]{Corresponding author}
+
+\author[ufpr]{Lucas Rover}
+
+%% TODO: completar lista de autores e afiliações
+\address[ufpr]{Federal University of Paraná (UFPR), Curitiba, PR, Brazil}
+
+%% ── Abstract estruturado (formato Lancet) ───────────────────────────
+%% Máximo 300 palavras. Seções: Background, Methods, Findings,
+%% Interpretation, Funding.
+\begin{abstract}
+
+\textbf{Background}\quad
+The combined health effects of temperature extremes and particulate
+air pollution remain poorly characterised in subtropical cities of the
+Southern Hemisphere, where cold spells and boundary-layer inversions
+can produce compound exposure events.
+\TODO{Expandir background com 1-2 frases de contexto epidemiológico.}
+
+\textbf{Methods}\quad
+We analysed daily time-series of maximum, mean, and minimum
+temperature (INMET, 1961--2024), PM$_{2.5}$ concentrations (PurpleAir
+Flex-II sensor, 2021--2024), and all-cause hospital admissions
+(DATASUS, 2021--2024) in Curitiba, Brazil (population~1.8~million).
+Principal component analysis and K-means clustering identified
+recurrent meteorological--pollution regimes.
+Cross-correlation analysis evaluated lagged associations between
+cluster membership and daily hospitalisations (lags 0--14~days).
+\TODO{Adicionar DLNM e XGBoost quando implementados (Fases 1--2 do plano).}
+
+\textbf{Findings}\quad
+Four distinct climate--pollution clusters were identified. Days
+characterised by low temperatures and elevated PM$_{2.5}$ (Cluster~0:
+$\bar{T}_\mathrm{max}$=26.3\,°C, PM$_{2.5}$=43.8~µg/m$^3$) showed the
+strongest positive correlations with hospitalisations, particularly
+at lags of 3--10~days.
+Hot days with good air quality (Cluster~1) showed exclusively
+negative correlations, suggesting a protective effect of clean air
+even under thermal stress.
+\TODO{Substituir por resultados do DLNM (RR, IC 95\%) quando disponíveis.}
+
+\textbf{Interpretation}\quad
+In Curitiba, the synergistic health burden of cold extremes and
+particulate pollution exceeds that of heat alone, indicating that
+compound cold--pollution events should be prioritised in subtropical
+climate adaptation strategies.
+\TODO{Ajustar interpretação após DLNM.}
+
+\textbf{Funding}\quad
+\TODO{Declarar fonte de financiamento ou ``None''.}
+
+\end{abstract}
+
+%% ── Keywords ────────────────────────────────────────────────────────
+\begin{keyword}
+temperature extremes \sep PM$_{2.5}$ \sep hospital admissions \sep
+climate--health \sep clustering \sep subtropical \sep Curitiba
+\end{keyword}
+
+\end{frontmatter}
+
+%% ═══════════════════════════════════════════════════════════════════
+%% RESEARCH IN CONTEXT (formato obrigatório Lancet)
+%% ═══════════════════════════════════════════════════════════════════
+
+\section*{Research in Context}
+
+\textbf{Evidence before this study}
+
+We searched PubMed and Scopus for studies published between
+January~2010 and December~2025 using the terms ``temperature
+extremes'', ``PM2.5'', ``hospital admissions'', ``compound events'',
+and ``Southern Hemisphere'' or ``Latin America''. While a growing body
+of evidence links heat extremes and air pollution to mortality and
+morbidity in temperate and tropical regions, few studies have examined
+their combined or lagged effects in subtropical cities of the Global
+South, where cold spells and atmospheric inversions produce distinct
+compound exposure profiles.
+\TODO{Refinar busca e citar números de artigos encontrados.}
+
+\textbf{Added value of this study}
+
+This study provides the first integrated analysis of temperature
+extremes, particulate pollution, and hospital admissions in a large
+subtropical South American city using daily data spanning 2021--2024.
+By combining PCA, clustering, and lag-correlation analysis, we
+identified four recurrent climate--pollution regimes and demonstrated
+that the strongest associations with hospitalisations occur during
+cold, polluted days with a delayed response of 3--10~days --- a pattern
+not previously documented in this region.
+\TODO{Adicionar valor do DLNM/XGBoost quando implementados.}
+
+\textbf{Implications of all the available evidence}
+
+Our findings suggest that public health early-warning systems in
+subtropical cities should integrate cold-spell forecasts with
+air-quality monitoring, rather than focusing exclusively on heat
+extremes. Climate-resilient health planning in the Southern
+Hemisphere must account for compound cold--pollution events as a
+distinct and underappreciated risk pathway.
+
+%% ═══════════════════════════════════════════════════════════════════
+%% INTRODUÇÃO
+%% ═══════════════════════════════════════════════════════════════════
+\section{Introduction}
+
+The relation between temperature extremes and human health has long
+been recognised. Historical records report increased mortality during
+heatwaves across different regions of the
+world~\cite{Duthie1998,McMichael2006,Mestitz1959,Poumadere2005,Schuman1972,Trenberth2012}.
+As early as 1959, the acute effects of elevated temperatures on
+health were described as recently observed, with earlier mentions in
+non-scientific literature~\cite{Mestitz1959}. Since then, many
+reports have aimed to describe the phenomenon and its
+statistics~\cite{Kalkstein1995,Katsouyanni1988,Schuman1972} and
+investigate the cause--effect relationship between heat and
+mortality~\cite{Duthie1998,Lye1977,McMichael2006}. A broad consensus
+is that certain groups --- the elderly, children, pregnant women, and
+people with pre-existing conditions --- are disproportionately
+affected~\cite{Duthie1998,Lye1977,Schuman1972}.
+
+\TODO{Escrever parágrafo equivalente para coldwaves --- placeholder no .docx original.}
+
+In the context of climate change, although heatwaves, cold spells,
+and other extreme events can occur naturally, anthropogenic activities
+have been increasing their frequency and
+intensity~\cite{Bell2024,Marx2021,McMichael2006}. Consequently, their
+associated health impacts have also
+intensified~\cite{TheLancet2018}. In recent years, episodes of
+intense heatwaves in Europe, India, China, the USA, and Saudi Arabia
+have drawn heightened attention from the scientific
+community~\cite{Marx2021,Nashwan2024,Rowland2021,TheLancet2022}.
+
+Since the industrial revolution, air pollutant emissions have been a
+main driver of anthropogenic climate
+change~\cite{Beevers2025,McMichael2006}. Different gaseous and
+particulate pollutants directly affect respiratory, cardiovascular,
+and neural systems~\cite{Linares2025,Sethi2024}. Despite
+improvements in air quality in some parts of the
+world~\cite{Gong2025,Gopikrishnan2025}, extreme pollution episodes
+remain associated with increased hospital admissions, morbidity, and
+mortality~\cite{Gardasevic2024,Hertzog2024,Requia2024,Tseng2024}.
+
+Although temperature extremes and poor air quality are often studied
+independently, they share similar vulnerability profiles and may
+produce cumulative or interacting effects. Days with the worst air
+quality tend to occur during colder periods when the atmospheric
+boundary layer is shallower, reducing the vertical dispersion of
+pollutants~\cite{Linares2025,Xia2024}. Moreover, the health effects
+of air pollution often exhibit a lagged response, emerging days or
+weeks after exposure~\cite{Cheng2024,Pascal2021}.
+
+Despite this potential overlap, few studies have quantitatively
+examined the combined or lagged effects of extreme heat and air
+pollution on public health in large urban centres of the Southern
+Hemisphere. Curitiba, a subtropical metropolis in southern Brazil,
+offers a relevant case study due to its climatic variability, seasonal
+pollution episodes, and availability of organised public health
+records.
+
+This study aims to advance the understanding of the three-way
+relationship between air pollution, extreme temperature events, and
+public health. Time-series of surface air temperature, particulate
+matter (PM$_{2.5}$), and hospital admissions in Curitiba (2021--2024)
+were analysed. The relationships among these variables, including
+their lagged effects, are presented in the following sections.
+
+%% ═══════════════════════════════════════════════════════════════════
+%% MÉTODOS
+%% ═══════════════════════════════════════════════════════════════════
+\section{Methods}
+
+\subsection{Study area and population}
+
+Three datasets were required: hospitalisation records, atmospheric
+pollution measurements, and surface air temperature. Brazil's
+national public health system (SUS) provides daily hospitalisation
+counts by municipality through the DATASUS information system. The
+city of Curitiba, capital of Paraná state, was selected as the study
+site.
+
+Curitiba is located in the southern region of Brazil and has
+approximately 1.8~million inhabitants, comparable to cities such as
+Warsaw, Vienna, and Philadelphia. Its climate is influenced by both
+subtropical and temperate meteorological systems (cold fronts, polar
+air masses, and dry spells). Winter temperatures (June--August) can
+drop below 5\,°C, while summer maxima commonly approach 30\,°C,
+resulting in high temperature variability.
+
+Temperature data were obtained from a meteorological station located
+at $-25.45$, $-49.23$. An atmospheric pollution sensor (PurpleAir
+Flex-II) was co-located at this site to ensure spatial alignment
+between pollution and meteorological measurements.
+
+\subsection{Data sources}
+
+\paragraph{Hospital admissions.}
+Total daily hospital admissions within the territory of Curitiba were
+obtained from DATASUS for the period 2021--2024.
+\TODO{[A3] Dados atuais não desagregam por CID, idade ou sexo. Reextrair do DATASUS com filtros.}
+
+\paragraph{Meteorological data.}
+Daily minimum, mean, and maximum temperatures, relative humidity, and
+atmospheric pressure were obtained from INMET automatic station~A807
+($-25.45$, $-49.23$). For descriptive statistics and percentile
+calculations, the full available record (1961--2024) was used;
+combined analyses were restricted to 2021--2024.
+
+\paragraph{Air pollution.}
+PM$_{2.5}$ concentrations were measured using a PurpleAir Flex-II
+low-cost optical sensor, co-located with station~A807, at daily
+resolution (2021--2024).
+\TODO{[A2] Discrepância Canal A vs B ($>$61\%). Aplicar QC EPA e reportar quantos dias excluídos.}
+
+\ERRATA{A coluna \texttt{temperature} do PurpleAir está em Fahrenheit (média 71.0\,°F). Todas as análises de temperatura usam dados INMET em Celsius. A tabela de clusters no manuscrito original continha valores em Fahrenheit rotulados como °C --- ver \texttt{analysis/clustering/validation\_report.txt}.}
+
+\subsection{Definitions}
+
+Extreme temperature days were defined using monthly percentiles
+computed over the full INMET record. Days where $T_\mathrm{max}$
+exceeded the monthly 90th percentile ($Q_{90}$) were classified as
+extremely hot; days where $T_\mathrm{min}$ fell below the monthly
+10th percentile ($Q_{10}$) were classified as extremely cold.
+Heatwaves and cold spells were defined as $\geq$3 consecutive extreme
+days.
+
+\subsection{Missing data}
+\label{sec:missing}
+
+Missing values were present in all three datasets. In the complete
+analysis dataset (2022--2024, $N$=1096~days), the proportion of
+missing values was: $T_\mathrm{max}$~2.4\%, $T_\mathrm{med}$~4.9\%,
+$T_\mathrm{min}$~2.6\%, PM$_{2.5}$~15.1\%, relative
+humidity~21.6\%, and pressure~15.1\%. Complete cases across all six
+clustering features totalled 773~days (70.5\%). The primary analysis
+used listwise deletion (complete cases only); sensitivity analyses
+with mean imputation and $k$-nearest-neighbour imputation ($k$=5)
+are reported in the Supplement.
+
+\TODO{O manuscrito .docx original descrevia MICE com PMM (5 datasets, Rubin's rules), mas o notebook usa \texttt{dropna}. O texto acima reflete a implementação real.}
+
+\subsection{Statistical analysis}
+
+\paragraph{Exploratory analysis.}
+Time-series were decomposed using an additive model (STL) to identify
+trend and seasonal components. Autocorrelation functions (ACF) and
+Augmented Dickey--Fuller (ADF) tests were used to assess
+stationarity. Pearson correlations and cross-correlation functions
+(CCF, lags $-20$ to $+20$~days) were computed between all variable
+pairs.
+
+\paragraph{Principal component analysis.}
+PCA was performed on the standardised daily PM$_{2.5}$,
+$T_\mathrm{min}$, and hospitalisation series. The first two
+components, explaining 73.7\% of total variance, were retained.
+\TODO{[A6] Loadings divergem entre notebook e manuscrito. Recalcular com dados corretos e atualizar Tabela~\ref{tab:pca}.}
+
+\paragraph{Clustering.}
+K-means clustering was applied to six standardised variables
+($T_\mathrm{max}$, $T_\mathrm{med}$, $T_\mathrm{min}$,
+PM$_{2.5}$, relative humidity, and atmospheric pressure). Optimal
+cluster number was selected by maximising the silhouette score over
+$K$=2--10 (optimal $K$=3; manuscript validation also performed at
+$K$=4). Method comparison included Ward hierarchical clustering and
+DBSCAN. The full clustering pipeline is implemented in
+\texttt{analysis/clustering/cluster\_analysis.py}.
+
+\paragraph{Health lag-correlation analysis.}
+Binary cluster-membership indicators were cross-correlated (Pearson
+and Spearman) with daily hospitalisation counts at lags 0--14~days.
+Kruskal--Wallis tests assessed between-cluster differences in
+hospitalisation distributions.
+
+\paragraph{Machine learning.}
+Three algorithms --- Extreme Learning Machine (ELM), Multilayer
+Perceptron (MLP), and XGBoost --- were trained to predict daily
+hospitalisations from meteorological and air-quality inputs.
+\TODO{[D12] Especificar hiperparâmetros, validação cruzada, e métricas.}
+\TODO{Adicionar SHAP beeswarm plot.}
+
+\paragraph{Climate projections.}
+Trained models were applied to CMIP6 SSP5-8.5 projections to
+estimate changes in hospitalisations under future climate scenarios.
+\TODO{[C6] Resolver discrepância temporal (texto=2030, legenda=2050).}
+\TODO{Especificar modelos CMIP6 usados.}
+
+\TODO{[D1] DLNM (GLM quasi-Poisson + cross-basis) descrito no plano de revisão mas não implementado. Seção a adicionar quando concluído.}
+\TODO{[D2] Controle DOW + feriados a incluir no modelo.}
+
+%% ═══════════════════════════════════════════════════════════════════
+%% RESULTADOS
+%% ═══════════════════════════════════════════════════════════════════
+\section{Results}
+
+\subsection{Descriptive statistics}
+
+\TODO{Criar Tabela~1 descritiva padrão Lancet: média, DP, mediana, IQR, min--max de todas as variáveis, N dias, N internações, N eventos extremos.}
+
+The temperature time-series (1961--2024) showed a rising trend. Mean
+daily temperature increased from 16.71\,°C (1961--1985) to
+18.20\,°C (2007--2024), a rise of 1.42\,°C. Hospitalisations in
+Curitiba also showed an increasing trend, even after adjusting for
+population growth (per-capita rates). PM$_{2.5}$ concentrations did
+not show a monotonic trend; levels decreased from 2021 to 2022
+(possibly linked to pandemic-related emission reductions), then
+increased from 2023 onwards, with particularly high levels in 2024
+due to wildfire-derived plumes transported by the South American
+Low-Level Jet (SALLJ).
+
+Cross-correlation analysis yielded weak linear associations (all
+$|r|<0.30$), motivating the use of multivariate methods (PCA,
+clustering).
+
+\subsection{Principal component analysis}
+
+PCA identified two principal components explaining 73.7\% of total
+variance (Table~\ref{tab:pca}). PC1 loaded positively on PM$_{2.5}$
+and hospitalisations and negatively on temperature, associating cold,
+polluted days with higher admissions. PC2 was dominated by
+temperature, with negligible hospitalisation loading.
+
+\begin{table}[ht]
+\centering
+\caption{PCA loadings and explained variance.}
+\label{tab:pca}
+\begin{tabular}{lcccc}
+\toprule
+Component & PM$_{2.5}$ & $T_\mathrm{min}$ & Hospitalisations & Explained Var. \\
+\midrule
+PC1 & 0.624  & $-0.334$ & 0.706 & 40.4\% \\
+PC2 & 0.468  &   0.884  & 0.004 & 33.3\% \\
+\bottomrule
+\end{tabular}
+
+\smallskip
+\TODO{[A6] Loadings divergem entre notebook e manuscrito. Verificar e corrigir.}
+\end{table}
+
+\subsection{Clustering}
+
+Using six standardised features, the optimal number of clusters by
+silhouette score was $K$=3 (silhouette = 0.331). For manuscript
+validation, $K$=4 was also evaluated (silhouette = 0.285). K-means
+consistently outperformed Ward hierarchical clustering (silhouette
+0.331 vs.\ 0.282 at $K$=3). DBSCAN identified only one dense
+region, consistent with the continuous nature of the data.
+
+\begin{table}[ht]
+\centering
+\caption{Cluster profiles at $K$=4 (means on original scale, $N$=773
+complete-case days). Temperature values are in °C (INMET data).}
+\label{tab:clusters}
+\begin{tabular}{lrrrrrrr}
+\toprule
+Cluster & $n$ & $T_\mathrm{max}$ & $T_\mathrm{med}$ &
+  $T_\mathrm{min}$ & PM$_{2.5}$ & RH (\%) & Pressure \\
+  & & (°C) & (°C) & (°C) & (µg/m$^3$) & & (hPa) \\
+\midrule
+0 -- Polluted Heat & 95  & 26.3 & 18.6 & 12.0 & 43.8 & 67.6 & 915.4 \\
+1 -- Clean Cold    & 133 & 18.4 & 13.4 & 10.1 & 13.0 & 84.4 & 917.0 \\
+2 -- Hot Clean     & 276 & 29.3 & 22.5 & 18.2 & 14.4 & 76.4 & 911.0 \\
+3 -- Moderate      & 269 & 23.4 & 18.4 & 15.5 &  9.5 & 85.3 & 912.6 \\
+\bottomrule
+\end{tabular}
+
+\smallskip
+\ERRATA{A tabela de clusters no manuscrito original (.docx) continha
+uma coluna ``Temp.'' com valores em Fahrenheit (71, 78, 70, 62)
+rotulados como °C. Esses valores foram excluídos e substituídos pelos
+dados INMET corretos em °C. Ver
+\texttt{analysis/clustering/validation\_report.txt}.}
+\end{table}
+
+\subsection{Lag-correlation with hospitalisations}
+
+Cluster-membership analysis revealed distinct lag patterns
+(Figure~\ref{fig:lag}). Cluster~0 (polluted heat) showed the
+strongest positive correlations with hospitalisations at lags of 0
+and 4~days, suggesting an immediate and short-delayed response to hot
+and polluted conditions. Cluster~1 (clean cold) showed increasing
+correlations from lag~3 to lag~10, indicative of a delayed and
+prolonged response to cold exposure. Cluster~2 (hot, clean air)
+showed exclusively negative correlations across all lags, suggesting
+a protective effect of good air quality even under thermal stress.
+
+Kruskal--Wallis tests confirmed significant between-cluster
+differences in daily hospitalisations ($H$=49.01, $p<0.0001$ at
+$K$=4).
+
+\subsection{Machine learning and projections}
+
+\TODO{[D12] Inserir resultados reais do XGBoost com hiperparâmetros especificados.}
+\TODO{Inserir SHAP beeswarm plot (Figure XX).}
+\TODO{[C6] Resolver discrepância 2030 vs 2050 nas projeções.}
+
+Among the three algorithms evaluated, XGBoost achieved the best
+performance across all metrics (MSE, RMSE, MAE, MAPE). When applied
+to CMIP6 SSP5-8.5 projections, the model predicted overall increases
+in hospitalisations. The presence of simulated cold spells amplified
+this increase, particularly for out-of-season cold events, while
+heatwave scenarios did not significantly alter predictions relative
+to baseline.
+
+%% ═══════════════════════════════════════════════════════════════════
+%% DISCUSSÃO
+%% ═══════════════════════════════════════════════════════════════════
+\section{Discussion}
+
+Our analysis of daily temperature, PM$_{2.5}$, and hospitalisation
+data in Curitiba revealed that the strongest compound health effects
+arise from cold--pollution events, not heat alone. This finding is
+consistent with the shallow boundary-layer mechanism, whereby cold
+stable atmospheric conditions trap pollutants near the surface,
+producing a ``double hit'' of cold stress and elevated PM$_{2.5}$
+exposure~\cite{Linares2025,Xia2024}.
+
+The four-cluster solution identified interpretable
+meteorological--pollution regimes. The delayed lag pattern observed
+for cold days (peak correlation at 3--10~days) contrasts with the
+more immediate response to hot, polluted conditions (lag 0--4~days),
+suggesting distinct pathophysiological pathways. Cold-induced
+vasoconstriction and increased susceptibility to respiratory
+infections may explain the longer lag~\cite{Ebi2021}.
+
+The exclusively negative correlations observed for hot days with
+clean air (Cluster~2) are noteworthy, suggesting that temperature
+alone is insufficient to drive hospitalisations when air quality is
+good. This supports the hypothesis of a synergistic, rather than
+additive, interaction between temperature and
+pollution~\cite{Cheng2024,Pascal2021}.
+
+\TODO{Adicionar parágrafo comparando com literatura (Po Valley, North China Plain, São Paulo).}
+\TODO{Adicionar parágrafo sobre adaptation gap.}
+\TODO{Adicionar parágrafo sobre implicações para CEWS (Climate Early Warning Systems).}
+
+\subsection{Limitations}
+
+This study has several limitations. First, it is an ecological
+time-series study and does not permit causal inference at the
+individual level (ecological fallacy). Second, the use of a single
+low-cost PM$_{2.5}$ sensor introduces measurement uncertainty,
+although the PurpleAir Flex-II has been validated against reference
+monitors in previous studies. Third, the analysis period (2021--2024)
+is relatively short and overlaps with the COVID-19 pandemic, which
+may have altered both baseline hospitalisation rates and air-quality
+patterns. Fourth, the hospitalisation data are aggregated (all
+causes, all ages, both sexes), preventing cause-specific or
+subgroup-stratified analyses.
+
+\TODO{[A3] Se dados desagregados do DATASUS forem obtidos, atualizar esta limitação.}
+\TODO{[D3] Análise de sensibilidade excluindo 2021 (COVID).}
+
+The principal analysis used complete-case analysis (listwise deletion,
+$N$=773 of 1096~days), which may introduce selection bias. Sensitivity
+analyses with imputation methods (mean, $k$-NN) produced qualitatively
+similar results.
+
+Finally, the climate projections rely on XGBoost trained on
+observational data and applied to CMIP6 outputs, which assumes
+stationarity of exposure--response relationships --- an assumption
+that may not hold under future climate regimes.
+
+\subsection{Conclusion}
+
+This study demonstrates that in a subtropical metropolis, the
+synergistic burden of cold extremes and particulate pollution on
+hospital admissions exceeds that of heat alone. Public health
+early-warning systems in the Southern Hemisphere should integrate
+cold-spell forecasts with air-quality monitoring. Climate-resilient
+health planning must account for compound cold--pollution events as a
+distinct and underappreciated risk pathway. Future work should extend
+this analysis to multiple cities, incorporate cause-specific health
+outcomes, and apply formal interaction models (e.g.\ DLNM) to
+quantify exposure--response relationships.
+
+%% ═══════════════════════════════════════════════════════════════════
+%% DECLARAÇÕES
+%% ═══════════════════════════════════════════════════════════════════
+\section*{Declaration of interests}
+\TODO{Preencher --- ``The authors declare no competing interests'' ou listar.}
+
+\section*{Data sharing}
+\TODO{Data availability statement. Código disponível em \url{https://github.com/Roverlucas/cwb-temp-pollution-health}.}
+
+\section*{Author contributions}
+\TODO{Preencher usando taxonomia CRediT.}
+
+\section*{Acknowledgements}
+\TODO{Preencher ou remover.}
+
+%% ═══════════════════════════════════════════════════════════════════
+%% REFERÊNCIAS
+%% ═══════════════════════════════════════════════════════════════════
+%% Estilo Vancouver (numerado) — padrão Lancet
+\bibliographystyle{elsarticle-num-names}
+
+\begin{thebibliography}{28}
+
+\bibitem{Beevers2025}
+Beevers S, et al.
+Climate change policies reduce air pollution and increase physical activity: Benefits, costs, inequalities, and indoor exposures.
+\textit{Environ Int}. 2025;195:109164.
+
+\bibitem{Bell2024}
+Bell ML, Gasparrini A, Benjamin GC.
+Climate Change, Extreme Heat, and Health.
+\textit{N Engl J Med}. 2024;390(19):1793--1801.
+
+\bibitem{Cheng2024}
+Cheng C, et al.
+Effects of extreme temperature events on deaths and its interaction with air pollution.
+\textit{Sci Total Environ}. 2024;915:170212.
+
+\bibitem{Duthie1998}
+Duthie D.
+Heat-related illness.
+\textit{Lancet}. 1998;352(9137):1329--1330.
+
+\bibitem{Ebi2021}
+Ebi KL, et al.
+Hot weather and heat extremes: health risks.
+\textit{Lancet}. 2021;398(10301):698--708.
+
+\bibitem{Gardasevic2024}
+Gardašević A, et al.
+Analysis of the dependence of the observed urban air pollution extremes in the vicinity of coal fuelled power plants on combined effects of anthropogenic and meteorological drivers.
+\textit{Environ Dev}. 2024;52:101095.
+
+\bibitem{Gong2025}
+Gong J, et al.
+The 2023 report of the synergetic roadmap on carbon neutrality and clean air for China.
+\textit{Environ Sci Ecotechnol}. 2025;23:100517.
+
+\bibitem{Gopikrishnan2025}
+Gopikrishnan GS, Kuttippurath J.
+Impact of the National Clean Air Programme (NCAP) on the particulate matter pollution and associated reduction in human mortalities in Indian cities.
+\textit{Sci Total Environ}. 2025;968:178787.
+
+\bibitem{Hertzog2024}
+Hertzog L, et al.
+Mortality burden attributable to exceptional PM2.5 air pollution events in Australian cities: A health impact assessment.
+\textit{Heliyon}. 2024;10(2):e24532.
+
+\bibitem{Kalkstein1995}
+Kalkstein LS.
+Lessons from a very hot summer.
+\textit{Lancet}. 1995;346(8979):857--859.
+
+\bibitem{Katsouyanni1988}
+Katsouyanni K, et al.
+The 1987 Athens heatwave.
+\textit{Lancet}. 1988;332(8610):573.
+
+\bibitem{Linares2025}
+Linares C, et al.
+How air pollution and extreme temperatures affect emergency hospital admissions due to various respiratory causes in Spain, by age group.
+\textit{Int J Hyg Environ Health}. 2025;266:114570.
+
+\bibitem{Lye1977}
+Lye M, Kamal A.
+Effects of a heatwave on mortality rates in elderly inpatients.
+\textit{Lancet}. 1977;309(8010):529--531.
+
+\bibitem{Marx2021}
+Marx W, Haunschild R, Bornmann L.
+Heat waves: a hot topic in climate change research.
+\textit{Theor Appl Climatol}. 2021;146(1--2):781--800.
+
+\bibitem{McMichael2006}
+McMichael AJ, Woodruff RE, Hales S.
+Climate change and human health: present and future risks.
+\textit{Lancet}. 2006;367(9513):859--869.
+
+\bibitem{Mestitz1959}
+Mestitz P, Brian Gough W.
+Acute anhidrotic heat exhaustion.
+\textit{Lancet}. 1959;274(7100):462.
+
+\bibitem{Nashwan2024}
+Nashwan AJ, Aldosari N, Hendy A.
+Hajj 2024 heatwave: addressing health risks and safety.
+\textit{Lancet}. 2024;404(10451):427--428.
+
+\bibitem{Pascal2021}
+Pascal M, et al.
+Extreme heat and acute air pollution episodes: A need for joint public health warnings?
+\textit{Atmos Environ}. 2021;249:118249.
+
+\bibitem{Poumadere2005}
+Poumadère M, et al.
+The 2003 Heat Wave in France: Dangerous Climate Change Here and Now.
+\textit{Risk Anal}. 2005;25(6):1483--1494.
+
+\bibitem{Requia2024}
+Requia WJ, et al.
+Short-term air pollution exposure and mortality in Brazil: Investigating the susceptible population groups.
+\textit{Environ Pollut}. 2024;340:122797.
+
+\bibitem{Rowland2021}
+Rowland ST, et al.
+The association between ambient temperature variability and myocardial infarction in a New York-State-based case-crossover study.
+\textit{Environ Res}. 2021;197:111207.
+
+\bibitem{Schuman1972}
+Schuman SH.
+Patterns of urban heat-wave deaths and implications for prevention.
+\textit{Environ Res}. 1972;5(1):59--75.
+
+\bibitem{Sethi2024}
+Sethi Y, et al.
+Impact of Air Pollution on Neurological and Psychiatric Health.
+\textit{Arch Med Res}. 2024;55(7):103063.
+
+\bibitem{TheLancet2018}
+The Lancet.
+Heatwaves and health.
+\textit{Lancet}. 2018;392(10145):359.
+
+\bibitem{TheLancet2022}
+The Lancet.
+2022 heatwaves: a failure to proactively manage the risks.
+\textit{Lancet}. 2022;400(10350):407.
+
+\bibitem{Trenberth2012}
+Trenberth KE, Fasullo JT.
+Climate extremes and climate change: The Russian heat wave and other climate extremes of 2010.
+\textit{J Geophys Res Atmos}. 2012;117(D17).
+
+\bibitem{Tseng2024}
+Tseng W-L, et al.
+Compound spatial extremes of heatwaves and downstream air pollution events in East Asia.
+\textit{Atmos Res}. 2024;312:107772.
+
+\bibitem{Xia2024}
+Xia C, Yeh AG-O, Lei Z.
+Beyond hazard-induced migration: Dissecting everyday mobilities in response to air pollution and extreme cold events.
+\textit{J Transp Geogr}. 2024;118:103927.
+
+\end{thebibliography}
+
+\end{document}

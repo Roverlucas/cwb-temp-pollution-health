@@ -14,6 +14,17 @@ env/
 .vscode/
 .idea/
 
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+*.spl
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+
 # Temp
 *.tmp
 *.bak
