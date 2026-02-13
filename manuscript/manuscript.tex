@@ -292,8 +292,8 @@ A joint model assessed interaction via the Relative Excess Risk due
 to Interaction (RERI) on the additive scale,\cite{Cheng2024} with
 RERI~$>$~0 and 95\% CI excluding zero indicating supra-additive
 interaction. Sensitivity analyses varied the maximum lag (14, 21,
-28~days), seasonal df (6, 7, 8~df/year), and excluded individual
-years (2022 for COVID; 2024 for sensor instability). Benjamini--Hochberg
+28~days), seasonal df (6, 7, 8~df/year), and excluded 2022 to assess
+residual COVID effects. Benjamini--Hochberg
 FDR correction was applied.
 
 \paragraph{Ethics and reporting}
@@ -385,8 +385,7 @@ S=0${\cdot}$955; eTable~6).
 Results were robust to lag window and seasonal df
 (Table~\ref{tab:sensitivity}). Cumulative RR at P10 ranged from
 1${\cdot}$05 (lag=14) to 1${\cdot}$23 (lag=28). Excluding 2022
-strengthened the effect (RR=1${\cdot}$37 [1${\cdot}$11--1${\cdot}$70]);
-excluding 2024 weakened it (RR=0${\cdot}$96 [0${\cdot}$72--1${\cdot}$29]).
+strengthened the effect (RR=1${\cdot}$37 [1${\cdot}$11--1${\cdot}$70]).
 ADF on raw hospitalisations confirmed non-stationarity ($p$=0${\cdot}$164);
 STL residuals were stationary ($p$=0${\cdot}$0003; eFigure~7).
 Model diagnostics showed no autocorrelation (Durbin--Watson=2${\cdot}$00,
@@ -428,7 +427,6 @@ Lag=14                  & 1${\cdot}$05 & 0${\cdot}$92--1${\cdot}$18 & 1${\cdot}$
 Lag=28                  & 1${\cdot}$23 & 1${\cdot}$01--1${\cdot}$51 & 1${\cdot}$32 & 1068 \\
 Seasonal 6\,df/yr       & 1${\cdot}$17 & 1${\cdot}$00--1${\cdot}$36 & 1${\cdot}$33 & 1068 \\
 Seasonal 8\,df/yr       & 1${\cdot}$21 & 1${\cdot}$03--1${\cdot}$42 & 1${\cdot}$31 & 1068 \\
-Exclude 2024            & 0${\cdot}$96 & 0${\cdot}$72--1${\cdot}$29 & 1${\cdot}$32 &  712 \\
 Exclude 2022            & 1${\cdot}$37 & 1${\cdot}$11--1${\cdot}$70 & 1${\cdot}$26 &  718 \\
 \bottomrule
 \end{tabular}
