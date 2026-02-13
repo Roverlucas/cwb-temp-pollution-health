@@ -1,0 +1,519 @@
+%% manuscript_pt.tex — Versão em português para leitura
+%% Tradução do manuscrito submetido à Lancet Regional Health – Americas
+%% ===================================================================
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazilian]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+
+\begin{document}
+
+\begin{center}
+{\LARGE\bfseries Efeitos não lineares e defasados dos extremos de frio
+nas internações hospitalares respiratórias em uma metrópole subtropical:
+análise de séries temporais quasi-Poisson em Curitiba, Brasil}\\[1.5em]
+{\large Felipe Baglioli$^{1,*}$, Lucas Rover$^1$}\\[0.5em]
+$^1$Universidade Federal do Paraná (UFPR), Curitiba, PR, Brasil\\
+$^*$Autor correspondente: felipe.baglioli@ufpr.br\\[1em]
+{\small\itshape Versão em português para leitura --- O manuscrito de
+submissão está em inglês}
+\end{center}
+
+\bigskip
+\hrule
+\bigskip
+
+%% ═══════════════════════════════════════════════════════════════════
+%% RESUMO
+%% ═══════════════════════════════════════════════════════════════════
+
+\section*{Resumo}
+
+\textbf{Contexto}\quad
+Os efeitos dos extremos de temperatura na saúde permanecem pouco
+caracterizados em cidades subtropicais do Hemisfério Sul, onde ondas
+de frio produzem perfis de exposição distintos daqueles estudados em
+climas temperados e tropicais.
+
+\textbf{Métodos}\quad
+Analisamos a temperatura mínima diária (INMET, 1961--2024) e as
+internações hospitalares respiratórias (DATASUS SIH/AIH, CID-10
+J00--J99, 2022--2024; $N$=42.716) em Curitiba, Brasil
+($\sim$1,8~milhão de habitantes). Modelos distribuídos de defasagem
+não linear (DLNM) com regressão quasi-Poisson quantificaram
+associações exposição--resposta não lineares e defasadas ao longo de
+0--21~dias, ajustando por dia da semana, feriados e tendência de longo
+prazo via \textit{spline} natural (7~gl/ano). A temperatura de mínima
+morbidade (TMM) foi identificada por busca em grade. Análises de
+sensibilidade variaram janelas de defasagem, graus de liberdade
+sazonais e excluíram 2022 por efeitos residuais da COVID-19.
+
+\textbf{Resultados}\quad
+Em 1.096~dias de estudo, foram registradas 42.716~internações
+respiratórias (51\% masculinos; 38\% com $\geq$65~anos) e
+3.715~óbitos intra-hospitalares. O DLNM identificou TMM=17,8\,°C.
+Extremos de frio no 1º percentil de $T_\mathrm{min}$ (5,2\,°C)
+apresentaram RR cumulativo=1,42 [IC 95\%: 1,09--1,84] ao longo de
+0--21~dias; no 5º percentil (8,5\,°C), RR=1,22 [1,02--1,44]. A
+estrutura de defasagem teve pico entre 3--10~dias. Efeitos do calor
+não foram significativos (P90 RR=1,06 [0,98--1,14]). Os resultados
+foram robustos nas análises de sensibilidade
+($\hat{\phi}$=1,32; Ljung--Box $p$=0,14).
+
+\textbf{Interpretação}\quad
+Extremos de frio, e não de calor, são o principal fator de internações
+hospitalares respiratórias neste contexto subtropical, com efeitos
+defasados que atingem o pico entre 3--10~dias. Sistemas de alerta
+precoce em saúde pública devem priorizar previsões de ondas de frio
+junto aos alertas de calor.
+
+\textbf{Financiamento}\quad
+Nenhum.
+
+\bigskip
+
+\textbf{Palavras-chave:} extremos de temperatura; ondas de frio;
+internações hospitalares; modelo distribuído de defasagem não linear;
+clima e saúde; morbidade respiratória; subtropical; Curitiba
+
+\bigskip
+\hrule
+\bigskip
+
+%% ═══════════════════════════════════════════════════════════════════
+%% PESQUISA EM CONTEXTO
+%% ═══════════════════════════════════════════════════════════════════
+
+\section*{Pesquisa em Contexto}
+
+\textbf{Evidências antes deste estudo}
+
+Pesquisamos no PubMed e Scopus estudos publicados entre janeiro de
+2010 e dezembro de 2025 usando os termos ``extremos de temperatura'',
+``internações hospitalares'', ``defasagem distribuída'' e ``Hemisfério
+Sul'' ou ``América Latina''. Grandes estudos multicidades usando
+métodos DLNM estabeleceram curvas temperatura--mortalidade em forma de
+U globalmente, mas cidades subtropicais no Hemisfério Sul ---
+particularmente na América do Sul --- permanecem sub-representadas.
+Poucos estudos quantificaram os efeitos não lineares e defasados dos
+extremos de frio na morbidade respiratória nesta região.
+
+\textbf{Valor agregado deste estudo}
+
+Este estudo fornece a primeira análise DLNM de extremos de temperatura
+e internações hospitalares respiratórias em uma cidade subtropical
+sul-americana. Extremos de frio no 1º percentil de $T_\mathrm{min}$
+estão associados a um aumento de 42\% nas internações respiratórias
+(RR=1,42 [1,09--1,84]) com pico defasado entre 3--10~dias --- uma
+estrutura de defasagem não documentada anteriormente com métodos
+formais de DLNM nesta região.
+
+\textbf{Implicações de todas as evidências disponíveis}
+
+Sistemas de alerta precoce em saúde pública em cidades subtropicais
+devem incorporar previsões de ondas de frio junto aos alertas de
+calor, em vez de focar exclusivamente em extremos de calor. A
+estrutura de defasagem (3--10~dias) sugere uma janela para intervenção
+preventiva após o início da onda de frio.
+
+%% ═══════════════════════════════════════════════════════════════════
+%% INTRODUÇÃO
+%% ═══════════════════════════════════════════════════════════════════
+
+\section{Introdução}
+
+A relação entre extremos de temperatura e saúde humana é reconhecida
+há muito tempo, com aumentos documentados na mortalidade durante ondas
+de calor em diferentes regiões. Certos grupos --- idosos, crianças e
+pessoas com condições pré-existentes --- são desproporcionalmente
+afetados.
+
+Extremos de frio representam uma ameaça comparável, e em alguns
+contextos maior, à saúde pública. Temperaturas ambientais baixas
+desencadeiam vasoconstrição, elevam a pressão arterial e aumentam a
+viscosidade sanguínea, elevando o risco cardiovascular. Infecções
+respiratórias atingem o pico durante períodos frios devido à redução
+da depuração mucociliar e ao aumento do confinamento em ambientes
+fechados. Diferentemente da morbidade relacionada ao calor, que se
+manifesta em 0--3~dias, os efeitos relacionados ao frio exibem
+defasagens de 3--14~dias, complicando a atribuição em estudos
+ecológicos.
+
+No contexto das mudanças climáticas, atividades antropogênicas
+aumentaram a frequência e intensidade de eventos extremos e seus
+impactos na saúde. Poluentes atmosféricos afetam os sistemas
+respiratório, cardiovascular e neural, e episódios extremos de
+poluição permanecem associados a internações hospitalares e
+mortalidade elevadas.
+
+Apesar dessas evidências, poucos estudos quantificaram os efeitos não
+lineares e defasados dos extremos de temperatura na morbidade
+respiratória em cidades subtropicais do Hemisfério Sul usando métodos
+inferenciais formais. Curitiba, metrópole subtropical no sul do Brasil
+($\sim$930~m de altitude, clima Cfb), oferece um estudo de caso
+relevante devido às suas temperaturas de inverno abaixo de 5\,°C e
+episódios sazonais de poluição. Este estudo utiliza modelos
+distribuídos de defasagem não linear para quantificar a relação
+exposição--resposta entre temperatura mínima diária e internações
+hospitalares respiratórias em Curitiba (2022--2024), com análises
+suplementares de agrupamento e aprendizado de máquina.
+
+%% ═══════════════════════════════════════════════════════════════════
+%% MÉTODOS
+%% ═══════════════════════════════════════════════════════════════════
+
+\section{Métodos}
+
+\subsection{Desenho do estudo e cenário}
+
+Trata-se de um estudo ecológico de séries temporais examinando a
+associação entre exposições ambientais diárias e internações
+hospitalares respiratórias em Curitiba, Paraná, Brasil
+(população~$\sim$1,8~milhão), de 1º de janeiro de 2022 a 31 de
+dezembro de 2024 (1.096~dias). O clima subtropical de Curitiba
+apresenta temperaturas de inverno abaixo de 5\,°C e máximas de verão
+próximas de 30\,°C.
+
+\subsection{Fontes de dados}
+
+Registros individuais de internação hospitalar foram obtidos do
+Sistema Unificado de Saúde (SIH/SUS--DATASUS) para 2022--2024
+($N$=42.716~internações respiratórias, CID-10 J00--J99). O desfecho
+primário foi a contagem diária de internações respiratórias.
+Demografia: 51\% masculinos, 38\% com $\geq$65~anos. Mortalidade
+intra-hospitalar: 8,7\% ($n$=3.715).
+
+Temperatura mínima ($T_\mathrm{min}$), média e máxima diárias,
+umidade relativa e pressão atmosférica foram obtidas da estação
+automática INMET~A807. Para cálculos de percentis ETCCDI, o registro
+completo (1961--2024) foi utilizado; análises combinadas foram
+restritas a 2022--2024.
+
+Concentrações de PM$_{2,5}$ foram medidas com sensor PurpleAir
+Flex-II (Sensor ID~90875) em resolução diária. Leituras brutas foram
+corrigidas pela equação de correção EPA:
+%
+\begin{equation}
+  \mathrm{PM}_{2{,}5}^{\mathrm{corr}} =
+    0{,}524 \times \mathrm{PM}_{2{,}5}^{\mathrm{sensor}}
+    - 0{,}0862 \times \mathrm{UR} + 5{,}75
+\end{equation}
+%
+Esta correção foi validada contra monitores de Método Equivalente
+Federal e é amplamente adotada para dados PurpleAir. Um protocolo de
+controle de qualidade intercanal excluiu dias com diferenças
+intercanais superiores a 5~µg/m$^3$ e 70\% de diferença relativa
+simultaneamente. Após QC, 697~dias (63,6\%) possuíam PM$_{2,5}$
+válido corrigido pela EPA.
+
+\subsection{Definições e dados faltantes}
+
+Dias de temperatura extrema foram definidos usando percentis mensais
+ETCCDI (TX90p para extremamente quente, TN10p para extremamente frio)
+sobre a linha de base 1961--2024. Ondas de calor:
+$\geq$3~dias consecutivos extremamente quentes; ondas de frio:
+$\geq$3~dias consecutivos extremamente frios. Taxas de dados
+faltantes: $T_\mathrm{min}$~2,6\%, PM$_{2,5}$~36,4\%,
+internações~0,2\%. Análises primárias usaram casos completos; análises
+de sensibilidade com imputação produziram resultados similares
+(Suplemento).
+
+\subsection{Análise estatística}
+
+Séries temporais foram decompostas usando STL para identificar
+componentes de tendência e sazonalidade. Testes de Dickey--Fuller
+aumentado (ADF) avaliaram estacionaridade. ACP foi realizada sobre
+PM$_{2,5}$, $T_\mathrm{min}$ e internações padronizados ($N$=683~dias
+de casos completos). Agrupamento K-médias foi aplicado a seis
+variáveis padronizadas, com $K$ ótimo selecionado pelo índice de
+silhueta. Funções de correlação cruzada (defasagens 0--28~dias) foram
+calculadas entre exposições e internações.
+
+\subsection{Previsão por aprendizado de máquina}
+
+Como análise suplementar, três modelos --- XGBoost, perceptron
+multicamada e máquina de aprendizado extremo --- foram treinados
+para prever internações diárias nas defasagens 0--7~dias. Valores
+SHAP quantificaram a importância das variáveis. Detalhes, resultados
+e projeções CMIP6 são relatados no Suplemento.
+
+\subsection{Modelo distribuído de defasagem não linear}
+
+Ajustamos modelos distribuídos de defasagem não linear (DLNM) para
+quantificar relações exposição--resposta não lineares e defasadas:
+%
+\begin{equation}
+  \log\!\big(\mathrm{E}[Y_t]\big) = \alpha
+    + \mathbf{s}\bigl(x_t, \mathrm{lag}; \boldsymbol{\eta}\bigr)
+    + \sum_{d=1}^{6} \beta_d \,\mathrm{DS}_{d,t}
+    + \gamma \,\mathrm{Feriado}_t
+    + \mathrm{ns}(\mathrm{tempo}_t,\, 7\,\mathrm{gl/ano})
+\end{equation}
+%
+onde $Y_t$ é a contagem diária de internações respiratórias
+(quasi-Poisson), $\mathbf{s}(\cdot)$ é a função de base cruzada
+(\textit{splines} naturais cúbicos: gl exposição=4, gl defasagem=5),
+DS denota indicadores de dia da semana e
+$\mathrm{ns}(\mathrm{tempo}, 21\,\mathrm{gl})$ captura tendência
+e sazonalidade. A defasagem máxima foi de 21~dias. A temperatura de
+mínima morbidade (TMM) foi identificada por busca em grade, seguindo
+Gasparrini et al. Intervalos de confiança foram calculados pelo método
+delta. Análises de sensibilidade variaram a defasagem máxima (14, 21,
+28~dias), gl sazonais (6, 7, 8~gl/ano) e excluíram 2022 para avaliar
+efeitos residuais da COVID-19.
+
+\paragraph{Ética e reporte}
+Este estudo utilizou exclusivamente dados agregados e publicamente
+disponíveis do DATASUS, INMET e PurpleAir. Conforme a Resolução
+CNS~510/2016, pesquisas com dados públicos agregados são isentas de
+apreciação por comitê de ética. Este estudo segue as diretrizes
+STROBE.
+
+%% ═══════════════════════════════════════════════════════════════════
+%% RESULTADOS
+%% ═══════════════════════════════════════════════════════════════════
+
+\section{Resultados}
+
+\subsection{Estatísticas descritivas}
+
+A Tabela~\ref{tab:descritiva} apresenta estatísticas descritivas para
+todas as variáveis. Um total de 42.716~internações respiratórias e
+3.715~óbitos foram registrados em 1.096~dias. As internações diárias
+médias foram de 32,3 (DP~11,7; variação 1--73). O PM$_{2,5}$
+corrigido pela EPA teve média de 5,84~µg/m$^3$ (mediana~4,12), com
+4,7\% dos dias excedendo a diretriz de 24~horas da OMS
+(15~µg/m$^3$). Identificamos 215~dias extremamente quentes (20,1\%) e
+39~dias extremamente frios (3,7\%), agregando-se em 25~ondas de calor
+e 4~ondas de frio (eTabela~1).
+
+\begin{table}[ht]
+\centering
+\caption{Estatísticas descritivas para todas as variáveis do estudo,
+Curitiba, 2022--2024 ($N$=1.096~dias).}
+\label{tab:descritiva}
+\begin{tabular}{lrrrrrrrr}
+\toprule
+Variável & $N$ & Média & DP & Mediana & Q25 & Q75 & Mín & Máx \\
+\midrule
+$T_\mathrm{máx}$ (°C) & 1070 & 24,53 & 4,75 & 24,80 & 21,50 & 28,10 & 10,20 & 35,40 \\
+$T_\mathrm{méd}$ (°C) & 1042 & 18,74 & 3,63 & 18,90 & 16,30 & 21,50 &  7,80 & 27,30 \\
+$T_\mathrm{mín}$ (°C) & 1068 & 14,75 & 3,75 & 15,20 & 12,00 & 17,70 &  1,30 & 23,40 \\
+PM$_{2,5}$ (µg/m$^3$) &  697 &  5,84 & 7,40 &  4,12 &  2,43 &  6,55 &  0,00 & 65,19 \\
+Umid.\ rel.\ (\%)     &  859 & 79,98 &  9,52 & 80,90 & 74,15 & 86,55 & 43,00 & 98,40 \\
+Intern.\ (n/dia)      & 1094 & 32,29 & 11,74 & 32,00 & 23,00 & 41,00 & 1,00 & 73,00 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Análises exploratórias}
+
+Análises de agrupamento K-médias e correlação defasada são relatadas
+no Suplemento (eTabelas~2--5; eFiguras~1--4). Resumidamente, três
+agrupamentos clima--poluição emergiram ($K$=3, silhueta=0,357), com
+o agrupamento Frio Limpo mostrando correlações positivas defasadas em
+3--10~dias. A análise de defasagem estendida revelou correlação máxima
+$T_\mathrm{mín}$--internação na defasagem~9 ($r$=$-$0,320;
+$p<$0,001), motivando a janela de defasagem DLNM de 0--21~dias.
+
+\subsection{Modelos distribuídos de defasagem não linear}
+
+\paragraph{Exposição--resposta de temperatura}
+O DLNM quasi-Poisson para $T_\mathrm{mín}$ ($N$=1.068;
+$\hat{\phi}$=1,32) identificou TMM=17,8\,°C
+(Figura~\ref{fig:dlnm_temp_geral}). Extremos de frio mostraram RR
+cumulativo monotonicamente crescente abaixo da TMM: no 1º percentil
+(5,2\,°C), RR=1,42 [1,09--1,84]; no 5º percentil (8,5\,°C),
+RR=1,22 [1,02--1,44]; no 10º percentil (9,8\,°C), RR=1,17
+[1,00--1,37] (Tabela~\ref{tab:rr_temp}). Efeitos do calor não foram
+significativos no 90º percentil (RR=1,06 [0,98--1,14]). A estrutura
+de defasagem no frio (P10) teve pico nas defasagens 3--10~dias
+(Figura~\ref{fig:dlnm_temp_lag}a), consistente com os resultados de
+correlação cruzada.
+
+\paragraph{Sensibilidade e diagnósticos}
+Os resultados foram robustos à janela de defasagem e gl sazonais
+(Tabela~\ref{tab:sensibilidade}). O RR cumulativo no P10 variou de
+1,05 (lag=14) a 1,23 (lag=28). Excluir 2022 fortaleceu o efeito
+(RR=1,37 [1,11--1,70]). O teste ADF nas internações brutas confirmou
+não estacionaridade ($p$=0,164); resíduos STL foram estacionários
+($p$=0,0003; eFigura~7). Diagnósticos do modelo não mostraram
+autocorrelação (Durbin--Watson=2,00; Ljung--Box $p$=0,14; eTabela~7).
+
+\begin{table}[ht]
+\centering
+\caption{Risco relativo (RR) cumulativo em percentis-chave de
+$T_\mathrm{mín}$, centrado na TMM=17,8\,°C. DLNM quasi-Poisson,
+defasagem 0--21~dias, $N$=1.068.}
+\label{tab:rr_temp}
+\begin{tabular}{lrrr}
+\toprule
+Percentil & $T_\mathrm{mín}$ (°C) & RR & IC 95\% \\
+\midrule
+P1  &  5,2 & 1,418 & 1,091--1,842 \\
+P5  &  8,5 & 1,215 & 1,023--1,442 \\
+P10 &  9,8 & 1,167 & 0,998--1,365 \\
+P25 & 12,0 & 1,133 & 0,979--1,312 \\
+P75 & 17,7 & 1,001 & 0,996--1,005 \\
+P90 & 19,4 & 1,055 & 0,978--1,138 \\
+P95 & 20,0 & 1,102 & 0,979--1,240 \\
+P99 & 21,4 & 1,285 & 0,983--1,679 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[ht]
+\centering
+\caption{Análises de sensibilidade para o DLNM de temperatura. RR
+cumulativo no 10º percentil de $T_\mathrm{mín}$ (9,8\,°C).}
+\label{tab:sensibilidade}
+\begin{tabular}{lrrrr}
+\toprule
+Cenário & RR & IC 95\% & $\hat{\phi}$ & $N$ \\
+\midrule
+Principal (lag=21, 7\,gl/ano) & 1,17 & 1,00--1,37 & 1,32 & 1068 \\
+Lag=14                        & 1,05 & 0,92--1,18 & 1,31 & 1068 \\
+Lag=28                        & 1,23 & 1,01--1,51 & 1,32 & 1068 \\
+Sazonal 6\,gl/ano             & 1,17 & 1,00--1,36 & 1,33 & 1068 \\
+Sazonal 8\,gl/ano             & 1,21 & 1,03--1,42 & 1,31 & 1068 \\
+Excluir 2022                  & 1,37 & 1,11--1,70 & 1,26 &  718 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.85\textwidth]{../analysis/dlnm/figures/fig_dlnm_temp_overall.pdf}
+\caption{Curva exposição--resposta cumulativa para $T_\mathrm{mín}$
+e internações respiratórias (DLNM, defasagem 0--21~dias). Linha
+tracejada vermelha: TMM (17,8\,°C). Área sombreada: IC 95\%.}
+\label{fig:dlnm_temp_geral}
+\end{figure}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{../analysis/dlnm/figures/fig_dlnm_temp_lag.pdf}
+\caption{RR específico por defasagem para (a) extremo de frio (P10,
+9,8\,°C) e (b) extremo de calor (P90, 19,4\,°C), centrado na
+TMM=17,8\,°C.}
+\label{fig:dlnm_temp_lag}
+\end{figure}
+
+\subsection{Previsão por aprendizado de máquina}
+
+Análises suplementares de ML (eTabela~8, eFigura~8) mostraram o
+XGBoost como melhor modelo (MAPE=19,4\% na defasagem~0;
+RMSE=8,37), com a temperatura classificada entre os principais
+preditores pela análise SHAP.
+
+%% ═══════════════════════════════════════════════════════════════════
+%% DISCUSSÃO
+%% ═══════════════════════════════════════════════════════════════════
+
+\section{Discussão}
+
+Nossa análise DLNM fornece evidência inferencial formal de que
+extremos de frio são o principal fator relacionado à temperatura das
+internações respiratórias em Curitiba. No 1º percentil de
+$T_\mathrm{mín}$ (5,2\,°C), o RR cumulativo atingiu 1,42
+[1,09--1,84] ao longo de 0--21~dias, com pico de defasagem entre
+3--10~dias. Essa estrutura de defasagem é consistente com a
+fisiopatologia conhecida do frio: vasoconstrição induzida pelo frio,
+viscosidade sanguínea elevada e maior suscetibilidade a infecções
+respiratórias se manifestam ao longo de dias, não horas.
+
+Esses achados podem ser comparados com o estudo multicountry de
+Gasparrini et al., que reportou curvas temperatura--mortalidade em
+forma de U em 384~localidades usando o mesmo arcabouço DLNM. Nossa
+TMM de 17,8\,°C é consistente com TMMs subtropicais reportadas naquele
+estudo, e o risco atribuível ao frio no P1 é comparável em magnitude
+ao excesso de mortalidade relacionado ao frio em climas temperados.
+Notavelmente, Gasparrini et al. não incluíram Curitiba ou cidades
+comparáveis do sul do Brasil, e nosso estudo preenche essa lacuna
+fornecendo as primeiras estimativas de morbidade baseadas em DLNM para
+este contexto subtropical. Contudo, como estudo de cidade única, nossos
+resultados carecem da força estatística do \textit{pooling} multicidade.
+
+As análises de sensibilidade apoiam a robustez do efeito do frio. A
+direção e magnitude foram consistentes entre janelas de defasagem
+(14--28~dias) e gl sazonais (6--8/ano). Excluir 2022 fortaleceu o
+efeito (RR=1,37 [1,11--1,70]), sugerindo que efeitos residuais da
+COVID-19 podem atenuar a associação temperatura--morbidade no período
+completo.
+
+Esses resultados têm implicações para sistemas de alerta precoce em
+saúde pública em contextos subtropicais. Previsões de ondas de frio
+devem ser priorizadas junto aos alertas de calor, particularmente dada
+a estrutura de defasagem (3--10~dias) que oferece uma janela para
+intervenção preventiva.
+
+\subsection{Limitações}
+
+Este estudo ecológico de séries temporais não permite inferência causal
+em nível individual. Não havia dados individuais de exposição,
+comportamento ou comorbidades. O período de análise de 3 anos
+(2022--2024) limita o poder para eventos raros (ondas de frio, $n$=4)
+e fornece apenas três realizações do ciclo sazonal. Confundimento por
+circulação viral respiratória (influenza, VSR) não pode ser excluído,
+pois dados de vigilância viral não foram incluídos. Contagens totais
+diárias foram usadas sem estratificação por idade ou subgrupo CID-10;
+análises por causa específica são prioridade para trabalhos futuros.
+Os dados de temperatura são de uma única estação INMET (A807), que
+pode não capturar variação microclimática na área metropolitana. Como
+estudo de cidade única, os resultados podem não ser generalizáveis;
+análises multicidade \textit{pooled} seguindo Gasparrini et al.
+forneceriam evidências mais robustas.
+
+\subsection{Conclusão}
+
+Este estudo fornece evidências de que, em uma metrópole subtropical,
+extremos de frio estão associados ao aumento das internações
+hospitalares respiratórias, com estrutura de defasagem atingindo pico
+entre 3--10~dias. O DLNM identificou TMM=17,8\,°C e estimou RR
+cumulativo=1,42 [1,09--1,84] no frio extremo (P1, 5,2\,°C) ao longo
+de 0--21~dias. Efeitos do calor não foram significativos. Sistemas de
+saúde pública em cidades subtropicais do Hemisfério Sul devem integrar
+previsões de ondas de frio em sistemas de alerta precoce. Trabalhos
+futuros devem estender esta análise a múltiplas cidades com desfechos
+específicos por causa e estratificados por idade.
+
+%% ═══════════════════════════════════════════════════════════════════
+%% DECLARAÇÕES
+%% ═══════════════════════════════════════════════════════════════════
+
+\section*{Contribuições}
+FB: Conceitualização, Curadoria de dados, Análise formal, Investigação,
+Metodologia, Redação --- rascunho original. LR: Metodologia, Software,
+Validação, Análise formal, Redação --- revisão e edição. Todos os
+autores tiveram acesso completo a todos os dados do estudo e tiveram
+responsabilidade final pela decisão de submeter para publicação.
+
+\section*{Declaração de interesses}
+Os autores declaram não haver interesses concorrentes.
+
+\section*{Compartilhamento de dados}
+Todo código e dados processados estão disponíveis em
+\url{https://github.com/Roverlucas/cwb-temp-pollution-health}.
+Dados brutos de internação: DATASUS
+(\url{https://datasus.saude.gov.br/}); dados meteorológicos: INMET
+estação~A807; PM$_{2,5}$: PurpleAir Sensor ID~90875.
+
+\section*{Financiamento}
+Esta pesquisa não recebeu nenhum financiamento específico de agências
+nos setores público, comercial ou sem fins lucrativos.
+
+\section*{Agradecimentos}
+Os autores agradecem ao Instituto Nacional de Meteorologia (INMET),
+DATASUS e PurpleAir Inc.\ por fornecerem dados abertos.
+
+\end{document}
