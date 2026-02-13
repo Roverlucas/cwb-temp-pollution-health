@@ -24,7 +24,7 @@
 {\Large\bfseries Online Supplement}\\[0.5em]
 {\large Compound Climate-Pollution Effects on Hospital Admissions
 in a Subtropical Metropolis: A Distributed Lag Non-Linear Analysis
-of Temperature, PM$_{2.5}$, and Respiratory Morbidity in Curitiba,
+of Temperature, PM$_{2{\cdot}5}$, and Respiratory Morbidity in Curitiba,
 Brazil}\\[0.5em]
 Felipe Baglioli, Lucas Rover\\
 Federal University of Paran\'{a} (UFPR), Curitiba, PR, Brazil
@@ -39,23 +39,23 @@ Federal University of Paran\'{a} (UFPR), Curitiba, PR, Brazil
 
 \subsection*{Machine learning forecasting details}
 
-\paragraph{Extreme Learning Machine (ELM).}
+\paragraph{Extreme Learning Machine (ELM)}
 A single-hidden-layer feedforward network with random input weights
 and regularised pseudoinverse output weights. Hyperparameter: number
 of hidden neurons (scanned over 1--200).
 
-\paragraph{Multilayer perceptron (MLP).}
+\paragraph{Multilayer perceptron (MLP)}
 A PyTorch-based feedforward network with one hidden layer (tanh
 activation), trained with Adam optimiser (learning rate 0${\cdot}$01),
 mini-batch size 20, early stopping (patience 10), and learning-rate
 scheduling.
 
-\paragraph{XGBoost.}
+\paragraph{XGBoost}
 A gradient-boosted tree ensemble (max depth 5, learning rate
 0${\cdot}$1, \texttt{reg:squarederror} objective). The number of
 estimators was tuned via validation-set MSE.
 
-\paragraph{Training protocol.}
+\paragraph{Training protocol}
 Data were split temporally: 70\% training, 15\% validation, 15\%
 test. Features were standardised (zero mean, unit variance). Model
 selection used MAPE on the validation set; final evaluation used the
@@ -63,14 +63,14 @@ test set after retraining on training+validation data. SHAP (SHapley
 Additive exPlanations) values were computed for the XGBoost model to
 quantify feature importance.
 
-\paragraph{Climate projections.}
+\paragraph{Climate projections}
 Future temperature scenarios were derived from the CMIP6 SSP5-8${\cdot}$5
 pathway (EC-Earth3-Veg-LR model) for Curitiba's grid cell, with daily
 $T_\mathrm{max}$, $T_\mathrm{med}$, and specific humidity extracted
 for 2030, 2050, and 2099. Future PM$_{2{\cdot}5}$ was projected using
 the most recent year's Transformer-imputed series as baseline.
 
-\paragraph{Monte Carlo extreme-event simulations.}
+\paragraph{Monte Carlo extreme-event simulations}
 Heat waves were simulated by injecting random temperature perturbations
 (+2--5\,°C for 3--7~days) during autumn; cold waves by analogous
 decrements during spring/autumn. Wildfire PM$_{2{\cdot}5}$ spikes were

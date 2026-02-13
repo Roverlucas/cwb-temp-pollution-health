@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comparativo Antes / Depois — Lancet Regional Health Americas</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; color: #333; line-height: 1.6; padding: 2rem; }
+  .container { max-width: 1200px; margin: 0 auto; }
+  h1 { font-size: 1.8rem; color: #1a1a2e; margin-bottom: 0.3rem; }
+  h2 { font-size: 1.3rem; color: #16213e; margin: 2rem 0 1rem; border-bottom: 2px solid #0f3460; padding-bottom: 0.3rem; }
+  h3 { font-size: 1.1rem; color: #533483; margin: 1.5rem 0 0.5rem; }
+  .subtitle { color: #666; font-size: 0.95rem; margin-bottom: 2rem; }
+  .summary-box { background: #fff; border-radius: 8px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
+  .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; margin-top: 1rem; }
+  .metric { text-align: center; padding: 1rem; border-radius: 6px; }
+  .metric .num { font-size: 1.8rem; font-weight: 700; }
+  .metric .label { font-size: 0.8rem; color: #666; }
+  .metric.green { background: #e8f5e9; color: #2e7d32; }
+  .metric.orange { background: #fff3e0; color: #e65100; }
+  .metric.blue { background: #e3f2fd; color: #1565c0; }
+  .metric.red { background: #fce4ec; color: #c62828; }
+  .metric.purple { background: #f3e5f5; color: #7b1fa2; }
+  table { width: 100%; border-collapse: collapse; margin: 1rem 0; background: #fff; border-radius: 6px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  th { background: #1a1a2e; color: #fff; padding: 0.75rem; text-align: left; font-size: 0.85rem; }
+  td { padding: 0.6rem 0.75rem; border-bottom: 1px solid #eee; font-size: 0.88rem; vertical-align: top; }
+  tr:hover td { background: #f8f9fa; }
+  .badge { display: inline-block; padding: 0.15rem 0.6rem; border-radius: 3px; font-size: 0.75rem; font-weight: 600; }
+  .badge-new { background: #c8e6c9; color: #2e7d32; }
+  .badge-changed { background: #bbdefb; color: #1565c0; }
+  .badge-removed { background: #ffcdd2; color: #c62828; }
+  .badge-kept { background: #e0e0e0; color: #616161; }
+  .section { background: #fff; border-radius: 8px; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
+  .before { background: #fff8e1; border-left: 4px solid #f57f17; padding: 0.8rem 1rem; border-radius: 0 6px 6px 0; margin: 0.5rem 0; font-size: 0.88rem; }
+  .before::before { content: "ANTES: "; font-weight: 700; color: #f57f17; }
+  .after { background: #e8f5e9; border-left: 4px solid #2e7d32; padding: 0.8rem 1rem; border-radius: 0 6px 6px 0; margin: 0.5rem 0; font-size: 0.88rem; }
+  .after::before { content: "DEPOIS: "; font-weight: 700; color: #2e7d32; }
+  .reason { background: #f3e5f5; border-left: 4px solid #7b1fa2; padding: 0.6rem 1rem; border-radius: 0 6px 6px 0; margin: 0.5rem 0; font-size: 0.85rem; color: #4a148c; }
+  .reason::before { content: "MOTIVO: "; font-weight: 700; }
+  .checklist { background: #fff; border-radius: 6px; padding: 1rem; margin: 1rem 0; }
+  .checklist li { list-style: none; padding: 0.3rem 0; font-size: 0.9rem; }
+  .checklist li::before { content: "\2705 "; }
+  .checklist li.fail::before { content: "\274C "; }
+  code { background: #f5f5f5; padding: 0.1rem 0.4rem; border-radius: 3px; font-size: 0.82rem; }
+  .col-before { background: #fffde7; }
+  .col-after { background: #e8f5e9; }
+  .strike { text-decoration: line-through; color: #999; }
+  footer { text-align: center; color: #999; font-size: 0.8rem; margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #ddd; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>Comparativo Antes / Depois</h1>
+<p class="subtitle">Manuscrito para Lancet Regional Health &mdash; Americas | 13 fevereiro 2026</p>
+
+<!-- ============================================================ -->
+<!-- RESUMO NUMERICO -->
+<!-- ============================================================ -->
+<div class="summary-box">
+  <h3>Evolucao Numerica</h3>
+  <div class="summary-grid">
+    <div class="metric orange">
+      <div class="num">1549</div>
+      <div class="label">Linhas .tex (Jan)</div>
+    </div>
+    <div class="metric green">
+      <div class="num">737</div>
+      <div class="label">Linhas .tex (Fev)</div>
+    </div>
+    <div class="metric orange">
+      <div class="num">~5200</div>
+      <div class="label">Palavras texto (Jan)</div>
+    </div>
+    <div class="metric green">
+      <div class="num">~2200</div>
+      <div class="label">Palavras texto (Fev)</div>
+    </div>
+    <div class="metric orange">
+      <div class="num">40</div>
+      <div class="label">Referencias (Jan)</div>
+    </div>
+    <div class="metric green">
+      <div class="num">27</div>
+      <div class="label">Referencias (Fev)</div>
+    </div>
+    <div class="metric orange">
+      <div class="num">14</div>
+      <div class="label">Paginas (Jan)</div>
+    </div>
+    <div class="metric green">
+      <div class="num">11</div>
+      <div class="label">Paginas (Fev)</div>
+    </div>
+    <div class="metric blue">
+      <div class="num">0</div>
+      <div class="label">Figs+Tabs main (Jan)</div>
+    </div>
+    <div class="metric green">
+      <div class="num">5</div>
+      <div class="label">Figs+Tabs main (Fev)</div>
+    </div>
+    <div class="metric red">
+      <div class="num">0</div>
+      <div class="label">Supplement (Jan)</div>
+    </div>
+    <div class="metric green">
+      <div class="num">10pp</div>
+      <div class="label">Supplement (Fev)</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 1. TITULO -->
+<!-- ============================================================ -->
+<h2>1. Titulo</h2>
+<div class="section">
+  <div class="before">"Structural adaptation gaps amplify the synergistic mortality risk of cold spells and particulate matter in a subtropical metropolis"</div>
+  <div class="after">"Compound Climate-Pollution Effects on Hospital Admissions in a Subtropical Metropolis: A Distributed Lag Non-Linear Analysis of Temperature, PM<sub>2&middot;5</sub>, and Respiratory Morbidity in Curitiba, Brazil"</div>
+  <div class="reason">4/5 revisores criticaram linguagem assertiva ("synergistic", "lethal") sem evidencia inferencial. RERI nao significativo &rarr; "compound" e correto. Titulo agora inclui metodo (DLNM), cidade e desfecho, conforme padrao Lancet.</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 2. ABSTRACT -->
+<!-- ============================================================ -->
+<h2>2. Abstract</h2>
+<div class="section">
+  <table>
+    <tr><th>Aspecto</th><th class="col-before">Antes (Jan)</th><th class="col-after">Depois (Fev)</th><th>Motivo</th></tr>
+    <tr>
+      <td><strong>Formato</strong></td>
+      <td class="col-before">Nao-estruturado, ~530 palavras</td>
+      <td class="col-after">Estruturado (Background/Methods/Findings/Interpretation/Funding), ~290 palavras</td>
+      <td>Formato obrigatorio Lancet; limite 300 palavras</td>
+    </tr>
+    <tr>
+      <td><strong>Claim principal</strong></td>
+      <td class="col-before">"RR 1.25; 95% CI 1.18&ndash;1.33" (placeholder, sem DLNM real)</td>
+      <td class="col-after">"RR=1&middot;42 [1&middot;09&ndash;1&middot;84] at P1 of T<sub>min</sub> (5&middot;2&deg;C)" (resultado computado)</td>
+      <td>Valores antigos eram aspiracionais. Agora sao resultados reais do DLNM</td>
+    </tr>
+    <tr>
+      <td><strong>Interacao</strong></td>
+      <td class="col-before">"amplifies risk by 25% relative to additive baseline"</td>
+      <td class="col-after">"RERI=0&middot;013 [&minus;0&middot;006, 0&middot;033], not significant &mdash; compound rather than supra-additive"</td>
+      <td>RERI real nao mostra sinergismo. Honestidade cientifica</td>
+    </tr>
+    <tr>
+      <td><strong>MMT</strong></td>
+      <td class="col-before">Ausente</td>
+      <td class="col-after">MMT=17&middot;8&deg;C</td>
+      <td>Metrica fundamental do DLNM</td>
+    </tr>
+    <tr>
+      <td><strong>Diagnosticos</strong></td>
+      <td class="col-before">Ausentes</td>
+      <td class="col-after">&phi;&#770;=1&middot;32, Ljung&ndash;Box p=0&middot;14</td>
+      <td>Revisores exigiam evidencia de adequacao do modelo</td>
+    </tr>
+    <tr>
+      <td><strong>Linguagem</strong></td>
+      <td class="col-before">"synergistic", "demonstrates", "silent lethality"</td>
+      <td class="col-after">"compound", "suggests", "provides evidence"</td>
+      <td>Moderacao exigida por 3/5 revisores</td>
+    </tr>
+  </table>
+</div>
+
+<!-- ============================================================ -->
+<!-- 3. FORMATACAO LANCET -->
+<!-- ============================================================ -->
+<h2>3. Formatacao Lancet</h2>
+<div class="section">
+  <table>
+    <tr><th>Requisito</th><th class="col-before">Antes</th><th class="col-after">Depois</th><th>Status</th></tr>
+    <tr>
+      <td>Citacoes sobrescritas Vancouver</td>
+      <td class="col-before">Citacoes entre colchetes [1]</td>
+      <td class="col-after"><code>\biboptions{super,comma}</code> &rarr; sobrescritas <sup>1,2,3</sup></td>
+      <td><span class="badge badge-new">NOVO</span></td>
+    </tr>
+    <tr>
+      <td>Midline dot (ponto medio)</td>
+      <td class="col-before">Ponto decimal convencional (17.8)</td>
+      <td class="col-after"><code>${\cdot}$</code> em todo o texto (17&middot;8) &mdash; ~209 instancias</td>
+      <td><span class="badge badge-new">NOVO</span></td>
+    </tr>
+    <tr>
+      <td>Texto principal &le;3500 palavras</td>
+      <td class="col-before">~5200 palavras</td>
+      <td class="col-after">~2200 palavras</td>
+      <td><span class="badge badge-changed">CONDENSADO</span></td>
+    </tr>
+    <tr>
+      <td>Abstract &le;300 palavras</td>
+      <td class="col-before">~530 palavras</td>
+      <td class="col-after">~290 palavras</td>
+      <td><span class="badge badge-changed">CONDENSADO</span></td>
+    </tr>
+    <tr>
+      <td>Referencias &le;30</td>
+      <td class="col-before">40 referencias</td>
+      <td class="col-after">27 referencias</td>
+      <td><span class="badge badge-changed">REDUZIDO</span></td>
+    </tr>
+    <tr>
+      <td>Figuras/Tabelas ~5 no main</td>
+      <td class="col-before">Todas inline (sem supplement)</td>
+      <td class="col-after">3 tabelas + 2 figuras no main; 8 eTables + 8 eFigures no supplement</td>
+      <td><span class="badge badge-new">REESTRUTURADO</span></td>
+    </tr>
+    <tr>
+      <td>Research in Context</td>
+      <td class="col-before">Ausente</td>
+      <td class="col-after">Evidence before / Added value / Implications</td>
+      <td><span class="badge badge-new">NOVO</span></td>
+    </tr>
+    <tr>
+      <td>Backmatter (Lancet order)</td>
+      <td class="col-before">Ordem nao-padrao, sem Contributors</td>
+      <td class="col-after">Contributors &rarr; Declaration of interests &rarr; Data sharing &rarr; Funding &rarr; Acknowledgements</td>
+      <td><span class="badge badge-changed">REORDENADO</span></td>
+    </tr>
+    <tr>
+      <td>Line numbers</td>
+      <td class="col-before">Presentes</td>
+      <td class="col-after"><code>\linenumbers</code> mantido</td>
+      <td><span class="badge badge-kept">MANTIDO</span></td>
+    </tr>
+    <tr>
+      <td>Review mode (double spacing)</td>
+      <td class="col-before"><code>[review]</code> option</td>
+      <td class="col-after"><code>[review,number]</code></td>
+      <td><span class="badge badge-kept">MANTIDO</span></td>
+    </tr>
+  </table>
+</div>
+
+<!-- ============================================================ -->
+<!-- 4. METODOS -->
+<!-- ============================================================ -->
+<h2>4. Metodos</h2>
+<div class="section">
+  <h3>4.1 DLNM <span class="badge badge-new">SECAO NOVA</span></h3>
+  <div class="before">Mencionava DLNM nos metodos ("we employed a DLNM framework") e citava Gasparrini 2010, mas <strong>nao havia codigo, resultados nem tabelas</strong>.</div>
+  <div class="after">Secao completa (&sect;2.6) com: equacao do modelo (Eq. 2), cross-basis (exp_df=4, lag_df=5), quasi-Poisson, confundidores (DOW, feriados, spline sazonal 7df/ano), MMT por grid search, RERI, 7 sensibilidades, FDR.</div>
+  <div class="reason">4/5 revisores apontaram ausencia de DLNM como bloqueio critico.</div>
+
+  <h3>4.2 Etica e STROBE <span class="badge badge-new">NOVO</span></h3>
+  <div class="before">Sem declaracao de etica. Sem mencao a guidelines de reporte.</div>
+  <div class="after">&para; "Ethics and reporting" integrado nos metodos: CNS 510/2016, dados publicos, isencao de comite. STROBE declarado com ref. von Elm 2007.</div>
+  <div class="reason">3/5 revisores exigiam declaracao etica. Lancet exige STROBE para estudos observacionais.</div>
+
+  <h3>4.3 Confundidores <span class="badge badge-changed">ATUALIZADO</span></h3>
+  <div class="before">Sem ajuste formal para dia da semana, feriados ou tendencia temporal.</div>
+  <div class="after">DOW (6 dummies, ref=segunda), 36 feriados brasileiros 2022&ndash;2024, spline sazonal ns(time, 21df).</div>
+
+  <h3>4.4 Sensibilidades <span class="badge badge-changed">ATUALIZADO</span></h3>
+  <div class="before">Mencionava "sensitivity analysis" genericamente.</div>
+  <div class="after">7 cenarios concretos: lag 14/21/28, df sazonal 6/7/8, exclusao 2022 (COVID), exclusao 2024 (sensor instavel).</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 5. RESULTADOS -->
+<!-- ============================================================ -->
+<h2>5. Resultados</h2>
+<div class="section">
+  <h3>5.1 DLNM Temperatura <span class="badge badge-new">NOVO</span></h3>
+  <table>
+    <tr><th>Metrica</th><th>Resultado</th></tr>
+    <tr><td>N valido</td><td>1068 dias</td></tr>
+    <tr><td>MMT</td><td>17&middot;8&deg;C</td></tr>
+    <tr><td>&phi;&#770; (dispersao)</td><td>1&middot;32 (quasi-Poisson adequado)</td></tr>
+    <tr><td>RR P1 (5&middot;2&deg;C)</td><td><strong>1&middot;42 [1&middot;09, 1&middot;84]</strong> &mdash; significativo</td></tr>
+    <tr><td>RR P5 (8&middot;5&deg;C)</td><td>1&middot;22 [1&middot;02, 1&middot;44] &mdash; significativo</td></tr>
+    <tr><td>RR P10 (9&middot;8&deg;C)</td><td>1&middot;17 [1&middot;00, 1&middot;37] &mdash; borderline</td></tr>
+    <tr><td>RR P90 (19&middot;4&deg;C)</td><td>1&middot;06 [0&middot;98, 1&middot;14] &mdash; nao significativo</td></tr>
+    <tr><td>Lag peak (frio)</td><td>Lags 3&ndash;10 dias</td></tr>
+    <tr><td>Durbin&ndash;Watson</td><td>2&middot;00</td></tr>
+    <tr><td>Ljung&ndash;Box p</td><td>0&middot;14</td></tr>
+  </table>
+
+  <h3>5.2 DLNM PM<sub>2&middot;5</sub> <span class="badge badge-new">NOVO</span></h3>
+  <div class="before">Manuscrito afirmava efeitos fortes de PM<sub>2.5</sub> sem modelo formal.</div>
+  <div class="after">N=697, &phi;&#770;=1&middot;33. RR=0&middot;91 [0&middot;78, 1&middot;07] no P90 (10&middot;2 &mu;g/m&sup3;) &mdash; <strong>nao significativo</strong>. Resultado honesto: PM<sub>2&middot;5</sub> fraco nas concentracoes ambientais de Curitiba.</div>
+
+  <h3>5.3 RERI Interacao <span class="badge badge-new">NOVO</span></h3>
+  <div class="before">"potent synergistic interaction", "RERI > 0 indicates synergy" (<strong>sem dados</strong>)</div>
+  <div class="after">RERI=0&middot;013 [&minus;0&middot;006, 0&middot;033] &mdash; <strong>nao significativo</strong>. AP=0&middot;019, S=0&middot;955. Interacao compound, nao supra-aditiva.</div>
+  <div class="reason">Resultado real contradiz claim anterior. Toda a linguagem ajustada.</div>
+
+  <h3>5.4 Sensibilidades e Diagnosticos <span class="badge badge-new">NOVO</span></h3>
+  <table>
+    <tr><th>Cenario</th><th>RR (P10)</th><th>95% CI</th></tr>
+    <tr><td>Principal (lag=21, 7df/yr)</td><td>1&middot;17</td><td>1&middot;00&ndash;1&middot;37</td></tr>
+    <tr><td>Lag=14</td><td>1&middot;05</td><td>0&middot;92&ndash;1&middot;18</td></tr>
+    <tr><td>Lag=28</td><td>1&middot;23</td><td>1&middot;01&ndash;1&middot;51</td></tr>
+    <tr><td>6 df/ano</td><td>1&middot;17</td><td>1&middot;00&ndash;1&middot;36</td></tr>
+    <tr><td>8 df/ano</td><td>1&middot;21</td><td>1&middot;03&ndash;1&middot;42</td></tr>
+    <tr><td>Excluir 2024</td><td>0&middot;96</td><td>0&middot;72&ndash;1&middot;29</td></tr>
+    <tr><td>Excluir 2022</td><td>1&middot;37</td><td>1&middot;11&ndash;1&middot;70</td></tr>
+  </table>
+</div>
+
+<!-- ============================================================ -->
+<!-- 6. DISCUSSAO -->
+<!-- ============================================================ -->
+<h2>6. Discussao</h2>
+<div class="section">
+  <table>
+    <tr><th>Aspecto</th><th class="col-before">Antes</th><th class="col-after">Depois</th></tr>
+    <tr>
+      <td>Comparacao com Gasparrini MCC</td>
+      <td class="col-before">Citava Gasparrini 2015 na intro mas nao comparava resultados</td>
+      <td class="col-after">Paragrafo comparando MMT e magnitude do RR com estudo MCC de 384 localidades</td>
+    </tr>
+    <tr>
+      <td>Claim de sinergismo</td>
+      <td class="col-before">"potent synergistic interaction"</td>
+      <td class="col-after">"compound rather than supra-additive (RERI CI includes zero)"</td>
+    </tr>
+    <tr>
+      <td>Limitacao DLNM</td>
+      <td class="col-before">"DLNM is a priority for future work"</td>
+      <td class="col-after">DLNM implementado; limitacao restante: single-city design</td>
+    </tr>
+    <tr>
+      <td>Verbo "demonstrates"</td>
+      <td class="col-before">Usado 2&times;</td>
+      <td class="col-after">Substituido por "suggests" / "provides evidence"</td>
+    </tr>
+    <tr>
+      <td>CEWS</td>
+      <td class="col-before">Ausente</td>
+      <td class="col-after">Paragrafo sobre Climate Early Warning Systems com recomendacoes</td>
+    </tr>
+  </table>
+</div>
+
+<!-- ============================================================ -->
+<!-- 7. FIGURAS E TABELAS -->
+<!-- ============================================================ -->
+<h2>7. Figuras e Tabelas</h2>
+<div class="section">
+  <h3>Main text (5 items)</h3>
+  <table>
+    <tr><th>#</th><th>Tipo</th><th>Conteudo</th><th>Status</th></tr>
+    <tr><td>Table 1</td><td>Tabela</td><td>Estatisticas descritivas (6 variaveis, N=1096 dias)</td><td><span class="badge badge-kept">MANTIDA</span></td></tr>
+    <tr><td>Table 2</td><td>Tabela</td><td>RR cumulativo DLNM em P1&ndash;P99</td><td><span class="badge badge-new">NOVA</span></td></tr>
+    <tr><td>Table 3</td><td>Tabela</td><td>Sensibilidades DLNM (7 cenarios)</td><td><span class="badge badge-new">NOVA</span></td></tr>
+    <tr><td>Figure 1</td><td>Figura</td><td>Curva E-R cumulativa temperatura</td><td><span class="badge badge-new">NOVA</span></td></tr>
+    <tr><td>Figure 2</td><td>Figura</td><td>Lag-response frio P10 + calor P90</td><td><span class="badge badge-new">NOVA</span></td></tr>
+  </table>
+
+  <h3>Supplement (8 eTables + 8 eFigures = 16 items)</h3>
+  <table>
+    <tr><th>#</th><th>Conteudo</th><th>Status</th></tr>
+    <tr><td>eTable 1</td><td>Extreme events (heatwaves, cold spells)</td><td><span class="badge badge-changed">MOVIDA</span></td></tr>
+    <tr><td>eTable 2</td><td>Cluster profiles K=3</td><td><span class="badge badge-changed">MOVIDA</span></td></tr>
+    <tr><td>eTable 3</td><td>Cluster profiles K=4</td><td><span class="badge badge-changed">MOVIDA</span></td></tr>
+    <tr><td>eTable 4</td><td>PCA loadings</td><td><span class="badge badge-changed">MOVIDA</span></td></tr>
+    <tr><td>eTable 5</td><td>Extended lag correlations 0&ndash;28d</td><td><span class="badge badge-changed">MOVIDA</span></td></tr>
+    <tr><td>eTable 6</td><td>RERI interaction (RERI, AP, S)</td><td><span class="badge badge-new">NOVA</span></td></tr>
+    <tr><td>eTable 7</td><td>Model diagnostics (&phi;, DW, Ljung-Box)</td><td><span class="badge badge-new">NOVA</span></td></tr>
+    <tr><td>eTable 8</td><td>ML forecasting results (XGBoost, MLP, ELM)</td><td><span class="badge badge-changed">MOVIDA</span></td></tr>
+    <tr><td>eFigure 1</td><td>Cluster selection (elbow + silhouette)</td><td><span class="badge badge-changed">MOVIDA</span></td></tr>
+    <tr><td>eFigure 2</td><td>PCA biplot</td><td><span class="badge badge-changed">MOVIDA</span></td></tr>
+    <tr><td>eFigure 3</td><td>Method comparison (K-means vs Ward vs DBSCAN)</td><td><span class="badge badge-changed">MOVIDA</span></td></tr>
+    <tr><td>eFigure 4</td><td>Lag-correlation by cluster</td><td><span class="badge badge-changed">MOVIDA</span></td></tr>
+    <tr><td>eFigure 5</td><td>3D surface RR(temp, lag)</td><td><span class="badge badge-new">NOVA</span></td></tr>
+    <tr><td>eFigure 6</td><td>PM<sub>2&middot;5</sub> exposure-response curve</td><td><span class="badge badge-new">NOVA</span></td></tr>
+    <tr><td>eFigure 7</td><td>Stationarity (STL + ADF)</td><td><span class="badge badge-new">NOVA</span></td></tr>
+    <tr><td>eFigure 8</td><td>SHAP summary plot</td><td><span class="badge badge-changed">MOVIDA</span></td></tr>
+  </table>
+</div>
+
+<!-- ============================================================ -->
+<!-- 8. REFERENCIAS -->
+<!-- ============================================================ -->
+<h2>8. Referencias</h2>
+<div class="section">
+  <h3>Removidas (13)</h3>
+  <table>
+    <tr><th>Referencia</th><th>Motivo da remocao</th></tr>
+    <tr><td>Beevers 2025</td><td>Tangencial; citada 1&times;</td></tr>
+    <tr><td>Gardasevic 2024</td><td>Tangencial; citada 1&times;</td></tr>
+    <tr><td>Gong 2025</td><td>Tangencial; citada 1&times;</td></tr>
+    <tr><td>Gopikrishnan 2025</td><td>Tangencial; citada 1&times;</td></tr>
+    <tr><td>Hertzog 2024</td><td>Tangencial; citada 1&times;</td></tr>
+    <tr><td>Kalkstein 1995</td><td>Tangencial; citada 1&times;</td></tr>
+    <tr><td>Katsouyanni 1988</td><td>Tangencial; citada 1&times;</td></tr>
+    <tr><td>Nashwan 2024</td><td>Tangencial; citada 1&times;</td></tr>
+    <tr><td>Poumadere 2005</td><td>Tangencial; citada 1&times;</td></tr>
+    <tr><td>Rowland 2021</td><td>Tangencial; citada 1&times;</td></tr>
+    <tr><td>The Lancet 2018</td><td>Editorial; perdeu citacao no texto condensado</td></tr>
+    <tr><td>The Lancet 2022</td><td>Editorial; perdeu citacao no texto condensado</td></tr>
+    <tr><td>Trenberth 2012</td><td>Tangencial; citada 1&times;</td></tr>
+  </table>
+
+  <h3>Adicionadas (3)</h3>
+  <table>
+    <tr><th>Referencia</th><th>Uso</th></tr>
+    <tr><td>Gasparrini 2011 (J Stat Softw)</td><td>Referencia metodologica do pacote dlnm</td></tr>
+    <tr><td>Gasparrini 2015 (Lancet MCC)</td><td>Comparacao multi-country temperatura&ndash;mortalidade</td></tr>
+    <tr><td>von Elm 2007 (Lancet STROBE)</td><td>Guideline de reporte observacional</td></tr>
+  </table>
+
+  <h3>Ordenacao</h3>
+  <div class="before">Ordem alfabetica</div>
+  <div class="after">Vancouver: numerada por primeira citacao no texto (1&ndash;27)</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 9. LIMITACOES RESOLVIDAS -->
+<!-- ============================================================ -->
+<h2>9. Limitacoes Resolvidas vs Permanentes</h2>
+<div class="section">
+  <table>
+    <tr><th>Limitacao</th><th>Jan</th><th>Fev</th></tr>
+    <tr><td>DLNM ausente</td><td><span class="badge badge-removed">BLOQUEIO</span></td><td><span class="badge badge-new">RESOLVIDA</span></td></tr>
+    <tr><td>Sem confundidores temporais</td><td><span class="badge badge-removed">BLOQUEIO</span></td><td><span class="badge badge-new">RESOLVIDA</span></td></tr>
+    <tr><td>Sem teste de interacao</td><td><span class="badge badge-removed">BLOQUEIO</span></td><td><span class="badge badge-new">RESOLVIDA</span></td></tr>
+    <tr><td>Sem ADF pos-STL</td><td><span class="badge badge-removed">PENDENTE</span></td><td><span class="badge badge-new">RESOLVIDA</span></td></tr>
+    <tr><td>Sem sensibilidades formais</td><td><span class="badge badge-removed">PENDENTE</span></td><td><span class="badge badge-new">RESOLVIDA</span></td></tr>
+    <tr><td>Sem declaracao etica</td><td><span class="badge badge-removed">BLOQUEIO</span></td><td><span class="badge badge-new">RESOLVIDA</span></td></tr>
+    <tr><td>Sem STROBE</td><td><span class="badge badge-removed">PENDENTE</span></td><td><span class="badge badge-new">RESOLVIDA</span></td></tr>
+    <tr><td>Sem FDR</td><td><span class="badge badge-removed">PENDENTE</span></td><td><span class="badge badge-new">RESOLVIDA</span></td></tr>
+    <tr><td>Single-city design</td><td><span class="badge badge-kept">PERMANECE</span></td><td><span class="badge badge-kept">PERMANECE</span></td></tr>
+    <tr><td>PM<sub>2&middot;5</sub> 36% missing</td><td><span class="badge badge-kept">PERMANECE</span></td><td><span class="badge badge-kept">PERMANECE</span></td></tr>
+    <tr><td>Sensor low-cost (ALT vs CF1)</td><td><span class="badge badge-kept">PERMANECE</span></td><td><span class="badge badge-kept">PERMANECE</span></td></tr>
+  </table>
+</div>
+
+<!-- ============================================================ -->
+<!-- 10. CHECKLIST LANCET -->
+<!-- ============================================================ -->
+<h2>10. Checklist Final &mdash; Lancet Regional Health Americas</h2>
+<div class="section">
+  <ul class="checklist">
+    <li>Citacoes sobrescritas Vancouver (super,comma)</li>
+    <li>Midline dot em todos os decimais (~209 instancias)</li>
+    <li>Abstract estruturado &le;300 palavras (~290)</li>
+    <li>Research in Context (Evidence before / Added value / Implications)</li>
+    <li>Texto principal ~2200 palavras (&le;3500 limite)</li>
+    <li>Referencias: 27 (&le;30 limite), Vancouver order</li>
+    <li>Figuras+Tabelas: 5 no main (3T + 2F)</li>
+    <li>Supplement separado: 10 paginas (8 eTables + 8 eFigures)</li>
+    <li>Line numbers ativados</li>
+    <li>Review mode (double spacing)</li>
+    <li>PM<sub>2&middot;5</sub> com midline dot no titulo e em todo o texto</li>
+    <li>Backmatter na ordem Lancet (Contributors &rarr; Interests &rarr; Data &rarr; Funding &rarr; Ack)</li>
+    <li>STROBE declarado com referencia</li>
+    <li>Etica integrada nos metodos (CNS 510/2016)</li>
+    <li>Equacao DLNM numerada (Eq. 2)</li>
+    <li>Paragraph headings sem ponto duplo</li>
+    <li>Sem TODOs, PLACEHOLDERs ou ERRATAs</li>
+    <li>PDF compila sem erros (11 paginas, 429 KB)</li>
+    <li>Supplement compila sem erros (10 paginas, 598 KB)</li>
+    <li>Git: commits f4b5746 + pendente no GitHub</li>
+  </ul>
+</div>
+
+<!-- ============================================================ -->
+<!-- 11. IMPACTO GERAL -->
+<!-- ============================================================ -->
+<h2>11. Resumo do Impacto</h2>
+<div class="section">
+  <p>O manuscrito de <strong>janeiro</strong> era primariamente <em>descritivo + preditivo</em>: correlacoes brutas, PCA, clustering e ML forecasting. Afirmava "synergistic interaction" e citava DLNM sem implementa-lo.</p>
+  <br>
+  <p>O manuscrito de <strong>fevereiro</strong> adiciona a camada <em>inferencial</em>: DLNM quasi-Poisson com confundidores formais, teste de interacao (RERI), sensibilidades, diagnosticos e estacionaridade. Os resultados reais contradizem parte da narrativa anterior:</p>
+  <br>
+  <ol style="margin-left:1.5rem; font-size:0.92rem;">
+    <li><strong>Interacao nao e sinergica</strong> &mdash; e compound/multiplicativa (RERI CI inclui zero)</li>
+    <li><strong>Frio e o driver principal</strong> &mdash; RR=1&middot;42 [1&middot;09&ndash;1&middot;84] no P1, com lag 3&ndash;10 dias</li>
+    <li><strong>PM<sub>2&middot;5</sub> fraco</strong> &mdash; concentracoes ambientais baixas (mediana 4&middot;1 &mu;g/m&sup3;)</li>
+    <li><strong>Correlacoes brutas superestimam</strong> &mdash; STL detrending mostra atenuacao</li>
+  </ol>
+  <br>
+  <p>A transicao de <span class="strike">"demonstrates synergistic amplification"</span> para <strong>"suggests compound effects"</strong> reflete maturidade cientifica e alinha o manuscrito com a evidencia real, resolvendo os 2 bloqueios criticos (DLNM + etica) dos revisores.</p>
+</div>
+
+<!-- ============================================================ -->
+<!-- 12. ARTEFATOS -->
+<!-- ============================================================ -->
+<h2>12. Artefatos do Repositorio</h2>
+<div class="section">
+  <h3>Codigo Python (novos)</h3>
+  <table>
+    <tr><th>Script</th><th>Linhas</th><th>Funcao</th></tr>
+    <tr><td><code>analysis/dlnm/crossbasis.py</code></td><td>~320</td><td>Cross-basis scipy-based, crosspred, crosspred_lag, crosspred_3d</td></tr>
+    <tr><td><code>analysis/dlnm/dlnm_analysis.py</code></td><td>~900</td><td>Pipeline: carga, STL, DLNM, RERI, FDR, sensibilidades, diagnosticos, figuras, tabelas</td></tr>
+  </table>
+
+  <h3>Figuras DLNM (10 PDFs novos)</h3>
+  <table>
+    <tr><th>Arquivo</th><th>Conteudo</th></tr>
+    <tr><td><code>fig_dlnm_temp_overall.pdf</code></td><td>Curva E-R cumulativa temperatura (Fig. 1 do main)</td></tr>
+    <tr><td><code>fig_dlnm_temp_lag.pdf</code></td><td>Lag-response frio P10 + calor P90 (Fig. 2 do main)</td></tr>
+    <tr><td><code>fig_dlnm_temp_3d.pdf</code></td><td>Superficie 3D RR(temp, lag)</td></tr>
+    <tr><td><code>fig_dlnm_pm25_overall.pdf</code></td><td>Curva E-R cumulativa PM<sub>2&middot;5</sub></td></tr>
+    <tr><td><code>fig_dlnm_pm25_lag.pdf</code></td><td>Lag-response PM<sub>2&middot;5</sub> P90</td></tr>
+    <tr><td><code>fig_reri_interaction.pdf</code></td><td>Forest plot RERI, AP, S</td></tr>
+    <tr><td><code>fig_stationarity.pdf</code></td><td>STL decomposition + ADF</td></tr>
+    <tr><td><code>fig_sensitivity.pdf</code></td><td>Forest plot sensibilidades</td></tr>
+    <tr><td><code>fig_diagnostics_temp.pdf</code></td><td>Diagnosticos modelo temperatura</td></tr>
+    <tr><td><code>fig_diagnostics_pm25.pdf</code></td><td>Diagnosticos modelo PM<sub>2&middot;5</sub></td></tr>
+  </table>
+
+  <h3>Tabelas DLNM (8 CSVs novos)</h3>
+  <table>
+    <tr><th>Arquivo</th><th>Conteudo</th></tr>
+    <tr><td><code>table_dlnm_model_summary.csv</code></td><td>N, &phi;, deviance, df</td></tr>
+    <tr><td><code>table_dlnm_temp_rr.csv</code></td><td>RR em P1&ndash;P99</td></tr>
+    <tr><td><code>table_dlnm_pm25_rr.csv</code></td><td>RR em P25&ndash;P99</td></tr>
+    <tr><td><code>table_reri.csv</code></td><td>RERI, AP, S</td></tr>
+    <tr><td><code>table_adf_stationarity.csv</code></td><td>ADF pre/pos STL</td></tr>
+    <tr><td><code>table_fdr.csv</code></td><td>p-values originais vs corrigidos</td></tr>
+    <tr><td><code>table_sensitivity.csv</code></td><td>7 cenarios</td></tr>
+    <tr><td><code>table_diagnostics.csv</code></td><td>&phi;, DW, Ljung-Box, ACF</td></tr>
+  </table>
+</div>
+
+<footer>
+  Gerado automaticamente em 13/02/2026 &mdash; cwb-temp-pollution-health<br>
+  Commits: 5c022d7 (Lancet formatting) &rarr; f4b5746 (midline dot fix) &rarr; pendente (paragraph fix + HTML)
+</footer>
+
+</div>
+</body>
+</html>
