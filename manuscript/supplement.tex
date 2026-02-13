@@ -22,10 +22,8 @@
 
 \begin{center}
 {\Large\bfseries Online Supplement}\\[0.5em]
-{\large Compound Climate-Pollution Effects on Hospital Admissions
-in a Subtropical Metropolis: A Distributed Lag Non-Linear Analysis
-of Temperature, PM$_{2{\cdot}5}$, and Respiratory Morbidity in Curitiba,
-Brazil}\\[0.5em]
+{\large Cold Extremes and Respiratory Hospital Admissions in Curitiba,
+Brazil: A Distributed Lag Non-Linear Time-Series Analysis}\\[0.5em]
 Felipe Baglioli, Lucas Rover\\
 Federal University of Paran\'{a} (UFPR), Curitiba, PR, Brazil
 \end{center}
@@ -76,6 +74,35 @@ Heat waves were simulated by injecting random temperature perturbations
 decrements during spring/autumn. Wildfire PM$_{2{\cdot}5}$ spikes were
 simulated by adding 70--100~µg/m$^3$ pulses (7--14~days) during
 summer/spring.
+
+\subsection*{Clustering and PCA}
+
+K-means clustering was applied to six standardised variables
+($T_\mathrm{max}$, $T_\mathrm{med}$, $T_\mathrm{min}$,
+PM$_{2{\cdot}5}$, relative humidity, atmospheric pressure) on
+$N$=558 complete-case days. Optimal $K$=3 was selected by silhouette
+score (0${\cdot}$357). Three clusters emerged: Clean Cold ($n$=248),
+Polluted Heat ($n$=12), and Clean Heat ($n$=298). Kruskal--Wallis
+test for between-cluster differences in daily hospitalisations
+yielded $p$=0${\cdot}$039 (eTables~2--3). PCA on PM$_{2{\cdot}5}$,
+$T_\mathrm{min}$, and hospitalisations identified PC1 (44${\cdot}$5\%
+variance) associating cold, polluted days with higher admissions
+(eTable~4). Extended lag correlations (eTable~5) revealed peak
+$T_\mathrm{min}$--hospitalisation correlation at lag~9
+($r$=$-$0${\cdot}$320, $p<$0${\cdot}$001).
+
+\subsection*{Exploratory PM$_{2{\cdot}5}$ DLNM}
+
+An exploratory DLNM for EPA-corrected PM$_{2{\cdot}5}$ ($N$=697,
+lag 0--14~days, exposure df=4, lag df=4) showed no significant
+cumulative associations at any percentile (eFigure~6): P90
+(10${\cdot}$2~µg/m$^3$) RR=0${\cdot}$91 [0${\cdot}$78--1${\cdot}$07].
+The low ambient concentrations (median 4${\cdot}$1~µg/m$^3$, well
+below the WHO 24-hour guideline) and 36${\cdot}$4\% missing data
+likely limited statistical power. A joint model ($N$=683) yielded
+RERI=0${\cdot}$013 [$-$0${\cdot}$006, 0${\cdot}$033] on the additive
+scale, indicating no evidence of supra-additive interaction between
+temperature and PM$_{2{\cdot}5}$ (eTable~6).
 
 \subsection*{Missing data sensitivity}
 
