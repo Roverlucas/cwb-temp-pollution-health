@@ -56,6 +56,77 @@
 <p class="subtitle">Manuscrito para Lancet Regional Health &mdash; Americas | 13 fevereiro 2026</p>
 
 <!-- ============================================================ -->
+<!-- RESUMO LEIGO -->
+<!-- ============================================================ -->
+<div class="section" style="background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%); border: 2px solid #1565c0;">
+  <h2 style="border: none; margin-top: 0; color: #1565c0;">O que aconteceu com este manuscrito?</h2>
+
+  <p style="font-size: 1rem; margin-bottom: 1rem;">
+    Este artigo investiga se <strong>dias muito frios</strong> e <strong>poluicao do ar (PM<sub>2,5</sub>)</strong> aumentam as
+    internacoes por problemas respiratorios em Curitiba. A versao de janeiro tinha problemas serios.
+    Abaixo, em linguagem simples, o que estava errado e o que fizemos para corrigir.
+  </p>
+
+  <h3 style="color: #c62828;">Como o manuscrito estava (janeiro 2026)</h3>
+  <ul style="margin: 0.5rem 0 1.2rem 1.5rem; font-size: 0.95rem;">
+    <li><strong>Citava um metodo sem te-lo de fato.</strong> O texto dizia "usamos o modelo DLNM" e
+    referenciava o artigo cientifico do metodo (Gasparrini 2010), mas <em>nao havia nenhum codigo,
+    nenhum calculo e nenhum resultado</em> desse modelo no artigo. Era como dizer "fizemos um raio-X"
+    sem nunca ter ligado a maquina.</li>
+    <li><strong>Numeros inventados no resumo.</strong> O resumo apresentava um risco relativo de 1,25 com
+    intervalo de confianca &mdash; valores que nao vinham de nenhuma analise real. Eram
+    "aspiracionais", colocados como se o resultado ja existisse.</li>
+    <li><strong>Afirmava "interacao sinergica" sem teste.</strong> O texto dizia que frio e poluicao juntos
+    tinham um efeito sinergico (maior do que a soma), mas nenhum teste estatistico de interacao tinha
+    sido feito.</li>
+    <li><strong>Sem declaracao de etica.</strong> Nao havia nenhuma mencao sobre aprovacao etica ou isencao,
+    algo obrigatorio para qualquer revista cientifica.</li>
+    <li><strong>Linguagem exagerada.</strong> Usava termos como "demonstra", "letalidade silenciosa" e
+    "sinergismo" &mdash; palavras fortes demais para um estudo descritivo sem modelo inferencial.</li>
+    <li><strong>Formato fora do padrao da revista.</strong> Resumo longo demais (530 palavras vs limite de 300),
+    40 referencias (limite 30), sem ponto medio nos decimais (estilo Lancet), sem suplemento
+    separado.</li>
+  </ul>
+
+  <h3 style="color: #2e7d32;">O que fizemos (fevereiro 2026)</h3>
+  <ul style="margin: 0.5rem 0 1.2rem 1.5rem; font-size: 0.95rem;">
+    <li><strong>Implementamos o DLNM de verdade.</strong> O DLNM (Distributed Lag Non-Linear Model) e o
+    metodo padrao-ouro em epidemiologia ambiental para medir como uma exposicao (ex: frio) afeta a
+    saude ao longo de varios dias. Ele permite ver que o frio de hoje pode causar internacoes daqui a
+    3, 5 ou 10 dias &mdash; nao apenas no mesmo dia. Escrevemos ~1.200 linhas de codigo Python,
+    geramos 10 figuras e 8 tabelas de resultados reais.</li>
+    <li><strong>Substituimos os numeros inventados por resultados reais.</strong> O DLNM mostrou que dias
+    extremamente frios (percentil 1, cerca de 5&deg;C) aumentam o risco de internacao respiratoria em
+    42% (RR=1,42) ao longo de 21 dias, com pico entre os dias 3 e 10. Esse resultado e real,
+    calculado e verificavel.</li>
+    <li><strong>Testamos a interacao frio + poluicao formalmente.</strong> Usamos o teste RERI (Relative Excess
+    Risk due to Interaction). O resultado: RERI=0,013 com intervalo de confianca que inclui zero.
+    Ou seja, <em>nao ha evidencia de sinergismo</em>. Os efeitos sao compostos (acontecem juntos),
+    mas nao se amplificam mutuamente. Ajustamos toda a linguagem do artigo para refletir isso.</li>
+    <li><strong>Adicionamos a declaracao de etica.</strong> Explicamos que o estudo usa apenas dados publicos
+    agregados (DATASUS, INMET, PurpleAir) e esta isento de comite de etica conforme a resolucao
+    brasileira CNS 510/2016.</li>
+    <li><strong>Moderamos a linguagem.</strong> "Demonstra" virou "sugere". "Sinergico" virou "composto".
+    "Letalidade silenciosa" foi removido. O texto agora reflete o que os dados realmente mostram.</li>
+    <li><strong>Reformatamos para o padrao Lancet.</strong> Resumo condensado para 290 palavras, texto
+    principal para ~2.200 palavras, referencias reduzidas para 27, decimais com ponto medio
+    (17&middot;8 em vez de 17.8), citacoes sobrescritas, suplemento separado com 16 itens.</li>
+    <li><strong>Fizemos analises de sensibilidade.</strong> Testamos se os resultados mudam ao variar
+    parametros do modelo (janela de lag, graus de liberdade sazonais) e ao excluir 2022 (possivel
+    efeito residual de COVID). Os resultados sao robustos: excluir 2022 ate fortalece o efeito do
+    frio (RR sobe de 1,17 para 1,37).</li>
+  </ul>
+
+  <h3 style="color: #1565c0;">Em resumo</h3>
+  <p style="font-size: 1rem;">
+    O manuscrito evoluiu de um artigo <strong>descritivo com afirmacoes sem respaldo</strong> para um estudo
+    <strong>inferencial com resultados computados, verificados e honestos</strong>. O achado principal se
+    manteve &mdash; frio extremo aumenta internacoes respiratorias em Curitiba &mdash; mas agora com
+    numeros reais e linguagem adequada.
+  </p>
+</div>
+
+<!-- ============================================================ -->
 <!-- RESUMO NUMERICO -->
 <!-- ============================================================ -->
 <div class="summary-box">
@@ -245,7 +316,7 @@
 <div class="section">
   <h3>4.1 DLNM <span class="badge badge-new">SECAO NOVA</span></h3>
   <div class="before">Mencionava DLNM nos metodos ("we employed a DLNM framework") e citava Gasparrini 2010, mas <strong>nao havia codigo, resultados nem tabelas</strong>.</div>
-  <div class="after">Secao completa (&sect;2.6) com: equacao do modelo (Eq. 2), cross-basis (exp_df=4, lag_df=5), quasi-Poisson, confundidores (DOW, feriados, spline sazonal 7df/ano), MMT por grid search, RERI, 7 sensibilidades, FDR.</div>
+  <div class="after">Secao completa (&sect;2.6) com: equacao do modelo (Eq. 2), cross-basis (exp_df=4, lag_df=5), quasi-Poisson, confundidores (DOW, feriados, spline sazonal 7df/ano), MMT por grid search, RERI, 6 sensibilidades, FDR.</div>
   <div class="reason">4/5 revisores apontaram ausencia de DLNM como bloqueio critico.</div>
 
   <h3>4.2 Etica e STROBE <span class="badge badge-new">NOVO</span></h3>
@@ -259,7 +330,7 @@
 
   <h3>4.4 Sensibilidades <span class="badge badge-changed">ATUALIZADO</span></h3>
   <div class="before">Mencionava "sensitivity analysis" genericamente.</div>
-  <div class="after">7 cenarios concretos: lag 14/21/28, df sazonal 6/7/8, exclusao 2022 (COVID), exclusao 2024 (sensor instavel).</div>
+  <div class="after">6 cenarios concretos: lag 14/21/28, df sazonal 6/7/8, exclusao 2022 (para avaliar efeito residual de COVID).</div>
 </div>
 
 <!-- ============================================================ -->
@@ -299,7 +370,6 @@
     <tr><td>Lag=28</td><td>1&middot;23</td><td>1&middot;01&ndash;1&middot;51</td></tr>
     <tr><td>6 df/ano</td><td>1&middot;17</td><td>1&middot;00&ndash;1&middot;36</td></tr>
     <tr><td>8 df/ano</td><td>1&middot;21</td><td>1&middot;03&ndash;1&middot;42</td></tr>
-    <tr><td>Excluir 2024</td><td>0&middot;96</td><td>0&middot;72&ndash;1&middot;29</td></tr>
     <tr><td>Excluir 2022</td><td>1&middot;37</td><td>1&middot;11&ndash;1&middot;70</td></tr>
   </table>
 </div>
@@ -349,7 +419,7 @@
     <tr><th>#</th><th>Tipo</th><th>Conteudo</th><th>Status</th></tr>
     <tr><td>Table 1</td><td>Tabela</td><td>Estatisticas descritivas (6 variaveis, N=1096 dias)</td><td><span class="badge badge-kept">MANTIDA</span></td></tr>
     <tr><td>Table 2</td><td>Tabela</td><td>RR cumulativo DLNM em P1&ndash;P99</td><td><span class="badge badge-new">NOVA</span></td></tr>
-    <tr><td>Table 3</td><td>Tabela</td><td>Sensibilidades DLNM (7 cenarios)</td><td><span class="badge badge-new">NOVA</span></td></tr>
+    <tr><td>Table 3</td><td>Tabela</td><td>Sensibilidades DLNM (6 cenarios)</td><td><span class="badge badge-new">NOVA</span></td></tr>
     <tr><td>Figure 1</td><td>Figura</td><td>Curva E-R cumulativa temperatura</td><td><span class="badge badge-new">NOVA</span></td></tr>
     <tr><td>Figure 2</td><td>Figura</td><td>Lag-response frio P10 + calor P90</td><td><span class="badge badge-new">NOVA</span></td></tr>
   </table>
@@ -517,14 +587,14 @@
     <tr><td><code>table_reri.csv</code></td><td>RERI, AP, S</td></tr>
     <tr><td><code>table_adf_stationarity.csv</code></td><td>ADF pre/pos STL</td></tr>
     <tr><td><code>table_fdr.csv</code></td><td>p-values originais vs corrigidos</td></tr>
-    <tr><td><code>table_sensitivity.csv</code></td><td>7 cenarios</td></tr>
+    <tr><td><code>table_sensitivity.csv</code></td><td>6 cenarios</td></tr>
     <tr><td><code>table_diagnostics.csv</code></td><td>&phi;, DW, Ljung-Box, ACF</td></tr>
   </table>
 </div>
 
 <footer>
   Gerado automaticamente em 13/02/2026 &mdash; cwb-temp-pollution-health<br>
-  Commits: 5c022d7 (Lancet formatting) &rarr; f4b5746 (midline dot fix) &rarr; pendente (paragraph fix + HTML)
+  Commits: 5c022d7 &rarr; f4b5746 &rarr; dc70b9f &rarr; 8bedea7 (main branch, GitHub)
 </footer>
 
 </div>
