@@ -940,6 +940,41 @@ S    & 0.955 &  ---     &  ---  \\
 \end{tabular}
 \end{table}
 
+\begin{table}[ht]
+\centering
+\caption{Sensitivity analyses for the temperature DLNM. Cumulative RR
+at the 10th percentile of $T_\mathrm{min}$ (9.8\,°C) under varying
+model specifications.}
+\label{tab:sensitivity}
+\begin{tabular}{lrrrr}
+\toprule
+Scenario & RR & 95\% CI & $\hat{\phi}$ & $N$ \\
+\midrule
+Main (lag=21, 7\,df/yr) & 1.17 & 1.00--1.37 & 1.32 & 1068 \\
+Lag=14                  & 1.05 & 0.92--1.18 & 1.31 & 1068 \\
+Lag=28                  & 1.23 & 1.01--1.51 & 1.32 & 1068 \\
+Seasonal 6\,df/yr       & 1.17 & 1.00--1.36 & 1.33 & 1068 \\
+Seasonal 8\,df/yr       & 1.21 & 1.03--1.42 & 1.31 & 1068 \\
+Exclude 2024            & 0.96 & 0.72--1.29 & 1.32 &  712 \\
+Exclude 2022            & 1.37 & 1.11--1.70 & 1.26 &  718 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[ht]
+\centering
+\caption{Model diagnostics for the quasi-Poisson DLNM.}
+\label{tab:diagnostics}
+\begin{tabular}{lrrrrr}
+\toprule
+Model & $\hat{\phi}$ & DW & Ljung--Box $p$ & ACF lag\,1 & ACF lag\,7 \\
+\midrule
+Temperature & 1.322 & 2.004 & 0.137 & $-$0.006 & 0.077 \\
+PM$_{2.5}$  & 1.329 & 2.115 & 0.096 & $-$0.059 & 0.025 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 \begin{figure}[ht]
 \centering
 \includegraphics[width=0.85\textwidth]{../analysis/dlnm/figures/fig_dlnm_temp_overall.pdf}
