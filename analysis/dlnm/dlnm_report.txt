@@ -1,22 +1,20 @@
 DLNM Analysis Report
 ============================================================
 
-Stationarity figure: /Users/lucasrover/cwb-temp-pollution-health/analysis/dlnm/figures/fig_stationarity.pdf
+Stationarity figure: /private/tmp/cwb-paper/analysis/dlnm/figures/fig_stationarity.pdf
 ADF raw p=0.1645, detrended p=0.0003
 
 Temperature MMT = 17.8°C
-Overall E-R figure: /Users/lucasrover/cwb-temp-pollution-health/analysis/dlnm/figures/fig_dlnm_temp_overall.pdf
+Overall E-R figure: /private/tmp/cwb-paper/analysis/dlnm/figures/fig_dlnm_temp_overall.pdf
 RR at P10=9.8°C: 1.167
-Lag-response figure: /Users/lucasrover/cwb-temp-pollution-health/analysis/dlnm/figures/fig_dlnm_temp_lag.pdf
-3D surface figure: /Users/lucasrover/cwb-temp-pollution-health/analysis/dlnm/figures/fig_dlnm_temp_3d.pdf
+Lag-response figure: /private/tmp/cwb-paper/analysis/dlnm/figures/fig_dlnm_temp_lag.pdf
+3D surface figure: /private/tmp/cwb-paper/analysis/dlnm/figures/fig_dlnm_temp_3d.pdf
 
-PM2.5 E-R figure: /Users/lucasrover/cwb-temp-pollution-health/analysis/dlnm/figures/fig_dlnm_pm25_overall.pdf
-PM2.5 lag figure: /Users/lucasrover/cwb-temp-pollution-health/analysis/dlnm/figures/fig_dlnm_pm25_lag.pdf
+PM2.5 E-R figure: /private/tmp/cwb-paper/analysis/dlnm/figures/fig_dlnm_pm25_overall.pdf
+PM2.5 lag figure: /private/tmp/cwb-paper/analysis/dlnm/figures/fig_dlnm_pm25_lag.pdf
 
-RERI = 0.013 [-0.006, 0.033]
-
-Sensitivity: 7 scenarios computed
-FDR: 1 of 2 tests remain significant
+Adjusted sensitivity: 3 scenarios
+Missing data comparison: 3 variables tested
 
 ============================================================
 Analysis complete.

@@ -68,15 +68,18 @@ percentile of $T_\mathrm{min}$ (5${\cdot}$2\,°C) yielded cumulative
 RR=1${\cdot}$42 [95\% CI: 1${\cdot}$09--1${\cdot}$84] over
 0--21~days; at the 5th percentile (8${\cdot}$5\,°C), RR=1${\cdot}$22
 [1${\cdot}$02--1${\cdot}$44]. The lag structure peaked at 3--10~days.
-Heat effects were non-significant (P90 RR=1${\cdot}$06
-[0${\cdot}$98--1${\cdot}$14]). Results were robust across sensitivity
+Heat effects were imprecise, with wide confidence intervals
+spanning the null (P90 RR=1${\cdot}$06
+[0${\cdot}$98--1${\cdot}$14]; P99 RR=1${\cdot}$29
+[0${\cdot}$98--1${\cdot}$68]). Results were robust across sensitivity
 analyses ($\hat{\phi}$=1${\cdot}$32, Ljung--Box $p$=0${\cdot}$14).
 
 \textbf{Interpretation}\quad
-Cold extremes, not heat, drive the greatest respiratory hospitalisation
+Cold extremes drive the clearest respiratory hospitalisation
 burden in this subtropical setting, with delayed effects peaking at
-3--10~days. Public health early-warning systems should prioritise
-cold-spell forecasts alongside heat alerts.
+3--10~days. Heat effects could not be precisely estimated given the
+short series and few extreme hot days. Public health early-warning
+systems should prioritise cold-spell forecasts alongside heat alerts.
 
 \textbf{Funding}\quad
 None.
@@ -240,13 +243,16 @@ was applied to six standardised variables, with optimal $K$ selected
 by silhouette score. Cross-correlation functions (lags 0--28~days) were
 computed between exposures and hospitalisations.
 
-\subsection{Machine learning forecasting}
+\subsection{Supplementary machine learning forecasting}
 
-As a supplementary analysis, three models --- XGBoost,\cite{Chen2016}
-multilayer perceptron,\cite{Goodfellow2016} and extreme learning
-machine\cite{Huang2006} --- were trained to forecast daily
+As a supplementary predictive analysis --- distinct from the
+inferential DLNM framework above --- three models (XGBoost,\cite{Chen2016}
+multilayer perceptron,\cite{Goodfellow2016} extreme learning
+machine\cite{Huang2006}) were trained to forecast daily
 hospitalisations at lags 0--7~days. SHAP values\cite{Lundberg2017}
-quantified feature importance. Details, results, and CMIP6 projections
+quantified feature importance. These models do not estimate causal
+effects but provide complementary evidence on variable relevance for
+operational forecasting. Details, results, and CMIP6 projections
 are reported in the Supplement (eMethods, eTable~8, eFigure~8).
 
 \subsection{Distributed lag non-linear model}
@@ -321,9 +327,12 @@ Hosp.\ (n/day)   & 1094 & 32${\cdot}$29 & 11${\cdot}$74 & 32${\cdot}$00 & 23${\c
 \subsection{Exploratory analyses}
 
 K-means clustering and lag-correlation analyses are reported in the
-Supplement (eTables~2--5; eFigures~1--4). Briefly, three
-climate--pollution clusters emerged ($K$=3, silhouette=0${\cdot}$357),
-with the Clean Cold cluster showing delayed positive correlations at
+Supplement (eTables~2--5; eFigures~1--4) and should be interpreted
+as exploratory pattern description rather than confirmatory evidence.
+Briefly, three climate--pollution clusters emerged ($K$=3,
+silhouette=0${\cdot}$357); however, the Polluted Heat cluster contained
+only 12~days ($<$3\% of the sample), limiting its inferential value.
+The Clean Cold cluster showed delayed positive correlations at
 lags 3--10~days. Extended lag analysis revealed peak
 $T_\mathrm{min}$--hospitalisation correlation at lag~9
 ($r$=$-$0${\cdot}$320, $p<$0${\cdot}$001), motivating the DLNM lag
@@ -341,8 +350,12 @@ percentile (5${\cdot}$2\,°C), RR=1${\cdot}$42
 [1${\cdot}$09--1${\cdot}$84]; at the 5th percentile (8${\cdot}$5\,°C),
 RR=1${\cdot}$22 [1${\cdot}$02--1${\cdot}$44]; at the 10th percentile
 (9${\cdot}$8\,°C), RR=1${\cdot}$17 [1${\cdot}$00--1${\cdot}$37]
-(Table~\ref{tab:dlnm_temp_rr}). Heat effects were non-significant at
-the 90th percentile (RR=1${\cdot}$06 [0${\cdot}$98--1${\cdot}$14]).
+(Table~\ref{tab:dlnm_temp_rr}). Above the MMT, heat effects were imprecise: at the 90th
+percentile (19${\cdot}$4\,°C), RR=1${\cdot}$06
+[0${\cdot}$98--1${\cdot}$14]; at the 99th percentile
+(21${\cdot}$4\,°C), RR=1${\cdot}$29 [0${\cdot}$98--1${\cdot}$68],
+with wide confidence intervals that do not exclude a clinically
+meaningful effect.
 The lag structure at cold (P10) peaked at lags 3--10~days
 (Figure~\ref{fig:dlnm_temp_lag}a), consistent with cross-correlation
 results.
@@ -352,6 +365,14 @@ Results were robust to lag window and seasonal df
 (Table~\ref{tab:sensitivity}). Cumulative RR at P10 ranged from
 1${\cdot}$05 (lag=14) to 1${\cdot}$23 (lag=28). Excluding 2022
 strengthened the effect (RR=1${\cdot}$37 [1${\cdot}$11--1${\cdot}$70]).
+Additional sensitivity analyses adjusting for relative humidity as a
+linear covariate produced nearly identical temperature estimates
+(RR=1${\cdot}$18 at P10, $N$=851), confirming that the cold effect is
+not confounded by humidity variation. Models further adjusted for
+PM$_{2{\cdot}5}$ showed attenuated estimates; however, this
+attenuation is attributable to sample restriction bias, as
+PM$_{2{\cdot}5}$-complete days underrepresent cold temperatures
+(eTable~9, eTable~10; see Limitations).
 ADF on raw hospitalisations confirmed non-stationarity ($p$=0${\cdot}$164);
 STL residuals were stationary ($p$=0${\cdot}$0003; eFigure~7).
 Model diagnostics showed no autocorrelation (Durbin--Watson=2${\cdot}$00,
@@ -416,12 +437,15 @@ MMT=17${\cdot}$8\,°C.}
 \label{fig:dlnm_temp_lag}
 \end{figure}
 
-\subsection{Machine learning forecasting}
+\subsection{Supplementary machine learning forecasting}
 
-Supplementary ML analyses (eTable~8, eFigure~8) showed XGBoost as
-the best-performing model (MAPE=19${\cdot}$4\% at lag~0,
-RMSE=8${\cdot}$37), with temperature ranked among the top predictors
-by SHAP analysis.
+Supplementary predictive analyses (eTable~8, eFigure~8) showed
+XGBoost as the best-performing forecasting model (MAPE=19${\cdot}$4\%
+at lag~0, RMSE=8${\cdot}$37). SHAP analysis ranked temperature among
+the most important predictors, providing complementary evidence
+consistent with the DLNM findings above. These results support the
+potential utility of ML-based early-warning systems but do not
+substitute for the inferential estimates from the DLNM.
 
 %% ═══════════════════════════════════════════════════════════════════
 %% DISCUSSÃO
@@ -459,6 +483,16 @@ strengthened the effect (RR=1${\cdot}$37 [1${\cdot}$11--1${\cdot}$70]),
 suggesting that residual COVID-19 effects may attenuate the
 temperature--morbidity association in the full period.
 
+Regarding heat effects, the point estimates above the MMT
+(RR=1${\cdot}$06 at P90; RR=1${\cdot}$29 at P99) suggest a
+possible J-shaped curve, but the wide confidence intervals preclude
+firm conclusions. This imprecision likely reflects the short series
+(three years) and the limited number of extreme hot days at the upper
+tail of the Curitiba temperature distribution. We therefore interpret
+the heat results as underpowered rather than null, and caution against
+concluding that heat poses no respiratory risk in this
+setting.\cite{Gasparrini2015}
+
 These results have implications for public health early-warning
 systems in subtropical settings. Cold-spell forecasts should be
 prioritised alongside heat alerts, particularly given the delayed
@@ -471,7 +505,26 @@ This ecological time-series study does not permit causal inference at
 the individual level. No individual-level exposure, behaviour, or
 comorbidity data were available. The 3-year analysis period
 (2022--2024) limits power for rare events (cold spells, $n$=4) and
-provides only three realisations of the seasonal cycle. Confounding
+provides only three realisations of the seasonal cycle. However, the
+primary DLNM estimates derive from the full continuous temperature
+distribution ($N$=1068~days), not solely from classified extreme
+events; sensitivity analyses varying lag windows and seasonal degrees
+of freedom consistently reproduced the cold effect (Table~\ref{tab:sensitivity}). PM$_{2{\cdot}5}$ data had 36${\cdot}$4\% missingness due to sensor
+downtime and inter-channel quality control. A comparison of key
+variables between days with and without valid PM$_{2{\cdot}5}$
+(eTable~10) revealed that days with missing PM$_{2{\cdot}5}$ had
+significantly lower $T_\mathrm{min}$ (13${\cdot}$8 vs 15${\cdot}$3\,°C,
+$p<$0${\cdot}$001) and higher hospitalisations (34${\cdot}$8 vs
+31${\cdot}$4/day, $p<$0${\cdot}$001), indicating that missingness
+is missing at random (MAR) conditional on season/temperature rather
+than MCAR. Consequently, models restricted to PM$_{2{\cdot}5}$-complete
+days ($N$=683) underrepresent cold days and produce attenuated
+temperature estimates (eTable~9). The humidity-only adjusted model,
+which retained $N$=851~days, produced estimates nearly identical to
+the unadjusted main model (RR=1${\cdot}$18 vs 1${\cdot}$17 at P10),
+confirming robustness to humidity confounding. Future studies should
+use reference-grade PM$_{2{\cdot}5}$ monitors with higher data
+completeness to address this limitation. Confounding
 by respiratory viral circulation (influenza, RSV) cannot be excluded,
 as viral surveillance data were not included. Daily total counts were
 used without age or ICD-10 subgroup stratification; cause-specific
@@ -489,7 +542,8 @@ extremes are associated with increased respiratory hospitalisations,
 with a delayed lag structure peaking at 3--10~days. The DLNM
 identified MMT=17${\cdot}$8\,°C and estimated cumulative
 RR=1${\cdot}$42 [1${\cdot}$09--1${\cdot}$84] at extreme cold (P1,
-5${\cdot}$2\,°C) over 0--21~days. Heat effects were non-significant.
+5${\cdot}$2\,°C) over 0--21~days. Heat effects were imprecise and
+require longer observation periods to characterise.
 Public health systems in subtropical Southern Hemisphere cities should
 integrate cold-spell forecasts into early-warning systems. Future
 work should extend this analysis to multiple cities with

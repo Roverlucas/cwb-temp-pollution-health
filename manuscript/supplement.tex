@@ -92,7 +92,7 @@ variance) associating cold, polluted days with higher admissions
 $T_\mathrm{min}$--hospitalisation correlation at lag~9
 ($r$=$-$0${\cdot}$320, $p<$0${\cdot}$001).
 
-\subsection*{Exploratory PM$_{2{\cdot}5}$ DLNM}
+\subsection*{Exploratory PM$_{2{\cdot}5}$ DLNM and confounding assessment}
 
 An exploratory DLNM for EPA-corrected PM$_{2{\cdot}5}$ ($N$=697,
 lag 0--14~days, exposure df=4, lag df=4) showed no significant
@@ -103,10 +103,51 @@ below the WHO 24-hour guideline) and 36${\cdot}$4\% missing data
 likely limited statistical power. A joint model ($N$=683) yielded
 RERI=0${\cdot}$013 [$-$0${\cdot}$006, 0${\cdot}$033] on the additive
 scale, indicating no evidence of supra-additive interaction between
-temperature and PM$_{2{\cdot}5}$ (eTable~6).
+temperature and PM$_{2{\cdot}$5} (eTable~6).
+
+\paragraph{Adjusted sensitivity analysis (eTable~9)}
+To assess potential confounding by co-pollutant exposure and
+meteorological conditions, we fitted additional temperature DLNM models
+including PM$_{2{\cdot}5}$ and/or relative humidity as linear
+covariates. Adjusting for humidity alone ($N$=851) preserved the cold
+effect (RR=1${\cdot}$18 [0${\cdot}$98--1${\cdot}$42] at P10),
+virtually identical to the unadjusted estimate (RR=1${\cdot}$17).
+However, models restricted to PM$_{2{\cdot}5}$-complete days showed
+attenuated estimates (RR=0${\cdot}$82 [0${\cdot}$64--1${\cdot}$06],
+$N$=683). This attenuation is likely a selection artifact: days with
+valid PM$_{2{\cdot}5}$ data have systematically higher temperatures
+($T_\mathrm{min}$ 15${\cdot}$3 vs 13${\cdot}$8\,°C, $p<$0${\cdot}$001;
+eTable~10) and lower hospitalisations, thus underrepresenting the cold
+tail of the distribution where the strongest effects are observed.
+
+Atmospheric pressure was not available in the merged daily dataset and
+could not be included; however, pressure's effect on respiratory
+admissions is predominantly mediated through
+temperature,\cite{Linares2025} and its omission is unlikely to bias
+the primary temperature estimates substantially.
 
 \subsection*{Missing data sensitivity}
 
+\paragraph{PM$_{2{\cdot}5}$ missingness mechanism (eTable~10)}
+PM$_{2{\cdot}5}$ data were available for 697 of 1096~study days
+(63${\cdot}$6\%). Missingness was driven by PurpleAir sensor downtime
+(hardware resets, network outages) and inter-channel quality control
+exclusions. To evaluate the missingness mechanism, we compared
+$T_\mathrm{min}$, relative humidity, and daily hospitalisations
+between days with and without valid PM$_{2{\cdot}5}$ (eTable~10).
+Days with missing PM$_{2{\cdot}5}$ had significantly lower
+temperatures ($-$1${\cdot}$4\,°C, $p<$0${\cdot}$001) and higher
+hospitalisations ($+$3${\cdot}$4/day, $p<$0${\cdot}$001), indicating
+that the mechanism is missing at random (MAR) conditional on
+season/temperature. This pattern is consistent with increased sensor
+downtime during winter months. Consequently, complete-case analyses
+restricted to PM$_{2{\cdot}5}$-available days underrepresent cold
+temperatures and produce attenuated temperature effect estimates.
+The primary temperature DLNM, which uses the full dataset ($N$=1068)
+without conditioning on PM$_{2{\cdot}5}$ availability, is not
+affected by this selection bias.
+
+\paragraph{Imputation sensitivity}
 Sensitivity analyses with mean imputation and $k$-nearest-neighbour
 imputation ($k$=5) produced qualitatively similar clustering solutions
 to the primary complete-case analysis (silhouette scores within
@@ -139,7 +180,10 @@ Cold spells  &  4 &  39 & 4${\cdot}$0 & 3--7 \\
 \centering
 \caption{Cluster profiles at $K$=3 (optimal by silhouette, $N$=558
 complete-case days). Temperature in °C (INMET); PM$_{2{\cdot}5}$
-EPA-corrected.}
+EPA-corrected. \textbf{Note:} The Polluted Heat cluster contains only
+$n$=12 days ($<$3\% of the sample), limiting the statistical
+reliability of its profile estimates. Results from this cluster should
+be interpreted as exploratory pattern description.}
 \label{etab:clusters_k3}
 \begin{tabular}{lrrrrrrr}
 \toprule
@@ -267,6 +311,48 @@ Lag & Model & RMSE & MAE & MAPE (\%) & $N_\mathrm{param}$ \\
 7 & MLP     &  9${\cdot}$67 &  7${\cdot}$60 & 24${\cdot}$6 &  12 \\
 7 & \textbf{XGBoost} & \textbf{8${\cdot}$66} & \textbf{6${\cdot}$57} & \textbf{20${\cdot}$8} &  19 \\
 \bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[ht]
+\centering
+\caption{Sensitivity analysis adjusting for co-pollutant and
+meteorological covariates. Cumulative RR at P10 of $T_\mathrm{min}$
+(9${\cdot}$8\,°C), centred at MMT=17${\cdot}$8\,°C. Models include
+PM$_{2{\cdot}5}$ and/or relative humidity as linear covariates
+alongside the temperature cross-basis.}
+\label{etab:adjusted_sensitivity}
+\begin{tabular}{lrrrrr}
+\toprule
+Scenario & RR & 95\% CI & $\hat{\phi}$ & $N$ \\
+\midrule
+Main (unadjusted)            & 1${\cdot}$17 & 1${\cdot}$00--1${\cdot}$37 & 1${\cdot}$32 & 1068 \\
++ PM$_{2{\cdot}5}$ (linear)  & 0${\cdot}$82 & 0${\cdot}$64--1${\cdot}$06 & 1${\cdot}$32 &  683 \\
++ Humidity (linear)           & 1${\cdot}$18 & 0${\cdot}$98--1${\cdot}$42 & 1${\cdot}$27 &  851 \\
++ PM$_{2{\cdot}5}$ + Humidity & 0${\cdot}$68 & 0${\cdot}$44--1${\cdot}$06 & 1${\cdot}$28 &  563 \\
+\bottomrule
+\multicolumn{5}{l}{\footnotesize \textit{Note:} Models restricted to PM$_{2{\cdot}5}$-complete days underrepresent cold}\\
+\multicolumn{5}{l}{\footnotesize temperatures (eTable~10), explaining the attenuated estimates. See Limitations.}
+\end{tabular}
+\end{table}
+
+\begin{table}[ht]
+\centering
+\caption{Comparison of key variable distributions between days with
+valid PM$_{2{\cdot}5}$ ($n$=697) and days with missing PM$_{2{\cdot}5}$
+($n$=399). Welch $t$-test for difference in means.}
+\label{etab:missing_data_comparison}
+\begin{tabular}{lrrrr}
+\toprule
+Variable & Valid PM$_{2{\cdot}5}$ & Missing PM$_{2{\cdot}5}$ & Diff & $p$ \\
+ & (mean $\pm$ SD) & (mean $\pm$ SD) & & (Welch $t$) \\
+\midrule
+$T_\mathrm{min}$ (°C)   & 15${\cdot}$3 $\pm$ 3${\cdot}$5 & 13${\cdot}$8 $\pm$ 3${\cdot}$9 & $+$1${\cdot}$4 & $<$0${\cdot}$001 \\
+Rel.\ humidity (\%)       & 80${\cdot}$5 $\pm$ 8${\cdot}$9 & 78${\cdot}$9 $\pm$ 10${\cdot}$5 & $+$1${\cdot}$6 & 0${\cdot}$028 \\
+Hospitalisations (n/day) & 31${\cdot}$4 $\pm$ 11${\cdot}$3 & 34${\cdot}$8 $\pm$ 11${\cdot}$6 & $-$3${\cdot}$4 & $<$0${\cdot}$001 \\
+\bottomrule
+\multicolumn{5}{l}{\footnotesize PM$_{2{\cdot}5}$ valid: $n$=697 days; missing: $n$=399 days. Missingness is MAR}\\
+\multicolumn{5}{l}{\footnotesize (conditional on season/temperature), not MCAR. See main text Limitations.}
 \end{tabular}
 \end{table}
 

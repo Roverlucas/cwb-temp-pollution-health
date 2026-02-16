@@ -354,6 +354,148 @@ def fit_dlnm(
     }
 
 
+def fit_dlnm_adjusted(
+    df: pd.DataFrame,
+    exposure_col: str = "t_min",
+    lag_max: int = 21,
+    exposure_df: int = 4,
+    lag_df: int = 5,
+    seasonal_df: int = 21,
+    adjust_pm25: bool = False,
+    adjust_humidity: bool = False,
+    verbose: bool = False,
+) -> dict:
+    """Fit temperature DLNM with PM2.5 and/or humidity as linear covariates.
+
+    This is a sensitivity analysis to assess confounding by co-pollutant
+    exposure and meteorological conditions (addresses V1 and V3).
+    """
+    required_cols = [exposure_col]
+    if adjust_pm25:
+        required_cols.append("pm2.5_epa")
+    if adjust_humidity:
+        required_cols.append("umidade_relativa")
+
+    sub = df.dropna(subset=required_cols).copy().reset_index(drop=True)
+    n_total = len(sub)
+
+    # Build cross-basis for temperature
+    exposure = sub[exposure_col].values
+    CB, meta = build_crossbasis(
+        exposure, lag_max=lag_max, exposure_df=exposure_df, lag_df=lag_df,
+    )
+
+    valid_rows = ~np.isnan(CB).any(axis=1)
+    n_valid = valid_rows.sum()
+
+    # Confounders (DOW + holiday + seasonal spline)
+    X_conf = _confounder_matrix(sub, seasonal_df=seasonal_df)
+
+    # Additional linear covariates
+    extra_cols = []
+    if adjust_pm25:
+        extra_cols.append(sub["pm2.5_epa"].values.reshape(-1, 1))
+    if adjust_humidity:
+        extra_cols.append(sub["umidade_relativa"].values.reshape(-1, 1))
+
+    if extra_cols:
+        X_extra = np.hstack(extra_cols)
+    else:
+        X_extra = np.empty((n_total, 0))
+
+    # Full design: intercept + CB + confounders + extra covariates
+    X = np.hstack([np.ones((n_total, 1)), CB, X_conf, X_extra])
+    y = sub["hosp"].values.astype(float)
+
+    X_fit = X[valid_rows]
+    y_fit = y[valid_rows]
+
+    adj_label = []
+    if adjust_pm25:
+        adj_label.append("PM2.5")
+    if adjust_humidity:
+        adj_label.append("humidity")
+    adj_str = " + ".join(adj_label) if adj_label else "none"
+
+    if verbose:
+        print(f"\n  Adjusted DLNM: {exposure_col}, adjusting for {adj_str}")
+        print(f"  N total={n_total}, N valid={n_valid}, predictors={X_fit.shape[1]}")
+
+    model = sm.GLM(y_fit, X_fit, family=sm.families.Poisson())
+    result = model.fit(scale="X2")
+
+    n_basis = meta.n_basis
+    cb_coefs = result.params[1:1 + n_basis]
+    cb_vcov = result.cov_params()[1:1 + n_basis, 1:1 + n_basis]
+
+    if verbose:
+        print(f"  Dispersion phi={result.scale:.3f}")
+
+    return {
+        "result": result,
+        "meta": meta,
+        "cb_coefs": cb_coefs,
+        "cb_vcov": cb_vcov,
+        "phi": result.scale,
+        "n_valid": n_valid,
+        "exposure_col": exposure_col,
+        "lag_max": lag_max,
+        "exposure": exposure[valid_rows],
+        "y_fit": y_fit,
+        "X_fit": X_fit,
+        "valid_mask": valid_rows,
+        "sub_df": sub,
+        "adjustment": adj_str,
+    }
+
+
+def missing_data_comparison(df: pd.DataFrame, verbose: bool = False) -> pd.DataFrame:
+    """Compare distributions between days with/without valid PM2.5.
+
+    Tests the MCAR assumption by comparing T_min, humidity, and
+    hospitalisations between complete and missing PM2.5 days (V7).
+    """
+    has_pm25 = df["pm2.5_epa"].notna()
+
+    records = []
+    for col, label in [
+        ("t_min", "T_min (°C)"),
+        ("umidade_relativa", "Rel. humidity (%)"),
+        ("hosp", "Hospitalisations (n/day)"),
+    ]:
+        valid_vals = df.loc[has_pm25, col].dropna()
+        missing_vals = df.loc[~has_pm25, col].dropna()
+
+        if len(valid_vals) > 1 and len(missing_vals) > 1:
+            t_stat, p_val = sp_stats.ttest_ind(valid_vals, missing_vals,
+                                                equal_var=False)
+            records.append({
+                "variable": label,
+                "valid_mean": valid_vals.mean(),
+                "valid_sd": valid_vals.std(),
+                "missing_mean": missing_vals.mean(),
+                "missing_sd": missing_vals.std(),
+                "diff": valid_vals.mean() - missing_vals.mean(),
+                "welch_t": t_stat,
+                "p_value": p_val,
+                "n_valid": len(valid_vals),
+                "n_missing": len(missing_vals),
+            })
+
+    result_df = pd.DataFrame(records)
+
+    if verbose:
+        print("\n  Missing data comparison (PM2.5 valid vs missing):")
+        for _, row in result_df.iterrows():
+            sig = "*" if row["p_value"] < 0.05 else ""
+            print(f"    {row['variable']}: "
+                  f"valid={row['valid_mean']:.2f}±{row['valid_sd']:.2f} "
+                  f"vs missing={row['missing_mean']:.2f}±{row['missing_sd']:.2f}, "
+                  f"p={row['p_value']:.4f}{sig}")
+
+    return result_df
+
+
 def find_mmt(fit: dict, n_grid: int = 200, verbose: bool = False) -> float:
     """Find the minimum mortality temperature (MMT) via grid search."""
     meta = fit["meta"]
@@ -608,6 +750,59 @@ def sensitivity_analyses(
         try:
             fit = fit_dlnm(sub, "t_min", lag_max=lag_max,
                            seasonal_df=sdf, verbose=False)
+            pred = crosspred(fit["cb_coefs"], fit["cb_vcov"], fit["meta"],
+                             np.array([p10_temp]), mmt)
+            records.append({
+                "scenario": label,
+                "RR": pred["rr"][0],
+                "RR_lower": pred["rr_lower"][0],
+                "RR_upper": pred["rr_upper"][0],
+                "phi": fit["phi"],
+                "N": fit["n_valid"],
+            })
+            if verbose:
+                print(f"    RR(P10)={pred['rr'][0]:.3f} "
+                      f"[{pred['rr_lower'][0]:.3f}, {pred['rr_upper'][0]:.3f}], "
+                      f"phi={fit['phi']:.2f}, N={fit['n_valid']}")
+        except Exception as e:
+            if verbose:
+                print(f"    FAILED: {e}")
+            records.append({
+                "scenario": label, "RR": np.nan, "RR_lower": np.nan,
+                "RR_upper": np.nan, "phi": np.nan, "N": 0,
+            })
+
+    return pd.DataFrame(records)
+
+
+def extended_sensitivity_analyses(
+    df: pd.DataFrame,
+    mmt: float,
+    verbose: bool = False,
+) -> pd.DataFrame:
+    """Run adjusted DLNM sensitivity analyses (V1+V3).
+
+    Fits temperature DLNM with PM2.5 and/or humidity as linear covariates,
+    and reports cumulative RR at P10 for comparison with the unadjusted model.
+    """
+    p10_temp = np.nanpercentile(df["t_min"].dropna(), 10)
+    records = []
+
+    configs = [
+        # (label, adjust_pm25, adjust_humidity)
+        ("+ PM2.5 (linear)", True, False),
+        ("+ Humidity (linear)", False, True),
+        ("+ PM2.5 + Humidity", True, True),
+    ]
+
+    for label, adj_pm, adj_hum in configs:
+        if verbose:
+            print(f"\n  Extended sensitivity: {label}")
+        try:
+            fit = fit_dlnm_adjusted(
+                df, "t_min", lag_max=21, adjust_pm25=adj_pm,
+                adjust_humidity=adj_hum, verbose=False,
+            )
             pred = crosspred(fit["cb_coefs"], fit["cb_vcov"], fit["meta"],
                              np.array([p10_temp]), mmt)
             records.append({
@@ -945,6 +1140,8 @@ def main():
                         help="Run FDR correction")
     parser.add_argument("--sensitivity-all", action="store_true",
                         help="Run all sensitivity analyses")
+    parser.add_argument("--adjusted", action="store_true",
+                        help="Run adjusted DLNM (PM2.5, humidity) + missing data comparison")
     args = parser.parse_args()
     v = args.verbose
 
@@ -1156,6 +1353,23 @@ def main():
                        float_format="%.4f")
         plot_sensitivity(sens_df)
         report_lines.append(f"\nSensitivity: {len(sens_df)} scenarios computed")
+
+    # ── Adjusted sensitivity (V1+V3) ──
+    if args.adjusted and fit_temp is not None and mmt is not None:
+        if v:
+            print("\n══ Adjusted Sensitivity Analyses (V1+V3) ══")
+        ext_sens = extended_sensitivity_analyses(df, mmt, verbose=v)
+        ext_sens.to_csv(TBL_DIR / "table_adjusted_sensitivity.csv",
+                        index=False, float_format="%.4f")
+        report_lines.append(f"\nAdjusted sensitivity: {len(ext_sens)} scenarios")
+
+        # Missing data comparison (V7)
+        if v:
+            print("\n══ Missing Data Comparison (V7) ══")
+        miss_cmp = missing_data_comparison(df, verbose=v)
+        miss_cmp.to_csv(TBL_DIR / "table_missing_data_comparison.csv",
+                        index=False, float_format="%.4f")
+        report_lines.append(f"Missing data comparison: {len(miss_cmp)} variables tested")
 
     # ── FDR ──
     if args.fdr and all_pvalues:
