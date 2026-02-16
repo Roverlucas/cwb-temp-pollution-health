@@ -15,6 +15,7 @@ PM2.5 lag figure: /private/tmp/cwb-paper/analysis/dlnm/figures/fig_dlnm_pm25_lag
 
 Adjusted sensitivity: 3 scenarios
 Missing data comparison: 3 variables tested
+Confounding diagnostic: B-C delta < 0.001
 
 ============================================================
 Analysis complete.

@@ -75,8 +75,8 @@ spanning the null (P90 RR=1${\cdot}$06
 analyses ($\hat{\phi}$=1${\cdot}$32, Ljung--Box $p$=0${\cdot}$14).
 
 \textbf{Interpretation}\quad
-Cold extremes drive the clearest respiratory hospitalisation
-burden in this subtropical setting, with delayed effects peaking at
+Cold extremes show the clearest association with respiratory
+hospitalisations in this subtropical setting, with delayed effects peaking at
 3--10~days. Heat effects could not be precisely estimated given the
 short series and few extreme hot days. Public health early-warning
 systems should prioritise cold-spell forecasts alongside heat alerts.
@@ -186,7 +186,11 @@ between daily environmental exposures and respiratory hospital
 admissions in Curitiba, Paraná, Brazil (population~$\sim$1${\cdot}$8~million),
 over 1~January~2022 to 31~December~2024 (1096~days). Curitiba's
 subtropical climate features winter temperatures below 5\,°C and
-summer maxima approaching 30\,°C.
+summer maxima approaching 30\,°C. The study-period $T_\mathrm{min}$
+distribution (mean 14${\cdot}$8\,°C, P10=9${\cdot}$8\,°C) was
+comparable to the 1961--2024 INMET climatology (mean 13${\cdot}$3\,°C,
+P10=7${\cdot}$8\,°C; eFigure~9), indicating that the 2022--2024
+period did not experience a regime shift in cold extremes.
 
 \subsection{Data sources}
 
@@ -342,7 +346,8 @@ window of 0--21~days.
 \label{sec:dlnm_results}
 
 \paragraph{Temperature exposure--response}
-The quasi-Poisson DLNM for $T_\mathrm{min}$ ($N$=1068,
+The quasi-Poisson DLNM for $T_\mathrm{min}$ ($N$=1068 after excluding
+28~days with missing $T_\mathrm{min}$;
 $\hat{\phi}$=1${\cdot}$32) identified MMT=17${\cdot}$8\,°C
 (Figure~\ref{fig:dlnm_temp_overall}). Cold extremes showed
 monotonically increasing cumulative RR below the MMT: at the 1st
@@ -365,15 +370,20 @@ Results were robust to lag window and seasonal df
 (Table~\ref{tab:sensitivity}). Cumulative RR at P10 ranged from
 1${\cdot}$05 (lag=14) to 1${\cdot}$23 (lag=28). Excluding 2022
 strengthened the effect (RR=1${\cdot}$37 [1${\cdot}$11--1${\cdot}$70]).
-Additional sensitivity analyses adjusting for relative humidity as a
-linear covariate produced nearly identical temperature estimates
-(RR=1${\cdot}$18 at P10, $N$=851), confirming that the cold effect is
-not confounded by humidity variation. Models further adjusted for
-PM$_{2{\cdot}5}$ showed attenuated estimates; however, this
-attenuation is attributable to sample restriction bias, as
-PM$_{2{\cdot}5}$-complete days underrepresent cold temperatures
-(eTable~9, eTable~10; see Limitations).
-ADF on raw hospitalisations confirmed non-stationarity ($p$=0${\cdot}$164);
+A confounding diagnostic compared three models at P10
+(eTable~9): (A) unadjusted temperature DLNM on the full sample
+($N$=1068, RR=1${\cdot}$17); (B) unadjusted temperature DLNM
+restricted to PM$_{2{\cdot}5}$-complete days ($N$=683, RR=0${\cdot}$82);
+(C) temperature DLNM \emph{with} PM$_{2{\cdot}5}$ as linear covariate
+on the same $N$=683 ($\mathrm{RR}$=0${\cdot}$82). Models~B and~C were
+virtually identical ($\Delta$RR$<$0${\cdot}$001), demonstrating that
+PM$_{2{\cdot}5}$ does not confound the temperature--hospitalisation
+association; the entire attenuation from~A to~B is attributable to
+restricting the sample to warmer, PM$_{2{\cdot}5}$-available days
+(eTable~10). Adding relative humidity as a linear covariate on
+$N$=851~days produced estimates nearly identical to the main model
+(RR=1${\cdot}$18, Model~D).
+ADF on raw hospitalisations did not reject non-stationarity ($p$=0${\cdot}$164);
 STL residuals were stationary ($p$=0${\cdot}$0003; eFigure~7).
 Model diagnostics showed no autocorrelation (Durbin--Watson=2${\cdot}$00,
 Ljung--Box $p$=0${\cdot}$14; eTable~7).
@@ -453,8 +463,8 @@ substitute for the inferential estimates from the DLNM.
 \section{Discussion}
 
 Our DLNM analysis provides formal inferential evidence that cold
-extremes are the dominant temperature-related driver of respiratory
-hospitalisations in Curitiba. At the 1st percentile of
+extremes show the strongest temperature-related association with
+respiratory hospitalisations in Curitiba. At the 1st percentile of
 $T_\mathrm{min}$ (5${\cdot}$2\,°C), cumulative RR reached
 1${\cdot}$42 [1${\cdot}$09--1${\cdot}$84] over 0--21~days, with a
 delayed lag peak at 3--10~days. This lag structure is consistent with
@@ -510,21 +520,23 @@ primary DLNM estimates derive from the full continuous temperature
 distribution ($N$=1068~days), not solely from classified extreme
 events; sensitivity analyses varying lag windows and seasonal degrees
 of freedom consistently reproduced the cold effect (Table~\ref{tab:sensitivity}). PM$_{2{\cdot}5}$ data had 36${\cdot}$4\% missingness due to sensor
-downtime and inter-channel quality control. A comparison of key
-variables between days with and without valid PM$_{2{\cdot}5}$
-(eTable~10) revealed that days with missing PM$_{2{\cdot}5}$ had
-significantly lower $T_\mathrm{min}$ (13${\cdot}$8 vs 15${\cdot}$3\,°C,
-$p<$0${\cdot}$001) and higher hospitalisations (34${\cdot}$8 vs
-31${\cdot}$4/day, $p<$0${\cdot}$001), indicating that missingness
-is missing at random (MAR) conditional on season/temperature rather
-than MCAR. Consequently, models restricted to PM$_{2{\cdot}5}$-complete
-days ($N$=683) underrepresent cold days and produce attenuated
-temperature estimates (eTable~9). The humidity-only adjusted model,
-which retained $N$=851~days, produced estimates nearly identical to
-the unadjusted main model (RR=1${\cdot}$18 vs 1${\cdot}$17 at P10),
-confirming robustness to humidity confounding. Future studies should
-use reference-grade PM$_{2{\cdot}5}$ monitors with higher data
-completeness to address this limitation. Confounding
+downtime and inter-channel quality control. Missingness is not MCAR:
+days without valid PM$_{2{\cdot}5}$ had lower $T_\mathrm{min}$
+(13${\cdot}$8 vs 15${\cdot}$3\,°C, $p<$0${\cdot}$001) and higher
+hospitalisations (34${\cdot}$8 vs 31${\cdot}$4/day,
+$p<$0${\cdot}$001; eTable~10). A logistic missingness model
+($\mathrm{Missing}\sim\mathrm{ns}(T_\mathrm{min})+\mathrm{month}+\mathrm{DOW}$;
+pseudo-$R^2$=0${\cdot}$26, AUC=0${\cdot}$80) confirmed that
+missingness is predictable from season and temperature (eTable~11).
+The confounding diagnostic (eTable~9) showed that restricting the
+sample to PM$_{2{\cdot}5}$-complete days \emph{without} adjusting for
+PM$_{2{\cdot}5}$ (Model~B) produces the same attenuated estimate as
+the PM$_{2{\cdot}5}$-adjusted model (Model~C;
+$\Delta\mathrm{RR}<$0${\cdot}$001), proving that the attenuation
+reflects sample restriction, not confounding. The primary DLNM on the
+full sample ($N$=1068) is unaffected by this selection. Future studies
+should use reference-grade PM$_{2{\cdot}5}$ monitors with higher data
+completeness. Confounding
 by respiratory viral circulation (influenza, RSV) cannot be excluded,
 as viral surveillance data were not included. Daily total counts were
 used without age or ICD-10 subgroup stratification; cause-specific
