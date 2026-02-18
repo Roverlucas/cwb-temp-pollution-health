@@ -1,6 +1,6 @@
-# Structural Adaptation Gaps Amplify the Synergistic Mortality Risk of Cold Spells and Particulate Matter in a Subtropical Metropolis
+# Cold, not heat: delayed temperature extremes drive respiratory hospitalisations in subtropical Southern Brazil
 
-**Authors:** Felipe Baglioli, Lucas Rover, et al.
+**Authors:** Felipe Baglioli, Lucas Rover
 
 **Target journal:** The Lancet Regional Health — Americas
 
@@ -8,7 +8,7 @@
 
 ```
 cwb-temp-pollution-health/
-├── manuscript/               # Article manuscript (.docx)
+├── manuscript/               # Article manuscript (LaTeX + PDF)
 ├── notebooks/                # Jupyter notebooks (analysis code)
 │   ├── temp_pm_saude_cwb.ipynb   # Exploratory data analysis
 │   └── temp_morb_pm.ipynb        # Morbidity & mortality models
@@ -20,6 +20,8 @@ cwb-temp-pollution-health/
 │   │   └── health/           # Aggregated morbidity/mortality counts
 │   ├── processed/            # Merged analysis-ready dataset
 │   └── cmip6/                # CMIP6 SSP5-8.5 climate projections
+├── analysis/
+│   └── dlnm/                 # DLNM results and figures
 ├── figures/
 │   ├── exploratory/          # EDA plots (decomposition, PCA, correlations)
 │   └── results/              # Model output figures (lag comparisons, predictions)
@@ -27,21 +29,34 @@ cwb-temp-pollution-health/
 └── review/                   # Revision action plans and strategic reviews
 ```
 
+## Key Findings
+
+- **Cold extremes** at P1 of T_min (5.2 °C) yield cumulative RR = 1.42 [95% CI: 1.09–1.84] — a 42% excess in respiratory hospitalisations
+- **Heat effects** are non-significant (P90 RR = 1.06 [0.98–1.14])
+- **Delayed effect** peaks at lags 3–10 days, providing a window for preventive intervention
+- **MMT** = 17.8 °C (75th percentile of local temperature distribution)
+
 ## Data Sources
 
 | Source | Description | Period |
 |--------|------------|--------|
-| **PurpleAir** | PM2.5 from low-cost sensor (station 90875, Curitiba) | 2021–2025 |
-| **DATASUS** | Hospitalization and mortality records (ICD-filtered) | 2021–2024 |
-| **INMET** | Daily temperature (Tmax, Tmed, Tmin) from weather station | 1961–2024 |
-| **CMIP6** | SSP5-8.5 projections (EC-Earth3-Veg-LR, TaiESM1) | 2015–2100 |
+| **INMET** | Daily temperature (Tmax, Tmed, Tmin) from weather station A807 | 1961–2024 |
+| **DATASUS** | Respiratory hospitalization records (ICD-10 J00–J99) | 2022–2024 |
+| **PurpleAir** | PM2.5 from low-cost sensor (station 90875, Curitiba) | 2022–2024 |
+| **CMIP6** | SSP5-8.5 projections (supplementary) | 2015–2100 |
+
+## Methods
+
+- **Primary analysis:** Distributed lag non-linear models (DLNM) with quasi-Poisson regression
+- **Supplementary:** K-means clustering, cross-correlation analysis, XGBoost/MLP/ELM forecasting with SHAP
 
 ## Requirements
 
 - Python 3.10+
+- R 4.x (for DLNM via `dlnm` package)
 - Jupyter Notebook
 - Key packages: pandas, numpy, scikit-learn, matplotlib, seaborn, xgboost, shap
 
 ## Status
 
-Under revision — see `review/` for detailed action plans.
+Under review — target: The Lancet Regional Health — Americas.

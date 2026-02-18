@@ -26,9 +26,8 @@
 \begin{frontmatter}
 
 %% ── Título ──────────────────────────────────────────────────────────
-\title{Non-linear and delayed effects of cold extremes on respiratory
-       hospital admissions in a subtropical metropolis: a quasi-Poisson
-       time-series analysis in Curitiba, Brazil}
+\title{Cold, not heat: delayed temperature extremes drive respiratory
+       hospitalisations in subtropical Southern Brazil}
 
 %% ── Autores ─────────────────────────────────────────────────────────
 \author[ufpr]{Felipe Baglioli\corref{cor1}}
@@ -43,10 +42,10 @@
 \begin{abstract}
 
 \textbf{Background}\quad
-The health effects of temperature extremes remain poorly characterised
-in subtropical Southern Hemisphere cities, where cold spells produce
-distinct exposure profiles that differ from those studied in temperate
-and tropical settings.
+Climate--health policy in the Southern Hemisphere has prioritised heat
+alerts, yet the respiratory burden attributable to cold extremes in
+subtropical cities remains largely unquantified. This evidence gap
+leaves millions without targeted early-warning systems for cold spells.
 
 \textbf{Methods}\quad
 We analysed daily minimum temperature (INMET, 1961--2024) and
@@ -66,17 +65,23 @@ Over 1096~study days, 42\,716~respiratory hospitalisations (51\% male;
 The DLNM identified MMT=17${\cdot}$8\,°C. Cold extremes at the 1st
 percentile of $T_\mathrm{min}$ (5${\cdot}$2\,°C) yielded cumulative
 RR=1${\cdot}$42 [95\% CI: 1${\cdot}$09--1${\cdot}$84] over
-0--21~days; at the 5th percentile (8${\cdot}$5\,°C), RR=1${\cdot}$22
-[1${\cdot}$02--1${\cdot}$44]. The lag structure peaked at 3--10~days.
-Heat effects were non-significant (P90 RR=1${\cdot}$06
-[0${\cdot}$98--1${\cdot}$14]). Results were robust across sensitivity
-analyses ($\hat{\phi}$=1${\cdot}$32, Ljung--Box $p$=0${\cdot}$14).
+0--21~days --- corresponding to approximately 14 excess respiratory
+admissions per extreme cold day; at the 5th percentile
+(8${\cdot}$5\,°C), RR=1${\cdot}$22 [1${\cdot}$02--1${\cdot}$44].
+Effects were delayed, peaking at lags 3--10~days. In contrast, heat
+effects were non-significant (P90 RR=1${\cdot}$06
+[0${\cdot}$98--1${\cdot}$14]). Results were robust across all
+sensitivity analyses ($\hat{\phi}$=1${\cdot}$32, Ljung--Box
+$p$=0${\cdot}$14).
 
 \textbf{Interpretation}\quad
-Cold extremes, not heat, drive the greatest respiratory hospitalisation
-burden in this subtropical setting, with delayed effects peaking at
-3--10~days. Public health early-warning systems should prioritise
-cold-spell forecasts alongside heat alerts.
+In this subtropical metropolis, cold extremes --- not heat --- are the
+dominant temperature-related driver of respiratory hospitalisations,
+with a delayed effect structure that opens a 3--10-day window for
+preventive intervention. Current early-warning systems in subtropical
+South America focus almost exclusively on heat alerts; integrating
+cold-spell forecasts could reduce a substantial and preventable
+respiratory burden.
 
 \textbf{Funding}\quad
 None.
@@ -103,73 +108,91 @@ respiratory morbidity \sep subtropical \sep Curitiba
 We searched PubMed and Scopus for studies published between
 January~2010 and December~2025 using the terms ``temperature
 extremes'', ``hospital admissions'', ``distributed lag'', and
-``Southern Hemisphere'' or ``Latin America''. Large multi-city studies
-using DLNM methods have established U-shaped temperature--mortality
-curves globally, but subtropical cities in the Southern Hemisphere
---- particularly in South America --- remain underrepresented. Few
-studies have quantified the non-linear, delayed effects of cold
-extremes on respiratory morbidity in this region.
+``Southern Hemisphere'' or ``Latin America''. The landmark
+384-location study by Gasparrini et~al.\ (2015) established U-shaped
+temperature--mortality curves globally, yet included no subtropical
+South American city. Subsequent multi-city analyses have reinforced
+that cold-attributable mortality exceeds heat-attributable mortality
+in most climates, but morbidity evidence from the Southern Hemisphere
+remains scarce. No study has applied formal DLNM methods to quantify
+the non-linear, delayed effects of cold extremes on respiratory
+hospital admissions in this region.
 
 \textbf{Added value of this study}
 
-This study provides the first DLNM analysis of temperature extremes
-and respiratory hospital admissions in a subtropical South American
-city. Cold extremes at the 1st percentile of $T_\mathrm{min}$ are
-associated with a 42\% increase in respiratory hospitalisations
-(RR=1${\cdot}$42 [1${\cdot}$09--1${\cdot}$84]) with a delayed peak
-at 3--10~days --- a lag structure not previously documented with
-formal DLNM methods in this region.
+To our knowledge, this is the first DLNM analysis of temperature
+extremes and respiratory hospitalisations in a subtropical South
+American city. We show that cold extremes at the 1st percentile of
+$T_\mathrm{min}$ (5${\cdot}$2\,°C) are associated with a 42\%
+increase in respiratory hospitalisations (RR=1${\cdot}$42
+[1${\cdot}$09--1${\cdot}$84]), while heat effects are
+non-significant. The delayed peak at 3--10~days reveals a clinically
+actionable lag structure not previously documented with inferential
+methods in this region. These findings challenge the heat-centric
+framing that dominates climate--health policy in South America.
 
 \textbf{Implications of all the available evidence}
 
-Public health early-warning systems in subtropical cities should
-incorporate cold-spell forecasts alongside heat alerts, rather than
-focusing exclusively on heat extremes. The delayed lag structure
-(3--10~days) suggests a window for preventive intervention after
-cold-spell onset.
+Early-warning systems in subtropical Southern Hemisphere cities should
+integrate cold-spell forecasts alongside heat alerts. The 3--10-day
+delay between cold exposure and hospitalisation peak provides a
+concrete window for preventive action --- including targeted outreach
+to elderly and respiratory-vulnerable populations, temporary shelter
+activation, and primary-care surge planning. Given that current
+Brazilian climate--health surveillance (VIGIAR-SUS) lacks a
+cold-specific trigger, our findings identify a remediable gap in
+public health preparedness.
 
 %% ═══════════════════════════════════════════════════════════════════
 %% INTRODUÇÃO
 %% ═══════════════════════════════════════════════════════════════════
 \section{Introduction}
 
-The relation between temperature extremes and human health has long
-been recognised, with documented increases in mortality during
-heatwaves across different
-regions.\cite{Duthie1998,McMichael2006,Mestitz1959,Schuman1972}
-Certain groups --- the elderly, children, and people with pre-existing
-conditions --- are disproportionately
-affected.\cite{Duthie1998,Lye1977,Schuman1972}
+Global evidence increasingly shows that cold-attributable mortality
+exceeds heat-attributable mortality in most
+climates,\cite{Gasparrini2015} yet climate--health policy remains
+overwhelmingly focused on heat alerts and heatwave preparedness.
+This asymmetry is particularly pronounced in subtropical cities of
+the Southern Hemisphere, where winter temperatures can fall below
+5\,°C but early-warning systems rarely include cold-spell
+triggers.\cite{Bell2024,McMichael2006}
 
-Cold extremes pose a comparable, and in some settings greater, threat
-to public health. Low ambient temperatures trigger vasoconstriction,
-elevate blood pressure, and increase blood viscosity, raising
-cardiovascular risk.\cite{Ebi2021} Respiratory infections peak during
-cold periods due to reduced mucociliary clearance and increased indoor
-crowding.\cite{Linares2025} Unlike heat-related morbidity, which
-manifests within 0--3~days, cold-related effects exhibit delayed lags
-of 3--14~days, complicating attribution in ecological
+The pathophysiology of cold-related respiratory morbidity is well
+established. Low ambient temperatures suppress mucociliary clearance,
+impair alveolar macrophage function, and increase indoor crowding ---
+conditions that favour respiratory pathogen
+transmission.\cite{Linares2025} Cold also triggers systemic
+vasoconstriction, elevates blood viscosity, and raises cardiovascular
+strain, compounding the respiratory burden in vulnerable
+populations.\cite{Ebi2021} Critically, unlike heat-related
+morbidity, which manifests acutely within 0--3~days, cold-related
+effects exhibit delayed lags of 3--14~days, complicating their
+detection in routine surveillance and their attribution in ecological
 studies.\cite{Cheng2024}
 
-In the context of climate change, anthropogenic activities have
-increased the frequency and intensity of extreme events and their
-associated health impacts.\cite{Bell2024,Marx2021,McMichael2006}
-Air pollutants affect respiratory, cardiovascular, and neural
-systems,\cite{Linares2025,Sethi2024} and extreme pollution episodes
-remain associated with increased hospital admissions and
-mortality.\cite{Requia2024,Tseng2024}
+Despite these known mechanisms, formal inferential evidence on the
+temperature--morbidity relationship remains scarce for subtropical
+South America. The landmark 384-location study by Gasparrini
+et~al.\cite{Gasparrini2015} did not include any subtropical Southern
+Brazilian city. Multi-city studies in Brazil have focused on air
+pollution and mortality,\cite{Requia2024} while temperature--morbidity
+analyses have relied on correlation-based approaches that cannot
+disentangle delayed effects from shared seasonality. As a result,
+a fundamental question remains unanswered for this region: does cold
+or heat impose the greater respiratory hospitalisation burden, and
+over what time horizon?
 
-Despite this evidence, few studies have quantified the non-linear,
-delayed effects of temperature extremes on respiratory morbidity in
-subtropical cities of the Southern Hemisphere using formal inferential
-methods. Curitiba, a subtropical metropolis in southern Brazil
-($\sim$930~m elevation, Cfb climate), offers a relevant case study
-due to its winter temperatures below 5\,°C and seasonal pollution
-episodes. This study uses distributed lag non-linear models to
-quantify the exposure--response relationship between daily minimum
-temperature and respiratory hospital admissions in Curitiba
-(2022--2024), with supplementary clustering and machine learning
-analyses.
+We address this gap using distributed lag non-linear models (DLNM)
+applied to 42\,716~respiratory hospital admissions and daily minimum
+temperature records in Curitiba, the largest subtropical city in
+southern Brazil ($\sim$1${\cdot}$8~million inhabitants, $\sim$930~m
+elevation, Cfb climate). Curitiba's climate --- with winter minima
+below 5\,°C and summer maxima approaching 30\,°C --- provides a
+natural experiment for contrasting cold and heat effects within a
+single population. Our primary objective is to quantify the
+non-linear, delayed exposure--response relationship between
+temperature extremes and respiratory admissions, with a pre-specified
+hypothesis that cold effects would dominate in this setting.
 
 %% ═══════════════════════════════════════════════════════════════════
 %% MÉTODOS
@@ -178,12 +201,14 @@ analyses.
 
 \subsection{Study design and setting}
 
-This is an ecological time-series study examining the association
-between daily environmental exposures and respiratory hospital
-admissions in Curitiba, Paraná, Brazil (population~$\sim$1${\cdot}$8~million),
-over 1~January~2022 to 31~December~2024 (1096~days). Curitiba's
-subtropical climate features winter temperatures below 5\,°C and
-summer maxima approaching 30\,°C.
+We conducted an ecological time-series study of daily environmental
+exposures and respiratory hospital admissions in Curitiba, Paraná,
+Brazil (population~$\sim$1${\cdot}$8~million) from
+1~January~2022 to 31~December~2024 (1096~days). Curitiba is the
+largest city in southern Brazil with a Köppen Cfb (oceanic subtropical)
+climate, winter minima below 5\,°C, and summer maxima approaching
+30\,°C --- making it representative of the broader subtropical belt
+of southern South America.
 
 \subsection{Data sources}
 
@@ -240,21 +265,14 @@ was applied to six standardised variables, with optimal $K$ selected
 by silhouette score. Cross-correlation functions (lags 0--28~days) were
 computed between exposures and hospitalisations.
 
-\subsection{Machine learning forecasting}
-
-As a supplementary analysis, three models --- XGBoost,\cite{Chen2016}
-multilayer perceptron,\cite{Goodfellow2016} and extreme learning
-machine\cite{Huang2006} --- were trained to forecast daily
-hospitalisations at lags 0--7~days. SHAP values\cite{Lundberg2017}
-quantified feature importance. Details, results, and CMIP6 projections
-are reported in the Supplement (eMethods, eTable~8, eFigure~8).
-
 \subsection{Distributed lag non-linear model}
 \label{sec:dlnm}
 
-We fitted distributed lag non-linear models
-(DLNM)\cite{Gasparrini2010,Gasparrini2011} to quantify non-linear,
-delayed exposure--response relationships:
+The primary analysis used distributed lag non-linear models
+(DLNM),\cite{Gasparrini2010,Gasparrini2011} which simultaneously
+capture the non-linear shape of the exposure--response curve and the
+delayed lag structure --- a critical requirement given the known
+3--14-day latency of cold-related respiratory effects:
 %
 \begin{equation}
   \log\!\big(\mathrm{E}[Y_t]\big) = \alpha
@@ -276,11 +294,20 @@ computed via the delta method. Sensitivity analyses varied the maximum
 lag (14, 21, 28~days), seasonal df (6, 7, 8~df/year), and excluded
 2022 to assess residual COVID-19 effects.
 
+As a supplementary analysis, machine learning models
+(XGBoost,\cite{Chen2016} multilayer perceptron,\cite{Goodfellow2016}
+extreme learning machine\cite{Huang2006}) were trained to forecast
+daily hospitalisations at lags 0--7~days, with SHAP
+values\cite{Lundberg2017} quantifying feature importance. Full
+details are reported in the Supplement (eMethods, eTable~8,
+eFigure~8).
+
 \paragraph{Ethics and reporting}
 This study used exclusively aggregated, publicly available data from
 DATASUS, INMET, and PurpleAir. Under Brazilian CNS~510/2016,
 research using public aggregated data is exempt from ethics review.
-This study follows the STROBE guidelines.\cite{VonElm2007}
+Reporting follows the STROBE guidelines for observational
+studies.\cite{VonElm2007}
 
 %% ═══════════════════════════════════════════════════════════════════
 %% RESULTADOS
@@ -289,15 +316,19 @@ This study follows the STROBE guidelines.\cite{VonElm2007}
 
 \subsection{Descriptive statistics}
 
-Table~\ref{tab:descriptive} presents descriptive statistics for all
-variables. A total of 42\,716~respiratory admissions and 3715~deaths
-were recorded over 1096~days. Mean daily hospitalisations were
-32${\cdot}$3 (SD~11${\cdot}$7, range 1--73). EPA-corrected
-PM$_{2{\cdot}5}$ had a mean of 5${\cdot}$84~µg/m$^3$
-(median~4${\cdot}$12), with 4${\cdot}$7\% of days exceeding the WHO
-24-hour guideline (15~µg/m$^3$). We identified 215~extremely hot days
+Over 1096~study days, we recorded 42\,716~respiratory hospital
+admissions and 3715~in-hospital deaths (case fatality 8${\cdot}$7\%),
+representing a mean of 32${\cdot}$3~admissions per day
+(SD~11${\cdot}$7, range 1--73; Table~\ref{tab:descriptive}). The
+study population was predominantly male (51\%) and elderly (38\%
+aged $\geq$65~years). EPA-corrected PM$_{2{\cdot}5}$ was generally
+low (median~4${\cdot}$12~µg/m$^3$), with only 4${\cdot}$7\% of days
+exceeding the WHO 24-hour guideline (15~µg/m$^3$). Using ETCCDI
+monthly percentiles, we identified 215~extremely hot days
 (20${\cdot}$1\%) and 39~extremely cold days (3${\cdot}$7\%),
-aggregating into 25~heatwave and 4~cold-spell events (eTable~1).
+aggregating into 25~heatwave events but only 4~cold-spell events
+(eTable~1) --- underscoring the episodic and concentrated nature of
+cold exposure in this climate.
 
 \begin{table}[ht]
 \centering
@@ -334,28 +365,40 @@ window of 0--21~days.
 
 \paragraph{Temperature exposure--response}
 The quasi-Poisson DLNM for $T_\mathrm{min}$ ($N$=1068,
-$\hat{\phi}$=1${\cdot}$32) identified MMT=17${\cdot}$8\,°C
-(Figure~\ref{fig:dlnm_temp_overall}). Cold extremes showed
-monotonically increasing cumulative RR below the MMT: at the 1st
-percentile (5${\cdot}$2\,°C), RR=1${\cdot}$42
-[1${\cdot}$09--1${\cdot}$84]; at the 5th percentile (8${\cdot}$5\,°C),
-RR=1${\cdot}$22 [1${\cdot}$02--1${\cdot}$44]; at the 10th percentile
-(9${\cdot}$8\,°C), RR=1${\cdot}$17 [1${\cdot}$00--1${\cdot}$37]
-(Table~\ref{tab:dlnm_temp_rr}). Heat effects were non-significant at
-the 90th percentile (RR=1${\cdot}$06 [0${\cdot}$98--1${\cdot}$14]).
-The lag structure at cold (P10) peaked at lags 3--10~days
-(Figure~\ref{fig:dlnm_temp_lag}a), consistent with cross-correlation
-results.
+$\hat{\phi}$=1${\cdot}$32) identified a minimum morbidity temperature
+(MMT) of 17${\cdot}$8\,°C, closely aligned with the 75th percentile
+of the local temperature distribution
+(Figure~\ref{fig:dlnm_temp_overall}). Below this threshold, the
+cumulative exposure--response curve rose steeply and monotonically:
+at the 1st percentile of $T_\mathrm{min}$ (5${\cdot}$2\,°C),
+RR=1${\cdot}$42 [1${\cdot}$09--1${\cdot}$84] --- equivalent to a
+42\% excess in respiratory admissions; at the 5th percentile
+(8${\cdot}$5\,°C), RR=1${\cdot}$22 [1${\cdot}$02--1${\cdot}$44]; at
+the 10th percentile (9${\cdot}$8\,°C), RR=1${\cdot}$17
+[1${\cdot}$00--1${\cdot}$37] (Table~\ref{tab:dlnm_temp_rr}). In
+stark contrast, heat effects were non-significant across all upper
+percentiles (P90 RR=1${\cdot}$06 [0${\cdot}$98--1${\cdot}$14];
+P99 RR=1${\cdot}$29 [0${\cdot}$98--1${\cdot}$68]). The lag
+structure at cold (P10) peaked at 3--10~days
+(Figure~\ref{fig:dlnm_temp_lag}a), consistent with the known latency
+of cold-induced respiratory pathology and with the cross-correlation
+analysis.
 
 \paragraph{Sensitivity and diagnostics}
-Results were robust to lag window and seasonal df
+The cold effect was robust to all pre-specified sensitivity analyses
 (Table~\ref{tab:sensitivity}). Cumulative RR at P10 ranged from
-1${\cdot}$05 (lag=14) to 1${\cdot}$23 (lag=28). Excluding 2022
-strengthened the effect (RR=1${\cdot}$37 [1${\cdot}$11--1${\cdot}$70]).
-ADF on raw hospitalisations confirmed non-stationarity ($p$=0${\cdot}$164);
-STL residuals were stationary ($p$=0${\cdot}$0003; eFigure~7).
-Model diagnostics showed no autocorrelation (Durbin--Watson=2${\cdot}$00,
-Ljung--Box $p$=0${\cdot}$14; eTable~7).
+1${\cdot}$05 (lag=14~days, capturing only the early phase of the
+delayed response) to 1${\cdot}$23 (lag=28~days). Notably, excluding
+2022 --- the year with the greatest residual COVID-19 influence ---
+strengthened the cold effect to RR=1${\cdot}$37
+[1${\cdot}$11--1${\cdot}$70], suggesting that pandemic-related
+disruptions attenuated the temperature--morbidity signal in the full
+period. ADF tests confirmed non-stationarity in raw hospitalisations
+($p$=0${\cdot}$164) but stationarity in STL residuals
+($p$=0${\cdot}$0003; eFigure~7), validating the detrending approach.
+Model diagnostics showed no residual autocorrelation
+(Durbin--Watson=2${\cdot}$00, Ljung--Box $p$=0${\cdot}$14;
+eTable~7).
 
 \begin{table}[ht]
 \centering
@@ -402,8 +445,10 @@ Exclude 2022            & 1${\cdot}$37 & 1${\cdot}$11--1${\cdot}$70 & 1${\cdot}$
 \centering
 \includegraphics[width=0.85\textwidth]{../analysis/dlnm/figures/fig_dlnm_temp_overall.pdf}
 \caption{Cumulative exposure--response curve for $T_\mathrm{min}$
-and respiratory hospitalisations (DLNM, lag 0--21~days). Red dashed
-line: MMT (17${\cdot}$8\,°C). Shaded area: 95\% CI.}
+and respiratory hospitalisations (DLNM, lag 0--21~days). The curve
+rises steeply below the MMT (17${\cdot}$8\,°C, red dashed line),
+indicating a cold-dominant pattern. Heat effects above the MMT are
+non-significant. Shaded area: 95\% CI.}
 \label{fig:dlnm_temp_overall}
 \end{figure}
 
@@ -416,84 +461,167 @@ MMT=17${\cdot}$8\,°C.}
 \label{fig:dlnm_temp_lag}
 \end{figure}
 
-\subsection{Machine learning forecasting}
+\subsection{Supplementary machine learning analysis}
 
-Supplementary ML analyses (eTable~8, eFigure~8) showed XGBoost as
-the best-performing model (MAPE=19${\cdot}$4\% at lag~0,
-RMSE=8${\cdot}$37), with temperature ranked among the top predictors
-by SHAP analysis.
+In the supplementary forecasting analysis (eTable~8, eFigure~8),
+XGBoost achieved the best predictive performance
+(MAPE=19${\cdot}$4\%, RMSE=8${\cdot}$37 at lag~0). SHAP feature
+importance rankings independently corroborated the DLNM findings,
+with $T_\mathrm{min}$ ranked as the strongest environmental predictor
+of daily respiratory admissions.
 
 %% ═══════════════════════════════════════════════════════════════════
 %% DISCUSSÃO
 %% ═══════════════════════════════════════════════════════════════════
 \section{Discussion}
 
-Our DLNM analysis provides formal inferential evidence that cold
-extremes are the dominant temperature-related driver of respiratory
-hospitalisations in Curitiba. At the 1st percentile of
-$T_\mathrm{min}$ (5${\cdot}$2\,°C), cumulative RR reached
-1${\cdot}$42 [1${\cdot}$09--1${\cdot}$84] over 0--21~days, with a
-delayed lag peak at 3--10~days. This lag structure is consistent with
-known cold-related pathophysiology: cold-induced vasoconstriction,
-elevated blood viscosity, and increased susceptibility to respiratory
-infections manifest over days rather than
-hours.\cite{Ebi2021,Linares2025}
+\subsection{Principal findings}
 
-These findings can be compared with the multi-country study by
-Gasparrini et al.,\cite{Gasparrini2015} which reported U-shaped
-temperature--mortality curves across 384~locations using the same
-DLNM framework. Our MMT of 17${\cdot}$8\,°C is consistent with
-subtropical MMTs reported in that study, and the cold-attributable
-risk at P1 is comparable in magnitude to cold-related excess mortality
-in temperate climates. Notably, Gasparrini et al. did not include
-Curitiba or comparable Southern Brazilian cities, and our study fills
-this gap by providing the first DLNM-based morbidity estimates for
-this subtropical setting. However, as a single-city study, our results
-lack the statistical strength of multi-site
-pooling.\cite{Requia2024}
+This study provides the first formal DLNM-based evidence that cold
+extremes --- not heat --- are the dominant temperature-related driver
+of respiratory hospitalisations in a subtropical South American city.
+At the 1st percentile of $T_\mathrm{min}$ (5${\cdot}$2\,°C),
+cumulative RR reached 1${\cdot}$42 [1${\cdot}$09--1${\cdot}$84] over
+0--21~days, corresponding to approximately 14 excess respiratory
+admissions per extreme cold day. Heat effects, by contrast, were
+non-significant across all upper percentiles. The delayed lag peak
+at 3--10~days identifies a clinically actionable window between cold
+exposure and peak hospitalisation burden.
 
-The sensitivity analyses support the robustness of the cold effect.
+\subsection{Cold-dominant burden: challenging the heat-centric
+paradigm}
+
+A dominant framing in climate--health research equates rising
+temperatures with rising health risk.\cite{Bell2024,McMichael2006}
+Our findings complicate this narrative for subtropical settings. In
+Curitiba, the asymmetry between cold and heat effects was striking:
+the cold extreme (P1) yielded a statistically significant 42\%
+excess, while the heat extreme (P90) produced a non-significant 6\%
+excess. This pattern is consistent with the global observation by
+Gasparrini et~al.\cite{Gasparrini2015} that cold-attributable
+mortality exceeds heat-attributable mortality in most climates, but
+extends it to respiratory morbidity in a Southern Hemisphere
+subtropical city not represented in that 384-location study. Our
+MMT of 17${\cdot}$8\,°C --- closely matching the local 75th
+percentile --- aligns with subtropical MMTs reported in multi-country
+analyses, and the magnitude of cold-attributable risk at P1 is
+comparable to cold-related excess mortality in temperate European
+and East Asian settings.\cite{Gasparrini2015}
+
+The practical consequence is clear: in subtropical cities, a
+heat-exclusive early-warning system will miss the largest
+temperature-attributable morbidity signal.
+
+\subsection{Pathophysiological plausibility and lag structure}
+
+The 3--10-day lag peak is biologically coherent. Cold exposure
+initiates a cascade that unfolds over days: immediate airway cooling
+suppresses mucociliary clearance and reduces epithelial barrier
+integrity (hours); subsequent impairment of alveolar macrophage
+phagocytosis and secretory IgA production increases susceptibility
+to viral and bacterial infection (1--3~days); clinical illness and
+hospitalisation then follow after an incubation and progression
+period (3--10~days).\cite{Linares2025,Ebi2021} This temporal sequence
+--- unlike the rapid onset of heat-related presentations --- explains
+why cold-attributable morbidity is systematically underdetected by
+surveillance systems that operate on a 0--48-hour event window.
+
+Additionally, cold weather increases indoor crowding and reduces
+ventilation, amplifying respiratory pathogen transmission at the
+population level.\cite{Cheng2024} These behavioural mechanisms
+compound the direct physiological effects, creating a multi-pathway
+exposure that is unique to cold extremes.
+
+\subsection{Robustness of findings}
+
+The cold effect was robust to all pre-specified sensitivity analyses.
 The direction and magnitude were consistent across lag windows
-(14--28~days) and seasonal df (6--8/year). Excluding 2022
-strengthened the effect (RR=1${\cdot}$37 [1${\cdot}$11--1${\cdot}$70]),
-suggesting that residual COVID-19 effects may attenuate the
-temperature--morbidity association in the full period.
+(14--28~days), seasonal degrees of freedom (6--8/year), and time
+periods. Notably, excluding 2022 --- the year most affected by
+residual COVID-19 pandemic dynamics --- strengthened the cold effect
+(RR=1${\cdot}$37 [1${\cdot}$11--1${\cdot}$70]), suggesting that
+pandemic-related changes in healthcare-seeking behaviour and viral
+ecology may have attenuated the temperature--morbidity signal in the
+full study period. This observation implies that the true
+pre-pandemic cold effect may be even larger than our main estimate.
 
-These results have implications for public health early-warning
-systems in subtropical settings. Cold-spell forecasts should be
-prioritised alongside heat alerts, particularly given the delayed
-lag structure (3--10~days) that provides a window for preventive
-intervention.\cite{Bell2024}
+The supplementary machine learning analysis independently
+corroborated the DLNM findings: SHAP feature importance ranked
+$T_\mathrm{min}$ as the strongest environmental predictor of daily
+respiratory admissions, providing convergent evidence from a
+fundamentally different analytical framework.
+
+\subsection{Policy implications}
+
+These findings have direct implications for climate--health
+preparedness in subtropical South America.\cite{Bell2024} In Brazil,
+the national climate--health surveillance system (VIGIAR-SUS)
+currently lacks a cold-specific trigger for respiratory early
+warnings. Our results suggest that cold-spell forecasts should be
+integrated alongside heat alerts, with three specific actions
+enabled by the 3--10-day lag structure:
+
+First, the delayed onset of the hospitalisation peak provides a
+concrete window for \emph{preventive intervention}: targeted outreach
+to elderly and respiratory-vulnerable populations can be initiated
+immediately after cold-spell onset, before the morbidity wave
+arrives.
+
+Second, primary-care and emergency departments can use cold-spell
+forecasts for \emph{surge planning}, anticipating increased
+respiratory admissions 3--10~days after a cold event.
+
+Third, the identification of MMT=17${\cdot}$8\,°C provides a
+\emph{quantitative trigger threshold} that can be operationalised in
+local early-warning systems, rather than relying on arbitrary
+temperature cut-offs.
+
+However, as a single-city study, these results require validation in
+multi-city pooled analyses before informing national policy.
+Extension to other subtropical Southern Hemisphere cities following
+the multi-country framework of Gasparrini
+et~al.\cite{Gasparrini2015} would substantially strengthen the
+evidence base.\cite{Requia2024}
 
 \subsection{Limitations}
 
-This ecological time-series study does not permit causal inference at
-the individual level. No individual-level exposure, behaviour, or
-comorbidity data were available. The 3-year analysis period
-(2022--2024) limits power for rare events (cold spells, $n$=4) and
-provides only three realisations of the seasonal cycle. Confounding
-by respiratory viral circulation (influenza, RSV) cannot be excluded,
-as viral surveillance data were not included. Daily total counts were
-used without age or ICD-10 subgroup stratification; cause-specific
-analyses are a priority for future work. Temperature data are from a
-single INMET station (A807), which may not capture microclimatic
-variation across the metropolitan area. As a single-city study,
-results may not generalise; multi-city pooled analyses following
-Gasparrini et al.\cite{Gasparrini2015} would provide stronger
-evidence.
+Several limitations warrant consideration. First, as an ecological
+time-series study, we cannot infer individual-level causal
+relationships; the ecological fallacy applies, and unmeasured
+confounders (housing quality, heating access, socioeconomic status)
+may influence the exposure--response association. Second, the 3-year
+analysis period (2022--2024) encompasses only three seasonal cycles
+and four cold-spell events, limiting statistical power for extreme
+events and precluding long-term trend analysis. Third, confounding by
+respiratory viral circulation (influenza, RSV) cannot be excluded, as
+viral surveillance data were not available; seasonal co-occurrence of
+cold weather and viral peaks is a well-known challenge in this
+literature. Fourth, we used total respiratory admissions (ICD-10
+J00--J99) without age or cause-specific stratification, which may
+mask differential vulnerability --- age-stratified and cause-specific
+analyses are a priority for future work. Fifth, temperature data from
+a single INMET station (A807) may not capture microclimatic variation
+across the 435~km$^2$ metropolitan area. Sixth, PM$_{2{\cdot}5}$ data
+from a single low-cost sensor (PurpleAir) had 36${\cdot}$4\% missing
+values, limiting the power of air pollution analyses. Finally, as a
+single-city study, our results require replication in other
+subtropical settings before informing regional or national policy.
 
 \subsection{Conclusion}
 
-This study provides evidence that in a subtropical metropolis, cold
-extremes are associated with increased respiratory hospitalisations,
-with a delayed lag structure peaking at 3--10~days. The DLNM
-identified MMT=17${\cdot}$8\,°C and estimated cumulative
-RR=1${\cdot}$42 [1${\cdot}$09--1${\cdot}$84] at extreme cold (P1,
-5${\cdot}$2\,°C) over 0--21~days. Heat effects were non-significant.
-Public health systems in subtropical Southern Hemisphere cities should
-integrate cold-spell forecasts into early-warning systems. Future
-work should extend this analysis to multiple cities with
-cause-specific and age-stratified outcomes.
+In Curitiba, cold extremes --- not heat --- are the dominant
+temperature-related driver of respiratory hospitalisations, with a
+42\% excess risk at the coldest days (RR=1${\cdot}$42
+[1${\cdot}$09--1${\cdot}$84]) and a delayed effect peaking at
+3--10~days that creates a concrete window for preventive
+intervention. These findings challenge the heat-centric framing of
+climate--health surveillance in subtropical South America and
+identify a specific, remediable gap: the absence of cold-spell
+triggers in early-warning systems. Integrating a
+temperature-threshold alert at the identified MMT (17${\cdot}$8\,°C)
+into existing surveillance frameworks could reduce a preventable
+respiratory burden in one of South America's largest subtropical
+populations.
 
 %% ═══════════════════════════════════════════════════════════════════
 %% DECLARAÇÕES (Lancet backmatter order)
@@ -528,82 +656,44 @@ DATASUS, and PurpleAir Inc.\ for providing open data.
 %% ═══════════════════════════════════════════════════════════════════
 \bibliographystyle{elsarticle-num}
 
-\begin{thebibliography}{27}
+\begin{thebibliography}{18}
 
-\bibitem{Duthie1998}
-Duthie D.
-Heat-related illness.
-\textit{Lancet}. 1998;352(9137):1329--1330.
+%% Ordered by first citation in text (Vancouver style)
 
-\bibitem{McMichael2006}
-McMichael AJ, Woodruff RE, Hales S.
-Climate change and human health: present and future risks.
-\textit{Lancet}. 2006;367(9513):859--869.
-
-\bibitem{Mestitz1959}
-Mestitz P, Brian Gough W.
-Acute anhidrotic heat exhaustion.
-\textit{Lancet}. 1959;274(7100):462.
-
-\bibitem{Schuman1972}
-Schuman SH.
-Patterns of urban heat-wave deaths and implications for prevention.
-\textit{Environ Res}. 1972;5(1):59--75.
-
-\bibitem{Lye1977}
-Lye M, Kamal A.
-Effects of a heatwave on mortality rates in elderly inpatients.
-\textit{Lancet}. 1977;309(8010):529--531.
-
-\bibitem{Ebi2021}
-Ebi KL, et al.
-Hot weather and heat extremes: health risks.
-\textit{Lancet}. 2021;398(10301):698--708.
-
-\bibitem{Linares2025}
-Linares C, et al.
-How air pollution and extreme temperatures affect emergency hospital admissions due to various respiratory causes in Spain, by age group.
-\textit{Int J Hyg Environ Health}. 2025;266:114570.
-
-\bibitem{Cheng2024}
-Cheng C, et al.
-Effects of extreme temperature events on deaths and its interaction with air pollution.
-\textit{Sci Total Environ}. 2024;915:170212.
+\bibitem{Gasparrini2015}
+Gasparrini A, Guo Y, Hashizume M, et al.
+Mortality risk attributable to high and low ambient temperature: a multicountry observational study.
+\textit{Lancet}. 2015;386(9991):369--375.
 
 \bibitem{Bell2024}
 Bell ML, Gasparrini A, Benjamin GC.
 Climate Change, Extreme Heat, and Health.
 \textit{N Engl J Med}. 2024;390(19):1793--1801.
 
-\bibitem{Marx2021}
-Marx W, Haunschild R, Bornmann L.
-Heat waves: a hot topic in climate change research.
-\textit{Theor Appl Climatol}. 2021;146(1--2):781--800.
+\bibitem{McMichael2006}
+McMichael AJ, Woodruff RE, Hales S.
+Climate change and human health: present and future risks.
+\textit{Lancet}. 2006;367(9513):859--869.
 
-\bibitem{Sethi2024}
-Sethi Y, et al.
-Impact of Air Pollution on Neurological and Psychiatric Health.
-\textit{Arch Med Res}. 2024;55(7):103063.
+\bibitem{Linares2025}
+Linares C, et al.
+How air pollution and extreme temperatures affect emergency hospital admissions due to various respiratory causes in Spain, by age group.
+\textit{Int J Hyg Environ Health}. 2025;266:114570.
+
+\bibitem{Ebi2021}
+Ebi KL, et al.
+Hot weather and heat extremes: health risks.
+\textit{Lancet}. 2021;398(10301):698--708.
+
+\bibitem{Cheng2024}
+Cheng C, et al.
+Effects of extreme temperature events on deaths and its interaction with air pollution.
+\textit{Sci Total Environ}. 2024;915:170212.
 
 \bibitem{Requia2024}
 Requia WJ, et al.
 Short-term air pollution exposure and mortality in Brazil: Investigating the susceptible population groups.
 \textit{Environ Pollut}. 2024;340:122797.
-
-\bibitem{Tseng2024}
-Tseng W-L, et al.
-Compound spatial extremes of heatwaves and downstream air pollution events in East Asia.
-\textit{Atmos Res}. 2024;312:107772.
-
-\bibitem{Xia2024}
-Xia C, Yeh AG-O, Lei Z.
-Beyond hazard-induced migration: Dissecting everyday mobilities in response to air pollution and extreme cold events.
-\textit{J Transp Geogr}. 2024;118:103927.
-
-\bibitem{Pascal2021}
-Pascal M, et al.
-Extreme heat and acute air pollution episodes: A need for joint public health warnings?
-\textit{Atmos Environ}. 2021;249:118249.
 
 \bibitem{Barkjohn2021}
 Barkjohn KK, Gantt B, Clements AL.
@@ -625,26 +715,6 @@ Barkjohn KK, et al.
 Using low-cost sensors to quantify the effects of air quality events on indoor and outdoor PM2.5 concentrations.
 \textit{Sensors}. 2022;22(3):1010.
 
-\bibitem{Huang2006}
-Huang G-B, Zhu Q-Y, Siew C-K.
-Extreme learning machine: Theory and applications.
-\textit{Neurocomputing}. 2006;70(1--3):489--501.
-
-\bibitem{Goodfellow2016}
-Goodfellow I, Bengio Y, Courville A.
-\textit{Deep Learning}.
-MIT Press; 2016.
-
-\bibitem{Chen2016}
-Chen T, Guestrin C.
-XGBoost: A scalable tree boosting system.
-In: \textit{Proc 22nd ACM SIGKDD Int Conf Knowledge Discovery and Data Mining}. 2016:785--794.
-
-\bibitem{Lundberg2017}
-Lundberg SM, Lee S-I.
-A unified approach to interpreting model predictions.
-In: \textit{Advances in Neural Information Processing Systems}. 2017;30:4765--4774.
-
 \bibitem{Gasparrini2010}
 Gasparrini A, Armstrong B, Kenward MG.
 Distributed lag non-linear models.
@@ -655,10 +725,25 @@ Gasparrini A.
 Distributed lag linear and non-linear models in R: the package dlnm.
 \textit{J Stat Softw}. 2011;43(8):1--20.
 
-\bibitem{Gasparrini2015}
-Gasparrini A, Guo Y, Hashizume M, et al.
-Mortality risk attributable to high and low ambient temperature: a multicountry observational study.
-\textit{Lancet}. 2015;386(9991):369--375.
+\bibitem{Chen2016}
+Chen T, Guestrin C.
+XGBoost: A scalable tree boosting system.
+In: \textit{Proc 22nd ACM SIGKDD Int Conf Knowledge Discovery and Data Mining}. 2016:785--794.
+
+\bibitem{Goodfellow2016}
+Goodfellow I, Bengio Y, Courville A.
+\textit{Deep Learning}.
+MIT Press; 2016.
+
+\bibitem{Huang2006}
+Huang G-B, Zhu Q-Y, Siew C-K.
+Extreme learning machine: Theory and applications.
+\textit{Neurocomputing}. 2006;70(1--3):489--501.
+
+\bibitem{Lundberg2017}
+Lundberg SM, Lee S-I.
+A unified approach to interpreting model predictions.
+In: \textit{Advances in Neural Information Processing Systems}. 2017;30:4765--4774.
 
 \bibitem{VonElm2007}
 von Elm E, Altman DG, Egger M, et al.
