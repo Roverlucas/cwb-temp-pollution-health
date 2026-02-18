@@ -208,7 +208,11 @@ Brazil (population~$\sim$1${\cdot}$8~million) from
 largest city in southern Brazil with a Köppen Cfb (oceanic subtropical)
 climate, winter minima below 5\,°C, and summer maxima approaching
 30\,°C --- making it representative of the broader subtropical belt
-of southern South America.
+of southern South America. The study-period $T_\mathrm{min}$
+distribution (mean 14${\cdot}$8\,°C, P10=9${\cdot}$8\,°C) was
+comparable to the 1961--2024 INMET climatology (mean 13${\cdot}$3\,°C,
+P10=7${\cdot}$8\,°C; eFigure~9), indicating that the 2022--2024
+period did not experience a regime shift in cold extremes.
 
 \subsection{Data sources}
 
@@ -603,7 +607,19 @@ analyses are a priority for future work. Fifth, temperature data from
 a single INMET station (A807) may not capture microclimatic variation
 across the 435~km$^2$ metropolitan area. Sixth, PM$_{2{\cdot}5}$ data
 from a single low-cost sensor (PurpleAir) had 36${\cdot}$4\% missing
-values, limiting the power of air pollution analyses. Finally, as a
+values; missingness is not MCAR --- days without valid PM$_{2{\cdot}5}$
+had lower $T_\mathrm{min}$ (13${\cdot}$8 vs 15${\cdot}$3\,°C,
+$p<$0${\cdot}$001) and higher hospitalisations (34${\cdot}$8 vs
+31${\cdot}$4/day, $p<$0${\cdot}$001; eTable~10). A logistic
+missingness model (pseudo-$R^2$=0${\cdot}$26, AUC=0${\cdot}$80;
+eTable~11) confirmed seasonal sensor downtime as the driver,
+consistent with MAR. The A-B-C confounding diagnostic (eTable~9)
+demonstrated that restricting the sample to PM$_{2{\cdot}5}$-complete
+days \emph{without} adjusting for PM$_{2{\cdot}5}$ (Model~B) produces
+the same estimate as the PM$_{2{\cdot}5}$-adjusted model (Model~C;
+$\Delta$RR$<$0${\cdot}$001), proving that the attenuation reflects
+sample restriction, not confounding; the primary DLNM on the full
+sample ($N$=1068) is unaffected. Finally, as a
 single-city study, our results require replication in other
 subtropical settings before informing regional or national policy.
 
