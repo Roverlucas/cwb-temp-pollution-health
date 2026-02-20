@@ -485,4 +485,106 @@ but retains representation of cold extremes (P1=5${\cdot}$2 vs
 \label{efig:tmin_distribution}
 \end{figure}
 
+%% ── ML forecasting: full results and climate projections ───────────
+
+\begin{table}[ht]
+\centering
+\caption{Machine learning model performance across all prediction
+horizons (lag 0--7~days), Curitiba, 2022--2024. Best result per lag
+in bold. 70/30 train--test split.}
+\label{etab:ml_full_results}
+\begin{tabular}{llrrrr}
+\toprule
+Lag & Model & MSE & RMSE & MAE & MAPE (\%) \\
+\midrule
+\multirow{3}{*}{0}
+  & ELM     & 127${\cdot}$1 & 11${\cdot}$27 & 9${\cdot}$14 & 31${\cdot}$5 \\
+  & MLP     & 113${\cdot}$2 & 10${\cdot}$64 & 8${\cdot}$54 & 28${\cdot}$0 \\
+  & \textbf{XGBoost} & \textbf{78${\cdot}$3} & \textbf{8${\cdot}$85} & \textbf{6${\cdot}$98} & \textbf{22${\cdot}$6} \\
+\midrule
+\multirow{3}{*}{1}
+  & ELM     & 108${\cdot}$7 & 10${\cdot}$43 & 8${\cdot}$30 & 28${\cdot}$1 \\
+  & MLP     &  77${\cdot}$4 &  8${\cdot}$80 & 7${\cdot}$01 & 23${\cdot}$2 \\
+  & \textbf{XGBoost} & \textbf{65${\cdot}$6} & \textbf{8${\cdot}$10} & \textbf{6${\cdot}$10} & \textbf{18${\cdot}$0} \\
+\midrule
+\multirow{3}{*}{2}
+  & ELM     & 113${\cdot}$7 & 10${\cdot}$66 & 8${\cdot}$68 & 29${\cdot}$3 \\
+  & \textbf{MLP} & \textbf{79${\cdot}$3} & \textbf{8${\cdot}$90} & \textbf{7${\cdot}$08} & \textbf{22${\cdot}$3} \\
+  & XGBoost &  89${\cdot}$6 &  9${\cdot}$47 & 7${\cdot}$42 & 24${\cdot}$3 \\
+\midrule
+\multirow{3}{*}{3}
+  & ELM     & 111${\cdot}$6 & 10${\cdot}$56 & 8${\cdot}$42 & 28${\cdot}$7 \\
+  & \textbf{MLP} & \textbf{69${\cdot}$5} & \textbf{8${\cdot}$34} & \textbf{6${\cdot}$31} & \textbf{20${\cdot}$0} \\
+  & XGBoost &  70${\cdot}$2 &  8${\cdot}$38 & 6${\cdot}$38 & 19${\cdot}$8 \\
+\midrule
+\multirow{3}{*}{4}
+  & ELM     & 117${\cdot}$1 & 10${\cdot}$82 & 8${\cdot}$67 & 28${\cdot}$6 \\
+  & MLP     &  78${\cdot}$5 &  8${\cdot}$86 & 6${\cdot}$88 & 22${\cdot}$4 \\
+  & \textbf{XGBoost} & \textbf{73${\cdot}$4} & \textbf{8${\cdot}$57} & \textbf{6${\cdot}$52} & \textbf{20${\cdot}$1} \\
+\midrule
+\multirow{3}{*}{5}
+  & ELM     & 115${\cdot}$4 & 10${\cdot}$74 & 8${\cdot}$68 & 28${\cdot}$8 \\
+  & \textbf{MLP} & \textbf{66${\cdot}$2} & \textbf{8${\cdot}$14} & \textbf{6${\cdot}$09} & \textbf{19${\cdot}$1} \\
+  & XGBoost &  70${\cdot}$9 &  8${\cdot}$42 & 6${\cdot}$47 & 20${\cdot}$3 \\
+\midrule
+\multirow{3}{*}{6}
+  & ELM     & 123${\cdot}$1 & 11${\cdot}$09 & 8${\cdot}$81 & 28${\cdot}$5 \\
+  & \textbf{MLP} & \textbf{68${\cdot}$8} & \textbf{8${\cdot}$29} & \textbf{6${\cdot}$21} & \textbf{18${\cdot}$9} \\
+  & XGBoost &  69${\cdot}$0 &  8${\cdot}$30 & 6${\cdot}$39 & 20${\cdot}$0 \\
+\midrule
+\multirow{3}{*}{7}
+  & ELM     & 105${\cdot}$7 & 10${\cdot}$28 & 7${\cdot}$99 & 26${\cdot}$3 \\
+  & MLP     &  93${\cdot}$5 &  9${\cdot}$67 & 7${\cdot}$60 & 24${\cdot}$6 \\
+  & \textbf{XGBoost} & \textbf{75${\cdot}$0} & \textbf{8${\cdot}$66} & \textbf{6${\cdot}$57} & \textbf{20${\cdot}$8} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{../analysis/forecasting_pm25/Predictions_curitiba_LAG_1.png}
+\caption{Observed vs.\ predicted daily respiratory hospitalisations at
+the 1-day prediction horizon (lag~1, test set). From top to bottom:
+ELM (MAPE=28${\cdot}$1\%), MLP (MAPE=23${\cdot}$2\%), and XGBoost
+(MAPE=18${\cdot}$0\%). XGBoost most closely tracks daily variability,
+including weekend troughs and post-cold-spell peaks.}
+\label{efig:ml_predictions}
+\end{figure}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{../analysis/forecasting_pm25/comparacao_2024_2050_curitiba_lag0__.png}
+\caption{Projected daily respiratory hospitalisations under CMIP6
+SSP5-8${\cdot}$5 for 2050 (coloured) compared with 2024 baseline
+(black), using MLP (top) and XGBoost (bottom). Baseline annual totals
+are similar ($\sim$12\,300), but the 2050 scenario shows amplified
+winter peaks due to projected temperature shifts.}
+\label{efig:projections_baseline}
+\end{figure}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{../analysis/forecasting_pm25/série_quatro_ondas_2050_2050_curitiba_lag0_cold.png}
+\caption{Monte Carlo cold wave simulation for 2050: daily
+hospitalisations under baseline 2050 climate (black) vs.\ 2050 with
+superimposed cold-spell events (coloured), for MLP (top) and XGBoost
+(bottom). Cold waves produce sharp hospitalisation spikes,
+particularly in autumn--winter (April--July) and late spring
+(November--December).}
+\label{efig:coldwave_scenarios}
+\end{figure}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{../analysis/forecasting_pm25/série_queimadas_2050_2050_curitiba_lag0__.png}
+\caption{Monte Carlo wildfire PM$_{2{\cdot}5}$ simulation for 2050:
+daily hospitalisations under baseline 2050 climate (black) vs.\ 2050
+with superimposed wildfire smoke events of
+70--100~µg/m$^3$ for 7--14~days (coloured), for MLP (top)
+and XGBoost (bottom). Wildfire episodes generate the largest
+hospitalisation surges, with weekly increases of up to 55\% (MLP) and
+42\% (XGBoost).}
+\label{efig:wildfire_scenarios}
+\end{figure}
+
 \end{document}

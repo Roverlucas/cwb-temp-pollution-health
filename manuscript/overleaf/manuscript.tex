@@ -87,7 +87,10 @@ In contrast, heat effects were non-significant (P90 RR=1${\cdot}$06
 sensitivity analyses ($\hat{\phi}$=1${\cdot}$32, Ljung--Box
 $p$=0${\cdot}$14). SHAP analysis from the XGBoost model independently
 ranked $T_\mathrm{min}$ as the dominant environmental predictor,
-completing the three-method convergence.
+completing the three-method convergence. Monte Carlo projections
+under CMIP6 SSP5-8${\cdot}$5 for 2050 showed that compound cold wave
+and wildfire PM$_{2{\cdot}5}$ episodes could increase weekly
+hospitalisations by up to 17\% and 55\%, respectively.
 
 \textbf{Interpretation}\quad
 In this subtropical metropolis, cold extremes --- not heat --- are the
@@ -96,10 +99,12 @@ with a delayed effect structure that opens a 3--10-day window for
 preventive intervention. The convergence of three methodologically
 independent approaches --- structural-exploratory (clustering),
 inferential (DLNM), and predictive (ML/SHAP) ---
-strengthens this conclusion. Current early-warning systems in
-subtropical South America focus almost exclusively on heat alerts;
-integrating cold-spell forecasts could reduce a substantial and
-preventable respiratory burden.
+strengthens this conclusion, and climate projections indicate that
+compound extreme events will amplify this burden under future warming
+scenarios. Current early-warning systems in subtropical South America
+focus almost exclusively on heat alerts; integrating cold-spell and
+air quality forecasts could reduce a substantial and preventable
+respiratory burden.
 
 \textbf{Funding}\quad
 NAPI -- Arauc\'{a}ria Foundation, Paran\'{a}, Brazil.
@@ -397,18 +402,38 @@ As a third, methodologically independent line of evidence, machine
 learning models (XGBoost,\cite{Chen2016} multilayer
 perceptron,\cite{Goodfellow2016} extreme learning
 machine\cite{Huang2006}) were trained to forecast daily
-hospitalisations at prediction horizons of 0, 1, 5, and 7~days. The
-7-day limit reflects the practical ceiling of operational weather
-forecast accuracy and differs from the epidemiological lag window
-(0--21~days) used in the DLNM to capture the full delayed attribution
-of temperature effects: the ML horizon asks ``how far ahead can we
-predict?'', whereas the DLNM lag asks ``how long does the biological
-effect persist?'' SHAP values\cite{Lundberg2017} quantified feature
-importance. Because gradient-boosted trees use recursive partitioning
-rather than spline bases and optimise predictive accuracy rather than
-estimating relative risks, agreement between SHAP rankings and DLNM
-findings constitutes methodological convergence. Full details are reported in
+hospitalisations at prediction horizons of 0, 1, 2, 3, 4, 5, 6, and
+7~days using a 70/30 train--test split. The 7-day limit reflects the
+practical ceiling of operational weather forecast accuracy and differs
+from the epidemiological lag window (0--21~days) used in the DLNM to
+capture the full delayed attribution of temperature effects: the ML
+horizon asks ``how far ahead can we predict?'', whereas the DLNM lag
+asks ``how long does the biological effect persist?'' Model
+performance was evaluated using four metrics: mean squared error
+(MSE), root mean squared error (RMSE), mean absolute error (MAE), and
+mean absolute percentage error (MAPE). SHAP
+values\cite{Lundberg2017} quantified feature importance. Because
+gradient-boosted trees use recursive partitioning rather than spline
+bases and optimise predictive accuracy rather than estimating relative
+risks, agreement between SHAP rankings and DLNM findings constitutes
+methodological convergence. Full details are reported in
 Supplementary Methods~S.3.
+
+\paragraph{Climate projections and extreme-event simulations}
+To assess future health impacts under climate change, the trained
+XGBoost and MLP models were applied to downscaled CMIP6
+SSP5-8${\cdot}$5 temperature projections (EC-Earth3-Veg-LR) for
+Curitiba's grid cell, generating daily respiratory hospitalisation
+forecasts for 2030, 2050, and 2099. Monte Carlo simulations of
+extreme events were conducted by superimposing synthetic stressor
+episodes onto the 2050 climate baseline: cold waves (temperature drops
+of 34--88\% below monthly means for 3--8~consecutive days, based on
+14~observed cold-spell profiles from the study period) and wildfire
+PM$_{2{\cdot}5}$ spikes (70--100~µg/m$^3$ for 7--14~days). Weekly
+percentage differences between baseline and extreme-event scenarios
+were computed for both models to quantify the additional
+hospitalisation burden attributable to compound extreme events under
+future climate conditions.
 
 \paragraph{Ethics and reporting}
 This study used exclusively aggregated, publicly available data from
@@ -632,17 +657,23 @@ MMT=17${\cdot}$8\,°C.}
 
 \subsection{Machine learning: predictive convergence evidence}
 
-XGBoost achieved the best overall forecasting performance at a
-1-day prediction horizon (MAPE=18${\cdot}$0\%, RMSE=8${\cdot}$10;
-eTable~8), with competitive performance maintained at lag~0
-(MAPE=19${\cdot}$4\%) and lag~5 (MAPE=20${\cdot}$3\%). MLP was the
-best-performing model at the 5-day horizon (MAPE=19${\cdot}$1\%).
-The fact that 1-day-ahead predictions outperformed same-day
-predictions is consistent with the delayed effect structure
-identified by the DLNM: environmental conditions from the previous
-day carry stronger signal for hospitalisation prediction than
-concurrent-day values.
+\paragraph{Model performance across prediction horizons}
+Three machine learning models were evaluated across eight prediction
+horizons (lag 0--7~days; eTable~12, eFigure~10). XGBoost achieved
+the best overall performance at the 1-day horizon
+(MAPE=18${\cdot}$0\%, RMSE=8${\cdot}$10; eTable~8), outperforming
+MLP (MAPE=23${\cdot}$2\%, RMSE=8${\cdot}$80) and ELM
+(MAPE=28${\cdot}$1\%, RMSE=10${\cdot}$43). Performance was robust
+across horizons: XGBoost maintained MAPE below 21\% at all lags
+(range 18${\cdot}$0--24${\cdot}$3\%), while MLP achieved the best
+single-horizon result at lag~5 (MAPE=19${\cdot}$1\%,
+RMSE=8${\cdot}$14). The fact that 1-day-ahead predictions
+outperformed same-day predictions is consistent with the delayed
+effect structure identified by the DLNM: environmental conditions
+from the previous day carry stronger signal for hospitalisation
+prediction than concurrent-day values.
 
+\paragraph{SHAP feature importance}
 SHAP feature-importance analysis (eFigure~8) ranked features by mean
 absolute SHAP value as follows: weekday (0${\cdot}$54), temperature
 (0${\cdot}$23), PM$_{2{\cdot}5}$ (0${\cdot}$16), humidity
@@ -658,18 +689,33 @@ temperature and PM$_{2{\cdot}5}$ emerge as the two leading
 environmental predictors, with directional effects consistent across
 methods.
 
-\paragraph{Climate projections}
-Applying the trained XGBoost model to CMIP6 SSP5-8${\cdot}$5
+\paragraph{Climate projections and extreme-event scenarios}
+Applying the trained XGBoost and MLP models to CMIP6 SSP5-8${\cdot}$5
 temperature projections (EC-Earth3-Veg-LR) for Curitiba's grid cell,
-we projected daily respiratory hospitalisations for 2030, 2050, and
-2099 (Supplementary Methods~S.3). Monte Carlo simulations of extreme
-events --- cold waves ($-$2--5\,°C for 3--7~days) and wildfire
-PM$_{2{\cdot}5}$ spikes (70--100~µg/m$^3$ for 7--14~days) ---
-illustrate that the combination of cold extremes and pollution
-episodes could produce substantially higher hospitalisation peaks
-than either stressor alone. These forward-looking projections,
-while inherently uncertain, demonstrate the operational potential of
-the ML models for climate-adaptive early-warning systems.
+we projected daily respiratory hospitalisations for 2050
+(eFigure~11). Under baseline 2050 climate conditions (without
+extreme events), both models projected annual hospitalisation totals
+similar to 2024 ($\sim$12\,300 admissions/year), reflecting the
+moderate warming signal in the SSP5-8${\cdot}$5 pathway for this
+subtropical latitude.
+
+Monte Carlo simulations of compound extreme events superimposed onto
+the 2050 climate baseline revealed substantial additional
+hospitalisation burdens (eFigures~12--13). Cold wave scenarios ---
+based on 14~observed cold-spell profiles with temperature drops of
+34--88\% below monthly means for 3--8~consecutive days --- produced
+weekly hospitalisation increases of up to 17\% (MLP) and 13\%
+(XGBoost) during affected weeks, concentrated in autumn and early
+winter (weeks 13--17 and 49--52; eFigure~12). Wildfire
+PM$_{2{\cdot}5}$ scenarios (70--100~µg/m$^3$ for 7--14~days)
+generated even larger weekly surges of up to 55\% (MLP) and 42\%
+(XGBoost), with the strongest impacts in late autumn (weeks 7--8;
+eFigure~13). The convergence of both models on the same seasonal
+vulnerability windows strengthens the projection robustness. These
+forward-looking projections, while inherently uncertain, demonstrate
+the operational potential of the ML models for climate-adaptive
+early-warning systems and quantify the additional hospitalisation
+burden attributable to compound extreme events.
 
 Together, the three approaches form a triangulation:
 \begin{itemize}
