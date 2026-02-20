@@ -210,8 +210,18 @@ pollution and mortality,\cite{Requia2024} while temperature--morbidity
 analyses have relied on correlation-based approaches that cannot
 disentangle delayed effects from shared seasonality. As a result,
 a fundamental question remains unanswered for this region: does cold
-or heat impose the greater respiratory hospitalisation burden, and
-over what time horizon?
+or heat impose the greater respiratory hospitalisation burden when
+combined with high air pollution episodes, and over what time horizon?
+
+To rigorously address these interactions, this study adopts the
+framework of Compound Climate Extremes. According to Zscheischler
+et~al.,\cite{Zscheischler2020} these events occur when a combination
+of multiple drivers and/or hazards contributes to societal or
+environmental risk. Crucially, the co-occurrence of these drivers
+often results in non-linear impacts, where the aggregate consequence
+exceeds the simple sum of individual components --- a phenomenon
+particularly critical when meteorological stagnation amplifies
+pollutant concentrations during thermal extremes.
 
 We address this gap using distributed lag non-linear models (DLNM)
 applied to 42\,716~respiratory hospital admissions, daily temperature
@@ -724,11 +734,17 @@ population level.\cite{Cheng2024} In subtropical Brazilian cities,
 this behavioural pathway is amplified by a built-environment
 vulnerability largely absent in temperate-climate regions with
 comparable winter minima: residential buildings typically lack
-thermal insulation and central heating, leaving populations
-physiologically exposed to indoor cold temperatures for prolonged
-periods. These behavioural and infrastructural mechanisms compound
-the direct physiological effects, creating a multi-pathway exposure
-that is unique to cold extremes in this setting.
+thermal insulation and central heating, rendering populations
+paradoxically more vulnerable to even moderate cold
+spells.\cite{Gasparrini2015,Cohen2017} This creates a ``hidden
+vulnerability'' scenario where the health impact of temperature drops
+is disproportionately amplified by co-occurring air pollution --- a
+dynamic often overlooked in Northern Hemisphere-centric literature
+that assumes adequate indoor climate
+control.\cite{Zscheischler2020} These behavioural and
+infrastructural mechanisms compound the direct physiological effects,
+creating a multi-pathway exposure that is unique to cold extremes in
+subtropical settings.
 
 \subsection{Robustness of findings}
 
@@ -952,7 +968,7 @@ DATASUS, and PurpleAir Inc.\ for providing open data.
 %% ═══════════════════════════════════════════════════════════════════
 \bibliographystyle{elsarticle-num}
 
-\begin{thebibliography}{20}
+\begin{thebibliography}{22}
 
 %% Ordered by first citation in text (Vancouver style)
 
@@ -1055,6 +1071,16 @@ In: \textit{Proc 5th Berkeley Symp on Mathematical Statistics and Probability}. 
 Rousseeuw PJ.
 Silhouettes: A graphical aid to the interpretation and validation of cluster analysis.
 \textit{J Comput Appl Math}. 1987;20:53--65.
+
+\bibitem{Zscheischler2020}
+Zscheischler J, Martius O, Westra S, et al.
+A typology of compound weather and climate events.
+\textit{Nat Rev Earth Environ}. 2020;1(7):333--347.
+
+\bibitem{Cohen2017}
+Cohen AJ, Brauer M, Burnett R, et al.
+Estimates and 25-year trends of the global burden of disease attributable to ambient air pollution: an analysis of data from the Global Burden of Diseases Study 2015.
+\textit{Lancet}. 2017;389(10082):1907--1918.
 
 \end{thebibliography}
 

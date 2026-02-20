@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Changelog — Manuscript Revision</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #f4f6f9; color: #1a1a2e; line-height: 1.6; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 24px; }
+
+  header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); color: white; padding: 48px 32px; border-radius: 12px; margin-bottom: 32px; }
+  header h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+  header .subtitle { font-size: 16px; opacity: 0.85; margin-bottom: 16px; }
+  header .meta { display: flex; gap: 24px; flex-wrap: wrap; font-size: 13px; opacity: 0.7; }
+  header .meta span { background: rgba(255,255,255,0.1); padding: 4px 12px; border-radius: 20px; }
+
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 32px; }
+  .stat-card { background: white; border-radius: 10px; padding: 20px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+  .stat-card .number { font-size: 32px; font-weight: 700; color: #0f3460; }
+  .stat-card .label { font-size: 13px; color: #666; margin-top: 4px; }
+
+  .toc { background: white; border-radius: 10px; padding: 24px; margin-bottom: 32px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+  .toc h2 { font-size: 18px; margin-bottom: 12px; color: #0f3460; }
+  .toc ol { padding-left: 24px; }
+  .toc li { margin-bottom: 6px; }
+  .toc a { color: #0f3460; text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  .toc .tag { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 10px; margin-left: 6px; font-weight: 600; }
+  .tag-struct { background: #e8f4fd; color: #0277bd; }
+  .tag-content { background: #e8f5e9; color: #2e7d32; }
+  .tag-narrative { background: #fff3e0; color: #e65100; }
+  .tag-fix { background: #fce4ec; color: #c62828; }
+
+  .change-block { background: white; border-radius: 10px; margin-bottom: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); overflow: hidden; }
+  .change-header { padding: 16px 24px; border-bottom: 1px solid #eee; display: flex; align-items: center; gap: 12px; }
+  .change-header .id { background: #0f3460; color: white; font-size: 13px; font-weight: 700; padding: 4px 10px; border-radius: 6px; }
+  .change-header h3 { font-size: 16px; flex: 1; }
+  .change-header .section { font-size: 12px; color: #888; background: #f0f0f0; padding: 3px 10px; border-radius: 10px; }
+
+  .justification { padding: 12px 24px; background: #fffde7; border-left: 4px solid #f9a825; font-size: 14px; }
+  .justification strong { color: #e65100; }
+
+  .diff-container { padding: 0; }
+  .diff-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; padding: 8px 24px; }
+  .diff-label.old { background: #ffebee; color: #c62828; border-top: 1px solid #ffcdd2; }
+  .diff-label.new { background: #e8f5e9; color: #2e7d32; border-top: 1px solid #c8e6c9; }
+
+  .diff-content { padding: 12px 24px 16px; font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace; font-size: 13px; line-height: 1.7; white-space: pre-wrap; word-wrap: break-word; overflow-x: auto; }
+  .diff-content.old { background: #fff5f5; color: #6b1c1c; }
+  .diff-content.new { background: #f1f8e9; color: #1b5e20; }
+
+  mark.add { background: #a5d6a7; padding: 1px 2px; border-radius: 2px; }
+  mark.del { background: #ef9a9a; padding: 1px 2px; border-radius: 2px; text-decoration: line-through; }
+
+  .file-separator { text-align: center; padding: 24px; font-size: 18px; font-weight: 700; color: #0f3460; margin: 32px 0 16px; border-top: 3px solid #0f3460; }
+
+  footer { text-align: center; padding: 32px; color: #888; font-size: 13px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>Revision Changelog</h1>
+  <div class="subtitle">Cold, Not Heat: Delayed Temperature Extremes Drive Respiratory Hospitalisations in Subtropical Southern Brazil</div>
+  <div class="meta">
+    <span>Commit: 1e863f9 &rarr; 0a08f21</span>
+    <span>Date: 2026-02-19</span>
+    <span>Files: manuscript.tex + supplement.tex</span>
+    <span>Target: The Lancet Regional Health &mdash; Americas</span>
+  </div>
+</header>
+
+<div class="stats">
+  <div class="stat-card"><div class="number">13</div><div class="label">Change blocks</div></div>
+  <div class="stat-card"><div class="number">+442</div><div class="label">Lines added</div></div>
+  <div class="stat-card"><div class="number">&minus;223</div><div class="label">Lines removed</div></div>
+  <div class="stat-card"><div class="number">1087</div><div class="label">Final line count</div></div>
+</div>
+
+<div class="toc">
+  <h2>Table of Changes</h2>
+  <ol>
+    <li><a href="#c1">Abstract &mdash; Methods expanded with PM2.5, all 3 ML models, MMT defined</a> <span class="tag tag-narrative">Narrative</span></li>
+    <li><a href="#c2">Abstract &mdash; Findings: mortality removed, PM2.5/PCA/SHAP added</a> <span class="tag tag-narrative">Narrative</span></li>
+    <li><a href="#c3">Keywords &mdash; PM2.5 added</a> <span class="tag tag-content">Content</span></li>
+    <li><a href="#c4">Research in Context &mdash; Clustering, ML, pollution integrated</a> <span class="tag tag-narrative">Narrative</span></li>
+    <li><a href="#c5">Methods &mdash; Reordered (DLNM &rarr; Clustering &rarr; ML), lag justified, MMT defined, ML horizon explained</a> <span class="tag tag-struct">Structure</span></li>
+    <li><a href="#c6">Results &mdash; Reordered (DLNM &rarr; Clustering &rarr; ML), PM2.5 DLNM added, SHAP expanded, projections restored</a> <span class="tag tag-struct">Structure</span> <span class="tag tag-content">Content</span></li>
+    <li><a href="#c7">Discussion &mdash; Principal findings: PM2.5 co-factor, method attribution for 3&ndash;10 day lag</a> <span class="tag tag-narrative">Narrative</span></li>
+    <li><a href="#c8">Discussion &mdash; Cold-dominant burden: frequency argument, 3 real differentiators, softened claims</a> <span class="tag tag-narrative">Narrative</span></li>
+    <li><a href="#c9">Discussion &mdash; Pathophysiology: buildings without insulation/heating</a> <span class="tag tag-content">Content</span></li>
+    <li><a href="#c10">Discussion &mdash; Robustness + Air pollution + Limitations: PM2.5 triangulation enriched</a> <span class="tag tag-narrative">Narrative</span></li>
+    <li><a href="#c11">Supplement &mdash; Reordered to S.1/S.2/S.3 matching main text</a> <span class="tag tag-struct">Structure</span> <span class="tag tag-fix">Fix</span></li>
+    <li><a href="#c12">Introduction &mdash; Compound Climate Extremes framework (Zscheischler 2020)</a> <span class="tag tag-content">Content</span></li>
+    <li><a href="#c13">Discussion &mdash; "Hidden vulnerability" + Cohen 2017 reference</a> <span class="tag tag-content">Content</span></li>
+  </ol>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- CHANGE 1 -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="change-block" id="c1">
+  <div class="change-header">
+    <span class="id">A.1</span>
+    <h3>Abstract &mdash; Methods: all variables listed, 3 ML models named, MMT defined</h3>
+    <span class="section">Abstract &sect; Methods</span>
+  </div>
+  <div class="justification">
+    <strong>Justification:</strong> The original abstract mentioned only "daily minimum temperature" and "XGBoost." The professor flagged that PM2.5 was underrepresented. Now the abstract lists all three temperature variables, PM2.5 (PurpleAir), all three ML models by name, and defines the MMT acronym on first use &mdash; satisfying Lancet requirements for completeness.
+  </div>
+  <div class="diff-container">
+    <div class="diff-label old">Removed (version 1e863f9)</div>
+    <div class="diff-content old">We analysed <mark class="del">daily minimum temperature (INMET, 1961--2024)</mark> and
+respiratory hospital admissions (DATASUS SIH/AIH, ICD-10 J00--J99,
+2022--2024; N=42,716) in Curitiba, Brazil (~1.8 million
+inhabitants) using a methodological triangulation design. Distributed
+lag non-linear models (DLNM) with quasi-Poisson regression provided
+inferential evidence; K-means clustering assessed whether the same
+delayed patterns emerge without parametric assumptions; and
+<mark class="del">gradient-boosted trees (XGBoost)</mark> with SHAP feature importance provided
+predictive convergence evidence. <mark class="del">The MMT was identified</mark>
+by grid search.</div>
+    <div class="diff-label new">Added (version 0a08f21)</div>
+    <div class="diff-content new">We analysed <mark class="add">daily temperatures (T_min, T_med, T_max; INMET, 1961--2024),
+EPA-corrected PM2.5 (PurpleAir),</mark> and respiratory hospital admissions (DATASUS SIH/AIH,
+ICD-10 J00--J99, 2022--2024; N=42,716) in Curitiba, Brazil
+(~1.8 million inhabitants) using a methodological triangulation design.
+Distributed lag non-linear models (DLNM) with quasi-Poisson regression
+provided inferential evidence; K-means clustering <mark class="add">on six environmental
+variables (including PM2.5)</mark> assessed whether delayed patterns emerge
+without parametric assumptions; and <mark class="add">machine learning models (XGBoost,
+multilayer perceptron, extreme learning machine)</mark> with SHAP feature
+importance provided predictive convergence evidence. <mark class="add">The minimum morbidity
+temperature (MMT) was identified</mark> by grid search.</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- CHANGE 2 -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="change-block" id="c2">
+  <div class="change-header">
+    <span class="id">A.2</span>
+    <h3>Abstract &mdash; Findings: mortality removed, PM2.5 descriptives + PCA + SHAP added</h3>
+    <span class="section">Abstract &sect; Findings</span>
+  </div>
+  <div class="justification">
+    <strong>Justification:</strong> The original mentioned "3715 in-hospital deaths," creating a reader expectation that mortality was modelled (it was not). Replaced with PM2.5 descriptive statistics, PCA loadings showing the cold&ndash;pollution&ndash;hospitalisation axis, and SHAP finding that PM2.5 is a contributing predictor. This elevates pollution from invisible to prominent.
+  </div>
+  <div class="diff-container">
+    <div class="diff-label old">Removed</div>
+    <div class="diff-content old">Over 1096 study days, 42,716 respiratory hospitalisations (51% male;
+38% aged &ge;65 years) <mark class="del">and 3715 in-hospital deaths were recorded.</mark>
+The DLNM identified MMT=17.8 &deg;C. [...]
+Results were robust across all sensitivity analyses (&phi;=1.32,
+Ljung-Box p=0.14). Two independent methods converged on the same
+finding: the "Clean Cold" cluster exhibited delayed correlations
+with hospitalisations at lags 3--10 days without imposing any
+parametric lag structure, and <mark class="del">SHAP analysis ranked T_min
+as the dominant environmental predictor.</mark></div>
+    <div class="diff-label new">Added</div>
+    <div class="diff-content new">Over 1096 study days, 42,716 respiratory hospitalisations (51% male;
+38% aged &ge;65 years) <mark class="add">were recorded. EPA-corrected PM2.5
+was generally low (median 4.12 &mu;g/m&sup3;; 4.7% of days
+above the WHO 24-hour guideline).</mark>
+The DLNM identified MMT=17.8 &deg;C. [...]
+Two independent methods converged: K-means clustering revealed that
+the "Clean Cold" cluster exhibited delayed correlations with
+hospitalisations at lags 3--10 days, <mark class="add">while principal component
+analysis showed that cold, polluted days were structurally associated
+with higher admissions (PC1: +PM2.5, &minus;T_min, +hospitalisations;
+44.5% of variance). SHAP analysis ranked T_min as the dominant
+environmental predictor, with PM2.5 as a contributing feature.</mark></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- CHANGE 3 -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="change-block" id="c3">
+  <div class="change-header">
+    <span class="id">A.3</span>
+    <h3>Keywords &mdash; PM2.5 added</h3>
+    <span class="section">Keywords</span>
+  </div>
+  <div class="justification">
+    <strong>Justification:</strong> PM2.5 is now a substantive component of the narrative. Adding it to keywords improves discoverability in PubMed/Scopus for air pollution researchers.
+  </div>
+  <div class="diff-container">
+    <div class="diff-label old">Removed</div>
+    <div class="diff-content old">temperature extremes; cold spells; hospital admissions; distributed lag
+non-linear model; methodological triangulation; climate--health;
+respiratory morbidity; subtropical; Curitiba</div>
+    <div class="diff-label new">Added</div>
+    <div class="diff-content new">temperature extremes; cold spells; <mark class="add">PM2.5;</mark> hospital admissions;
+distributed lag non-linear model; methodological triangulation;
+climate--health; respiratory morbidity; subtropical; Curitiba</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- CHANGE 4 -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="change-block" id="c4">
+  <div class="change-header">
+    <span class="id">B</span>
+    <h3>Research in Context &mdash; All 3 subsections now include clustering, ML, and pollution</h3>
+    <span class="section">Research in Context</span>
+  </div>
+  <div class="justification">
+    <strong>Justification:</strong> Professor feedback: "Evidence before this study" should mention clustering and ML gap; "Added value" should include pollution; "Implications" should include pollution in early-warning. All three subsections now reflect the full triangulation design and the PM2.5 co-factor finding.
+  </div>
+  <div class="diff-container">
+    <div class="diff-label old">Evidence before this study (old)</div>
+    <div class="diff-content old">[...] remains scarce. <mark class="del">No study has applied formal DLNM methods to
+quantify the non-linear, delayed effects of cold extremes on
+respiratory hospital admissions in this region.</mark></div>
+    <div class="diff-label new">Evidence before this study (new)</div>
+    <div class="diff-content new">[...] remains scarce. <mark class="add">Furthermore, existing studies have rarely combined
+inferential, exploratory, and predictive approaches to assess the
+joint role of temperature and air pollution on respiratory morbidity.
+No study has applied a methodological triangulation design ---
+integrating DLNM, unsupervised clustering, and machine learning ---
+to quantify the non-linear, delayed effects of cold extremes and
+PM2.5 on respiratory hospital admissions in this region.</mark></div>
+    <div class="diff-label old">Added value (old)</div>
+    <div class="diff-content old"><mark class="del">To our knowledge, this is the first DLNM analysis of temperature
+extremes and respiratory hospitalisations in a subtropical South
+American city.</mark></div>
+    <div class="diff-label new">Added value (new)</div>
+    <div class="diff-content new"><mark class="add">To our knowledge, this is the first study to combine DLNM, clustering,
+and machine learning analyses of temperature extremes, air pollution,
+and respiratory hospitalisations in a subtropical South American city.</mark></div>
+    <div class="diff-label old">Implications (old)</div>
+    <div class="diff-content old">Early-warning systems [...] should integrate <mark class="del">cold-spell forecasts
+alongside heat alerts.</mark> [...] our findings, corroborated by three
+independent analytical approaches, identify a remediable gap [...]</div>
+    <div class="diff-label new">Implications (new)</div>
+    <div class="diff-content new">Early-warning systems [...] should integrate <mark class="add">cold-spell forecasts and
+air quality monitoring alongside heat alerts.</mark> [...] <mark class="add">Exploratory analyses
+consistently identified PM2.5 as a structural co-factor associated
+with higher admissions, suggesting that combined temperature--pollution
+alerts may be more effective than temperature-only triggers.</mark> [...]</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- CHANGE 5 -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="change-block" id="c5">
+  <div class="change-header">
+    <span class="id">C</span>
+    <h3>Methods &mdash; Reordered, lag justified, MMT defined, ML horizon explained</h3>
+    <span class="section">&sect;2 Methods</span>
+  </div>
+  <div class="justification">
+    <strong>Justification:</strong> Multiple professor comments addressed here:
+    (1) Methods order now matches abstract: DLNM &sect;2.4 &rarr; Clustering &sect;2.5 &rarr; ML &sect;2.6.
+    (2) Lag 21 days now justified with explicit Gasparrini2015 reference + latency rationale.
+    (3) MMT defined as concept ("temperature at which cumulative exposure-response curve reaches minimum risk").
+    (4) ML lag 0&ndash;7 justified as operational forecasting horizon vs. epidemiological lag window ("how far ahead can we predict?" vs. "how long does the effect persist?").
+    (5) K-means citation (MacQueen1967) and silhouette citation (Rousseeuw1987) added.
+    (6) 28-day clustering window justified (exceeds DLNM lag to capture longer associations).
+    (7) ETCCDI defined on first use.
+    (8) Variable usage clarified (T_min for DLNM; all 6 for clustering/ML).
+    (9) Forward reference to DLNM removed from clustering section.
+    (10) eTables/eFigures replaced with "Supplementary Methods S.2/S.3" references.
+  </div>
+  <div class="diff-container">
+    <div class="diff-label old">DLNM lag justification (old)</div>
+    <div class="diff-content old">Maximum lag was 21 days. <mark class="del">The minimum morbidity temperature
+(MMT) was identified by grid search, following
+Gasparrini et al.</mark></div>
+    <div class="diff-label new">DLNM lag justification (new)</div>
+    <div class="diff-content new">Maximum lag was set at 21 days, <mark class="add">consistent with the standard adopted
+in multi-country temperature--mortality analyses (Gasparrini2015) and
+reflecting the known 3--14-day latency of cold-related respiratory
+effects (Linares2025, Cheng2024).</mark> The minimum morbidity temperature
+(MMT) --- <mark class="add">defined as the temperature at which the cumulative
+exposure--response curve reaches its minimum risk, analogous to the
+minimum mortality temperature of Gasparrini et al.</mark> --- was identified
+by grid search.</div>
+    <div class="diff-label old">ML lag description (old)</div>
+    <div class="diff-content old">machine learning models [...] were trained to forecast daily
+hospitalisations <mark class="del">at lags 0--7 days, with SHAP values</mark> [...]</div>
+    <div class="diff-label new">ML lag description (new)</div>
+    <div class="diff-content new">machine learning models [...] were trained to forecast daily
+hospitalisations <mark class="add">at prediction horizons of 0, 1, 5, and 7 days. The
+7-day limit reflects the practical ceiling of operational weather
+forecast accuracy and differs from the epidemiological lag window
+(0--21 days) used in the DLNM to capture the full delayed attribution
+of temperature effects: the ML horizon asks "how far ahead can we
+predict?", whereas the DLNM lag asks "how long does the biological
+effect persist?" SHAP values</mark> [...]</div>
+    <div class="diff-label old">Clustering section position (old)</div>
+    <div class="diff-content old"><mark class="del">&sect;2.3 Clustering (before DLNM &sect;2.4) &mdash; with forward reference:
+"...independent test of the lag structure identified by the DLNM"
+and references to eTables/eFigures in Methods.</mark></div>
+    <div class="diff-label new">Clustering section position (new)</div>
+    <div class="diff-content new"><mark class="add">&sect;2.5 Clustering (after DLNM &sect;2.4) &mdash; with K-means citation
+(MacQueen1967), silhouette citation (Rousseeuw1987), 28-day lag window
+justified, no forward DLNM reference, references to "Supplementary
+Methods S.2" instead of eTables in Methods.</mark></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- CHANGE 6 -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="change-block" id="c6">
+  <div class="change-header">
+    <span class="id">D</span>
+    <h3>Results &mdash; Reordered + PM2.5 DLNM + SHAP expanded + Projections restored</h3>
+    <span class="section">&sect;3 Results</span>
+  </div>
+  <div class="justification">
+    <strong>Justification:</strong> Four major changes:
+    (1) <strong>Reorder:</strong> Results now follow Methods order (DLNM &rarr; Clustering &rarr; ML). Clustering now makes a backward reference to DLNM ("the same lag window identified by the DLNM, &sect;3.2") instead of the problematic forward reference ("subsequently identified").
+    (2) <strong>PM2.5 DLNM:</strong> New paragraph "Exploratory PM2.5 analysis" added after DLNM sensitivity, reporting RERI=0.013 (no interaction), A-B-C diagnostic, and contextualising the null result as a power limitation.
+    (3) <strong>SHAP expanded:</strong> Full numeric ranking (weekday 0.54, temperature 0.23, PM2.5 0.16, humidity 0.05, holiday 0.03). PM2.5 = 2nd environmental predictor at ~70% of temperature's importance. Beeswarm directional effects described.
+    (4) <strong>Projections restored:</strong> CMIP6 SSP5-8.5 for 2030/2050/2099 and Monte Carlo extreme-event simulations brought back into main text.
+    (5) <strong>Descriptive:</strong> Low-frequency/high-impact argument added. Mortality recontextualised.
+  </div>
+  <div class="diff-container">
+    <div class="diff-label old">Descriptive &mdash; mortality (old)</div>
+    <div class="diff-content old">we recorded 42,716 respiratory hospital admissions <mark class="del">and 3715 in-hospital
+deaths (case fatality 8.7%)</mark>, representing a mean of 32.3 admissions [...]
+(eTable 1) --- <mark class="del">underscoring the episodic and concentrated nature of
+cold exposure in this climate.</mark></div>
+    <div class="diff-label new">Descriptive &mdash; mortality + frequency (new)</div>
+    <div class="diff-content new">we recorded 42,716 respiratory hospital admissions <mark class="add">(in-hospital case
+fatality 8.7%, n=3715; mortality was not modelled as a separate
+outcome)</mark>, representing a mean of 32.3 admissions [...]
+(eTable 1). <mark class="add">Despite accounting for fewer than one-fifth of
+extreme-temperature days, cold events were the only ones associated
+with significant excess morbidity (see &sect;3.2) --- a low-frequency,
+high-impact pattern that underscores the episodic and concentrated
+nature of cold exposure in this climate and highlights a gap in
+surveillance systems designed primarily for frequent heat events.</mark></div>
+    <div class="diff-label old">ML/SHAP section (old)</div>
+    <div class="diff-content old">XGBoost achieved the best forecasting performance
+<mark class="del">(MAPE=19.4%, RMSE=8.37 at lag 0; eTable 8).
+SHAP feature-importance analysis ranked T_min as the
+dominant environmental predictor</mark> of respiratory hospitalisations
+(eFigure 8). [...]
+Together, the three approaches form a triangulation:
+- DLNM: causal-ecological evidence (non-linear RR with lag structure);
+- Clustering: structural-exploratory evidence [...];
+- ML/SHAP: predictive convergence evidence <mark class="del">(T_min as dominant
+  predictor via tree-based partitioning).</mark></div>
+    <div class="diff-label new">ML/SHAP section (new)</div>
+    <div class="diff-content new">XGBoost achieved the best overall forecasting performance <mark class="add">at a
+1-day prediction horizon (MAPE=18.0%, RMSE=8.10; eTable 8), with
+competitive performance at lag 0 (MAPE=19.4%) and lag 5 (20.3%).
+MLP was the best-performing model at the 5-day horizon (19.1%).
+The fact that 1-day-ahead predictions outperformed same-day
+predictions is consistent with the delayed effect structure
+identified by the DLNM.</mark>
+
+<mark class="add">SHAP feature-importance analysis (eFigure 8) ranked features by mean
+absolute SHAP value: weekday (0.54), temperature (0.23), PM2.5
+(0.16), humidity (0.05), holiday (0.03). Among environmental
+predictors, temperature was the dominant feature and PM2.5 ranked
+second, contributing approximately 70% of the predictive importance
+of temperature. The beeswarm plot confirmed that low temperature
+values and high PM2.5 values independently increased predicted
+hospitalisations.</mark>
+
+<mark class="add">Climate projections: Applying the trained XGBoost model to CMIP6
+SSP5-8.5 temperature projections for Curitiba (2030, 2050, 2099).
+Monte Carlo simulations of cold waves + wildfire PM2.5 spikes
+illustrate that the combination could produce substantially higher
+hospitalisation peaks than either stressor alone.</mark>
+
+Together, the three approaches form a triangulation:
+- DLNM: causal-ecological evidence <mark class="add">(cold dominant, PM2.5 non-significant due to data limitations);</mark>
+- Clustering/PCA: structural-exploratory evidence <mark class="add">(PM2.5 as structural co-factor on PC1);</mark>
+- ML/SHAP: predictive convergence evidence <mark class="add">(temperature dominant,
+  PM2.5 as second environmental predictor at 70% importance).</mark></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- CHANGE 7 -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="change-block" id="c7">
+  <div class="change-header">
+    <span class="id">E</span>
+    <h3>Discussion &mdash; Principal findings: PM2.5 added, method attributed for lag</h3>
+    <span class="section">&sect;4.1 Principal findings</span>
+  </div>
+  <div class="justification">
+    <strong>Justification:</strong> Two improvements: (1) PM2.5 now mentioned as structural co-factor in the opening summary. (2) The "3&ndash;10 day lag" finding is now attributed to specific methods ("DLNM lag structure... independently confirmed by clustering cross-correlations") instead of appearing without provenance.
+  </div>
+  <div class="diff-container">
+    <div class="diff-label old">Removed</div>
+    <div class="diff-content old">This study provides <mark class="del">the first formal</mark> DLNM-based evidence that cold
+extremes --- not heat --- are the dominant temperature-related driver
+of respiratory hospitalisations in a subtropical South American city.
+[...] <mark class="del">The delayed lag peak at 3--10 days identifies a clinically
+actionable window between cold exposure and peak hospitalisation
+burden.</mark></div>
+    <div class="diff-label new">Added</div>
+    <div class="diff-content new">This study provides formal DLNM-based evidence that cold
+extremes --- not heat --- are the dominant temperature-related driver
+of respiratory hospitalisations in a subtropical South American city,
+<mark class="add">and that PM2.5 operates as a structural co-factor identified
+consistently across three independent analytical approaches.</mark>
+[...] <mark class="add">The DLNM lag structure at cold extremes peaked at 3--10 days,
+a window independently confirmed by clustering cross-correlations,
+identifying a clinically actionable interval between cold exposure
+and peak hospitalisation burden.</mark></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- CHANGE 8 -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="change-block" id="c8">
+  <div class="change-header">
+    <span class="id">F</span>
+    <h3>Discussion &mdash; Cold-dominant burden: frequency argument, 3 differentiators, softened claims</h3>
+    <span class="section">&sect;4.2 Cold-dominant burden</span>
+  </div>
+  <div class="justification">
+    <strong>Justification:</strong> Major restructuring addressing professor's concern that "1 city vs 384" is not compelling:
+    (1) <strong>Frequency argument added:</strong> 20.1% hot days vs 3.7% cold days, yet cold is the only one with significant morbidity &mdash; "low-frequency, high-impact."
+    (2) <strong>3 real differentiators:</strong> (a) morbidity not mortality, (b) methodological triangulation, (c) PM2.5 as structural co-factor. These replace the weak "first subtropical city in Southern Hemisphere" claim.
+    (3) <strong>Softened:</strong> "The practical consequence is clear: in subtropical cities..." &rarr; "The practical implication for Curitiba is that... Whether this pattern generalises requires multi-site replication."
+  </div>
+  <div class="diff-container">
+    <div class="diff-label old">Removed</div>
+    <div class="diff-content old">[...] the cold extreme (P1) yielded a statistically significant 42%
+excess, while the heat extreme (P90) produced a non-significant 6%
+excess. <mark class="del">This pattern is consistent with the global observation by
+Gasparrini et al. that cold-attributable mortality exceeds heat-attributable
+mortality in most climates, but extends it to respiratory morbidity
+in a Southern Hemisphere subtropical city not represented in that
+384-location study. Our MMT of 17.8 &deg;C [...] and the magnitude
+of cold-attributable risk at P1 is comparable to cold-related excess
+mortality in temperate European and East Asian settings.</mark>
+
+<mark class="del">The practical consequence is clear: in subtropical cities, a
+heat-exclusive early-warning system will miss the largest
+temperature-attributable morbidity signal.</mark></div>
+    <div class="diff-label new">Added</div>
+    <div class="diff-content new">[...] the cold extreme (P1) yielded a statistically significant 42%
+excess, while the heat extreme (P90) produced a non-significant 6%
+excess. <mark class="add">This asymmetry is further underscored by the frequency of
+extreme events: extremely hot days accounted for 20.1% of the study
+period compared with only 3.7% for extremely cold days, yet cold was
+the only exposure associated with significant excess morbidity --- a
+low-frequency, high-impact pattern that current surveillance systems
+are not designed to detect.
+
+The direction of this finding is consistent with the global
+observation by Gasparrini et al. [...] However, our contribution
+goes beyond confirming this pattern in a single additional city.
+First, we extend the evidence from mortality to respiratory morbidity,
+which is more directly relevant for health-system preparedness.
+Second, we employ a methodological triangulation design --- DLNM,
+unsupervised clustering, and ML/SHAP --- that has not been applied in
+previous temperature--health studies. Third, we identify PM2.5 as a
+structural co-factor associated with hospitalisations across all
+exploratory and predictive approaches (PCA, clustering, SHAP),
+suggesting a combined cold--pollution pathway that warrants
+investigation in multi-city designs.</mark>
+
+<mark class="add">The practical implication for Curitiba is that</mark> a heat-exclusive
+early-warning system would miss the largest temperature-attributable
+morbidity signal. <mark class="add">Whether this pattern generalises to other subtropical
+cities requires multi-site replication, but the three-method
+convergence provides a strong rationale for investigating cold-spell
+triggers in similar settings.</mark></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- CHANGE 9 -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="change-block" id="c9">
+  <div class="change-header">
+    <span class="id">G</span>
+    <h3>Discussion &mdash; Pathophysiology: buildings without insulation added</h3>
+    <span class="section">&sect;4.3 Pathophysiology</span>
+  </div>
+  <div class="justification">
+    <strong>Justification:</strong> Subtropical Brazilian cities lack thermal insulation and central heating &mdash; a critical built-environment vulnerability absent in temperate European/Asian cities with comparable winter minima. This amplifies indoor cold exposure and distinguishes our setting from the temperate-climate literature.
+  </div>
+  <div class="diff-container">
+    <div class="diff-label old">Removed</div>
+    <div class="diff-content old">Additionally, cold weather increases indoor crowding and reduces
+ventilation, amplifying respiratory pathogen transmission at the
+population level. <mark class="del">These behavioural mechanisms compound the direct
+physiological effects, creating a multi-pathway exposure that is
+unique to cold extremes.</mark></div>
+    <div class="diff-label new">Added</div>
+    <div class="diff-content new">Additionally, cold weather increases indoor crowding and reduces
+ventilation, amplifying respiratory pathogen transmission at the
+population level. <mark class="add">In subtropical Brazilian cities, this behavioural
+pathway is amplified by a built-environment vulnerability largely
+absent in temperate-climate regions with comparable winter minima:
+residential buildings typically lack thermal insulation and central
+heating, leaving populations physiologically exposed to indoor cold
+temperatures for prolonged periods.</mark> These behavioural <mark class="add">and
+infrastructural</mark> mechanisms compound the direct physiological effects,
+creating a multi-pathway exposure that is unique to cold extremes
+<mark class="add">in this setting.</mark></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- CHANGE 10 -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="change-block" id="c10">
+  <div class="change-header">
+    <span class="id">H</span>
+    <h3>Discussion &mdash; Robustness + Air pollution + Limitation 6: PM2.5 triangulation</h3>
+    <span class="section">&sect;4.4 Robustness, &sect;4.5 Air pollution, &sect;4.7 Limitations</span>
+  </div>
+  <div class="justification">
+    <strong>Justification:</strong> Three interconnected changes:
+    (1) <strong>Robustness (&sect;4.4):</strong> Triangulation now explicitly includes PM2.5 convergence: "PM2.5 acts as a secondary co-factor." Key addition: "the PM2.5 signal was not detectable by the DLNM alone (likely due to low concentrations and sensor data gaps), but emerged consistently in the two data-driven approaches (PCA/clustering and SHAP), suggesting that the null inferential result reflects a power limitation rather than absence of effect."
+    (2) <strong>Air pollution (&sect;4.5):</strong> SHAP numbers updated: "PM2.5 as the second most important environmental predictor (mean |SHAP|=0.16, approximately 70% of the predictive importance of temperature), with high PM2.5 values consistently increasing predicted hospitalisations." This is a new subsection added in this revision.
+    (3) <strong>Limitation 6:</strong> Rewritten from "PM2.5 does not affect our finding" to acknowledging the data limitation while pointing to PCA/clustering/SHAP as evidence the pathway may be real.
+  </div>
+  <div class="diff-container">
+    <div class="diff-label old">Robustness triangulation (old)</div>
+    <div class="diff-content old">The XGBoost model [...] independently ranks T_min as the dominant
+environmental predictor through SHAP analysis. [...]
+Their convergence on the same conclusion --- <mark class="del">that cold stress is the
+primary environmental driver of respiratory hospitalisations, with
+delayed effects --- provides substantially stronger evidence [...]</mark></div>
+    <div class="diff-label new">Robustness triangulation (new)</div>
+    <div class="diff-content new">The XGBoost model [...] independently ranks T_min as the dominant
+environmental predictor <mark class="add">and PM2.5 as the second environmental predictor
+(70% of temperature's SHAP importance)</mark> through SHAP analysis. [...]
+Their convergence on the same conclusion --- that cold stress is the
+primary environmental driver of respiratory hospitalisations, with
+delayed effects, <mark class="add">and that PM2.5 acts as a secondary co-factor</mark> ---
+provides substantially stronger evidence [...]
+<mark class="add">Notably, the PM2.5 signal was not detectable by the DLNM alone
+(likely due to low concentrations and sensor data gaps), but emerged
+consistently in the two data-driven approaches (PCA/clustering and
+SHAP), suggesting that the null inferential result reflects a power
+limitation rather than absence of effect.</mark></div>
+    <div class="diff-label old">Limitation 6 (old)</div>
+    <div class="diff-content old">The A-B-C confounding diagnostic (eTable 9) <mark class="del">proved</mark> that PM2.5 does
+not confound the temperature association [...]. <mark class="del">Importantly, the
+primary cold-effect finding does not depend on PM2.5 data: both the
+DLNM and ML/SHAP analyses use temperature as primary exposure
+independently of PM2.5 completeness.</mark></div>
+    <div class="diff-label new">Limitation 6 (new)</div>
+    <div class="diff-content new">The A-B-C confounding diagnostic (eTable 9) <mark class="add">confirmed</mark> that PM2.5
+does not confound the primary temperature association [...]. <mark class="add">However,
+the high missingness rate and low ambient concentrations likely
+limited statistical power to detect an independent PM2.5 effect in
+the DLNM. The structural associations identified by PCA (PM2.5
+loading positively on the hospitalisation axis), clustering (Polluted
+Heat cluster with highest admissions), and SHAP analysis (PM2.5 as
+second environmental predictor) suggest that the PM2.5 pathway may
+become inferentially detectable in settings with higher pollution
+levels or longer continuous monitoring periods.</mark></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- CHANGE 11 -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="change-block" id="c11">
+  <div class="change-header">
+    <span class="id">I</span>
+    <h3>Supplement &mdash; Reordered to S.1 / S.2 / S.3 matching main text</h3>
+    <span class="section">supplement.tex</span>
+  </div>
+  <div class="justification">
+    <strong>Justification:</strong> Professor noted that supplement order didn't match main text. Original order was ML &rarr; Clustering &rarr; DLNM. Now reordered to:
+    <strong>S.1</strong> Exploratory PM2.5 DLNM and confounding assessment (matches &sect;2.4 DLNM)
+    <strong>S.2</strong> Clustering and PCA (matches &sect;2.5 Clustering)
+    <strong>S.3</strong> Machine learning forecasting details (matches &sect;2.6 ML)
+    The main text references "Supplementary Methods S.2" and "S.3" now correctly point to the right sections.
+  </div>
+  <div class="diff-container">
+    <div class="diff-label old">Order (old)</div>
+    <div class="diff-content old"><mark class="del">\subsection*{Machine learning forecasting details}
+  [ELM, MLP, XGBoost, Training protocol, Climate projections, Monte Carlo]
+\subsection*{Clustering and PCA}
+  [K-means, silhouette, clusters, PCA, lag correlations]
+\subsection*{Exploratory PM2.5 DLNM and confounding assessment}
+  [DLNM PM2.5, RERI, A-B-C diagnostic, missing data]</mark></div>
+    <div class="diff-label new">Order (new)</div>
+    <div class="diff-content new"><mark class="add">\subsection*{S.1  Exploratory PM2.5 DLNM and confounding assessment}
+  [DLNM PM2.5, RERI, A-B-C diagnostic, missing data]
+\subsection*{S.2  Clustering and PCA}
+  [K-means, silhouette, clusters, PCA, lag correlations]
+\subsection*{S.3  Machine learning forecasting details}
+  [ELM, MLP, XGBoost, Training protocol, Climate projections, Monte Carlo]</mark></div>
+  </div>
+</div>
+
+<div class="file-separator">References</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- CHANGE 12 -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="change-block" id="c12">
+  <div class="change-header">
+    <span class="id">J</span>
+    <h3>Introduction &mdash; Compound Climate Extremes framework (Zscheischler et al. 2020)</h3>
+    <span class="section">&sect;1 Introduction</span>
+  </div>
+  <div class="justification">
+    <strong>Justification:</strong> Professor's suggestion: frame the study within the Compound Climate Extremes literature. Zscheischler et al. (2020, <em>Nature Reviews Earth &amp; Environment</em>) provides the theoretical framework for studying co-occurring drivers (cold + pollution) whose non-linear interaction exceeds the sum of individual effects. This strengthens the conceptual basis for studying temperature and PM2.5 jointly.
+  </div>
+  <div class="diff-container">
+    <div class="diff-label old">Removed</div>
+    <div class="diff-content old">a fundamental question remains unanswered for this region: does cold
+or heat impose the greater respiratory hospitalisation burden, and
+over what time horizon?
+
+We address this gap using [...]</div>
+    <div class="diff-label new">Added</div>
+    <div class="diff-content new">a fundamental question remains unanswered for this region: does cold
+or heat impose the greater respiratory hospitalisation burden <mark class="add">when
+combined with high air pollution episodes</mark>, and over what time horizon?
+
+<mark class="add">To rigorously address these interactions, this study adopts the
+framework of Compound Climate Extremes. According to Zscheischler
+et al. (2020), these events occur when a combination of multiple
+drivers and/or hazards contributes to societal or environmental risk.
+Crucially, the co-occurrence of these drivers often results in
+non-linear impacts, where the aggregate consequence exceeds the
+simple sum of individual components --- a phenomenon particularly
+critical when meteorological stagnation amplifies pollutant
+concentrations during thermal extremes.</mark>
+
+We address this gap using [...]</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- CHANGE 13 -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="change-block" id="c13">
+  <div class="change-header">
+    <span class="id">K</span>
+    <h3>Discussion &mdash; "Hidden vulnerability" scenario (Cohen 2017, Zscheischler 2020)</h3>
+    <span class="section">&sect;4.3 Pathophysiology</span>
+  </div>
+  <div class="justification">
+    <strong>Justification:</strong> Professor's suggestion: the lack of thermal insulation in subtropical Brazilian buildings creates a "hidden vulnerability" where cold impacts are amplified by co-occurring pollution &mdash; a dynamic overlooked in Northern Hemisphere literature that assumes adequate indoor climate control. Cohen et al. (2017, <em>Lancet</em>) provides the global burden context for ambient air pollution. Zscheischler (2020) reinforces the compound extremes framing.
+  </div>
+  <div class="diff-container">
+    <div class="diff-label old">Removed</div>
+    <div class="diff-content old">[...] residential buildings typically lack thermal insulation <mark class="del">and
+central heating, leaving populations physiologically exposed to indoor
+cold temperatures for prolonged periods. These behavioural and
+infrastructural mechanisms compound the direct physiological effects,
+creating a multi-pathway exposure that is unique to cold extremes in
+this setting.</mark></div>
+    <div class="diff-label new">Added</div>
+    <div class="diff-content new">[...] residential buildings typically lack thermal insulation <mark class="add">and
+central heating, rendering populations paradoxically more vulnerable
+to even moderate cold spells (Gasparrini 2015; Cohen 2017). This
+creates a "hidden vulnerability" scenario where the health impact
+of temperature drops is disproportionately amplified by co-occurring
+air pollution --- a dynamic often overlooked in Northern
+Hemisphere-centric literature that assumes adequate indoor climate
+control (Zscheischler 2020). These behavioural and infrastructural
+mechanisms compound the direct physiological effects, creating a
+multi-pathway exposure that is unique to cold extremes in subtropical
+settings.</mark></div>
+  </div>
+</div>
+
+<div class="change-block">
+  <div class="change-header">
+    <span class="id">REF</span>
+    <h3>Bibliography expanded from 18 to 22 entries</h3>
+    <span class="section">References</span>
+  </div>
+  <div class="justification">
+    <strong>Added in previous round:</strong> MacQueen J (1967) &mdash; K-means. Rousseeuw PJ (1987) &mdash; silhouette.<br>
+    <strong>Added now:</strong> Zscheischler J et al. (2020) &mdash; Compound Climate Extremes typology (<em>Nat Rev Earth Environ</em>). Cohen AJ et al. (2017) &mdash; Global burden of disease from ambient air pollution (<em>Lancet</em>).
+  </div>
+</div>
+
+<footer>
+  Generated on 2026-02-19 &bull; Commit 1e863f9 &rarr; 0a08f21 &bull; Felipe Baglioli &amp; Lucas Rover
+</footer>
+
+</div>
+</body>
+</html>
