@@ -1,6 +1,5 @@
 %% manuscript.tex — Lancet Regional Health – Americas format
-%% Overleaf-ready standalone version
-%% Compilar com: pdflatex → pdflatex (bibliografia embutida)
+%% Compilar com: pdflatex → bibtex → pdflatex × 2
 %% ===================================================================
 \documentclass[review,number]{elsarticle}
 
@@ -48,48 +47,46 @@
 \begin{abstract}
 
 \textbf{Background}\quad
-Climate--health policy in the Southern Hemisphere has prioritised heat
-alerts, yet the respiratory burden attributable to cold extremes in
-subtropical cities remains largely unquantified. This evidence gap
-leaves millions without targeted early-warning systems for cold spells.
+Climate--health policy in the Southern Hemisphere has intensified the
+frequency of compound environmental extremes; however, the interactive
+health impacts of cold spells concurrent with particulate matter
+(PM$_{2{\cdot}5}$) accumulation remains understudied in subtropical
+cities. This evidence gap leaves millions without targeted
+early-warning systems for cold spells and polluted days.
 
 \textbf{Methods}\quad
-We analysed daily temperatures ($T_\mathrm{min}$, $T_\mathrm{med}$,
-$T_\mathrm{max}$; INMET, 1961--2024), EPA-corrected PM$_{2{\cdot}5}$
-(PurpleAir), and respiratory hospital admissions (DATASUS SIH/AIH,
-ICD-10 J00--J99, 2022--2024; $N$=42\,716) in Curitiba, Brazil
-($\sim$1${\cdot}$8~million inhabitants) using a methodological
-triangulation design. Distributed lag non-linear models (DLNM) with
-quasi-Poisson regression provided inferential evidence; K-means
-clustering on six environmental variables (including PM$_{2{\cdot}5}$)
-assessed whether delayed patterns emerge without parametric assumptions;
-and machine learning models (XGBoost, multilayer perceptron, extreme
-learning machine) with SHAP feature importance provided predictive
-convergence evidence. The minimum morbidity temperature (MMT) was
-identified by grid search. Sensitivity analyses varied lag windows,
-seasonal degrees of freedom, and excluded 2022 for residual COVID-19
-effects.
+We analysed daily respiratory hospital admissions (DATASUS SIH/AIH,
+ICD-10 J00--J99, 2022--2024; $N$=42\,716), temperature (INMET,
+1961--2024) and air quality (fine particulate matter concentration ---
+PM$_{2{\cdot}5}$) in Curitiba, Brazil ($\sim$1${\cdot}$8~million
+inhabitants) using a methodological triangulation design. Distributed
+lag non-linear models (DLNM) with quasi-Poisson regression provided
+inferential evidence; K-means clustering assessed whether the same
+delayed patterns emerge without parametric assumptions; and
+gradient-boosted trees (XGBoost) with SHAP feature importance provided
+predictive convergence evidence. The MMT was identified by grid search.
+Sensitivity analyses varied lag windows, seasonal degrees of freedom,
+and excluded 2022 for residual COVID-19 effects.
 
 \textbf{Findings}\quad
 Over 1096~study days, 42\,716~respiratory hospitalisations (51\% male;
-38\% aged $\geq$65~years) were recorded. EPA-corrected PM$_{2{\cdot}5}$
-was generally low (median~4${\cdot}$12~µg/m$^3$; 4${\cdot}$7\% of days
-above the WHO 24-hour guideline). The DLNM identified
-MMT=17${\cdot}$8\,°C. Cold extremes at the 1st percentile of
-$T_\mathrm{min}$ (5${\cdot}$2\,°C) yielded cumulative RR=1${\cdot}$42
-[95\% CI: 1${\cdot}$09--1${\cdot}$84] over 0--21~days; at the 5th
-percentile (8${\cdot}$5\,°C), RR=1${\cdot}$22
-[1${\cdot}$02--1${\cdot}$44]. Effects were delayed, peaking at lags
-3--10~days. Heat effects were non-significant (P90 RR=1${\cdot}$06
-[0${\cdot}$98--1${\cdot}$14]). Two independent methods converged:
-K-means clustering revealed that the ``Clean Cold'' cluster exhibited
-delayed correlations with hospitalisations at lags 3--10~days, while
-principal component analysis showed that cold, polluted days were
-structurally associated with higher admissions (PC1:
-$+$PM$_{2{\cdot}5}$, $-$$T_\mathrm{min}$, $+$hospitalisations;
-44${\cdot}$5\% of variance). SHAP analysis ranked $T_\mathrm{min}$ as
-the dominant environmental predictor, with PM$_{2{\cdot}5}$ as a
-contributing feature.
+38\% aged $\geq$65~years) and 3715~in-hospital deaths were recorded.
+The DLNM identified MMT=17${\cdot}$8\,°C. Cold extremes at the 1st
+percentile of $T_\mathrm{min}$ (5${\cdot}$2\,°C) yielded cumulative
+RR=1${\cdot}$42 [95\% CI: 1${\cdot}$09--1${\cdot}$84] over
+0--21~days --- corresponding to approximately 14 excess respiratory
+admissions per extreme cold day; at the 5th percentile
+(8${\cdot}$5\,°C), RR=1${\cdot}$22 [1${\cdot}$02--1${\cdot}$44].
+Effects were delayed, peaking at lags 3--10~days. In contrast, heat
+effects were non-significant (P90 RR=1${\cdot}$06
+[0${\cdot}$98--1${\cdot}$14]). Results were robust across all
+sensitivity analyses ($\hat{\phi}$=1${\cdot}$32, Ljung--Box
+$p$=0${\cdot}$14). The results of clustering and machine learning
+methods converged on the same finding: the ``Clean Cold'' cluster
+exhibited delayed correlations with hospitalisations at lags
+3--10~days without imposing any parametric lag structure, and SHAP
+analysis ranked $T_\mathrm{min}$ as the dominant environmental
+predictor.
 
 \textbf{Interpretation}\quad
 In this subtropical metropolis, cold extremes --- not heat --- are the
@@ -110,10 +107,9 @@ None.
 
 %% ── Keywords ────────────────────────────────────────────────────────
 \begin{keyword}
-temperature extremes \sep cold spells \sep PM$_{2{\cdot}5}$ \sep
-hospital admissions \sep distributed lag non-linear model \sep
-methodological triangulation \sep climate--health \sep
-respiratory morbidity \sep subtropical \sep Curitiba
+temperature extremes \sep cold spells \sep distributed lag non-linear model \sep
+methodological triangulation \sep air quality \sep
+respiratory morbidity \sep subtropical \sep fine particulate matter
 \end{keyword}
 
 \end{frontmatter}
@@ -205,7 +201,20 @@ populations.\cite{Ebi2021} Critically, unlike heat-related
 morbidity, which manifests acutely within 0--3~days, cold-related
 effects exhibit delayed lags of 3--14~days, complicating their
 detection in routine surveillance and their attribution in ecological
-studies.\cite{Cheng2024}
+studies.\cite{Cheng2024} Concurrently, PM$_{2{\cdot}5}$ inhalation
+induces systemic inflammation and oxidative stress, leading to
+endothelial dysfunction and autonomic
+imbalance.\cite{Brook2010} The synchronisation of these stressors
+creates a ``double hit'' effect on the respiratory system, where
+cold-induced mucosal vulnerability is compounded by
+particulate-driven inflammation.
+
+Improvements in air quality in some parts of the world are
+evident;\cite{Gong2025,Gopikrishnan2025} however, extreme pollution
+episodes still occur and are associated with increased morbidity and
+mortality.\cite{Gardasevic2024,Hertzog2024,Requia2024,Tseng2024} As
+with heat and cold waves, vulnerable groups are more acutely affected
+by poor air quality.\cite{Hertzog2024,Linares2025,Nashwan2024}
 
 Despite these known mechanisms, formal inferential evidence on the
 temperature--morbidity relationship remains scarce for subtropical
@@ -244,6 +253,18 @@ delayed patterns emerge from the data structure without parametric
 assumptions; and gradient-boosted tree models with SHAP
 feature-importance analysis offer an independent, predictive line
 of convergence.
+
+Beyond a local case study, Curitiba serves as a critical proxy for
+rapidly growing metropolises in the Global South located in climatic
+transition zones. In these regions, a significant ``adaptation gap''
+persists: unlike high-latitude cities designed for low temperatures,
+local housing infrastructure frequently lacks adequate thermal
+insulation, rendering populations paradoxically more vulnerable to
+even moderate cold spells. This creates a ``hidden vulnerability''
+scenario where the health impact of temperature drops is
+disproportionately amplified by co-occurring air pollution, a dynamic
+often overlooked in Northern Hemisphere-centric
+literature.\cite{Gasparrini2015,Cohen2017}
 
 %% ═══════════════════════════════════════════════════════════════════
 %% MÉTODOS
@@ -401,8 +422,8 @@ studies.\cite{VonElm2007}
 \subsection{Descriptive statistics}
 
 Over 1096~study days, we recorded 42\,716~respiratory hospital
-admissions (in-hospital case fatality 8${\cdot}$7\%, $n$=3715;
-mortality was not modelled as a separate outcome),
+admissions and 3715~in-hospital deaths
+(case fatality 8${\cdot}$7\%),
 representing a mean of 32${\cdot}$3~admissions per day
 (SD~11${\cdot}$7, range 1--73; Table~\ref{tab:descriptive}). The
 study population was predominantly male (51\%) and elderly (38\%
@@ -672,7 +693,9 @@ At the 1st percentile of $T_\mathrm{min}$ (5${\cdot}$2\,°C),
 cumulative RR reached 1${\cdot}$42 [1${\cdot}$09--1${\cdot}$84] over
 0--21~days, corresponding to approximately 14 excess respiratory
 admissions per extreme cold day. Heat effects, by contrast, were
-non-significant across all upper percentiles. The DLNM lag structure
+non-significant across all upper percentiles, besides extremely hot
+days being predominant in the studied area (20${\cdot}$1\% against
+only 3${\cdot}$7\% extremely cold days). The DLNM lag structure
 at cold extremes peaked at 3--10~days, a window independently
 confirmed by clustering cross-correlations, identifying a clinically
 actionable interval between cold exposure and peak hospitalisation
@@ -946,9 +969,15 @@ largest subtropical populations.
 %% ═══════════════════════════════════════════════════════════════════
 \section*{Contributors}
 FB: Conceptualisation, Data curation, Formal analysis, Investigation,
-Methodology, Writing --- original draft. LR: Methodology, Software,
-Validation, Formal analysis, Writing --- review \& editing. All
-authors had full access to all the data in the study and had final
+Methodology, Writing --- original draft.
+LR: Methodology, Software, Validation, Formal analysis, Writing ---
+review \& editing.
+LJRQ: Data curation, Validation.
+ETB: Data curation, Formal analysis, Methodology, Writing --- review.
+YST: Conceptualisation, Investigation, Formal analysis, Writing ---
+review \& editing.
+RHMG: Conceptualisation, Writing --- original draft, supervision.
+All authors had full access to all the data in the study and had final
 responsibility for the decision to submit for publication.
 
 \section*{Declaration of interests}
@@ -974,7 +1003,7 @@ DATASUS, and PurpleAir Inc.\ for providing open data.
 %% ═══════════════════════════════════════════════════════════════════
 \bibliographystyle{elsarticle-num}
 
-\begin{thebibliography}{22}
+\begin{thebibliography}{29}
 
 %% Ordered by first citation in text (Vancouver style)
 
@@ -1087,6 +1116,41 @@ A typology of compound weather and climate events.
 Cohen AJ, Brauer M, Burnett R, et al.
 Estimates and 25-year trends of the global burden of disease attributable to ambient air pollution: an analysis of data from the Global Burden of Diseases Study 2015.
 \textit{Lancet}. 2017;389(10082):1907--1918.
+
+\bibitem{Brook2010}
+Brook RD, Rajagopalan S, Pope CA 3rd, et al.
+Particulate matter air pollution and cardiovascular disease: an update to the scientific statement from the American Heart Association.
+\textit{Circulation}. 2010;121(21):2331--2378.
+
+\bibitem{Gong2025}
+Gong P, et al.
+Air quality improvements and health benefits in China.
+\textit{Lancet Planet Health}. 2025. %% TODO: verificar refer\^{e}ncia completa com a professora
+
+\bibitem{Gopikrishnan2025}
+Gopikrishnan GS, Kuttippurath J.
+Impact of the National Clean Air Programme (NCAP) on the particulate matter pollution and associated reduction in human mortalities in Indian cities.
+\textit{Sci Total Environ}. 2025;968:178787.
+
+\bibitem{Gardasevic2024}
+Garda\v{s}evi\'{c} J, et al.
+Assessment of health impacts attributable to air pollution.
+\textit{Environ Int}. 2024. %% TODO: verificar refer\^{e}ncia completa com a professora
+
+\bibitem{Hertzog2024}
+Hertzog L, Morgan GG, Yuen C, et al.
+Mortality burden attributable to exceptional PM2.5 air pollution events in Australian cities: a health impact assessment.
+\textit{Heliyon}. 2024;10(2):e24532.
+
+\bibitem{Tseng2024}
+Tseng CH, et al.
+Air pollution exposure and adverse health effects.
+\textit{Environ Res}. 2024. %% TODO: verificar refer\^{e}ncia completa com a professora
+
+\bibitem{Nashwan2024}
+Nashwan AJ, Aldosari N, Hendy A.
+Air quality and health impacts on vulnerable populations.
+2024. %% TODO: verificar refer\^{e}ncia completa com a professora
 
 \end{thebibliography}
 
