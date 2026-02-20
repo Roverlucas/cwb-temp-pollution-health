@@ -59,49 +59,50 @@ We analysed daily respiratory hospital admissions (DATASUS SIH/AIH,
 ICD-10 J00--J99, 2022--2024; $N$=42\,716), temperature (INMET,
 1961--2024) and air quality (fine particulate matter concentration ---
 PM$_{2{\cdot}5}$) in Curitiba, Brazil ($\sim$1${\cdot}$8~million
-inhabitants) using a methodological triangulation design. Distributed
-lag non-linear models (DLNM) with quasi-Poisson regression provided
-inferential evidence; K-means clustering assessed whether the same
-delayed patterns emerge without parametric assumptions; and
-gradient-boosted trees (XGBoost) with SHAP feature importance provided
-predictive convergence evidence. The MMT was identified by grid search.
-Sensitivity analyses varied lag windows, seasonal degrees of freedom,
-and excluded 2022 for residual COVID-19 effects.
+inhabitants) using a methodological triangulation design. K-means
+clustering first identified environmental regimes and their lagged
+associations with hospitalisations without parametric assumptions;
+distributed lag non-linear models (DLNM) with quasi-Poisson regression
+then formally quantified the exposure--response relationship and lag
+structure; and gradient-boosted trees (XGBoost) with SHAP feature
+importance provided predictive convergence evidence. The MMT was
+identified by grid search. Sensitivity analyses varied lag windows,
+seasonal degrees of freedom, and excluded 2022 for residual COVID-19
+effects.
 
 \textbf{Findings}\quad
 Over 1096~study days, 42\,716~respiratory hospitalisations (51\% male;
 38\% aged $\geq$65~years) and 3715~in-hospital deaths were recorded.
-The DLNM identified MMT=17${\cdot}$8\,°C. Cold extremes at the 1st
+Clustering identified a ``Clean Cold'' regime whose delayed
+correlations with hospitalisations peaked at lags 3--10~days without
+imposing any parametric lag structure. The DLNM formally confirmed
+this pattern: MMT=17${\cdot}$8\,°C; cold extremes at the 1st
 percentile of $T_\mathrm{min}$ (5${\cdot}$2\,°C) yielded cumulative
 RR=1${\cdot}$42 [95\% CI: 1${\cdot}$09--1${\cdot}$84] over
 0--21~days --- corresponding to approximately 14 excess respiratory
 admissions per extreme cold day; at the 5th percentile
 (8${\cdot}$5\,°C), RR=1${\cdot}$22 [1${\cdot}$02--1${\cdot}$44].
-Effects were delayed, peaking at lags 3--10~days. In contrast, heat
-effects were non-significant (P90 RR=1${\cdot}$06
+In contrast, heat effects were non-significant (P90 RR=1${\cdot}$06
 [0${\cdot}$98--1${\cdot}$14]). Results were robust across all
 sensitivity analyses ($\hat{\phi}$=1${\cdot}$32, Ljung--Box
-$p$=0${\cdot}$14). The results of clustering and machine learning
-methods converged on the same finding: the ``Clean Cold'' cluster
-exhibited delayed correlations with hospitalisations at lags
-3--10~days without imposing any parametric lag structure, and SHAP
-analysis ranked $T_\mathrm{min}$ as the dominant environmental
-predictor.
+$p$=0${\cdot}$14). SHAP analysis from the XGBoost model independently
+ranked $T_\mathrm{min}$ as the dominant environmental predictor,
+completing the three-method convergence.
 
 \textbf{Interpretation}\quad
 In this subtropical metropolis, cold extremes --- not heat --- are the
 dominant temperature-related driver of respiratory hospitalisations,
 with a delayed effect structure that opens a 3--10-day window for
 preventive intervention. The convergence of three methodologically
-independent approaches --- inferential (DLNM),
-structural-exploratory (clustering), and predictive (ML/SHAP) ---
+independent approaches --- structural-exploratory (clustering),
+inferential (DLNM), and predictive (ML/SHAP) ---
 strengthens this conclusion. Current early-warning systems in
 subtropical South America focus almost exclusively on heat alerts;
 integrating cold-spell forecasts could reduce a substantial and
 preventable respiratory burden.
 
 \textbf{Funding}\quad
-None.
+NAPI -- Arauc\'{a}ria Foundation, Paran\'{a}, Brazil.
 
 \end{abstract}
 
@@ -132,16 +133,16 @@ South American city. Subsequent multi-city analyses have reinforced
 that cold-attributable mortality exceeds heat-attributable mortality
 in most climates, but morbidity evidence from the Southern Hemisphere
 remains scarce. Furthermore, existing studies have rarely combined
-inferential, exploratory, and predictive approaches to assess the
+exploratory, inferential, and predictive approaches to assess the
 joint role of temperature and air pollution on respiratory morbidity.
 No study has applied a methodological triangulation design ---
-integrating DLNM, unsupervised clustering, and machine learning ---
+integrating unsupervised clustering, DLNM, and machine learning ---
 to quantify the non-linear, delayed effects of cold extremes and
 PM$_{2{\cdot}5}$ on respiratory hospital admissions in this region.
 
 \textbf{Added value of this study}
 
-To our knowledge, this is the first study to combine DLNM, clustering,
+To our knowledge, this is the first study to combine clustering, DLNM,
 and machine learning analyses of temperature extremes, air pollution,
 and respiratory hospitalisations in a subtropical South American city.
 We show that cold extremes at the 1st percentile of
@@ -153,10 +154,11 @@ actionable lag structure not previously documented with inferential
 methods in this region. These findings challenge the heat-centric
 framing that dominates climate--health policy in South America.
 Crucially, we employ methodological triangulation: unsupervised
-clustering identifies the same delayed cold--hospitalisation pattern
-without parametric assumptions, and SHAP-based feature importance
-from a gradient-boosted tree model independently ranks
-$T_\mathrm{min}$ as the dominant environmental predictor. This
+clustering first identified the delayed cold--hospitalisation pattern
+without parametric assumptions, guiding the subsequent DLNM analysis;
+SHAP-based feature importance from a gradient-boosted tree model then
+independently ranked $T_\mathrm{min}$ as the dominant environmental
+predictor. This
 three-method convergence strengthens the evidence beyond any single
 analytical framework.
 
@@ -210,11 +212,11 @@ cold-induced mucosal vulnerability is compounded by
 particulate-driven inflammation.
 
 Improvements in air quality in some parts of the world are
-evident;\cite{Gong2025,Gopikrishnan2025} however, extreme pollution
+evident;\cite{Yu2025,Gopikrishnan2025} however, extreme pollution
 episodes still occur and are associated with increased morbidity and
-mortality.\cite{Gardasevic2024,Hertzog2024,Requia2024,Tseng2024} As
-with heat and cold waves, vulnerable groups are more acutely affected
-by poor air quality.\cite{Hertzog2024,Linares2025,Nashwan2024}
+mortality.\cite{Hertzog2024,Requia2024} As with heat and cold waves,
+vulnerable groups are more acutely affected by poor air
+quality.\cite{Hertzog2024,Linares2025,Nashwan2024}
 
 Despite these known mechanisms, formal inferential evidence on the
 temperature--morbidity relationship remains scarce for subtropical
@@ -238,7 +240,7 @@ exceeds the simple sum of individual components --- a phenomenon
 particularly critical when meteorological stagnation amplifies
 pollutant concentrations during thermal extremes.
 
-We address this gap using distributed lag non-linear models (DLNM)
+We address this gap through a methodological triangulation design
 applied to 42\,716~respiratory hospital admissions, daily temperature
 records, and EPA-corrected PM$_{2{\cdot}5}$ in Curitiba, the largest
 subtropical city in southern Brazil. Curitiba's wide thermal range
@@ -247,12 +249,14 @@ within a single population. Our primary objective is to quantify the
 non-linear, delayed exposure--response relationship between
 temperature extremes and respiratory admissions, with a pre-specified
 hypothesis that cold effects would dominate in this setting.
-We employ a methodological triangulation design: the DLNM provides
-inferential evidence; unsupervised clustering tests whether the same
-delayed patterns emerge from the data structure without parametric
-assumptions; and gradient-boosted tree models with SHAP
-feature-importance analysis offer an independent, predictive line
-of convergence.
+The triangulation proceeds in three stages: unsupervised clustering
+first explores the multivariate data structure to identify
+environmental regimes and their lagged associations with
+hospitalisations without parametric assumptions; distributed lag
+non-linear models (DLNM) then formally quantify the exposure--response
+relationship and lag structure suggested by the clustering; and
+gradient-boosted tree models with SHAP feature-importance analysis
+offer an independent, predictive line of convergence.
 
 Beyond a local case study, Curitiba serves as a critical proxy for
 rapidly growing metropolises in the Global South located in climatic
@@ -333,14 +337,31 @@ hospitalisations~0${\cdot}$2\%. Primary analyses used complete cases;
 sensitivity analyses with imputation produced similar results
 (Supplement).
 
-\subsection{Distributed lag non-linear model}
+\subsection{Clustering analysis (structural-exploratory evidence)}
+
+As the first analytical step, K-means
+clustering\cite{MacQueen1967} was applied to six standardised variables
+($T_\mathrm{max}$, $T_\mathrm{med}$, $T_\mathrm{min}$,
+PM$_{2{\cdot}5}$, relative humidity, atmospheric pressure) on
+complete-case days, with optimal $K$ selected by silhouette
+score.\cite{Rousseeuw1987} Lagged cross-correlation functions (lags
+0--28~days) were computed between cluster membership and daily
+hospitalisations to identify temporal associations without
+parametric constraints. PCA was performed on standardised
+PM$_{2{\cdot}5}$, $T_\mathrm{min}$, and hospitalisations ($N$=683).
+This analysis does not impose a distributed lag function, spline basis,
+or risk-ratio framework, and thus constitutes an independent,
+assumption-free exploration of the lag structure. Full methodological
+details are provided in Supplementary Methods~S.2.
+
+\subsection{Distributed lag non-linear model (inferential evidence)}
 \label{sec:dlnm}
 
-The primary analysis used distributed lag non-linear models
-(DLNM),\cite{Gasparrini2010,Gasparrini2011} which simultaneously
-capture the non-linear shape of the exposure--response curve and the
-delayed lag structure --- a critical requirement given the known
-3--14-day latency of cold-related respiratory effects:
+Guided by the lag patterns identified in the clustering analysis,
+distributed lag non-linear models
+(DLNM)\cite{Gasparrini2010,Gasparrini2011} were applied to formally
+quantify the non-linear exposure--response relationship and its
+delayed lag structure:
 %
 \begin{equation}
   \log\!\big(\mathrm{E}[Y_t]\big) = \alpha
@@ -369,24 +390,6 @@ analyses varied the maximum lag (14, 21, 28~days), seasonal df
 (6, 7, 8~df/year), and excluded 2022 to assess residual COVID-19
 effects. Time-series were also
 decomposed using STL, and ADF tests assessed stationarity.
-
-\subsection{Clustering analysis (structural-exploratory evidence)}
-
-As a second, methodologically independent line of evidence, K-means
-clustering\cite{MacQueen1967} was applied to six standardised variables
-($T_\mathrm{max}$, $T_\mathrm{med}$, $T_\mathrm{min}$,
-PM$_{2{\cdot}5}$, relative humidity, atmospheric pressure) on
-complete-case days, with optimal $K$ selected by silhouette
-score.\cite{Rousseeuw1987} Lagged cross-correlation functions (lags
-0--28~days) were computed between cluster membership and daily
-hospitalisations; the 28-day window was chosen to exceed the maximum
-DLNM lag (21~days) and capture any longer-term associations without
-parametric constraints. PCA was performed on standardised
-PM$_{2{\cdot}5}$, $T_\mathrm{min}$, and hospitalisations ($N$=683).
-This analysis does not impose a distributed lag function, spline basis,
-or risk-ratio framework, and thus constitutes an independent test of
-the lag structure. Full methodological details are provided in
-Supplementary Methods~S.2.
 
 \subsection{Machine learning (predictive convergence evidence)}
 
@@ -460,11 +463,61 @@ Hosp.\ (n/day)   & 1094 & 32${\cdot}$29 & 11${\cdot}$74 & 32${\cdot}$00 & 23${\c
 \end{tabular}
 \end{table}
 
+\subsection{Clustering: structural-exploratory evidence}
+
+K-means clustering on six climate--pollution variables ($K$=3,
+silhouette=0${\cdot}$357) identified three environmental regimes:
+Clean Cold ($n$=248), Polluted Heat ($n$=12), and Clean Heat
+($n$=298; eTables~2--3, eFigures~1--4). The silhouette score is
+moderate, which is typical of continuous environmental data where
+clusters represent gradients rather than discrete
+categories.\cite{Rousseeuw1987}
+Crucially, the Clean Cold cluster exhibited delayed positive
+correlations with hospitalisations peaking at lags 3--10~days
+without imposing any distributional lag function or spline basis
+--- a pattern subsequently confirmed by the formal DLNM analysis
+(§\ref{sec:dlnm_results}).
+A validation analysis at $K$=4 yielded stronger between-cluster
+differences in daily hospitalisations (Kruskal--Wallis
+$H$=16${\cdot}$69, $p<$0${\cdot}$001; eTable~3): the Polluted Heat cluster
+(PM$_{2{\cdot}5}$=51${\cdot}$5~µg/m$^3$, $n$=12) exhibited the
+highest mean hospitalisations (38${\cdot}$6$\pm$9${\cdot}$7 per day),
+followed by the Moderate Transitional cluster
+(PM$_{2{\cdot}5}$=6${\cdot}$5~µg/m$^3$; 33${\cdot}$8$\pm$11${\cdot}$7),
+the Clean Cold cluster (PM$_{2{\cdot}5}$=3${\cdot}$2~µg/m$^3$;
+31${\cdot}$3$\pm$11${\cdot}$2), and the Clean Heat cluster
+(PM$_{2{\cdot}5}$=5${\cdot}$4~µg/m$^3$;
+29${\cdot}$4$\pm$10${\cdot}$5) --- suggesting that elevated
+PM$_{2{\cdot}5}$ compounds the hospitalisation burden across
+environmental regimes.
+
+PCA corroborated this pattern: PC1 (44${\cdot}$5\% of variance)
+loaded positively on PM$_{2{\cdot}5}$ ($+$0${\cdot}$564) and
+hospitalisations ($+$0${\cdot}$588) and negatively on
+$T_\mathrm{min}$ ($-$0${\cdot}$580; eTable~4), indicating that cold,
+polluted days are structurally associated with higher admissions.
+Extended lag analysis confirmed peak
+$T_\mathrm{min}$--hospitalisation correlation at lag~9
+($r$=$-$0${\cdot}$320, $p<$0${\cdot}$001; eTable~5).
+
+Extended lag correlations further revealed that PM$_{2{\cdot}5}$
+exhibited significant positive associations with hospitalisations at
+multiple delays: $r$=$+$0${\cdot}$159 at lag~0, $r$=$+$0${\cdot}$165
+at lag~6, and $r$=$+$0${\cdot}$172 at lag~13 ($p<$0${\cdot}$001 for
+all; eTable~5). Although the magnitude of PM$_{2{\cdot}5}$ correlations
+was consistently smaller than $T_\mathrm{min}$ correlations at all
+lags (peak $r$=$-$0${\cdot}$320 at lag~9 for $T_\mathrm{min}$), the
+presence of delayed PM$_{2{\cdot}5}$--hospitalisation associations
+indicates that air pollution operates as a secondary environmental
+stressor with its own temporal structure in this setting.
+
 \subsection{Distributed lag non-linear models}
 \label{sec:dlnm_results}
 
 \paragraph{Temperature exposure--response}
-The quasi-Poisson DLNM for $T_\mathrm{min}$ ($N$=1068,
+The clustering analysis revealed delayed cold--hospitalisation
+correlations peaking at lags 3--10~days. To formally quantify this
+association, the quasi-Poisson DLNM for $T_\mathrm{min}$ ($N$=1068,
 $\hat{\phi}$=1${\cdot}$32) identified a minimum morbidity temperature
 (MMT) of 17${\cdot}$8\,°C, closely aligned with the 75th percentile
 of the local temperature distribution
@@ -480,9 +533,9 @@ stark contrast, heat effects were non-significant across all upper
 percentiles (P90 RR=1${\cdot}$06 [0${\cdot}$98--1${\cdot}$14];
 P99 RR=1${\cdot}$29 [0${\cdot}$98--1${\cdot}$68]). The lag
 structure at cold (P10) peaked at 3--10~days
-(Figure~\ref{fig:dlnm_temp_lag}a), consistent with the known latency
-of cold-induced respiratory pathology and with the cross-correlation
-analysis.
+(Figure~\ref{fig:dlnm_temp_lag}a), confirming the delayed pattern
+first identified by the clustering cross-correlations and consistent
+with the known latency of cold-induced respiratory pathology.
 
 \paragraph{Sensitivity and diagnostics}
 The cold effect was robust to all pre-specified sensitivity analyses
@@ -577,57 +630,6 @@ MMT=17${\cdot}$8\,°C.}
 \label{fig:dlnm_temp_lag}
 \end{figure}
 
-\subsection{Clustering: structural-exploratory evidence}
-
-K-means clustering on six climate--pollution variables ($K$=3,
-silhouette=0${\cdot}$357) identified three environmental regimes:
-Clean Cold ($n$=248), Polluted Heat ($n$=12), and Clean Heat
-($n$=298; eTables~2--3, eFigures~1--4). The silhouette score is
-moderate, which is typical of continuous environmental data where
-clusters represent gradients rather than discrete
-categories.\cite{Rousseeuw1987}
-Crucially, the Clean Cold cluster exhibited delayed positive
-correlations with hospitalisations peaking at lags 3--10~days
---- the same lag window identified by the DLNM
-(§\ref{sec:dlnm_results}) --- without imposing any distributional
-lag function or spline basis.
-A validation analysis at $K$=4 yielded stronger between-cluster
-differences in daily hospitalisations (Kruskal--Wallis
-$H$=16${\cdot}$69, $p<$0${\cdot}$001; eTable~3): the Polluted Heat cluster
-(PM$_{2{\cdot}5}$=51${\cdot}$5~µg/m$^3$, $n$=12) exhibited the
-highest mean hospitalisations (38${\cdot}$6$\pm$9${\cdot}$7 per day),
-followed by the Moderate Transitional cluster
-(PM$_{2{\cdot}5}$=6${\cdot}$5~µg/m$^3$; 33${\cdot}$8$\pm$11${\cdot}$7),
-the Clean Cold cluster (PM$_{2{\cdot}5}$=3${\cdot}$2~µg/m$^3$;
-31${\cdot}$3$\pm$11${\cdot}$2), and the Clean Heat cluster
-(PM$_{2{\cdot}5}$=5${\cdot}$4~µg/m$^3$;
-29${\cdot}$4$\pm$10${\cdot}$5) --- suggesting that elevated
-PM$_{2{\cdot}5}$ compounds the hospitalisation burden across
-environmental regimes.
-
-PCA corroborated this pattern: PC1 (44${\cdot}$5\% of variance)
-loaded positively on PM$_{2{\cdot}5}$ ($+$0${\cdot}$564) and
-hospitalisations ($+$0${\cdot}$588) and negatively on
-$T_\mathrm{min}$ ($-$0${\cdot}$580; eTable~4), indicating that cold,
-polluted days are structurally associated with higher admissions.
-Extended lag analysis confirmed peak
-$T_\mathrm{min}$--hospitalisation correlation at lag~9
-($r$=$-$0${\cdot}$320, $p<$0${\cdot}$001; eTable~5). This
-convergence demonstrates that the delayed cold effect is a
-structural feature of the data, not an artefact of the DLNM
-parametric specification.
-
-Extended lag correlations further revealed that PM$_{2{\cdot}5}$
-exhibited significant positive associations with hospitalisations at
-multiple delays: $r$=$+$0${\cdot}$159 at lag~0, $r$=$+$0${\cdot}$165
-at lag~6, and $r$=$+$0${\cdot}$172 at lag~13 ($p<$0${\cdot}$001 for
-all; eTable~5). Although the magnitude of PM$_{2{\cdot}5}$ correlations
-was consistently smaller than $T_\mathrm{min}$ correlations at all
-lags (peak $r$=$-$0${\cdot}$320 at lag~9 for $T_\mathrm{min}$), the
-presence of delayed PM$_{2{\cdot}5}$--hospitalisation associations
-indicates that air pollution operates as a secondary environmental
-stressor with its own temporal structure in this setting.
-
 \subsection{Machine learning: predictive convergence evidence}
 
 XGBoost achieved the best overall forecasting performance at a
@@ -671,8 +673,8 @@ the ML models for climate-adaptive early-warning systems.
 
 Together, the three approaches form a triangulation:
 \begin{itemize}
-  \item \textbf{DLNM:} causal-ecological evidence (non-linear RR with lag structure; cold dominant, PM$_{2{\cdot}5}$ non-significant due to data limitations);
   \item \textbf{Clustering/PCA:} structural-exploratory evidence (delayed cold--hospitalisation pattern; PM$_{2{\cdot}5}$ as structural co-factor on PC1);
+  \item \textbf{DLNM:} inferential evidence (non-linear RR with lag structure confirming the clustering pattern; cold dominant, PM$_{2{\cdot}5}$ non-significant due to data limitations);
   \item \textbf{ML/SHAP:} predictive convergence evidence (temperature as dominant predictor, PM$_{2{\cdot}5}$ as second environmental predictor at 70\% of temperature's importance).
 \end{itemize}
 
@@ -695,11 +697,10 @@ cumulative RR reached 1${\cdot}$42 [1${\cdot}$09--1${\cdot}$84] over
 admissions per extreme cold day. Heat effects, by contrast, were
 non-significant across all upper percentiles, besides extremely hot
 days being predominant in the studied area (20${\cdot}$1\% against
-only 3${\cdot}$7\% extremely cold days). The DLNM lag structure
-at cold extremes peaked at 3--10~days, a window independently
-confirmed by clustering cross-correlations, identifying a clinically
-actionable interval between cold exposure and peak hospitalisation
-burden.
+only 3${\cdot}$7\% extremely cold days). Clustering cross-correlations first identified a delayed
+cold--hospitalisation window peaking at 3--10~days, which the DLNM
+formally confirmed, identifying a clinically actionable interval
+between cold exposure and peak hospitalisation burden.
 
 \subsection{Cold-dominant burden: challenging the heat-centric
 paradigm}
@@ -724,8 +725,8 @@ most climates. However, our contribution goes beyond confirming this
 pattern in a single additional city. First, we extend the evidence
 from mortality to respiratory \emph{morbidity}, which is more
 directly relevant for health-system preparedness. Second, we employ
-a methodological triangulation design --- DLNM, unsupervised
-clustering, and ML/SHAP --- that has not been applied in previous
+a methodological triangulation design --- unsupervised clustering,
+DLNM, and ML/SHAP --- that has not been applied in previous
 temperature--health studies, providing convergent evidence from three
 independent analytical frameworks. Third, we identify
 PM$_{2{\cdot}5}$ as a structural co-factor associated with
@@ -789,21 +790,23 @@ full study period. This observation implies that the true
 pre-pandemic cold effect may be even larger than our main estimate.
 
 A distinctive feature of this study is the methodological
-triangulation that strengthens the cold-effect finding beyond the
-DLNM alone. The K-means clustering identifies the same delayed
+triangulation that strengthens the cold-effect finding beyond any
+single approach. K-means clustering first identified the delayed
 cold--hospitalisation pattern (lags 3--10~days) without imposing
 any distributional lag function, spline basis, or risk-ratio
-framework --- the pattern emerges purely from the multivariate
-structure of the data. The XGBoost model, optimised for predictive
-accuracy via recursive tree partitioning, independently ranks
-$T_\mathrm{min}$ as the dominant environmental predictor and
-PM$_{2{\cdot}5}$ as the second environmental predictor (70\% of
-temperature's SHAP importance) through SHAP analysis. These three
-methods differ in their assumptions (semi-parametric splines vs.\
-distance-based clustering vs.\ ensemble decision trees),
-optimisation criteria (quasi-likelihood vs.\ within-cluster variance
-vs.\ predictive error), and outputs (relative risks vs.\ cluster
-profiles vs.\ feature importance). Their convergence on the same
+framework --- the pattern emerged purely from the multivariate
+structure of the data. The DLNM then formally quantified this
+association, confirming the lag structure with inferential rigour.
+The XGBoost model, optimised for predictive accuracy via recursive
+tree partitioning, independently ranks $T_\mathrm{min}$ as the
+dominant environmental predictor and PM$_{2{\cdot}5}$ as the second
+environmental predictor (70\% of temperature's SHAP importance)
+through SHAP analysis. These three methods differ in their
+assumptions (distance-based clustering vs.\ semi-parametric splines
+vs.\ ensemble decision trees), optimisation criteria
+(within-cluster variance vs.\ quasi-likelihood vs.\ predictive
+error), and outputs (cluster profiles vs.\ relative risks vs.\
+feature importance). Their convergence on the same
 conclusion --- that cold stress is the primary environmental driver
 of respiratory hospitalisations, with delayed effects, and that
 PM$_{2{\cdot}5}$ acts as a secondary co-factor --- provides
@@ -878,7 +881,7 @@ temperature cut-offs.
 
 However, as a single-city study, these results require validation in
 multi-city pooled analyses before informing national policy, although
-the methodological triangulation (DLNM, clustering, ML/SHAP) partially
+the methodological triangulation (clustering, DLNM, ML/SHAP) partially
 compensates by demonstrating internal convergence across independent
 analytical frameworks.
 Extension to other subtropical Southern Hemisphere cities following
@@ -952,9 +955,8 @@ temperature-related driver of respiratory hospitalisations, with a
 [1${\cdot}$09--1${\cdot}$84]) and a delayed effect peaking at
 3--10~days that creates a concrete window for preventive
 intervention. The convergence of three independent analytical
-approaches --- inferential (DLNM), structural-exploratory
-(clustering), and predictive (ML/SHAP) --- strengthens this
-finding by demonstrating that the cold-lag pattern emerges from the
+approaches --- structural-exploratory (clustering), inferential
+(DLNM), and predictive (ML/SHAP) --- strengthens this finding by demonstrating that the cold-lag pattern emerges from the
 data regardless of modelling assumptions. These findings challenge
 the heat-centric framing of climate--health surveillance in
 subtropical South America and identify a specific, remediable gap:
@@ -991,8 +993,9 @@ Raw hospitalisation data: DATASUS
 station~A807; PM$_{2{\cdot}5}$: PurpleAir Sensor ID~90875.
 
 \section*{Funding}
-This research did not receive any specific grant from funding agencies
-in the public, commercial, or not-for-profit sectors.
+This work was supported by the New Arrangements for Research and
+Innovation (NAPI) programme of the Arauc\'{a}ria Foundation, Paran\'{a},
+Brazil.
 
 \section*{Acknowledgements}
 The authors thank the Brazilian Institute of Meteorology (INMET),
@@ -1003,7 +1006,7 @@ DATASUS, and PurpleAir Inc.\ for providing open data.
 %% ═══════════════════════════════════════════════════════════════════
 \bibliographystyle{elsarticle-num}
 
-\begin{thebibliography}{29}
+\begin{thebibliography}{27}
 
 %% Ordered by first citation in text (Vancouver style)
 
@@ -1122,35 +1125,25 @@ Brook RD, Rajagopalan S, Pope CA 3rd, et al.
 Particulate matter air pollution and cardiovascular disease: an update to the scientific statement from the American Heart Association.
 \textit{Circulation}. 2010;121(21):2331--2378.
 
-\bibitem{Gong2025}
-Gong P, et al.
-Air quality improvements and health benefits in China.
-\textit{Lancet Planet Health}. 2025. %% TODO: verificar refer\^{e}ncia completa com a professora
+\bibitem{Yu2025}
+Yu T, Jiang Y, Chen R, et al.
+National and provincial burden of disease attributable to fine particulate matter air pollution in China, 1990--2021: an analysis of data from the Global Burden of Disease Study 2021.
+\textit{Lancet Planet Health}. 2025;9(3):e174--e185.
 
 \bibitem{Gopikrishnan2025}
 Gopikrishnan GS, Kuttippurath J.
 Impact of the National Clean Air Programme (NCAP) on the particulate matter pollution and associated reduction in human mortalities in Indian cities.
 \textit{Sci Total Environ}. 2025;968:178787.
 
-\bibitem{Gardasevic2024}
-Garda\v{s}evi\'{c} J, et al.
-Assessment of health impacts attributable to air pollution.
-\textit{Environ Int}. 2024. %% TODO: verificar refer\^{e}ncia completa com a professora
-
 \bibitem{Hertzog2024}
 Hertzog L, Morgan GG, Yuen C, et al.
 Mortality burden attributable to exceptional PM2.5 air pollution events in Australian cities: a health impact assessment.
 \textit{Heliyon}. 2024;10(2):e24532.
 
-\bibitem{Tseng2024}
-Tseng CH, et al.
-Air pollution exposure and adverse health effects.
-\textit{Environ Res}. 2024. %% TODO: verificar refer\^{e}ncia completa com a professora
-
 \bibitem{Nashwan2024}
 Nashwan AJ, Aldosari N, Hendy A.
-Air quality and health impacts on vulnerable populations.
-2024. %% TODO: verificar refer\^{e}ncia completa com a professora
+Hajj 2024 heatwave: addressing health risks and safety.
+\textit{Lancet}. 2024;404(10451):427--428.
 
 \end{thebibliography}
 
