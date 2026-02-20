@@ -1,6 +1,5 @@
 %% supplement.tex — Online Supplement
 %% Lancet Regional Health – Americas
-%% Overleaf-ready standalone version
 %% ===================================================================
 \documentclass[12pt]{article}
 
@@ -36,63 +35,7 @@ Federal University of Paran\'{a} (UFPR), Curitiba, PR, Brazil
 %% ═══════════════════════════════════════════════════════════════════
 \section*{Supplementary Methods}
 
-\subsection*{Machine learning forecasting details}
-
-\paragraph{Extreme Learning Machine (ELM)}
-A single-hidden-layer feedforward network with random input weights
-and regularised pseudoinverse output weights. Hyperparameter: number
-of hidden neurons (scanned over 1--200).
-
-\paragraph{Multilayer perceptron (MLP)}
-A PyTorch-based feedforward network with one hidden layer (tanh
-activation), trained with Adam optimiser (learning rate 0${\cdot}$01),
-mini-batch size 20, early stopping (patience 10), and learning-rate
-scheduling.
-
-\paragraph{XGBoost}
-A gradient-boosted tree ensemble (max depth 5, learning rate
-0${\cdot}$1, \texttt{reg:squarederror} objective). The number of
-estimators was tuned via validation-set MSE.
-
-\paragraph{Training protocol}
-Data were split temporally: 70\% training, 15\% validation, 15\%
-test. Features were standardised (zero mean, unit variance). Model
-selection used MAPE on the validation set; final evaluation used the
-test set after retraining on training+validation data. SHAP (SHapley
-Additive exPlanations) values were computed for the XGBoost model to
-quantify feature importance.
-
-\paragraph{Climate projections}
-Future temperature scenarios were derived from the CMIP6 SSP5-8${\cdot}$5
-pathway (EC-Earth3-Veg-LR model) for Curitiba's grid cell, with daily
-$T_\mathrm{max}$, $T_\mathrm{med}$, and specific humidity extracted
-for 2030, 2050, and 2099. Future PM$_{2{\cdot}5}$ was projected using
-the most recent year's Transformer-imputed series as baseline.
-
-\paragraph{Monte Carlo extreme-event simulations}
-Heat waves were simulated by injecting random temperature perturbations
-(+2--5\,°C for 3--7~days) during autumn; cold waves by analogous
-decrements during spring/autumn. Wildfire PM$_{2{\cdot}5}$ spikes were
-simulated by adding 70--100~µg/m$^3$ pulses (7--14~days) during
-summer/spring.
-
-\subsection*{Clustering and PCA}
-
-K-means clustering was applied to six standardised variables
-($T_\mathrm{max}$, $T_\mathrm{med}$, $T_\mathrm{min}$,
-PM$_{2{\cdot}5}$, relative humidity, atmospheric pressure) on
-$N$=558 complete-case days. Optimal $K$=3 was selected by silhouette
-score (0${\cdot}$357). Three clusters emerged: Clean Cold ($n$=248),
-Polluted Heat ($n$=12), and Clean Heat ($n$=298). Kruskal--Wallis
-test for between-cluster differences in daily hospitalisations
-yielded $p$=0${\cdot}$039 (eTables~2--3). PCA on PM$_{2{\cdot}5}$,
-$T_\mathrm{min}$, and hospitalisations identified PC1 (44${\cdot}$5\%
-variance) associating cold, polluted days with higher admissions
-(eTable~4). Extended lag correlations (eTable~5) revealed peak
-$T_\mathrm{min}$--hospitalisation correlation at lag~9
-($r$=$-$0${\cdot}$320, $p<$0${\cdot}$001).
-
-\subsection*{Exploratory PM$_{2{\cdot}5}$ DLNM and confounding assessment}
+\subsection*{S.1\quad Exploratory PM$_{2{\cdot}5}$ DLNM and confounding assessment}
 
 An exploratory DLNM for EPA-corrected PM$_{2{\cdot}5}$ ($N$=697,
 lag 0--14~days, exposure df=4, lag df=4) showed no significant
@@ -168,6 +111,62 @@ imputation ($k$=5) produced qualitatively similar clustering solutions
 to the primary complete-case analysis (silhouette scores within
 0${\cdot}$02 of the main analysis). PCA loadings and explained
 variance were robust to imputation method.
+
+\subsection*{S.2\quad Clustering and PCA}
+
+K-means clustering was applied to six standardised variables
+($T_\mathrm{max}$, $T_\mathrm{med}$, $T_\mathrm{min}$,
+PM$_{2{\cdot}5}$, relative humidity, atmospheric pressure) on
+$N$=558 complete-case days. Optimal $K$=3 was selected by silhouette
+score (0${\cdot}$357). Three clusters emerged: Clean Cold ($n$=248),
+Polluted Heat ($n$=12), and Clean Heat ($n$=298). Kruskal--Wallis
+test for between-cluster differences in daily hospitalisations
+yielded $p$=0${\cdot}$039 (eTables~2--3). PCA on PM$_{2{\cdot}5}$,
+$T_\mathrm{min}$, and hospitalisations identified PC1 (44${\cdot}$5\%
+variance) associating cold, polluted days with higher admissions
+(eTable~4). Extended lag correlations (eTable~5) revealed peak
+$T_\mathrm{min}$--hospitalisation correlation at lag~9
+($r$=$-$0${\cdot}$320, $p<$0${\cdot}$001).
+
+\subsection*{S.3\quad Machine learning forecasting details}
+
+\paragraph{Extreme Learning Machine (ELM)}
+A single-hidden-layer feedforward network with random input weights
+and regularised pseudoinverse output weights. Hyperparameter: number
+of hidden neurons (scanned over 1--200).
+
+\paragraph{Multilayer perceptron (MLP)}
+A PyTorch-based feedforward network with one hidden layer (tanh
+activation), trained with Adam optimiser (learning rate 0${\cdot}$01),
+mini-batch size 20, early stopping (patience 10), and learning-rate
+scheduling.
+
+\paragraph{XGBoost}
+A gradient-boosted tree ensemble (max depth 5, learning rate
+0${\cdot}$1, \texttt{reg:squarederror} objective). The number of
+estimators was tuned via validation-set MSE.
+
+\paragraph{Training protocol}
+Data were split temporally: 70\% training, 15\% validation, 15\%
+test. Features were standardised (zero mean, unit variance). Model
+selection used MAPE on the validation set; final evaluation used the
+test set after retraining on training+validation data. SHAP (SHapley
+Additive exPlanations) values were computed for the XGBoost model to
+quantify feature importance.
+
+\paragraph{Climate projections}
+Future temperature scenarios were derived from the CMIP6 SSP5-8${\cdot}$5
+pathway (EC-Earth3-Veg-LR model) for Curitiba's grid cell, with daily
+$T_\mathrm{max}$, $T_\mathrm{med}$, and specific humidity extracted
+for 2030, 2050, and 2099. Future PM$_{2{\cdot}5}$ was projected using
+the most recent year's Transformer-imputed series as baseline.
+
+\paragraph{Monte Carlo extreme-event simulations}
+Heat waves were simulated by injecting random temperature perturbations
+(+2--5\,°C for 3--7~days) during autumn; cold waves by analogous
+decrements during spring/autumn. Wildfire PM$_{2{\cdot}5}$ spikes were
+simulated by adding 70--100~µg/m$^3$ pulses (7--14~days) during
+summer/spring.
 
 %% ═══════════════════════════════════════════════════════════════════
 %% SUPPLEMENTARY TABLES
