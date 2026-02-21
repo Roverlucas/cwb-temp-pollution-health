@@ -198,11 +198,13 @@ def main_all_methods(cidade, pollutant, lag, prev_ano, ano, cold=False, heat=Fal
 
             feature_name_map = {
                 'temperatura': 'Temperature',
+                'temperature': 'Temperature',
                 'umidade': 'Relative humidity',
-                'pm2.5_alt': 'PM2.5',
-                'pm10': 'PM10',
-                'semana': 'weekday',
-                'feriado': 'holiday'
+                'humidity': 'Relative humidity',
+                'pm2.5_alt': r'PM$_{2.5}$',
+                'pm10': r'PM$_{10}$',
+                'semana': 'Weekday',
+                'feriado': 'Holiday'
             }
 
             feature_names = [feature_name_map.get(col, col) for col in X.columns]
@@ -392,7 +394,7 @@ def generate_outputs(cidade, lag, predictions_prev, predictions, dates_prev, dat
         # Plot das previsões do modelo para o ano futuro
         plt.plot(str_dates_future, preds_model,
                  '-', 
-                 label=f'{ano} ({model} Predicted with waves)',
+                 label=f'{ano} ({model} Predicted)',
                  color=colors[model],
                  linewidth=2)
         

@@ -668,9 +668,17 @@ def plot_pca_biplot(X: np.ndarray, labels: np.ndarray, features: list[str],
     # Loading vectors
     loadings = pca.components_.T * np.sqrt(pca.explained_variance_)
     scale = 3.0
+    _DISPLAY = {
+        "t_max": r"$T_{\mathrm{max}}$",
+        "t_med": r"$T_{\mathrm{med}}$",
+        "t_min": r"$T_{\mathrm{min}}$",
+        "pm2.5_epa": r"$\mathrm{PM}_{2.5}$",
+        "umidade_relativa": "Relative humidity",
+        "pressure": "Pressure",
+    }
     for i, feat in enumerate(features):
         ax.annotate(
-            feat, xy=(0, 0),
+            _DISPLAY.get(feat, feat), xy=(0, 0),
             xytext=(loadings[i, 0] * scale, loadings[i, 1] * scale),
             arrowprops=dict(arrowstyle="->", color="grey", lw=1),
             fontsize=8, color="grey", ha="center", va="center",
@@ -706,7 +714,15 @@ def plot_cluster_profiles(profiles: pd.DataFrame, features: list[str],
     im = ax.imshow(z, aspect="auto", cmap="RdYlBu_r")
 
     ax.set_xticks(range(len(features)))
-    ax.set_xticklabels([f.replace("_", "\n") for f in features], fontsize=9)
+    _DISPLAY = {
+        "t_max": r"$T_{\mathrm{max}}$",
+        "t_med": r"$T_{\mathrm{med}}$",
+        "t_min": r"$T_{\mathrm{min}}$",
+        "pm2.5_epa": r"$\mathrm{PM}_{2.5}$",
+        "umidade_relativa": "Rel. humidity",
+        "pressure": "Pressure",
+    }
+    ax.set_xticklabels([_DISPLAY.get(f, f) for f in features], fontsize=9)
     ax.set_yticks(range(len(ylabels)))
     ax.set_yticklabels(ylabels, fontsize=9)
 

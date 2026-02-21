@@ -709,7 +709,8 @@ def tmin_distribution_comparison(verbose: bool = False) -> dict:
     bp["boxes"][1].set_facecolor("#d62728")
     bp["boxes"][1].set_alpha(0.5)
     ax.set_ylabel("Tmin (°C)")
-    ax.set_title(f"(b) Boxplot comparison (KS p={ks_p:.3f})")
+    ks_p_str = f"p={ks_p:.3f}" if ks_p >= 0.001 else "p<0.001"
+    ax.set_title(f"(b) Boxplot comparison (KS {ks_p_str})")
 
     fig.tight_layout()
     path = FIG_DIR / "fig_tmin_distribution_comparison.pdf"
@@ -1157,6 +1158,17 @@ def plot_diagnostics(fit: dict, diag: dict, label: str = "temp"):
 # 8. PLOTTING FUNCTIONS
 # ══════════════════════════════════════════════════════════════════════
 
+def _exposure_display(col: str) -> str:
+    """Map raw column names to publication-quality labels."""
+    _MAP = {
+        "t_min": r"$T_{\mathrm{min}}$",
+        "t_max": r"$T_{\mathrm{max}}$",
+        "t_med": r"$T_{\mathrm{med}}$",
+        "pm2.5_epa": r"$\mathrm{PM}_{2.5}$",
+    }
+    return _MAP.get(col, col)
+
+
 def plot_overall_er(pred: dict, exposure_col: str, centering: float,
                     unit: str = "°C"):
     """Cumulative exposure-response curve."""
@@ -1168,9 +1180,9 @@ def plot_overall_er(pred: dict, exposure_col: str, centering: float,
     ax.axhline(1, ls="--", color="grey", lw=0.8)
     ax.axvline(centering, ls=":", color="red", lw=0.8,
                label=f"Reference ({centering:.1f}{unit})")
-    ax.set_xlabel(f"{exposure_col} ({unit})")
+    ax.set_xlabel(f"{_exposure_display(exposure_col)} ({unit})")
     ax.set_ylabel("Cumulative RR")
-    ax.set_title(f"Cumulative exposure-response: {exposure_col}")
+    ax.set_title(f"Cumulative exposure-response: {_exposure_display(exposure_col)}")
     ax.legend(fontsize=9)
     fig.tight_layout()
     tag = "temp" if "t_min" in exposure_col else "pm25"
@@ -1243,14 +1255,14 @@ def plot_3d_surface(surface: dict, exposure_col: str, centering: float,
     ax.contour(V, L, RR, levels=[1.0], colors="black", linewidths=1.5)
     plt.colorbar(cs, ax=ax, label="RR")
     ax.axvline(centering, ls=":", color="white", lw=1)
-    ax.set_xlabel(f"{exposure_col} ({unit})")
+    ax.set_xlabel(f"{_exposure_display(exposure_col)} ({unit})")
     ax.set_ylabel("Lag (days)")
     ax.set_title("(a) Contour: RR(exposure, lag)")
 
     # 3D surface
     ax3 = fig.add_subplot(122, projection="3d")
     ax3.plot_surface(V, L, RR, cmap="RdBu_r", alpha=0.8, edgecolor="none")
-    ax3.set_xlabel(f"{exposure_col} ({unit})")
+    ax3.set_xlabel(f"{_exposure_display(exposure_col)} ({unit})")
     ax3.set_ylabel("Lag (days)")
     ax3.set_zlabel("RR")
     ax3.set_title("(b) 3D surface")
