@@ -39,6 +39,7 @@
 \author[utfpr]{Yara de Souza Tadano}
 \author[gtao]{Eduardo Tadeu Bacalhau}
 \ead{bacalhau@ufpr.br}
+\author[ufpr]{Camila Carpenedo}
 \author[ufpr]{Ricardo Henrique Moreton Godoi}
 
 \address[ufpr]{Environmental Engineering Department, Federal University of Paran\'{a} (UFPR), Curitiba, PR, Brazil}
@@ -98,7 +99,7 @@ consistent secondary compounding factor, generating hypotheses for
 combined alerts. SHAP analysis from the XGBoost model independently
 ranked $T_\mathrm{min}$ as the dominant environmental predictor,
 completing the three-method convergence. Exploratory Monte Carlo
-scenario simulations under CMIP6 SSP5-8${\cdot}$5 for 2050 showed
+simulations under CMIP6 SSP5-8${\cdot}$5 for 2050 showed
 that compound cold wave and wildfire PM$_{2{\cdot}5}$ episodes could
 increase weekly hospitalisations by up to 17\% and 55\%, respectively.
 
@@ -110,7 +111,7 @@ three to 10-day window for preventive intervention. The convergence
 of three methodologically independent approaches --
 structural-exploratory (clustering), inferential (DLNM), and
 predictive (ML/SHAP) -- strengthens this conclusion, and exploratory
-scenario simulations indicate that compound extreme events will
+simulations indicate that compound extreme events will
 exacerbate this burden under future warming scenarios. Current
 early-warning systems in subtropical South America focus almost
 exclusively on heat alerts; integrating cold-spell and air quality
@@ -291,7 +292,7 @@ We conducted an ecological time-series study of daily environmental
 exposures and respiratory hospital admissions in Curitiba, Paraná,
 Brazil (population~$\sim$1${\cdot}$8~million) from
 1~January~2022 to 31~December~2024 (1096~days). Curitiba is the
-largest city in southern Brazil with a Köppen Cfb (oceanic subtropical)
+largest city in southern Brazil with a Köppen Cfb (subtropical)
 climate, winter minima below 5\,°C, and summer maxima approaching
 30\,°C --- making it representative of the broader subtropical belt
 of southern South America. The study-period $T_\mathrm{min}$
@@ -319,7 +320,7 @@ and Indices (ETCCDI) percentile calculations, the full record
 (1961--2024) was used; combined analyses were restricted to 2022--2024.
 
 PM$_{2{\cdot}5}$ concentrations were measured using a single PurpleAir
-Flex-II sensor (Sensor ID~90875) at daily resolution. Raw readings
+Flex-II sensor (Sensor ID~90875), daily resolution. Raw readings
 were corrected using the EPA nationwide correction
 equation:\cite{Barkjohn2021}
 %
@@ -431,10 +432,11 @@ Supplementary Methods~S.3.
 
 \paragraph{Exploratory scenario and extreme-event simulations}
 To assess future health impacts under climate change, the trained
-XGBoost and MLP models were applied to downscaled CMIP6
-SSP5-8${\cdot}$5 temperature projections (EC-Earth3-Veg-LR) for
-Curitiba's grid cell, generating daily respiratory hospitalisation
-simulated scenarios for 2030, 2050, and 2099. Monte Carlo simulations of
+XGBoost and MLP models were applied to statistically downscaled
+temperature projections from the CMIP6 ensemble (EC-Earth3-Veg-LR
+model, SSP5-8${\cdot}$5 high-emission pathway) for the grid cell
+containing Curitiba ($\sim$100~km resolution), generating daily
+respiratory hospitalisation scenarios for 2030, 2050, and 2099. Monte Carlo simulations of
 extreme events were conducted by superimposing synthetic stressor
 episodes onto the 2050 climate baseline: cold waves (temperature drops
 of 34--88\% below monthly means for 3--8~consecutive days, based on
@@ -545,7 +547,7 @@ all; eTable~5). Although the magnitude of PM$_{2{\cdot}5}$ correlations
 was consistently smaller than $T_\mathrm{min}$ correlations at all
 lags (peak $r$=$-$0${\cdot}$320 at lag~9 for $T_\mathrm{min}$), the
 presence of delayed PM$_{2{\cdot}5}$--hospitalisation associations
-indicates that air pollution operates as a secondary environmental
+suggests that air pollution may operate as a secondary environmental
 stressor with its own temporal structure in this setting.
 
 \subsection{Distributed lag non-linear models}
@@ -555,8 +557,7 @@ stressor with its own temporal structure in this setting.
 The clustering analysis revealed delayed cold--hospitalisation
 correlations peaking at lags 3--10~days. To formally quantify this
 association, the quasi-Poisson DLNM for $T_\mathrm{min}$ ($N$=1068,
-$\hat{\phi}$=1${\cdot}$32) identified a minimum morbidity temperature
-(MMT) of 17${\cdot}$8\,°C, closely aligned with the 75th percentile
+$\hat{\phi}$=1${\cdot}$32) identified an MMT of 17${\cdot}$8\,°C, closely aligned with the 75th percentile
 of the local temperature distribution
 (Figure~\ref{fig:dlnm_temp_overall}). Below this threshold, the
 cumulative exposure--response curve rose steeply and monotonically:
@@ -704,11 +705,12 @@ environmental predictors, with directional effects consistent across
 methods.
 
 \paragraph{Exploratory scenario and extreme-event simulations}
-Applying the trained XGBoost and MLP models to CMIP6 SSP5-8${\cdot}$5
-temperature projections (EC-Earth3-Veg-LR) for Curitiba's grid cell,
-we \textbf{simulated} daily respiratory hospitalisations for 2050
+Applying the trained XGBoost and MLP models to CMIP6
+SSP5-8${\cdot}$5 temperature projections (EC-Earth3-Veg-LR; see §2.6)
+for Curitiba's grid cell,
+we estimated daily respiratory hospitalisations for 2050
 (eFigure~11). Under baseline 2050 climate conditions (without
-extreme events), both models \textbf{simulated} annual hospitalisation
+extreme events), both models projected annual hospitalisation
 totals similar to 2024 ($\sim$12\,300 admissions/year), reflecting the
 moderate warming signal in the SSP5-8${\cdot}$5 pathway for this
 subtropical latitude.
@@ -725,8 +727,8 @@ PM$_{2{\cdot}5}$ scenarios (70--100~µg/m$^3$ for 7--14~days)
 generated even larger weekly surges of up to 55\% (MLP) and 42\%
 (XGBoost), with the strongest impacts in late autumn (weeks 7--8;
 eFigure~13). The convergence of both models on the same seasonal
-vulnerability windows strengthens the \textbf{simulation} robustness.
-These forward-looking \textbf{exploratory scenarios}, while inherently
+vulnerability windows strengthens the projection robustness.
+These forward-looking exploratory scenarios, while inherently
 uncertain, demonstrate the operational potential of the ML models for
 climate-adaptive early-warning systems and quantify the additional
 hospitalisation burden attributable to compound extreme events.
@@ -1046,6 +1048,7 @@ LJRQ: Data curation, Validation.
 ETB: Data curation, Formal analysis, Methodology, Writing --- review.
 YST: Conceptualisation, Investigation, Formal analysis, Writing ---
 review \& editing.
+CC: Methodology (climate analysis), Validation, Writing --- review \& editing.
 RHMG: Conceptualisation, Writing --- original draft, supervision.
 All authors had full access to all the data in the study and had final
 responsibility for the decision to submit for publication.
