@@ -1,6 +1,6 @@
-# Cold, not heat: delayed temperature extremes drive respiratory hospitalisations in subtropical Southern Brazil
+# The compounding respiratory hospitalisation risk of cold spells and particulate matter in a subtropical metropolis: a time-series analysis
 
-**Authors:** Felipe Baglioli, Lucas Rover
+**Authors:** Felipe Baglioli, Lucas Rover, Pedro Augusto Breda Fontão, Leonardo José Rossoni Quadros, Eduardo Tadeu Bacalhau, Camila Carpenedo, Yara de Souza Tadano, Ricardo Henrique Moreton Godoi
 
 **Target journal:** The Lancet Regional Health — Americas
 
