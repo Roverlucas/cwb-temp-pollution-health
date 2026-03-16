@@ -671,4 +671,127 @@ data ($n$=156~weeks).}
 \end{tabular}
 \end{table}
 
+%% ── NEW: Stratified DLNM table ──────────────────────────────────────
+\begin{table}[ht]
+\centering
+\caption{Age- and diagnosis-stratified quasi-Poisson DLNMs for
+$T_\mathrm{min}$ and respiratory hospitalisations, Curitiba,
+2022--2024. Same model specification as the primary analysis
+(lag 0--21~days, exposure df=4, lag df=5, 7~df/year seasonal spline).
+Cumulative RR centred at stratum-specific MMT.}
+\label{etab:stratified_dlnm}
+\begin{tabular}{lrrrrrrr}
+\toprule
+Stratum & Mean/day & MMT (°C) & $\hat{\phi}$ &
+  \multicolumn{2}{c}{P1 (5${\cdot}$2\,°C)} &
+  \multicolumn{2}{c}{P10 (9${\cdot}$8\,°C)} \\
+\cmidrule(lr){5-6}\cmidrule(lr){7-8}
+& & & & RR & 95\% CI & RR & 95\% CI \\
+\midrule
+Total (all respiratory) & 32${\cdot}$1 & 17${\cdot}$7 & 1${\cdot}$40
+  & 1${\cdot}$57 & 1${\cdot}$20--2${\cdot}$05
+  & 1${\cdot}$19 & 1${\cdot}$01--1${\cdot}$40 \\
+Children $<$5~years & 6${\cdot}$9 & 14${\cdot}$7 & 1${\cdot}$24
+  & 1${\cdot}$20 & 0${\cdot}$69--2${\cdot}$10
+  & 1${\cdot}$16 & 0${\cdot}$87--1${\cdot}$55 \\
+Adults 5--64~years & 14${\cdot}$7 & 18${\cdot}$4 & 1${\cdot}$42
+  & 1${\cdot}$75 & 1${\cdot}$16--2${\cdot}$63
+  & 1${\cdot}$34 & 1${\cdot}$04--1${\cdot}$72 \\
+Adults $\geq$65~years & 10${\cdot}$5 & 17${\cdot}$6 & 1${\cdot}$06
+  & 1${\cdot}$63 & 1${\cdot}$10--2${\cdot}$40
+  & 1${\cdot}$14 & 0${\cdot}$90--1${\cdot}$44 \\
+Pneumonia (J09--J18) & 11${\cdot}$6 & 17${\cdot}$3 & 1${\cdot}$12
+  & 2${\cdot}$08 & 1${\cdot}$43--3${\cdot}$01
+  & 1${\cdot}$18 & 0${\cdot}$95--1${\cdot}$48 \\
+COPD/asthma (J40--J47) & 5${\cdot}$7 & 15${\cdot}$6 & 1${\cdot}$14
+  & 1${\cdot}$72 & 0${\cdot}$99--2${\cdot}$98
+  & 1${\cdot}$26 & 0${\cdot}$93--1${\cdot}$72 \\
+\midrule
+\multicolumn{8}{l}{\footnotesize \textit{Heat effect (P90, 19${\cdot}$4\,°C):}} \\
+Total & & & & 1${\cdot}$07 & 0${\cdot}$99--1${\cdot}$16
+  & \multicolumn{2}{l}{Non-significant in all strata} \\
+\bottomrule
+\multicolumn{8}{p{0.95\textwidth}}{\footnotesize
+$N$=1068 valid days for all strata (same $T_\mathrm{min}$ availability).
+MMT=minimum morbidity temperature (stratum-specific). Bold: 95\% CI
+excludes~1. Children $<$5~years and COPD/asthma lack significance
+primarily due to low daily counts limiting statistical power.}
+\end{tabular}
+\end{table}
+
+%% ── NEW: Sex-stratified DLNM table ─────────────────────────────────
+\begin{table}[ht]
+\centering
+\caption{Sex-stratified quasi-Poisson DLNMs for $T_\mathrm{min}$ and
+respiratory hospitalisations, Curitiba, 2022--2024. Same model
+specification as the primary analysis (lag 0--21~days, exposure df=4,
+lag df=5, 7~df/year seasonal spline). Cumulative RR centred at
+stratum-specific MMT.}
+\label{etab:sex_dlnm}
+\begin{tabular}{lrrrrrrr}
+\toprule
+Sex & Mean/day & MMT (°C) & $\hat{\phi}$ &
+  \multicolumn{2}{c}{P1 (5${\cdot}$2\,°C)} &
+  \multicolumn{2}{c}{P10 (9${\cdot}$8\,°C)} \\
+\cmidrule(lr){5-6}\cmidrule(lr){7-8}
+& & & & RR & 95\% CI & RR & 95\% CI \\
+\midrule
+Male   & 16${\cdot}$1 & 11${\cdot}$6 & 1${\cdot}$24
+  & 1${\cdot}$56 & 1${\cdot}$15--2${\cdot}$12
+  & 1${\cdot}$04 & 0${\cdot}$97--1${\cdot}$12 \\
+Female & 16${\cdot}$1 & 18${\cdot}$1 & 1${\cdot}$16
+  & 1${\cdot}$69 & 1${\cdot}$20--2${\cdot}$40
+  & 1${\cdot}$45 & 1${\cdot}$17--1${\cdot}$79 \\
+\midrule
+\multicolumn{8}{l}{\footnotesize \textit{Heat effect (P90, 19${\cdot}$4\,°C):}} \\
+Male   & & & & 1${\cdot}$15 & 0${\cdot}$92--1${\cdot}$44
+  & \multicolumn{2}{l}{Non-significant} \\
+Female & & & & 1${\cdot}$06 & 0${\cdot}$97--1${\cdot}$16
+  & \multicolumn{2}{l}{Non-significant} \\
+\bottomrule
+\multicolumn{8}{p{0.95\textwidth}}{\footnotesize
+$N$=1068 valid days for both strata. MMT=minimum morbidity temperature
+(stratum-specific). The notably lower MMT for males (11${\cdot}$6\,°C
+vs.\ 18${\cdot}$1\,°C) suggests that cold effects in men manifest only
+at more extreme temperatures, whereas women exhibit vulnerability
+across a broader temperature range. Heat effects were non-significant
+for both sexes.}
+\end{tabular}
+\end{table}
+
+%% ── NEW: Attributable fraction table ────────────────────────────────
+\begin{table}[ht]
+\centering
+\caption{Cold-attributable fraction (AF) and estimated annual burden
+of excess respiratory hospitalisations, Curitiba, 2022--2024.
+AF = (RR $-$ 1)/RR, computed from cumulative RR centred at
+MMT=17${\cdot}$7\,°C.}
+\label{etab:attributable_fraction}
+\begin{tabular}{lrrrrr}
+\toprule
+Percentile & $T_\mathrm{min}$ (°C) & RR & AF (\%) &
+  Excess/cold day & Annual excess \\
+\midrule
+P1  &  5${\cdot}$2 & 1${\cdot}$57 & 36${\cdot}$3 & 12${\cdot}$9 &  49 \\
+P5  &  8${\cdot}$5 & 1${\cdot}$26 & 20${\cdot}$8 &  7${\cdot}$4 & 124 \\
+P10 &  9${\cdot}$8 & 1${\cdot}$19 & 16${\cdot}$0 &  5${\cdot}$7 & 195 \\
+\midrule
+\multicolumn{5}{l}{\footnotesize Estimated annual SUS cost ($<$P10):}
+  & $\sim$R\$\,292\,000 \\
+\bottomrule
+\multicolumn{6}{p{0.92\textwidth}}{\footnotesize
+AF=attributable fraction. Excess/cold day = AF $\times$ mean daily
+hospitalisations on days below the threshold.
+Annual excess = excess/cold day $\times$ mean cold days per year.
+Cold days defined as $T_\mathrm{min}$ below the indicated percentile
+(P10: 34~days/year; P5: 17~days/year; P1: 4~days/year).
+SUS cost estimated at R\$\,1{,}500 per respiratory admission
+(mean AIH value for ICD-10 J00--J99, DATASUS 2022--2024).
+These estimates are conservative as they assume cold acts only on the
+day of exposure; the 3--10-day delayed effect implies that a single
+cold day contributes to excess admissions over multiple subsequent
+days.}
+\end{tabular}
+\end{table}
+
 \end{document}
