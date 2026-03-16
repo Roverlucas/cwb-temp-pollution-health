@@ -26,8 +26,8 @@
 \begin{frontmatter}
 
 %% ── Título ──────────────────────────────────────────────────────────
-\title{Beyond heatwaves: the delayed respiratory burden of cold extremes
-       and air pollution in southern Brazil, a time-series and modelling study}
+\title{Beyond heatwaves: the delayed respiratory hospitalisation burden
+       of cold extremes in southern Brazil, a time-series analysis}
 
 %% ── Autores ─────────────────────────────────────────────────────────
 \author[ufpr]{Felipe Baglioli, BSc}
@@ -55,7 +55,7 @@
 
 \textbf{Background:}\quad
 Climate--health policy in Latin America predominantly targets
-heatwaves, leaving the joint respiratory impacts of cold spells and
+heatwaves, leaving the respiratory impacts of cold extremes and
 fine particulate matter ($\text{PM}_{2{\cdot}5}$) understudied.
 We aimed to quantify the delayed, non-linear compounding effects of
 temperature extremes and $\text{PM}_{2{\cdot}5}$ on respiratory
@@ -88,12 +88,12 @@ consistently ranked $\text{PM}_{2{\cdot}5}$ as a secondary compounding
 factor.
 
 \textbf{Interpretation:}\quad
-Cold extremes, rather than heat, drive the highest
+Cold extremes, rather than heat, are associated with the highest
 temperature-related respiratory burden in this subtropical metropolis,
 with pneumonia and women disproportionately affected.
 The agreement of three methodologically independent approaches
 confirms a practical 3-to-10-day delayed window for preventive
-clinical intervention. Integrating cold-spell triggers into existing
+clinical intervention. Integrating cold-extreme triggers into existing
 heat-centric early-warning systems could avert considerable
 respiratory morbidity.
 
@@ -156,7 +156,7 @@ Combined with global evidence that cold-attributable mortality exceeds
 heat impacts, our findings indicate that heat-centric early-warning
 systems in subtropical Latin America, like Brazil's VIGIAR-SUS,
 overlook a large respiratory burden. For policy and practice,
-surveillance systems must integrate joint cold-spell and
+surveillance systems must integrate cold-extreme and
 $\text{PM}_{2{\cdot}5}$ forecasts, with sex-targeted outreach given
 women's higher vulnerability. The 3-to-10-day delay provides an
 operational window for primary care tele-monitoring and emergency
@@ -174,7 +174,7 @@ climates,\cite{Gasparrini2015} yet climate--health policy remains
 overwhelmingly focused on heat alerts and heatwave preparedness.
 This asymmetry is particularly pronounced in subtropical cities of
 Latin America, where winter temperatures can fall below
-5\,°C but early-warning systems rarely include cold-spell
+5\,°C but early-warning systems rarely include cold-extreme
 triggers.\cite{Bell2024,McMichael2006}
 
 Low ambient temperatures suppress mucociliary clearance, impair
@@ -218,11 +218,12 @@ identifies environmental regimes and lagged associations without
 parametric assumptions; DLNMs quantify the exposure--response relationship; and gradient-boosted trees with SHAP analysis offer
 independent predictive corroboration.
 
-Curitiba serves as a proxy for densely populated metropolitan areas
+Curitiba serves as an initial sentinel case study for densely
+populated metropolitan areas
 in the subtropical Southern Cone (Southern Brazil, Northern Argentina,
 Uruguay, Chile), which face rapid urbanisation and housing insulation
 deficits that may render populations paradoxically vulnerable to
-moderate cold spells --- a `hidden vulnerability' overlooked in
+moderate cold extremes --- a `hidden vulnerability' overlooked in
 Northern Hemisphere-centric
 literature.\cite{Gasparrini2015,Cohen2017}
 
@@ -664,8 +665,8 @@ across data-driven methods.
 
 \subsection{Principal findings}
 
-Cold extremes --- not heat --- exhibited the strongest association
-with respiratory hospitalisations in this subtropical city
+Cold extremes --- not heat --- were associated with the highest
+respiratory hospitalisation burden in this subtropical city
 (RR=1${\cdot}$42 [1${\cdot}$09--1${\cdot}$84] at P1; heat
 non-significant), with a delayed effect peaking at 3--10~days that
 provides a clinically useful intervention window. $\text{PM}_{2{\cdot}5}$
@@ -709,6 +710,13 @@ scenario.\cite{Gasparrini2015,Cohen2017,Zscheischler2020,Gouveia2003} Our
 age-stratified analyses support this gradient empirically:
 in-hospital mortality was 53-fold higher in adults $\geq$65~years
 (15${\cdot}$8\%) than in children $<$5~years (0${\cdot}$3\%).
+Although systemic missingness of race/ethnicity data in DATASUS
+precluded formal equity stratification, the severe vulnerability of
+the elderly to moderate cold highlights a structural determinant: in
+subtropical Latin America, energy poverty and housing insulation
+deficits transform minor thermal decrements into acute, unequal
+health threats for marginalised communities, a pattern consistent
+with the `hidden vulnerability' framework.\cite{Cohen2017,Gouveia2003}
 
 \subsection{Robustness of findings}
 
@@ -818,22 +826,29 @@ Fifth, single-station temperature data may miss microclimatic
 variation, though cold extremes are driven by synoptic-scale frontal
 systems affecting the region uniformly. Sixth, $\text{PM}_{2{\cdot}5}$
 from a single low-cost sensor had 36${\cdot}$4\% missing values (not
-MCAR; appendix table~10), though empirical mapping confirmed central sensors
-capture metropolitan temporal variance ($r$$>$0${\cdot}$76),
-\cite{daCosta2024} and the A-B-C diagnostic (appendix table~9) confirmed
-$\text{PM}_{2{\cdot}5}$ does not confound the temperature association.
+MCAR; appendix table~10). The severe, non-random missingness during
+cold weather systems inherently underpowered the inferential
+$\text{PM}_{2{\cdot}5}$ DLNM; the null joint finding reflects data
+sparsity rather than definitive proof of no biological compounding
+effect. Empirical mapping confirmed central sensors capture
+metropolitan temporal variance ($r$$>$0${\cdot}$76),\cite{daCosta2024}
+and independent validation against CAMS/Copernicus reanalysis
+($r$=0${\cdot}$73 over 568~days) corroborated the temporal signal.
+The A-B-C diagnostic (appendix table~9) confirmed $\text{PM}_{2{\cdot}5}$
+does not confound the temperature association.
 Seventh, 2050 simulations hold demographics constant and serve as
 illustrative scenarios rather than forecasts. Finally, as a
 single-city study, multi-site replication is needed.
 
 \subsection{Conclusion}
 
-In Curitiba, cold extremes --- not heat --- drive the largest
-temperature-related respiratory hospitalisation burden, with a
+In Curitiba, cold extremes --- not heat --- were independently
+associated with the largest temperature-related respiratory
+hospitalisation burden, with a
 delayed 3--10-day effect confirmed by three independent analytical
 approaches. These findings identify a remediable gap in subtropical
 South American climate--health surveillance: the absence of
-cold-spell triggers in early-warning systems. Integrating a
+cold-extreme triggers in early-warning systems. Integrating a
 temperature-threshold alert at the identified MMT
 (17${\cdot}$8\,°C) into existing frameworks warrants evaluation as a
 strategy to reduce preventable respiratory morbidity in the region.
