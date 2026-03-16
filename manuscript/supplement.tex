@@ -14,22 +14,24 @@
 \usepackage[margin=2.5cm]{geometry}
 \usepackage{caption}
 
-%% Prefix tables and figures with "e"
-\renewcommand{\thetable}{e\arabic{table}}
-\renewcommand{\thefigure}{e\arabic{figure}}
+%% Prefix tables and figures for appendix (Lancet style)
+\renewcommand{\thetable}{Appendix table~\arabic{table}}
+\renewcommand{\thefigure}{Appendix figure~\arabic{figure}}
 
 \begin{document}
 
 \begin{center}
 {\Large\bfseries Online Supplement}\\[0.5em]
-{\large The compounding respiratory hospitalisation risk of cold spells
-and particulate matter in a subtropical metropolis: a time-series analysis}\\[0.5em]
-Felipe Baglioli,$^{a,*}$ Lucas Rover,$^{b}$ Pedro Augusto Breda Font\~{a}o,$^{b}$\\
-Leonardo Jos\'{e} Rossoni Quadros,$^{b}$ Eduardo Tadeu Bacalhau,$^{c}$\\
-Camila Carpenedo,$^{a}$ Yara de Souza Tadano,$^{b}$ Ricardo Henrique Moreton Godoi$^{a}$\\[0.3em]
-{\small $^{a}$Environmental Engineering Department, Federal University of Paran\'{a} (UFPR), Curitiba, PR, Brazil}\\
+{\large Beyond heatwaves: the delayed respiratory burden of cold extremes
+and air pollution in southern Brazil, a time-series and modelling study}\\[0.5em]
+Felipe Baglioli,$^{a}$ Lucas Rover,$^{b}$ Eduardo Tadeu Bacalhau,$^{a}$
+Wilson Flavio Feltrim Roseghini,$^{a}$ Camila Bertoletti Carpenedo,$^{a}$\\
+Luciene Pimentel,$^{c}$ Pedro Augusto Breda Font\~{a}o,$^{a}$
+Leonardo Jos\'{e} Rossoni Quadros,$^{b}$ Eloy Fassi Casagrande Jr.,$^{b}$\\
+Francisco Mendon\c{c}a,$^{a}$ Yara de Souza Tadano,$^{b}$ Ricardo Henrique Moreton Godoi$^{a,*}$\\[0.3em]
+{\small $^{a}$Federal University of Paran\'{a} (UFPR), Curitiba, PR, Brazil}\\
 {\small $^{b}$Federal University of Technology -- Paran\'{a} (UTFPR), Ponta Grossa, PR, Brazil}\\
-{\small $^{c}$Research Group of Technology Applied to Optimization (GTAO), Federal University of Paran\'{a} (UFPR), Curitiba, PR, Brazil}
+{\small $^{c}$Pontifical Catholic University of Paran\'{a} (PUCPR), Curitiba, PR, Brazil}
 \end{center}
 
 \bigskip
@@ -39,75 +41,75 @@ Camila Carpenedo,$^{a}$ Yara de Souza Tadano,$^{b}$ Ricardo Henrique Moreton God
 %% ═══════════════════════════════════════════════════════════════════
 \section*{Supplementary Methods}
 
-\subsection*{S.1\quad Exploratory PM$_{2{\cdot}5}$ DLNM and confounding assessment}
+\subsection*{S.1\quad Exploratory $\text{PM}_{2{\cdot}5}$ DLNM and confounding assessment}
 
-An exploratory DLNM for EPA-corrected PM$_{2{\cdot}5}$ ($N$=697,
+An exploratory DLNM for EPA-corrected $\text{PM}_{2{\cdot}5}$ ($N$=697,
 lag 0--14~days, exposure df=4, lag df=4) showed no significant
-cumulative associations at any percentile (eFigure~6): P90
+cumulative associations at any percentile (appendix figure~6): P90
 (10${\cdot}$2~µg/m$^3$) RR=0${\cdot}$91 [0${\cdot}$78--1${\cdot}$07].
 The low ambient concentrations (median 4${\cdot}$1~µg/m$^3$, well
 below the WHO 24-hour guideline) and 36${\cdot}$4\% missing data
 likely limited statistical power. A joint model ($N$=683) yielded
 RERI=0${\cdot}$013 [$-$0${\cdot}$006, 0${\cdot}$033] on the additive
 scale, indicating no evidence of supra-additive interaction between
-temperature and PM$_{2{\cdot}5}$ (eTable~6).
+temperature and $\text{PM}_{2{\cdot}5}$ (appendix table~6).
 
-\paragraph{Confounding diagnostic: A-B-C comparison (eTable~9)}
-To distinguish PM$_{2{\cdot}5}$ confounding from sample restriction
+\paragraph{Confounding diagnostic: A-B-C comparison (appendix table~9)}
+To distinguish $\text{PM}_{2{\cdot}5}$ confounding from sample restriction
 bias, we compared four models at P10 of $T_\mathrm{min}$:
 \begin{itemize}
   \item \textbf{Model~A:} Unadjusted temperature DLNM on the full
     sample ($N$=1068, RR=1${\cdot}$17).
   \item \textbf{Model~B:} Unadjusted temperature DLNM restricted to
-    PM$_{2{\cdot}5}$-complete days ($N$=683, RR=0${\cdot}$82) ---
-    \emph{without} adjusting for PM$_{2{\cdot}5}$.
-  \item \textbf{Model~C:} Temperature DLNM \emph{with} PM$_{2{\cdot}5}$
+    $\text{PM}_{2{\cdot}5}$-complete days ($N$=683, RR=0${\cdot}$82) ---
+    \emph{without} adjusting for $\text{PM}_{2{\cdot}5}$.
+  \item \textbf{Model~C:} Temperature DLNM \emph{with} $\text{PM}_{2{\cdot}5}$
     as linear covariate ($N$=683, RR=0${\cdot}$82).
   \item \textbf{Model~D:} Temperature DLNM with relative humidity as
     linear covariate ($N$=851, RR=1${\cdot}$18).
 \end{itemize}
 Models~B and~C are virtually identical ($\Delta$RR$<$0${\cdot}$001),
-proving that PM$_{2{\cdot}5}$ does not confound the
+proving that $\text{PM}_{2{\cdot}5}$ does not confound the
 temperature--hospitalisation association. The entire attenuation from
 Model~A to Model~B (30\% reduction) is due to restricting the sample
-to PM$_{2{\cdot}5}$-available days, which systematically
-underrepresent cold temperatures (eTable~10). Model~D confirms that
+to $\text{PM}_{2{\cdot}5}$-available days, which systematically
+underrepresent cold temperatures (appendix table~10). Model~D confirms that
 humidity does not confound the primary estimates.
 
 Atmospheric pressure was not available in the merged daily dataset and
 could not be included; however, pressure's effect on respiratory
 admissions is predominantly mediated through
-temperature,\cite{Linares2025} and its omission is unlikely to bias
+temperature (Linares et al., 2025; ref~4 in main manuscript), and its omission is unlikely to bias
 the primary temperature estimates substantially.
 
 \subsection*{Missing data sensitivity}
 
-\paragraph{PM$_{2{\cdot}5}$ missingness mechanism (eTables~10--11)}
-PM$_{2{\cdot}5}$ data were available for 697 of 1096~study days
+\paragraph{$\text{PM}_{2{\cdot}5}$ missingness mechanism (appendix tables~10--11)}
+$\text{PM}_{2{\cdot}5}$ data were available for 697 of 1096~study days
 (63${\cdot}$6\%). Missingness was driven by PurpleAir sensor downtime
 (hardware resets, network outages) and inter-channel quality control
-exclusions. Days with missing PM$_{2{\cdot}5}$ had significantly lower
-temperatures ($-$1${\cdot}$4\,°C, $p<$0${\cdot}$001) and higher
-hospitalisations ($+$3${\cdot}$4/day, $p<$0${\cdot}$001; eTable~10),
+exclusions. Days with missing $\text{PM}_{2{\cdot}5}$ had significantly lower
+temperatures ($-$1${\cdot}$4\,°C, $p$$<$0${\cdot}$001) and higher
+hospitalisations ($+$3${\cdot}$4/day, $p$$<$0${\cdot}$001; appendix table~10),
 confirming that missingness is not MCAR.
 
 To characterise the mechanism further, we fitted a logistic model:
 $\mathrm{P}(\text{PM}_{2.5}\text{ observed}) \sim
 \mathrm{ns}(T_\mathrm{min}, 4\,\text{df}) + \mathrm{month} +
-\mathrm{DOW}$ (eTable~11). The model achieved pseudo-$R^2$=0${\cdot}$26
+\mathrm{DOW}$ (appendix table~11). The model achieved pseudo-$R^2$=0${\cdot}$26
 and AUC=0${\cdot}$80, confirming that season and temperature
 strongly predict missingness. Conditional on these covariates, no
 additional pattern is apparent, consistent with a missing-at-random
 (MAR) mechanism driven by seasonal sensor downtime rather than by
-PM$_{2{\cdot}5}$ levels themselves.
+$\text{PM}_{2{\cdot}5}$ levels themselves.
 
 Consequently, complete-case analyses restricted to
-PM$_{2{\cdot}5}$-available days underrepresent cold temperatures and
+$\text{PM}_{2{\cdot}5}$-available days underrepresent cold temperatures and
 produce attenuated temperature effect estimates. The A-B-C diagnostic
-(eTable~9) demonstrates that this attenuation is entirely attributable
-to sample restriction, not PM$_{2{\cdot}5}$ confounding. The primary
+(appendix table~9) demonstrates that this attenuation is entirely attributable
+to sample restriction, not $\text{PM}_{2{\cdot}5}$ confounding. The primary
 temperature DLNM, which uses the full dataset ($N$=1068) without
-conditioning on PM$_{2{\cdot}5}$ availability, is not affected.
+conditioning on $\text{PM}_{2{\cdot}5}$ availability, is not affected.
 
 \paragraph{Imputation sensitivity}
 Sensitivity analyses with mean imputation and $k$-nearest-neighbour
@@ -120,17 +122,17 @@ variance were robust to imputation method.
 
 K-means clustering was applied to six standardised variables
 ($T_\mathrm{max}$, $T_\mathrm{med}$, $T_\mathrm{min}$,
-PM$_{2{\cdot}5}$, relative humidity, atmospheric pressure) on
+$\text{PM}_{2{\cdot}5}$, relative humidity, atmospheric pressure) on
 $N$=558 complete-case days. Optimal $K$=3 was selected by silhouette
-score (0${\cdot}$357). Three clusters emerged: Clean Cold ($n$=248),
-Polluted Heat ($n$=12), and Clean Heat ($n$=298). Kruskal--Wallis
+score (0${\cdot}$357). Three clusters emerged: `Clean Cold' ($n$=248),
+`Polluted Heat' ($n$=12), and `Clean Heat' ($n$=298). Kruskal--Wallis
 test for between-cluster differences in daily hospitalisations
-yielded $p$=0${\cdot}$039 (eTables~2--3). PCA on PM$_{2{\cdot}5}$,
+yielded $p$=0${\cdot}$039 (appendix tables~2--3). PCA on $\text{PM}_{2{\cdot}5}$,
 $T_\mathrm{min}$, and hospitalisations identified PC1 (44${\cdot}$5\%
 variance) associating cold, polluted days with higher admissions
-(eTable~4). Extended lag correlations (eTable~5) revealed peak
+(appendix table~4). Extended lag correlations (appendix table~5) revealed peak
 $T_\mathrm{min}$--hospitalisation correlation at lag~9
-($r$=$-$0${\cdot}$320, $p<$0${\cdot}$001).
+($r$=$-$0${\cdot}$320, $p$$<$0${\cdot}$001).
 
 \subsection*{S.3\quad Machine learning forecasting details}
 
@@ -162,13 +164,13 @@ quantify feature importance.
 Future temperature scenarios were derived from the CMIP6 SSP5-8${\cdot}$5
 pathway (EC-Earth3-Veg-LR model) for Curitiba's grid cell, with daily
 $T_\mathrm{max}$, $T_\mathrm{med}$, and specific humidity extracted
-for 2030, 2050, and 2099. Future PM$_{2{\cdot}5}$ was projected using
+for 2030, 2050, and 2099. Future $\text{PM}_{2{\cdot}5}$ was projected using
 the most recent year's Transformer-imputed series as baseline.
 
 \paragraph{Monte Carlo extreme-event simulations}
 Heat waves were simulated by injecting random temperature perturbations
 (+2--5\,°C for 3--7~days) during autumn; cold waves by analogous
-decrements during spring/autumn. Wildfire PM$_{2{\cdot}5}$ spikes were
+decrements during spring/autumn. Wildfire $\text{PM}_{2{\cdot}5}$ spikes were
 simulated by adding 70--100~µg/m$^3$ pulses (7--14~days) during
 summer/spring.
 
@@ -197,8 +199,8 @@ Cold spells  &  4 &  39 & 4${\cdot}$0 & 3--7 \\
 \begin{table}[ht]
 \centering
 \caption{Cluster profiles at $K$=3 (optimal by silhouette, $N$=558
-complete-case days). Temperature in °C (INMET); PM$_{2{\cdot}5}$
-EPA-corrected. \textbf{Note:} The Polluted Heat cluster contains only
+complete-case days). Temperature in °C (INMET); $\text{PM}_{2{\cdot}5}$
+EPA-corrected. \textbf{Note:} The `Polluted Heat' cluster contains only
 $n$=12 days ($<$3\% of the sample), limiting the statistical
 reliability of its profile estimates. Results from this cluster should
 be interpreted as exploratory pattern description.}
@@ -206,7 +208,7 @@ be interpreted as exploratory pattern description.}
 \begin{tabular}{lrrrrrrr}
 \toprule
 Cluster & $n$ & $T_\mathrm{max}$ & $T_\mathrm{med}$ &
-  $T_\mathrm{min}$ & PM$_{2{\cdot}5}$ & RH (\%) & Pressure \\
+  $T_\mathrm{min}$ & $\text{PM}_{2{\cdot}5}$ & RH (\%) & Pressure \\
   & & (°C) & (°C) & (°C) & (µg/m$^3$) & & (hPa) \\
 \midrule
 0 -- Clean Cold     & 248 & 21${\cdot}$3 & 16${\cdot}$2 & 12${\cdot}$7 &  4${\cdot}$8 & 83${\cdot}$4 & 914${\cdot}$6 \\
@@ -219,13 +221,13 @@ Cluster & $n$ & $T_\mathrm{max}$ & $T_\mathrm{med}$ &
 \begin{table}[ht]
 \centering
 \caption{Cluster profiles at $K$=4 (manuscript validation).
-Kruskal--Wallis $H$=16${\cdot}$69, $p<$0${\cdot}$001 for
+Kruskal--Wallis $H$=16${\cdot}$69, $p$$<$0${\cdot}$001 for
 between-cluster differences in daily hospitalisations.}
 \label{etab:clusters_k4}
 \begin{tabular}{lrrrrrr}
 \toprule
 Cluster & $n$ & $T_\mathrm{max}$ & $T_\mathrm{med}$ &
-  PM$_{2{\cdot}5}$ & RH (\%) & Hosp/day \\
+  $\text{PM}_{2{\cdot}5}$ & RH (\%) & Hosp/day \\
   & & (°C) & (°C) & (µg/m$^3$) & & (mean $\pm$ SD) \\
 \midrule
 Clean Cold     & 197 & 23${\cdot}$3 & 18${\cdot}$4 &  3${\cdot}$2 & 86${\cdot}$4 & 31${\cdot}$3 $\pm$ 11${\cdot}$2 \\
@@ -243,7 +245,7 @@ days). Variables standardised prior to decomposition.}
 \label{etab:pca}
 \begin{tabular}{lcccc}
 \toprule
-Component & PM$_{2{\cdot}5}$ & $T_\mathrm{min}$ & Hospitalisations & Explained Var. \\
+Component & $\text{PM}_{2{\cdot}5}$ & $T_\mathrm{min}$ & Hospitalisations & Explained Var. \\
 \midrule
 PC1 & $+$0${\cdot}$564  & $-$0${\cdot}$580 & $+$0${\cdot}$588 & 44${\cdot}$5\% \\
 PC2 & $+$0${\cdot}$810  & $+$0${\cdot}$525 & $-$0${\cdot}$259 & 28${\cdot}$2\% \\
@@ -254,11 +256,11 @@ PC2 & $+$0${\cdot}$810  & $+$0${\cdot}$525 & $-$0${\cdot}$259 & 28${\cdot}$2\% \
 \begin{table}[ht]
 \centering
 \caption{Extended lag correlations (Pearson $r$) between exposures and
-daily hospitalisations, selected lags. Bold: significant at $p<$0${\cdot}$05.}
+daily hospitalisations, selected lags. Bold: significant at $p$$<$0${\cdot}$05.}
 \label{etab:extended_lags}
 \begin{tabular}{lrrrrrr}
 \toprule
- & \multicolumn{3}{c}{PM$_{2{\cdot}5}$ EPA} & \multicolumn{3}{c}{$T_\mathrm{min}$} \\
+ & \multicolumn{3}{c}{$\text{PM}_{2{\cdot}5}$ EPA} & \multicolumn{3}{c}{$T_\mathrm{min}$} \\
 \cmidrule(lr){2-4} \cmidrule(lr){5-7}
 Lag (days) & $r$ & $p$ & $N$ & $r$ & $p$ & $N$ \\
 \midrule
@@ -298,7 +300,7 @@ S    & 0${\cdot}$955 &  ---     &  ---  \\
 Model & $\hat{\phi}$ & DW & Ljung--Box $p$ & ACF lag\,1 & ACF lag\,7 \\
 \midrule
 Temperature & 1${\cdot}$322 & 2${\cdot}$004 & 0${\cdot}$137 & $-$0${\cdot}$006 & 0${\cdot}$077 \\
-PM$_{2{\cdot}5}$  & 1${\cdot}$329 & 2${\cdot}$115 & 0${\cdot}$096 & $-$0${\cdot}$059 & 0${\cdot}$025 \\
+$\text{PM}_{2{\cdot}5}$  & 1${\cdot}$329 & 2${\cdot}$115 & 0${\cdot}$096 & $-$0${\cdot}$059 & 0${\cdot}$025 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -337,7 +339,7 @@ Lag & Model & RMSE & MAE & MAPE (\%) & $N_\mathrm{param}$ \\
 \caption{Confounding diagnostic: A-B-C-D comparison. Cumulative RR at
 P10 of $T_\mathrm{min}$ (9${\cdot}$8\,°C), centred at
 MMT=17${\cdot}$8\,°C. Models B and C are virtually identical
-($\Delta$RR$<$0${\cdot}$001), proving that PM$_{2{\cdot}5}$ does not
+($\Delta$RR$<$0${\cdot}$001), proving that $\text{PM}_{2{\cdot}5}$ does not
 confound the temperature--hospitalisation association.}
 \label{etab:adjusted_sensitivity}
 \begin{tabular}{llrrrr}
@@ -345,38 +347,38 @@ confound the temperature--hospitalisation association.}
 Model & Specification & RR & 95\% CI & $\hat{\phi}$ & $N$ \\
 \midrule
 A & Unadjusted (full sample)            & 1${\cdot}$17 & 1${\cdot}$00--1${\cdot}$37 & 1${\cdot}$32 & 1068 \\
-B & Unadjusted (PM$_{2{\cdot}5}$-complete days) & 0${\cdot}$82 & 0${\cdot}$64--1${\cdot}$06 & 1${\cdot}$32 &  683 \\
-C & + PM$_{2{\cdot}5}$ linear (same days as B)  & 0${\cdot}$82 & 0${\cdot}$64--1${\cdot}$06 & 1${\cdot}$32 &  683 \\
+B & Unadjusted ($\text{PM}_{2{\cdot}5}$-complete days) & 0${\cdot}$82 & 0${\cdot}$64--1${\cdot}$06 & 1${\cdot}$32 &  683 \\
+C & + $\text{PM}_{2{\cdot}5}$ linear (same days as B)  & 0${\cdot}$82 & 0${\cdot}$64--1${\cdot}$06 & 1${\cdot}$32 &  683 \\
 D & + Humidity linear                            & 1${\cdot}$18 & 0${\cdot}$98--1${\cdot}$42 & 1${\cdot}$27 &  851 \\
 \bottomrule
-\multicolumn{6}{l}{\footnotesize \textit{Key finding:} B$\approx$C ($\Delta$RR$<$0${\cdot}$001) $\Rightarrow$ PM$_{2{\cdot}5}$ is NOT a confounder.}\\
-\multicolumn{6}{l}{\footnotesize A$\neq$B $\Rightarrow$ entire attenuation is from sample restriction to warmer days (eTable~10).}
+\multicolumn{6}{l}{\footnotesize \textit{Key finding:} B$\approx$C ($\Delta$RR$<$0${\cdot}$001) $\Rightarrow$ $\text{PM}_{2{\cdot}5}$ is NOT a confounder.}\\
+\multicolumn{6}{l}{\footnotesize A$\neq$B $\Rightarrow$ entire attenuation is from sample restriction to warmer days (appendix table~10).}
 \end{tabular}
 \end{table}
 
 \begin{table}[ht]
 \centering
 \caption{Comparison of key variable distributions between days with
-valid PM$_{2{\cdot}5}$ ($n$=697) and days with missing PM$_{2{\cdot}5}$
+valid $\text{PM}_{2{\cdot}5}$ ($n$=697) and days with missing $\text{PM}_{2{\cdot}5}$
 ($n$=399). Welch $t$-test for difference in means.}
 \label{etab:missing_data_comparison}
 \begin{tabular}{lrrrr}
 \toprule
-Variable & Valid PM$_{2{\cdot}5}$ & Missing PM$_{2{\cdot}5}$ & Diff & $p$ \\
+Variable & Valid $\text{PM}_{2{\cdot}5}$ & Missing $\text{PM}_{2{\cdot}5}$ & Diff & $p$ \\
  & (mean $\pm$ SD) & (mean $\pm$ SD) & & (Welch $t$) \\
 \midrule
 $T_\mathrm{min}$ (°C)   & 15${\cdot}$3 $\pm$ 3${\cdot}$5 & 13${\cdot}$8 $\pm$ 3${\cdot}$9 & $+$1${\cdot}$4 & $<$0${\cdot}$001 \\
 Rel.\ humidity (\%)       & 80${\cdot}$5 $\pm$ 8${\cdot}$9 & 78${\cdot}$9 $\pm$ 10${\cdot}$5 & $+$1${\cdot}$6 & 0${\cdot}$028 \\
 Hospitalisations (n/day) & 31${\cdot}$4 $\pm$ 11${\cdot}$3 & 34${\cdot}$8 $\pm$ 11${\cdot}$6 & $-$3${\cdot}$4 & $<$0${\cdot}$001 \\
 \bottomrule
-\multicolumn{5}{l}{\footnotesize PM$_{2{\cdot}5}$ valid: $n$=697 days; missing: $n$=399 days. Missingness is not MCAR}\\
-\multicolumn{5}{l}{\footnotesize (associated with colder days/higher admissions). See eTable~11 for missingness model.}
+\multicolumn{5}{l}{\footnotesize $\text{PM}_{2{\cdot}5}$ valid: $n$=697 days; missing: $n$=399 days. Missingness is not MCAR}\\
+\multicolumn{5}{l}{\footnotesize (associated with colder days/higher admissions). See appendix table~11 for missingness model.}
 \end{tabular}
 \end{table}
 
 \begin{table}[ht]
 \centering
-\caption{Logistic missingness model for PM$_{2{\cdot}5}$ data
+\caption{Logistic missingness model for $\text{PM}_{2{\cdot}5}$ data
 availability. $\mathrm{P}(\text{PM}_{2.5}\text{ observed}) \sim
 \mathrm{ns}(T_\mathrm{min}, 4\,\text{df}) + \mathrm{month} +
 \mathrm{DOW}$, $N$=1068.}
@@ -449,7 +451,7 @@ and lag dimensions.}
 \centering
 \includegraphics[width=0.85\textwidth]{../analysis/dlnm/figures/fig_dlnm_pm25_overall.pdf}
 \caption{Cumulative exposure--response curve for EPA-corrected
-PM$_{2{\cdot}5}$ and respiratory hospitalisations (DLNM, lag
+$\text{PM}_{2{\cdot}5}$ and respiratory hospitalisations (DLNM, lag
 0--14~days).}
 \label{efig:dlnm_pm25_overall}
 \end{figure}
@@ -480,7 +482,7 @@ low, red = high). Features ranked by mean absolute SHAP value.}
 INMET climatology (1961--2021, $n$=20\,018) and the study period
 (2022--2024, $n$=1068). (a) Density histograms with P10 percentiles
 marked. (b) Side-by-side boxplots. Kolmogorov--Smirnov test:
-$D$=0${\cdot}$14, $p<$0${\cdot}$001. The study period is slightly
+$D$=0${\cdot}$14, $p$$<$0${\cdot}$001. The study period is slightly
 warmer than the full climatology (mean 14${\cdot}$8 vs 13${\cdot}$3\,°C)
 but retains representation of cold extremes (P1=5${\cdot}$2 vs
 1${\cdot}$4\,°C).}
@@ -579,7 +581,7 @@ particularly in autumn--winter (April--July) and late spring
 \begin{figure}[ht]
 \centering
 \includegraphics[width=\textwidth]{../analysis/forecasting_pm25/série_queimadas_2050_2050_curitiba_lag0__.png}
-\caption{Monte Carlo wildfire PM$_{2{\cdot}5}$ simulation for 2050:
+\caption{Monte Carlo wildfire $\text{PM}_{2{\cdot}5}$ simulation for 2050:
 daily hospitalisations under baseline 2050 climate (black) vs.\ 2050
 with superimposed wildfire smoke events of
 70--100~µg/m$^3$ for 7--14~days (coloured), for MLP (top)
@@ -588,5 +590,85 @@ hospitalisation surges, with weekly increases of up to 55\% (MLP) and
 42\% (XGBoost).}
 \label{efig:wildfire_scenarios}
 \end{figure}
+
+%% ═══════════════════════════════════════════════════════════════════
+%% eTABLE 13 — Age-stratified descriptive analysis
+%% ═══════════════════════════════════════════════════════════════════
+
+\begin{table}[ht]
+\centering
+\caption{Age-stratified descriptive statistics and cold-sensitivity
+analysis for respiratory hospitalisations, Curitiba, 2022--2024.}
+\label{etab:age_stratification}
+\begin{tabular}{lrrr}
+\toprule
+ & $<$5~years & 5--64~years & $\geq$65~years \\
+\midrule
+\multicolumn{4}{l}{\textit{Descriptive statistics}} \\
+$N$ (admissions) & 7\,540 & 16\,186 & 11\,549 \\
+Proportion (\%) & 21${\cdot}$4 & 45${\cdot}$9 & 32${\cdot}$7 \\
+Daily mean (SD) & 6${\cdot}$88 (4${\cdot}$02) & 14${\cdot}$77 (6${\cdot}$95) & 10${\cdot}$54 (4${\cdot}$57) \\
+In-hospital mortality (\%) & 0${\cdot}$3 & 4${\cdot}$6 & 15${\cdot}$8 \\
+\midrule
+\multicolumn{4}{l}{\textit{Cold-day effect ($T_\mathrm{min}$ $<$P10 vs.\ $>$P75)}} \\
+Mean admissions, cold days & 8${\cdot}$84 & 16${\cdot}$17 & 11${\cdot}$84 \\
+Mean admissions, warm days & 6${\cdot}$55 & 14${\cdot}$14 & 8${\cdot}$88 \\
+Ratio (cold/warm) & 1${\cdot}$35 & 1${\cdot}$14 & 1${\cdot}$33 \\
+\midrule
+\multicolumn{4}{l}{\textit{Lagged cross-correlation ($T_\mathrm{min}$ vs.\ admissions)}} \\
+Peak lag (days) & 9 & 3 & 8 \\
+Peak $r$ & $-$0${\cdot}$247 & $-$0${\cdot}$189 & $-$0${\cdot}$355 \\
+\midrule
+\multicolumn{4}{l}{\textit{Dominant ICD-10 subgroups (\% within age group)}} \\
+J20--J22 (Acute lower resp.) & 60${\cdot}$0 & 5${\cdot}$2 & 1${\cdot}$6 \\
+J09--J18 (Pneumonia/Influenza) & 22${\cdot}$4 & 30${\cdot}$2 & 44${\cdot}$8 \\
+J40--J47 (COPD/Asthma) & 10${\cdot}$8 & 34${\cdot}$4 & 39${\cdot}$6 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%% ═══════════════════════════════════════════════════════════════════
+%% eTABLE 14 — Viral confounder sensitivity analysis
+%% ═══════════════════════════════════════════════════════════════════
+
+\begin{table}[ht]
+\centering
+\caption{Post-hoc sensitivity analysis: effect of adjusting for
+respiratory viral circulation (SIVEP-Gripe, 2022--2024) on the
+$T_\mathrm{min}$--hospitalisation association, Curitiba.}
+\label{etab:viral_sensitivity}
+\begin{tabular}{lrr}
+\toprule
+Model & $R^2$ & $T_\mathrm{min}$ coefficient \\
+\midrule
+$T_\mathrm{min}$ only & 0${\cdot}$357 & $-$8${\cdot}$74 \\
+Viral counts only (Flu + RSV + COVID) & 0${\cdot}$359 & --- \\
+$T_\mathrm{min}$ + Viral counts & 0${\cdot}$599 & $-$7${\cdot}$36 \\
+\midrule
+\multicolumn{3}{l}{\textit{Attenuation of $T_\mathrm{min}$ effect when controlling for viruses}} \\
+Coefficient attenuation & \multicolumn{2}{r}{15${\cdot}$8\%} \\
+$\Delta R^2$ (adding $T_\mathrm{min}$ to viral model) & \multicolumn{2}{r}{0${\cdot}$240 ($F$=89${\cdot}$6, $p$$<$0${\cdot}$0001)} \\
+\midrule
+\multicolumn{3}{l}{\textit{Cold weeks ($T_\mathrm{min}$$<$10°C) vs.\ warm weeks ($T_\mathrm{min}$$>$18°C)}} \\
+Mean weekly hospitalisations (cold) & \multicolumn{2}{r}{257${\cdot}$9} \\
+Mean weekly hospitalisations (warm) & \multicolumn{2}{r}{193${\cdot}$0} \\
+Ratio & \multicolumn{2}{r}{1${\cdot}$34 ($p$=0${\cdot}$0002)} \\
+Mean viral positivity (cold) & \multicolumn{2}{r}{0${\cdot}$32} \\
+Mean viral positivity (warm) & \multicolumn{2}{r}{0${\cdot}$45} \\
+\midrule
+\multicolumn{3}{l}{\textit{Partial correlations ($T_\mathrm{min}$ vs.\ weekly hospitalisations)}} \\
+Unadjusted (lag 1~week) & \multicolumn{2}{r}{$r$=$-$0${\cdot}$598} \\
+Adjusted for viral positivity & \multicolumn{2}{r}{$r$=$-$0${\cdot}$580} \\
+\bottomrule
+\multicolumn{3}{p{0.9\textwidth}}{\footnotesize
+Data source: SIVEP-Gripe (OpenDataSUS), $n$=28\,972 SRAG
+notifications in Curitiba, 2022--2024. Weekly aggregation by
+epidemiological week. Viral counts: influenza (PCR or antigen
+positive), RSV (PCR or antigen positive), COVID-19 (PCR, antigen,
+or CLASSI\_FIN=5). $T_\mathrm{min}$ coefficient: change in weekly
+hospitalisations per 1\,°C decrease. All models are OLS with weekly
+data ($n$=156~weeks).}
+\end{tabular}
+\end{table}
 
 \end{document}
