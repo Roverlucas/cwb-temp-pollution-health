@@ -2,8 +2,6 @@
 
 **Authors:** Felipe Baglioli, Lucas Rover, Pedro Augusto Breda Fontão, Leonardo José Rossoni Quadros, Eduardo Tadeu Bacalhau, Camila Carpenedo, Yara de Souza Tadano, Ricardo Henrique Moreton Godoi
 
-**Target journal:** The Lancet Regional Health — Americas
-
 ## Project Structure
 
 ```
